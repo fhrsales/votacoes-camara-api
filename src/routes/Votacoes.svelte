@@ -37,7 +37,13 @@
 	}
 
 	const API_BASE = 'https://dadosabertos.camara.leg.br/api/v2';
-	const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+	const CORS_PROXIES = [
+		'https://api.allorigins.win/raw?url=',
+		'https://cors.isomorphic-git.org/',
+		'https://thingproxy.freeboard.io/fetch/'
+	];
+	const RETRY_ATTEMPTS = 2;
+	const RETRY_BASE_DELAY = 250;
 
 	async function fetchJson(url, errorMessage) {
 		const response = await fetch(url);
@@ -49,8 +55,25 @@
 
 	async function fetchJsonProxy(path, errorMessage) {
 		const upstream = `${API_BASE}${path}`;
-		const url = `${CORS_PROXY}${encodeURIComponent(upstream)}`;
-		return fetchJson(url, errorMessage);
+		let lastError;
+		for (const proxy of CORS_PROXIES) {
+			const url =
+				proxy === 'https://api.allorigins.win/raw?url='
+					? `${proxy}${encodeURIComponent(upstream)}`
+					: `${proxy}${upstream}`;
+			for (let attempt = 0; attempt <= RETRY_ATTEMPTS; attempt += 1) {
+				try {
+					return await fetchJson(url, errorMessage);
+				} catch (error) {
+					lastError = error;
+					if (attempt < RETRY_ATTEMPTS) {
+						const delay = RETRY_BASE_DELAY * (attempt + 1);
+						await new Promise((resolve) => setTimeout(resolve, delay));
+					}
+				}
+			}
+		}
+		throw lastError ?? new Error(errorMessage ?? 'Falha ao buscar dados.');
 	}
 
 	async function getResumoTexto(id) {
