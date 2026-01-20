@@ -59,8 +59,8 @@ Verifique:
 
 ## Badges
 
-Substitua `SEU_USUARIO` e `NOME_DO_REPO`:
+Badge do deploy:
 
 ```md
-[![Deploy to GitHub Pages](https://github.com/SEU_USUARIO/NOME_DO_REPO/actions/workflows/pages.yml/badge.svg)](https://github.com/SEU_USUARIO/NOME_DO_REPO/actions/workflows/pages.yml)
+[![Deploy to GitHub Pages](https://github.com/fhrsales/votacoes-camara-api/actions/workflows/pages.yml/badge.svg)](https://github.com/fhrsales/votacoes-camara-api/actions/workflows/pages.yml)
 ```
