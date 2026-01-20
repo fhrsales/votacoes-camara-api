@@ -15,9 +15,9 @@ No GitHub:
 
 ### 2) Branch de deploy
 
-O workflow publica quando há push no branch `master`.
+O workflow publica quando há push no branch `main`.
 
-Se o seu branch principal for `main`, altere em:
+Se o seu branch principal for `master`, altere em:
 
 - `.github/workflows/pages.yml`
 
@@ -55,7 +55,7 @@ O Pages é estático. Se o proxy CORS estiver instável, troque o endpoint usado
 Verifique:
 
 - **Settings → Pages**: Source = GitHub Actions
-- O push foi feito no branch configurado no workflow (`master`)
+- O push foi feito no branch configurado no workflow (`main`)
 
 ## Badges
 
