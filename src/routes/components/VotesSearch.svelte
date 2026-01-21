@@ -5,6 +5,7 @@
 	export let carregandoLista = false;
 	export let erroLista = '';
 	export let listaVotacoes = [];
+	export let opcoesMes = null;
 	export let onListar = () => {};
 	export let onLimpar = () => {};
 	export let onSelect = (item) => {};
@@ -41,7 +42,7 @@
 		return opcoes;
 	}
 
-	const opcoesMes = gerarOpcoesMeses();
+	$: opcoesDisponiveis = Array.isArray(opcoesMes) && opcoesMes.length > 0 ? opcoesMes : gerarOpcoesMeses();
 
 	function handleListar() {
 		onListar();
@@ -51,7 +52,12 @@
 <section class="search-panel">
 	<div class="search-card">
 		<div class="search-row">
-			<Select bind:value={dataInicio} options={opcoesMes} placeholder="Mês/Ano" />
+			<Select
+				aria-label="Mês/Ano"
+				bind:value={dataInicio}
+				options={opcoesDisponiveis}
+				placeholder="Mês/Ano"
+			/>
 			<Button
 				on:click={listaVotacoes.length > 0 ? onLimpar : handleListar}
 				disabled={carregandoLista}

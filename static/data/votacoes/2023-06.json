@@ -1,0 +1,90 @@
+{
+  "mes": "2023-06",
+  "generatedAt": "2026-01-21T13:00:55.891Z",
+  "votacoes": [
+    {
+      "id": "2369594-8",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2369594-8",
+      "data": "2023-06-20",
+      "dataHoraRegistro": "2023-06-20T18:31:52",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68652",
+      "proposicaoObjeto": "REQ 1961/2023",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2369594",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 278; não: 88; abstenção: 4; total: 370.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2364109-35",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2364109-35",
+      "data": "2023-06-14",
+      "dataHoraRegistro": "2023-06-14T21:37:20",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68552",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 2.720, de 2023, adotado pelo relator da Constituição e Justiça e de Cidadania. Sim: 252; não: 163; total: 415.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2367595-12",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2367595-12",
+      "data": "2023-06-14",
+      "dataHoraRegistro": "2023-06-14T20:14:46",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68552",
+      "proposicaoObjeto": "REQ 1890/2023",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2367595",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 318; não: 118; abstenção: 2; total: 438.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2351990-37",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2351990-37",
+      "data": "2023-06-14",
+      "dataHoraRegistro": "2023-06-14T19:32:24",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68552",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovada a Medida Provisória nº 1.165 de 2023, na forma do Projeto de Lei de Conversão, ressalvados os destaques. Sim: 353; não: 58; abstenção: 1; total: 412.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2358922-21",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2358922-21",
+      "data": "2023-06-13",
+      "dataHoraRegistro": "2023-06-13T17:36:30",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68539",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Projeto de Lei nº 2.250, de 2023. Sim: 318; não: 31; total: 349.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2365055-2",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2365055-2",
+      "data": "2023-06-06",
+      "dataHoraRegistro": "2023-06-06T15:05:04",
+      "siglaOrgao": "CPIFUTE",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/539429",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/68430",
+      "proposicaoObjeto": "REQ 129/2023 CPIFUTE",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2365055",
+      "descricao": "Aprovado. Sim: 20; Não: 5; Abstenção: 0; e Quórum de Votação: 18. Obstrução: 0; e Total de Votantes: 25.",
+      "aprovacao": 1,
+      "hasResultado": true
+    }
+  ]
+}

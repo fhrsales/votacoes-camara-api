@@ -1,0 +1,5017 @@
+{
+  "id": "2330227-38",
+  "generatedAt": "2026-01-21T12:50:36.656Z",
+  "resumoTexto": "Altera a Lei nº 9.636, de 15 de maio de 1998, para modificar a forma de reajuste das receitas patrimoniais da União decorrentes da atualização da planta de valores.   NOVA EMENTA: Altera a Lei nº 9.636, de 15 de maio de 1998, para modificar a forma de reajuste das receitas patrimoniais da União decorrentes da atualização da planta de valores e desburocratizar procedimentos de alienação e registro de imóveis da União, as Leis nºs 11.483, de 31 de maio de 2007, e 13.240, de 30 de dezembro de 2015, e os Decretos-Lei nºs 2.398, de 21 de dezembro de 1987, para dispor sobre as hipóteses em que se aplica o prazo de transferência de imóveis, e 9.760, de 5 de setembro de 1946, para dispor sobre regras de demarcação de terrenos de marinha; e dá outras providências.",
+  "votos": [
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:37",
+      "deputado_": {
+        "id": 74646,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74646",
+        "nome": "Aécio Neves",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74646.jpg",
+        "email": "dep.aecioneves@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:36",
+      "deputado_": {
+        "id": 73463,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73463",
+        "nome": "Osmar Serraglio",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73463.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:34",
+      "deputado_": {
+        "id": 160535,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160535",
+        "nome": "Marcon",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160535.jpg",
+        "email": "dep.marcon@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:29",
+      "deputado_": {
+        "id": 74398,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74398",
+        "nome": "Maria do Rosário",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74398.jpg",
+        "email": "dep.mariadorosario@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:28",
+      "deputado_": {
+        "id": 204500,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204500",
+        "nome": "Eduardo Costa",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204500.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:27",
+      "deputado_": {
+        "id": 141411,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141411",
+        "nome": "Dagoberto Nogueira",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "MS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141411.jpg",
+        "email": "dep.dagobertonogueira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:26",
+      "deputado_": {
+        "id": 204513,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204513",
+        "nome": "Guiga Peixoto",
+        "siglaPartido": "PSC",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36833",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204513.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:25",
+      "deputado_": {
+        "id": 178912,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178912",
+        "nome": "Pedro Cunha Lima",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178912.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:22",
+      "deputado_": {
+        "id": 122158,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/122158",
+        "nome": "Pedro Paulo",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/122158.jpg",
+        "email": "dep.pedropaulo@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:20",
+      "deputado_": {
+        "id": 152605,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/152605",
+        "nome": "Glauber Braga",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/152605.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:20",
+      "deputado_": {
+        "id": 160598,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160598",
+        "nome": "Flávia Morais",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160598.jpg",
+        "email": "dep.flaviamorais@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:19",
+      "deputado_": {
+        "id": 178956,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178956",
+        "nome": "Mariana Carvalho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178956.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:16",
+      "deputado_": {
+        "id": 178992,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178992",
+        "nome": "Vitor Lippi",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178992.jpg",
+        "email": "dep.vitorlippi@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:14",
+      "deputado_": {
+        "id": 177282,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/177282",
+        "nome": "Subtenente Gonzaga",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/177282.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:08",
+      "deputado_": {
+        "id": 178861,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178861",
+        "nome": "Ronaldo Carletto",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178861.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:06",
+      "deputado_": {
+        "id": 141508,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141508",
+        "nome": "Mauro Nazif",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141508.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:30:03",
+      "deputado_": {
+        "id": 204514,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204514",
+        "nome": "Coronel Tadeu",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204514.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:30:01",
+      "deputado_": {
+        "id": 204515,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204515",
+        "nome": "André Janones",
+        "siglaPartido": "AVANTE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36898",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204515.jpg",
+        "email": "dep.andrejanones@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:59",
+      "deputado_": {
+        "id": 204484,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204484",
+        "nome": "General Peternelli",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204484.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:52",
+      "deputado_": {
+        "id": 195866,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/195866",
+        "nome": "Vaidon Oliveira",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/195866.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:51",
+      "deputado_": {
+        "id": 74262,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74262",
+        "nome": "Carlos Sampaio",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74262.jpg",
+        "email": "dep.carlossampaio@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:50",
+      "deputado_": {
+        "id": 150418,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/150418",
+        "nome": "Márcio Marinho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/150418.jpg",
+        "email": "dep.marciomarinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:46",
+      "deputado_": {
+        "id": 204371,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204371",
+        "nome": "Felipe Rigoni",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204371.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:44",
+      "deputado_": {
+        "id": 74352,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74352",
+        "nome": "Nilson Pinto",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74352.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:29:44",
+      "deputado_": {
+        "id": 204499,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204499",
+        "nome": "Cássio Andrade",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204499.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:39",
+      "deputado_": {
+        "id": 204354,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204354",
+        "nome": "Flávia Arruda",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204354.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:26",
+      "deputado_": {
+        "id": 204505,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204505",
+        "nome": "Vavá Martins",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204505.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:24",
+      "deputado_": {
+        "id": 160534,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160534",
+        "nome": "Lauriete",
+        "siglaPartido": "PSC",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36833",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160534.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:21",
+      "deputado_": {
+        "id": 73808,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73808",
+        "nome": "Sérgio Brito",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73808.jpg",
+        "email": "dep.sergiobrito@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:29:17",
+      "deputado_": {
+        "id": 141523,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141523",
+        "nome": "Raul Henry",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141523.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:16",
+      "deputado_": {
+        "id": 204444,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204444",
+        "nome": "Helio Lopes",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204444.jpg",
+        "email": "dep.heliolopes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:14",
+      "deputado_": {
+        "id": 74079,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74079",
+        "nome": "José Priante",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74079.jpg",
+        "email": "dep.josepriante@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:12",
+      "deputado_": {
+        "id": 141480,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141480",
+        "nome": "Lázaro Botelho",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141480.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:10",
+      "deputado_": {
+        "id": 74655,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74655",
+        "nome": "Eduardo Barbosa",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74655.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:10",
+      "deputado_": {
+        "id": 141422,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141422",
+        "nome": "Efraim Filho",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141422.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:29:03",
+      "deputado_": {
+        "id": 161550,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/161550",
+        "nome": "Emidinho Madeira",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/161550.jpg",
+        "email": "dep.emidinhomadeira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:59",
+      "deputado_": {
+        "id": 74141,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74141",
+        "nome": "Josias Gomes",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74141.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:59",
+      "deputado_": {
+        "id": 178916,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178916",
+        "nome": "Daniel Coelho",
+        "siglaPartido": "CIDADANIA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37905",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178916.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:59",
+      "deputado_": {
+        "id": 204473,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204473",
+        "nome": "General Girão",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RN",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204473.jpg",
+        "email": "dep.generalgirao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:58",
+      "deputado_": {
+        "id": 178857,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178857",
+        "nome": "Jorge Solla",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178857.jpg",
+        "email": "dep.jorgesolla@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:52",
+      "deputado_": {
+        "id": 112437,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/112437",
+        "nome": "João Marcelo Souza",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/112437.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:52",
+      "deputado_": {
+        "id": 160673,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160673",
+        "nome": "Giovani Cherini",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160673.jpg",
+        "email": "dep.giovanicherini@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:51",
+      "deputado_": {
+        "id": 160604,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160604",
+        "nome": "Pedro Uczai",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160604.jpg",
+        "email": "dep.pedrouczai@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:51",
+      "deputado_": {
+        "id": 204558,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204558",
+        "nome": "Marcelo Nilo",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204558.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:50",
+      "deputado_": {
+        "id": 204415,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204415",
+        "nome": "Nereu Crispim",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204415.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:49",
+      "deputado_": {
+        "id": 81055,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/81055",
+        "nome": "Márcio Jerry",
+        "siglaPartido": "PCdoB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36779",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/81055.jpg",
+        "email": "dep.marciojerry@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:49",
+      "deputado_": {
+        "id": 204457,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204457",
+        "nome": "Juninho do Pneu",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204457.jpg",
+        "email": "dep.juninhodopneu@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:47",
+      "deputado_": {
+        "id": 204416,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204416",
+        "nome": "Sanderson",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204416.jpg",
+        "email": "dep.sanderson@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:44",
+      "deputado_": {
+        "id": 90201,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/90201",
+        "nome": "Pedro Augusto Bezerra",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/90201.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:43",
+      "deputado_": {
+        "id": 204425,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204425",
+        "nome": "Silvio Costa Filho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204425.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:43",
+      "deputado_": {
+        "id": 204511,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204511",
+        "nome": "David Soares",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204511.jpg",
+        "email": "dep.davidsoares@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:42",
+      "deputado_": {
+        "id": 141372,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141372",
+        "nome": "Aelton Freitas",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141372.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:42",
+      "deputado_": {
+        "id": 204407,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204407",
+        "nome": "Fernanda Melchionna",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204407.jpg",
+        "email": "dep.fernandamelchionna@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:40",
+      "deputado_": {
+        "id": 204467,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204467",
+        "nome": "Professora Rosa Neide",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MT",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204467.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:38",
+      "deputado_": {
+        "id": 143632,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/143632",
+        "nome": "Domingos Neto",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/143632.jpg",
+        "email": "dep.domingosneto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:29",
+      "deputado_": {
+        "id": 132504,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/132504",
+        "nome": "Enio Verri",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/132504.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:27",
+      "deputado_": {
+        "id": 204502,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204502",
+        "nome": "Bozzella",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204502.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:26",
+      "deputado_": {
+        "id": 178996,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178996",
+        "nome": "Giovani Feltes",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178996.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:24",
+      "deputado_": {
+        "id": 137070,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/137070",
+        "nome": "Vicentinho Júnior",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/137070.jpg",
+        "email": "dep.vicentinhojunior@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:23",
+      "deputado_": {
+        "id": 122466,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/122466",
+        "nome": "Ronaldo Martins",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/122466.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:21",
+      "deputado_": {
+        "id": 141398,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141398",
+        "nome": "Carlos Zarattini",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141398.jpg",
+        "email": "dep.carloszarattini@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:20",
+      "deputado_": {
+        "id": 160610,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160610",
+        "nome": "Valmir Assunção",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160610.jpg",
+        "email": "dep.valmirassuncao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:20",
+      "deputado_": {
+        "id": 204452,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204452",
+        "nome": "Márcio Labre",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204452.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:18",
+      "deputado_": {
+        "id": 171623,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/171623",
+        "nome": "Fabio Reis",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/171623.jpg",
+        "email": "dep.fabioreis@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:17",
+      "deputado_": {
+        "id": 204559,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204559",
+        "nome": "Zé Neto",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204559.jpg",
+        "email": "dep.zeneto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:17",
+      "deputado_": {
+        "id": 215043,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/215043",
+        "nome": "Josivaldo JP",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/215043.jpg",
+        "email": "dep.josivaldojp@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:16",
+      "deputado_": {
+        "id": 73482,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73482",
+        "nome": "Henrique Fontana",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73482.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:15",
+      "deputado_": {
+        "id": 204459,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204459",
+        "nome": "Daniela do Waguinho",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204459.jpg",
+        "email": "dep.danieladowaguinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:15",
+      "deputado_": {
+        "id": 217480,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/217480",
+        "nome": "Jones Moura",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/217480.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:12",
+      "deputado_": {
+        "id": 204413,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204413",
+        "nome": "Alcides Rodrigues",
+        "siglaPartido": "PATRIOTA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37907",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204413.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:12",
+      "deputado_": {
+        "id": 204498,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204498",
+        "nome": "Olival Marques",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204498.jpg",
+        "email": "dep.olivalmarques@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:11",
+      "deputado_": {
+        "id": 204503,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204503",
+        "nome": "Alexandre Padilha",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204503.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:10",
+      "deputado_": {
+        "id": 74784,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74784",
+        "nome": "Luiza Erundina",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74784.jpg",
+        "email": "dep.luizaerundina@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:28:07",
+      "deputado_": {
+        "id": 141421,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141421",
+        "nome": "Eduardo da Fonte",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141421.jpg",
+        "email": "dep.eduardodafonte@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:06",
+      "deputado_": {
+        "id": 204383,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204383",
+        "nome": "Professor Israel Batista",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204383.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:28:01",
+      "deputado_": {
+        "id": 204495,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204495",
+        "nome": "Airton Faleiro",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204495.jpg",
+        "email": "dep.airtonfaleiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:59",
+      "deputado_": {
+        "id": 204539,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204539",
+        "nome": "Hercílio Coelho Diniz",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204539.jpg",
+        "email": "dep.herciliocoelhodiniz@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:55",
+      "deputado_": {
+        "id": 74459,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74459",
+        "nome": "Átila Lira",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74459.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:54",
+      "deputado_": {
+        "id": 178860,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178860",
+        "nome": "Paulo Azi",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178860.jpg",
+        "email": "dep.pauloazi@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:54",
+      "deputado_": {
+        "id": 204546,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204546",
+        "nome": "Joice Hasselmann",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204546.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:52",
+      "deputado_": {
+        "id": 62881,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/62881",
+        "nome": "Danilo Forte",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/62881.jpg",
+        "email": "dep.daniloforte@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:52",
+      "deputado_": {
+        "id": 160570,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160570",
+        "nome": "Jerônimo Goergen",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160570.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:52",
+      "deputado_": {
+        "id": 204389,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204389",
+        "nome": "Elias Vaz",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204389.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:52",
+      "deputado_": {
+        "id": 204420,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204420",
+        "nome": "Julian Lemos",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204420.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:50",
+      "deputado_": {
+        "id": 213762,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/213762",
+        "nome": "Carla Dickson",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RN",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/213762.jpg",
+        "email": "dep.carladickson@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:49",
+      "deputado_": {
+        "id": 204521,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204521",
+        "nome": "Abou Anni",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204521.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:45",
+      "deputado_": {
+        "id": 73692,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73692",
+        "nome": "Osmar Terra",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73692.jpg",
+        "email": "dep.osmarterra@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:45",
+      "deputado_": {
+        "id": 178831,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178831",
+        "nome": "André Abdon",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "AP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178831.jpg",
+        "email": "dep.andreabdon@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:44",
+      "deputado_": {
+        "id": 178994,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178994",
+        "nome": "Dulce Miranda",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178994.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:43",
+      "deputado_": {
+        "id": 178839,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178839",
+        "nome": "Jéssica Sales",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178839.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:42",
+      "deputado_": {
+        "id": 178954,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178954",
+        "nome": "Lucio Mosquini",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178954.jpg",
+        "email": "dep.luciomosquini@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:41",
+      "deputado_": {
+        "id": 160542,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160542",
+        "nome": "Márcio Macêdo",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160542.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:40",
+      "deputado_": {
+        "id": 204369,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204369",
+        "nome": "Caroline de Toni",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204369.jpg",
+        "email": "dep.carolinedetoni@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:39",
+      "deputado_": {
+        "id": 178876,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178876",
+        "nome": "Célio Silveira",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178876.jpg",
+        "email": "dep.celiosilveira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:38",
+      "deputado_": {
+        "id": 73586,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73586",
+        "nome": "Júlio Delgado",
+        "siglaPartido": "PV",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36851",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73586.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:38",
+      "deputado_": {
+        "id": 74160,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74160",
+        "nome": "Patrus Ananias",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74160.jpg",
+        "email": "dep.patrusananias@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:38",
+      "deputado_": {
+        "id": 204518,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204518",
+        "nome": "Dr. Frederico",
+        "siglaPartido": "PATRIOTA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37907",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204518.jpg",
+        "email": "dep.dr.frederico@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:37",
+      "deputado_": {
+        "id": 115746,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/115746",
+        "nome": "Gelson Azevedo",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/115746.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:37",
+      "deputado_": {
+        "id": 160758,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160758",
+        "nome": "Domingos Sávio",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160758.jpg",
+        "email": "dep.domingossavio@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:36",
+      "deputado_": {
+        "id": 160528,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160528",
+        "nome": "Danilo Cabral",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160528.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:36",
+      "deputado_": {
+        "id": 178993,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178993",
+        "nome": "Carlos Henrique Gaguim",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178993.jpg",
+        "email": "dep.carloshenriquegaguim@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:35",
+      "deputado_": {
+        "id": 204422,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204422",
+        "nome": "Ossesio Silva",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204422.jpg",
+        "email": "dep.ossesiosilva@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:34",
+      "deputado_": {
+        "id": 204534,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204534",
+        "nome": "Tabata Amaral",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204534.jpg",
+        "email": "dep.tabataamaral@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:30",
+      "deputado_": {
+        "id": 160512,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160512",
+        "nome": "Aureo Ribeiro",
+        "siglaPartido": "SOLIDARIEDADE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37904",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160512.jpg",
+        "email": "dep.aureoribeiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:29",
+      "deputado_": {
+        "id": 160599,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160599",
+        "nome": "Dimas Fabiano",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160599.jpg",
+        "email": "dep.dimasfabiano@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:29",
+      "deputado_": {
+        "id": 204376,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204376",
+        "nome": "Coronel Armando",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204376.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:28",
+      "deputado_": {
+        "id": 178931,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178931",
+        "nome": "Luciano Ducci",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178931.jpg",
+        "email": "dep.lucianoducci@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:27",
+      "deputado_": {
+        "id": 141434,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141434",
+        "nome": "Flaviano Melo",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141434.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:26",
+      "deputado_": {
+        "id": 204472,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204472",
+        "nome": "José Medeiros",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MT",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204472.jpg",
+        "email": "dep.josemedeiros@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:24",
+      "deputado_": {
+        "id": 204451,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204451",
+        "nome": "Delegado Antônio Furtado",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204451.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:21",
+      "deputado_": {
+        "id": 204403,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204403",
+        "nome": "Marlon Santos",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204403.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:20",
+      "deputado_": {
+        "id": 204406,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204406",
+        "nome": "Pedro Westphalen",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204406.jpg",
+        "email": "dep.pedrowestphalen@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:20",
+      "deputado_": {
+        "id": 204456,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204456",
+        "nome": "Gutemberg Reis",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204456.jpg",
+        "email": "dep.gutembergreis@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:19",
+      "deputado_": {
+        "id": 204549,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204549",
+        "nome": "AJ Albuquerque",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204549.jpg",
+        "email": "dep.ajalbuquerque@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:18",
+      "deputado_": {
+        "id": 166402,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/166402",
+        "nome": "Magda Mofatto",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/166402.jpg",
+        "email": "dep.magdamofatto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:18",
+      "deputado_": {
+        "id": 178908,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178908",
+        "nome": "Delegado Éder Mauro",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178908.jpg",
+        "email": "dep.delegadoedermauro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:18",
+      "deputado_": {
+        "id": 204528,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204528",
+        "nome": "Adriana Ventura",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204528.jpg",
+        "email": "dep.adrianaventura@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:17",
+      "deputado_": {
+        "id": 74749,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74749",
+        "nome": "Mauro Lopes",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74749.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:17",
+      "deputado_": {
+        "id": 178829,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178829",
+        "nome": "Capitão Augusto",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178829.jpg",
+        "email": "dep.capitaoaugusto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:17",
+      "deputado_": {
+        "id": 204557,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204557",
+        "nome": "Sidney Leite",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "AM",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204557.jpg",
+        "email": "dep.sidneyleite@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:16",
+      "deputado_": {
+        "id": 66179,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/66179",
+        "nome": "Norma Ayub",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/66179.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:16",
+      "deputado_": {
+        "id": 178987,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178987",
+        "nome": "Orlando Silva",
+        "siglaPartido": "PCdoB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36779",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178987.jpg",
+        "email": "dep.orlandosilva@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:15",
+      "deputado_": {
+        "id": 196358,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/196358",
+        "nome": "Lourival Gomes",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/196358.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:14",
+      "deputado_": {
+        "id": 74848,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74848",
+        "nome": "Jandira Feghali",
+        "siglaPartido": "PCdoB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36779",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74848.jpg",
+        "email": "dep.jandirafeghali@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:11",
+      "deputado_": {
+        "id": 204489,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204489",
+        "nome": "Robério Monteiro",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204489.jpg",
+        "email": "dep.roberiomonteiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:10",
+      "deputado_": {
+        "id": 133439,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/133439",
+        "nome": "André Figueiredo",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/133439.jpg",
+        "email": "dep.andrefigueiredo@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:08",
+      "deputado_": {
+        "id": 141450,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141450",
+        "nome": "Hugo Leal",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141450.jpg",
+        "email": "dep.hugoleal@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:08",
+      "deputado_": {
+        "id": 178884,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178884",
+        "nome": "Hildo Rocha",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178884.jpg",
+        "email": "dep.hildorocha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:07",
+      "deputado_": {
+        "id": 74471,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74471",
+        "nome": "André de Paula",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74471.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:06",
+      "deputado_": {
+        "id": 204526,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204526",
+        "nome": "Luiz Philippe de Orleans e Bragança",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204526.jpg",
+        "email": "dep.luizphilippedeorleansebraganca@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:05",
+      "deputado_": {
+        "id": 92172,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/92172",
+        "nome": "Milton Coelho",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/92172.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:05",
+      "deputado_": {
+        "id": 160538,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160538",
+        "nome": "Bohn Gass",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160538.jpg",
+        "email": "dep.bohngass@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:05",
+      "deputado_": {
+        "id": 204567,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204567",
+        "nome": "Raimundo Costa",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204567.jpg",
+        "email": "dep.raimundocosta@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:04",
+      "deputado_": {
+        "id": 73943,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73943",
+        "nome": "Perpétua Almeida",
+        "siglaPartido": "PCdoB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36779",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73943.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:04",
+      "deputado_": {
+        "id": 74273,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74273",
+        "nome": "Jefferson Campos",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74273.jpg",
+        "email": "dep.jeffersoncampos@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:02",
+      "deputado_": {
+        "id": 178910,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178910",
+        "nome": "Joaquim Passarinho",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178910.jpg",
+        "email": "dep.joaquimpassarinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:02",
+      "deputado_": {
+        "id": 215042,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/215042",
+        "nome": "Ricardo da Karol",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/215042.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:27:01",
+      "deputado_": {
+        "id": 160575,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160575",
+        "nome": "Erika Kokay",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160575.jpg",
+        "email": "dep.erikakokay@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:01",
+      "deputado_": {
+        "id": 178939,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178939",
+        "nome": "Clarissa Garotinho",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178939.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:27:01",
+      "deputado_": {
+        "id": 204529,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204529",
+        "nome": "Policial Katia Sastre",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204529.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:59",
+      "deputado_": {
+        "id": 76874,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/76874",
+        "nome": "Marcelo Freixo",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/76874.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:59",
+      "deputado_": {
+        "id": 204532,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204532",
+        "nome": "Vinicius Poit",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204532.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:57",
+      "deputado_": {
+        "id": 141513,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141513",
+        "nome": "Bilac Pinto",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141513.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:55",
+      "deputado_": {
+        "id": 204374,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204374",
+        "nome": "Bia Kicis",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204374.jpg",
+        "email": "dep.biakicis@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:55",
+      "deputado_": {
+        "id": 204454,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204454",
+        "nome": "Daniel Silveira",
+        "siglaPartido": "PTB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36845",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204454.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:55",
+      "deputado_": {
+        "id": 204455,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204455",
+        "nome": "Luiz Lima",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204455.jpg",
+        "email": "dep.luizlima@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:54",
+      "deputado_": {
+        "id": 204479,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204479",
+        "nome": "Nicoletti",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204479.jpg",
+        "email": "dep.nicoletti@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:53",
+      "deputado_": {
+        "id": 204423,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204423",
+        "nome": "André Ferreira",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204423.jpg",
+        "email": "dep.andreferreira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:50",
+      "deputado_": {
+        "id": 73460,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73460",
+        "nome": "Gustavo Fruet",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73460.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:50",
+      "deputado_": {
+        "id": 178981,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178981",
+        "nome": "Herculano Passos",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178981.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:50",
+      "deputado_": {
+        "id": 204431,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204431",
+        "nome": "Marcos Aurélio Sampaio",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204431.jpg",
+        "email": "dep.marcosaureliosampaio@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:48",
+      "deputado_": {
+        "id": 160601,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160601",
+        "nome": "Pr. Marco Feliciano",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160601.jpg",
+        "email": "dep.pr.marcofeliciano@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:48",
+      "deputado_": {
+        "id": 204428,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204428",
+        "nome": "Marília Arraes",
+        "siglaPartido": "SOLIDARIEDADE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37904",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204428.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:48",
+      "deputado_": {
+        "id": 204517,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204517",
+        "nome": "Zé Vitor",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204517.jpg",
+        "email": "dep.zevitor@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:48",
+      "deputado_": {
+        "id": 204535,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204535",
+        "nome": "Sâmia Bomfim",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204535.jpg",
+        "email": "dep.samiabomfim@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:47",
+      "deputado_": {
+        "id": 204486,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204486",
+        "nome": "Mauro Benevides Filho",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204486.jpg",
+        "email": "dep.maurobenevidesfilho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:46",
+      "deputado_": {
+        "id": 73531,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73531",
+        "nome": "Ivan Valente",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73531.jpg",
+        "email": "dep.ivanvalente@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:46",
+      "deputado_": {
+        "id": 178889,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178889",
+        "nome": "Zé Carlos",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178889.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:45",
+      "deputado_": {
+        "id": 69871,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/69871",
+        "nome": "Bacelar",
+        "siglaPartido": "PV",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36851",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/69871.jpg",
+        "email": "dep.bacelar@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:45",
+      "deputado_": {
+        "id": 204421,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204421",
+        "nome": "Edna Henrique",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204421.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:43",
+      "deputado_": {
+        "id": 160632,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160632",
+        "nome": "Zé Silva",
+        "siglaPartido": "SOLIDARIEDADE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37904",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160632.jpg",
+        "email": "dep.zesilva@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:43",
+      "deputado_": {
+        "id": 178953,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178953",
+        "nome": "Expedito Netto",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178953.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:42",
+      "deputado_": {
+        "id": 73788,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73788",
+        "nome": "Ricardo Barros",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73788.jpg",
+        "email": "dep.ricardobarros@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:42",
+      "deputado_": {
+        "id": 178964,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178964",
+        "nome": "Heitor Schuch",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178964.jpg",
+        "email": "dep.heitorschuch@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:42",
+      "deputado_": {
+        "id": 204364,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204364",
+        "nome": "Eli Borges",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204364.jpg",
+        "email": "dep.eliborges@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:42",
+      "deputado_": {
+        "id": 204435,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204435",
+        "nome": "Jesus Sérgio",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204435.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:41",
+      "deputado_": {
+        "id": 204432,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204432",
+        "nome": "Marina Santos",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204432.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:41",
+      "deputado_": {
+        "id": 205535,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/205535",
+        "nome": "Patricia Ferraz",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "AP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/205535.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:40",
+      "deputado_": {
+        "id": 141431,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141431",
+        "nome": "Fernando Coelho Filho",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141431.jpg",
+        "email": "dep.fernandocoelhofilho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:40",
+      "deputado_": {
+        "id": 204386,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204386",
+        "nome": "Jose Mario Schreiner",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204386.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:40",
+      "deputado_": {
+        "id": 204453,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204453",
+        "nome": "Natália Bonavides",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RN",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204453.jpg",
+        "email": "dep.nataliabonavides@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:40",
+      "deputado_": {
+        "id": 204541,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204541",
+        "nome": "Eduardo Bismarck",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204541.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:40",
+      "deputado_": {
+        "id": 204572,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204572",
+        "nome": "Capitão Alberto Neto",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "AM",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204572.jpg",
+        "email": "dep.capitaoalbertoneto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:39",
+      "deputado_": {
+        "id": 197438,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/197438",
+        "nome": "Tito",
+        "siglaPartido": "AVANTE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36898",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/197438.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:39",
+      "deputado_": {
+        "id": 204378,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204378",
+        "nome": "Coronel Chrisóstomo",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204378.jpg",
+        "email": "dep.coronelchrisostomo@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:39",
+      "deputado_": {
+        "id": 204408,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204408",
+        "nome": "Gustinho Ribeiro",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204408.jpg",
+        "email": "dep.gustinhoribeiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:38",
+      "deputado_": {
+        "id": 73433,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73433",
+        "nome": "Arlindo Chinaglia",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73433.jpg",
+        "email": "dep.arlindochinaglia@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:38",
+      "deputado_": {
+        "id": 141555,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141555",
+        "nome": "Vinicius Carvalho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141555.jpg",
+        "email": "dep.viniciuscarvalho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:38",
+      "deputado_": {
+        "id": 160517,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160517",
+        "nome": "Paulo Foletto",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160517.jpg",
+        "email": "dep.paulofolletto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:37",
+      "deputado_": {
+        "id": 74057,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74057",
+        "nome": "Alice Portugal",
+        "siglaPartido": "PCdoB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36779",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74057.jpg",
+        "email": "dep.aliceportugal@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:36",
+      "deputado_": {
+        "id": 215045,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/215045",
+        "nome": "Pedro Augusto Palareti",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/215045.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:35",
+      "deputado_": {
+        "id": 204366,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204366",
+        "nome": "Rodrigo Coelho",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204366.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:34",
+      "deputado_": {
+        "id": 74159,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74159",
+        "nome": "Odair Cunha",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74159.jpg",
+        "email": "dep.odaircunha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:34",
+      "deputado_": {
+        "id": 74574,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74574",
+        "nome": "Paulo Magalhães",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74574.jpg",
+        "email": "dep.paulomagalhaes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:33",
+      "deputado_": {
+        "id": 74376,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74376",
+        "nome": "Vander Loubet",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74376.jpg",
+        "email": "dep.vanderloubet@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:32",
+      "deputado_": {
+        "id": 152610,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/152610",
+        "nome": "Roberto Alves",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/152610.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:32",
+      "deputado_": {
+        "id": 160558,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160558",
+        "nome": "Paulo Freire Costa",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160558.jpg",
+        "email": "dep.paulofreirecosta@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:32",
+      "deputado_": {
+        "id": 178970,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178970",
+        "nome": "João Daniel",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178970.jpg",
+        "email": "dep.joaodaniel@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:31",
+      "deputado_": {
+        "id": 74554,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74554",
+        "nome": "José Rocha",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74554.jpg",
+        "email": "dep.joserocha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:31",
+      "deputado_": {
+        "id": 178866,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178866",
+        "nome": "Luizianne Lins",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178866.jpg",
+        "email": "dep.luiziannelins@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:31",
+      "deputado_": {
+        "id": 204363,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204363",
+        "nome": "Osires Damaso",
+        "siglaPartido": "PSC",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36833",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204363.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:31",
+      "deputado_": {
+        "id": 204573,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204573",
+        "nome": "Otto Alencar Filho",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204573.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:30",
+      "deputado_": {
+        "id": 204405,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204405",
+        "nome": "Liziane Bayer",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204405.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:30",
+      "deputado_": {
+        "id": 204487,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204487",
+        "nome": "Capitão Wagner",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204487.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:29",
+      "deputado_": {
+        "id": 178989,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178989",
+        "nome": "Renata Abreu",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178989.jpg",
+        "email": "dep.renataabreu@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:29",
+      "deputado_": {
+        "id": 198783,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/198783",
+        "nome": "Emanuel Pinheiro Neto",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "MT",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/198783.jpg",
+        "email": "dep.emanuelpinheironeto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:29",
+      "deputado_": {
+        "id": 204520,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204520",
+        "nome": "Junio Amaral",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204520.jpg",
+        "email": "dep.junioamaral@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 157130,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/157130",
+        "nome": "Túlio Gadêlha",
+        "siglaPartido": "REDE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36886",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/157130.jpg",
+        "email": "dep.tuliogadelha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 178962,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178962",
+        "nome": "Carlos Gomes",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178962.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 204357,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204357",
+        "nome": "Rose Modesto",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "MS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204357.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 204433,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204433",
+        "nome": "Marcelo Calero",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204433.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 204440,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204440",
+        "nome": "Christino Aureo",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204440.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:27",
+      "deputado_": {
+        "id": 204471,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204471",
+        "nome": "Mara Rocha",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204471.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:26",
+      "deputado_": {
+        "id": 73604,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73604",
+        "nome": "Rui Falcão",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73604.jpg",
+        "email": "dep.ruifalcao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:26",
+      "deputado_": {
+        "id": 204537,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204537",
+        "nome": "Enrico Misasi",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204537.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:25",
+      "deputado_": {
+        "id": 135054,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/135054",
+        "nome": "Cristiano Vale",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/135054.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:24",
+      "deputado_": {
+        "id": 204392,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204392",
+        "nome": "Francisco Jr.",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204392.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:24",
+      "deputado_": {
+        "id": 204426,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204426",
+        "nome": "Carlos Veras",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204426.jpg",
+        "email": "dep.carlosveras@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:24",
+      "deputado_": {
+        "id": 204531,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204531",
+        "nome": "Capitão Derrite",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204531.jpg",
+        "email": "dep.guilhermederrite@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:23",
+      "deputado_": {
+        "id": 133968,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/133968",
+        "nome": "Paulo Ramos",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/133968.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:23",
+      "deputado_": {
+        "id": 204382,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204382",
+        "nome": "Loester Trutis",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204382.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:23",
+      "deputado_": {
+        "id": 204388,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204388",
+        "nome": "Bibo Nunes",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204388.jpg",
+        "email": "dep.bibonunes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:23",
+      "deputado_": {
+        "id": 204394,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204394",
+        "nome": "Gervásio Maia",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204394.jpg",
+        "email": "dep.gervasiomaia@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:21",
+      "deputado_": {
+        "id": 139285,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/139285",
+        "nome": "Lídice da Mata",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/139285.jpg",
+        "email": "dep.lidicedamata@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:21",
+      "deputado_": {
+        "id": 178985,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178985",
+        "nome": "Miguel Lombardi",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178985.jpg",
+        "email": "dep.miguellombardi@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:21",
+      "deputado_": {
+        "id": 188097,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/188097",
+        "nome": "Merlong Solano",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/188097.jpg",
+        "email": "dep.merlongsolano@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:19",
+      "deputado_": {
+        "id": 141470,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141470",
+        "nome": "José Guimarães",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141470.jpg",
+        "email": "dep.joseguimaraes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:19",
+      "deputado_": {
+        "id": 160669,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160669",
+        "nome": "Genecias Noronha",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160669.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:19",
+      "deputado_": {
+        "id": 204367,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204367",
+        "nome": "Daniel Freitas",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204367.jpg",
+        "email": "dep.danielfreitas@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:19",
+      "deputado_": {
+        "id": 204448,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204448",
+        "nome": "Luiz Antônio Corrêa",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204448.jpg",
+        "email": "dep.luizantoniocorrea@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:18",
+      "deputado_": {
+        "id": 178924,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178924",
+        "nome": "Capitão Fábio Abreu",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178924.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:18",
+      "deputado_": {
+        "id": 178952,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178952",
+        "nome": "Walter Alves",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "RN",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178952.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:18",
+      "deputado_": {
+        "id": 204553,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204553",
+        "nome": "Pastor Sargento Isidório",
+        "siglaPartido": "AVANTE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36898",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204553.jpg",
+        "email": "dep.pastorsargentoisidorio@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:17",
+      "deputado_": {
+        "id": 204496,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204496",
+        "nome": "Celso Sabino",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204496.jpg",
+        "email": "dep.celsosabino@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:17",
+      "deputado_": {
+        "id": 204507,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204507",
+        "nome": "Carla Zambelli",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204507.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:16",
+      "deputado_": {
+        "id": 160642,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160642",
+        "nome": "Pastor Eurico",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160642.jpg",
+        "email": "dep.pastoreurico@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:15",
+      "deputado_": {
+        "id": 160651,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160651",
+        "nome": "Rogério Peninha Mendonça",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160651.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:15",
+      "deputado_": {
+        "id": 178920,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178920",
+        "nome": "Ricardo Teobaldo",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178920.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:15",
+      "deputado_": {
+        "id": 204387,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204387",
+        "nome": "Sargento Fahur",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204387.jpg",
+        "email": "dep.sargentofahur@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:15",
+      "deputado_": {
+        "id": 204460,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204460",
+        "nome": "Carlos Jordy",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204460.jpg",
+        "email": "dep.carlosjordy@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:15",
+      "deputado_": {
+        "id": 205550,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/205550",
+        "nome": "Jorge Braz",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/205550.jpg",
+        "email": "dep.jorgebraz@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:14",
+      "deputado_": {
+        "id": 74052,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74052",
+        "nome": "Bosco Costa",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74052.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:13",
+      "deputado_": {
+        "id": 74317,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74317",
+        "nome": "Júlio Cesar",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74317.jpg",
+        "email": "dep.juliocesar@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:13",
+      "deputado_": {
+        "id": 178881,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178881",
+        "nome": "Aluisio Mendes",
+        "siglaPartido": "PSC",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36833",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178881.jpg",
+        "email": "dep.aluisiomendes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:12",
+      "deputado_": {
+        "id": 193726,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/193726",
+        "nome": "Paulo Eduardo Martins",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/193726.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:12",
+      "deputado_": {
+        "id": 204377,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204377",
+        "nome": "Paula Belmonte",
+        "siglaPartido": "CIDADANIA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37905",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204377.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:11",
+      "deputado_": {
+        "id": 74156,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74156",
+        "nome": "Leonardo Monteiro",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74156.jpg",
+        "email": "dep.leonardomonteiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:10",
+      "deputado_": {
+        "id": 178873,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178873",
+        "nome": "Helder Salomão",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178873.jpg",
+        "email": "dep.heldersalomao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:10",
+      "deputado_": {
+        "id": 204480,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204480",
+        "nome": "Rogério Correia",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204480.jpg",
+        "email": "dep.rogeriocorreia@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:09",
+      "deputado_": {
+        "id": 204395,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204395",
+        "nome": "Pedro Lupion",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204395.jpg",
+        "email": "dep.pedrolupion@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:09",
+      "deputado_": {
+        "id": 204446,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204446",
+        "nome": "Professor Joziel",
+        "siglaPartido": "PATRIOTA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37907",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204446.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:08",
+      "deputado_": {
+        "id": 204562,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204562",
+        "nome": "Edilázio Júnior",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204562.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:07",
+      "deputado_": {
+        "id": 122974,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/122974",
+        "nome": "Pedro Lucas Fernandes",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/122974.jpg",
+        "email": "dep.pedrolucasfernandes@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:07",
+      "deputado_": {
+        "id": 178825,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178825",
+        "nome": "Leo de Brito",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178825.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:07",
+      "deputado_": {
+        "id": 204353,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204353",
+        "nome": "Aline Gurgel",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "AP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204353.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:07",
+      "deputado_": {
+        "id": 204360,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204360",
+        "nome": "Silvia Cristina",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204360.jpg",
+        "email": "dep.silviacristina@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:05",
+      "deputado_": {
+        "id": 68720,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/68720",
+        "nome": "Fábio Henrique",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/68720.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:05",
+      "deputado_": {
+        "id": 143084,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/143084",
+        "nome": "Tiago Dimas",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "TO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/143084.jpg",
+        "email": "dep.tiagodimas@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:05",
+      "deputado_": {
+        "id": 204461,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204461",
+        "nome": "Paulo Ganime",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204461.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:02",
+      "deputado_": {
+        "id": 73486,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73486",
+        "nome": "Pompeo de Mattos",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73486.jpg",
+        "email": "dep.pompeodemattos@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:02",
+      "deputado_": {
+        "id": 204412,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204412",
+        "nome": "Dr. Zacharias Calil",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204412.jpg",
+        "email": "dep.dr.zachariascalil@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:02",
+      "deputado_": {
+        "id": 204458,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204458",
+        "nome": "Major Fabiana",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204458.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:01",
+      "deputado_": {
+        "id": 204352,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204352",
+        "nome": "Camilo Capiberibe",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "AP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204352.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:01",
+      "deputado_": {
+        "id": 204525,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204525",
+        "nome": "Rosana Valle",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204525.jpg",
+        "email": "dep.rosanavalle@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:00",
+      "deputado_": {
+        "id": 164359,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/164359",
+        "nome": "Delegado Waldir",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/164359.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:00",
+      "deputado_": {
+        "id": 204434,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204434",
+        "nome": "Dra. Vanda Milani",
+        "siglaPartido": "PROS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36763",
+        "siglaUf": "AC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204434.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:26:00",
+      "deputado_": {
+        "id": 204556,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204556",
+        "nome": "Marcelo Ramos",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "AM",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204556.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:26:00",
+      "deputado_": {
+        "id": 204565,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204565",
+        "nome": "Professora Dayane Pimentel",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204565.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:59",
+      "deputado_": {
+        "id": 178844,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178844",
+        "nome": "Pedro Vilela",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "AL",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178844.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:59",
+      "deputado_": {
+        "id": 204373,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204373",
+        "nome": "Hélio Costa",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204373.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:58",
+      "deputado_": {
+        "id": 160587,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160587",
+        "nome": "Fábio Trad",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160587.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:58",
+      "deputado_": {
+        "id": 204462,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204462",
+        "nome": "Chris Tonietto",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204462.jpg",
+        "email": "dep.christonietto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:58",
+      "deputado_": {
+        "id": 204530,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204530",
+        "nome": "Rodrigo Agostinho",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204530.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:57",
+      "deputado_": {
+        "id": 74383,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74383",
+        "nome": "Giacobo",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74383.jpg",
+        "email": "dep.giacobo@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:57",
+      "deputado_": {
+        "id": 92776,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/92776",
+        "nome": "Stefano Aguiar",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/92776.jpg",
+        "email": "dep.stefanoaguiar@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:57",
+      "deputado_": {
+        "id": 160592,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160592",
+        "nome": "Zeca Dirceu",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160592.jpg",
+        "email": "dep.zecadirceu@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:57",
+      "deputado_": {
+        "id": 204476,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204476",
+        "nome": "Chiquinho Brazão",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204476.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:56",
+      "deputado_": {
+        "id": 141408,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141408",
+        "nome": "Cleber Verde",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141408.jpg",
+        "email": "dep.cleberverde@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:56",
+      "deputado_": {
+        "id": 204400,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204400",
+        "nome": "Aline Sleutjes",
+        "siglaPartido": "PROS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36763",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204400.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:55",
+      "deputado_": {
+        "id": 178887,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178887",
+        "nome": "Rubens Pereira Júnior",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178887.jpg",
+        "email": "dep.rubenspereirajunior@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:55",
+      "deputado_": {
+        "id": 178928,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178928",
+        "nome": "Christiane de Souza Yared",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178928.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:54",
+      "deputado_": {
+        "id": 204544,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204544",
+        "nome": "Alexandre Frota",
+        "siglaPartido": "PSDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36835",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204544.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:54",
+      "deputado_": {
+        "id": 204561,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204561",
+        "nome": "Bira do Pindaré",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204561.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:53",
+      "deputado_": {
+        "id": 204411,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204411",
+        "nome": "Filipe Barros",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204411.jpg",
+        "email": "dep.filipebarros@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:53",
+      "deputado_": {
+        "id": 204548,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204548",
+        "nome": "Heitor Freire",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204548.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:52",
+      "deputado_": {
+        "id": 73466,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/73466",
+        "nome": "Rubens Bueno",
+        "siglaPartido": "CIDADANIA",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37905",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/73466.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:52",
+      "deputado_": {
+        "id": 204449,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204449",
+        "nome": "Nelson Barbudo",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MT",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204449.jpg",
+        "email": "dep.nelsonbarbudo@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:52",
+      "deputado_": {
+        "id": 204563,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204563",
+        "nome": "Josimar Maranhãozinho",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204563.jpg",
+        "email": "dep.josimarmaranhaozinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:51",
+      "deputado_": {
+        "id": 74165,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74165",
+        "nome": "Neucimar Fraga",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74165.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 74299,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74299",
+        "nome": "Leônidas Cristino",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74299.jpg",
+        "email": "dep.leonidascristino@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 178895,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178895",
+        "nome": "Misael Varella",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178895.jpg",
+        "email": "dep.misaelvarella@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 204393,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204393",
+        "nome": "Frei Anastacio Ribeiro",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204393.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 204523,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204523",
+        "nome": "Lucas Gonzalez",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204523.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 204524,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204524",
+        "nome": "Pinheirinho",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204524.jpg",
+        "email": "dep.pinheirinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:50",
+      "deputado_": {
+        "id": 204542,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204542",
+        "nome": "Denis Bezerra",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204542.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:49",
+      "deputado_": {
+        "id": 204477,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204477",
+        "nome": "Felício Laterça",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204477.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 75431,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/75431",
+        "nome": "Maurício Dziedricki",
+        "siglaPartido": "PODE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36896",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/75431.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 160556,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160556",
+        "nome": "Padre João",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160556.jpg",
+        "email": "dep.padrejoao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 178929,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178929",
+        "nome": "Diego Garcia",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178929.jpg",
+        "email": "dep.diegogarcia@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 204355,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204355",
+        "nome": "Da Vitória",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204355.jpg",
+        "email": "dep.davitoria@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 204365,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204365",
+        "nome": "Gilson Marques",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204365.jpg",
+        "email": "dep.gilsonmarques@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:48",
+      "deputado_": {
+        "id": 204485,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204485",
+        "nome": "Luiz Carlos Motta",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204485.jpg",
+        "email": "dep.luizcarlosmotta@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:47",
+      "deputado_": {
+        "id": 171617,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/171617",
+        "nome": "Paulão",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "AL",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/171617.jpg",
+        "email": "dep.paulao@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:46",
+      "deputado_": {
+        "id": 178983,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178983",
+        "nome": "Marcio Alvino",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178983.jpg",
+        "email": "dep.marcioalvino@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:45",
+      "deputado_": {
+        "id": 141439,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141439",
+        "nome": "Chico D`Angelo",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141439.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:44",
+      "deputado_": {
+        "id": 191923,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/191923",
+        "nome": "Flávio Nogueira",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/191923.jpg",
+        "email": "dep.flavionogueira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:44",
+      "deputado_": {
+        "id": 204512,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204512",
+        "nome": "Delegado Marcelo Freitas",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204512.jpg",
+        "email": "dep.delegadomarcelofreitas@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:43",
+      "deputado_": {
+        "id": 81297,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/81297",
+        "nome": "Dra. Soraya Manato",
+        "siglaPartido": "PTB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36845",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/81297.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:43",
+      "deputado_": {
+        "id": 160674,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160674",
+        "nome": "Hugo Motta",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PB",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160674.jpg",
+        "email": "dep.hugomotta@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:42",
+      "deputado_": {
+        "id": 178934,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178934",
+        "nome": "Toninho Wandscheer",
+        "siglaPartido": "PROS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36763",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178934.jpg",
+        "email": "dep.toninhowandscheer@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:42",
+      "deputado_": {
+        "id": 204510,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204510",
+        "nome": "Franco Cartafina",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204510.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:41",
+      "deputado_": {
+        "id": 162332,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/162332",
+        "nome": "Luiz Nishimori",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/162332.jpg",
+        "email": "dep.luiznishimori@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:41",
+      "deputado_": {
+        "id": 204381,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204381",
+        "nome": "Luis Miranda",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "DF",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204381.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:40",
+      "deputado_": {
+        "id": 74283,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74283",
+        "nome": "Vicentinho",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74283.jpg",
+        "email": "dep.vicentinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:40",
+      "deputado_": {
+        "id": 178835,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178835",
+        "nome": "Afonso Motta",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178835.jpg",
+        "email": "dep.afonsomotta@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:39",
+      "deputado_": {
+        "id": 105534,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/105534",
+        "nome": "Alexandre Figueiredo",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "SE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/105534.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:39",
+      "deputado_": {
+        "id": 160653,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160653",
+        "nome": "Roberto de Lucena",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160653.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:38",
+      "deputado_": {
+        "id": 204439,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204439",
+        "nome": "Dr. Leonardo",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "MT",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204439.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:38",
+      "deputado_": {
+        "id": 204533,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204533",
+        "nome": "Idilvan Alencar",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "CE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204533.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:36",
+      "deputado_": {
+        "id": 204356,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204356",
+        "nome": "Amaro Neto",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "ES",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204356.jpg",
+        "email": "dep.amaroneto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:36",
+      "deputado_": {
+        "id": 204522,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204522",
+        "nome": "Marco Bertaiolli",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204522.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:31",
+      "deputado_": {
+        "id": 204362,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204362",
+        "nome": "Ricardo Guidi",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204362.jpg",
+        "email": "dep.ricardoguidi@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:30",
+      "deputado_": {
+        "id": 74158,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74158",
+        "nome": "Mário Heringer",
+        "siglaPartido": "PDT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36786",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74158.jpg",
+        "email": "dep.marioheringer@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:30",
+      "deputado_": {
+        "id": 121948,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/121948",
+        "nome": "Adriano do Baldy",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/121948.jpg",
+        "email": "dep.adrianodobaldy@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:30",
+      "deputado_": {
+        "id": 156190,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/156190",
+        "nome": "Marcel van Hattem",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "RS",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/156190.jpg",
+        "email": "dep.marcelvanhattem@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:30",
+      "deputado_": {
+        "id": 204519,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204519",
+        "nome": "Tiago Mitraud",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204519.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:29",
+      "deputado_": {
+        "id": 92699,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/92699",
+        "nome": "Fernando Monteiro",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PE",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/92699.jpg",
+        "email": "dep.fernandomonteiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:27",
+      "deputado_": {
+        "id": 204464,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204464",
+        "nome": "Talíria Petrone",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "RJ",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204464.jpg",
+        "email": "dep.taliriapetrone@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:25",
+      "deputado_": {
+        "id": 204516,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204516",
+        "nome": "Alexis Fonteyne",
+        "siglaPartido": "NOVO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204516.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:24",
+      "deputado_": {
+        "id": 74090,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74090",
+        "nome": "Átila Lins",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "AM",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74090.jpg",
+        "email": "dep.atilalins@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:24",
+      "deputado_": {
+        "id": 204398,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204398",
+        "nome": "Felipe Francischini",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204398.jpg",
+        "email": "dep.felipefrancischini@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:24",
+      "deputado_": {
+        "id": 204509,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204509",
+        "nome": "Áurea Carolina",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204509.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:24",
+      "deputado_": {
+        "id": 204540,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204540",
+        "nome": "Maria Rosas",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204540.jpg",
+        "email": "dep.mariarosas@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:23",
+      "deputado_": {
+        "id": 178858,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178858",
+        "nome": "Mário Negromonte Jr.",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178858.jpg",
+        "email": "dep.marionegromontejr@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:23",
+      "deputado_": {
+        "id": 204545,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204545",
+        "nome": "Alê Silva",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "MG",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204545.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:20",
+      "deputado_": {
+        "id": 74537,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74537",
+        "nome": "Claudio Cajado",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "BA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74537.jpg",
+        "email": "dep.claudiocajado@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:20",
+      "deputado_": {
+        "id": 194260,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/194260",
+        "nome": "Nivaldo Albuquerque",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "AL",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/194260.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:18",
+      "deputado_": {
+        "id": 204368,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204368",
+        "nome": "Fabio Schiochet",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SC",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204368.jpg",
+        "email": "dep.fabioschiochet@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:16",
+      "deputado_": {
+        "id": 160621,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160621",
+        "nome": "Sandro Alex",
+        "siglaPartido": "PSD",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160621.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:16",
+      "deputado_": {
+        "id": 204430,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204430",
+        "nome": "Margarete Coelho",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PI",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204430.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:15",
+      "deputado_": {
+        "id": 204414,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204414",
+        "nome": "Aroldo Martins",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PR",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204414.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:13",
+      "deputado_": {
+        "id": 160532,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160532",
+        "nome": "Eli Corrêa Filho",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "SP",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160532.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2022-10-19T12:25:10",
+      "deputado_": {
+        "id": 204390,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204390",
+        "nome": "Professor Alcides",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "GO",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204390.jpg",
+        "email": "dep.professoralcides@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2022-10-19T12:25:04",
+      "deputado_": {
+        "id": 215044,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/215044",
+        "nome": "Vivi Reis",
+        "siglaPartido": "PSOL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36839",
+        "siglaUf": "PA",
+        "idLegislatura": 56,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/215044.jpg",
+        "email": null
+      }
+    }
+  ]
+}

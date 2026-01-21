@@ -7,6 +7,8 @@
 		"build": "vite build",
 		"build:widget": "rollup -c",
 		"preview": "vite preview",
+		"fetch:data": "node scripts/fetch-votacoes.mjs",
+		"fetch:batches": "node scripts/fetch-batches.mjs",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"test": "playwright test",

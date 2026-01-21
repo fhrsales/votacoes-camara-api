@@ -1,11 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import { format, parseISO, addMonths, addDays, endOfMonth } from 'date-fns';
-	import { ptBR } from 'date-fns/locale';
-    import VotesSearch from './components/VotesSearch.svelte';
-    import VotesSummary from './components/VotesSummary.svelte';
-    import VotesTable from './components/VotesTable.svelte';
-    import Button from './components/ui/Button.svelte';
+	import { format, parseISO } from 'date-fns';
+	import ptBR from 'date-fns/locale/pt-BR';
+	import { base } from '$app/paths';
+	import VotesSearch from './components/VotesSearch.svelte';
+	import Button from './components/ui/Button.svelte';
 	export let votacaoId;
 
 	let votos = [];
@@ -19,6 +18,12 @@
 	let resumoVotos = {};
 	let resumoTexto = '';
 	let filtroVoto = '';
+	let opcoesMes = [];
+	let votosDisponiveis = new Set();
+	let ultimaAtualizacao = '';
+	let votosIndexOk = true;
+	let VotesSummaryComponent = null;
+	let VotesTableComponent = null;
 
 	$: votosExibidos =
 		filtroVoto === 'Ausentes'
@@ -32,81 +37,63 @@
 			? format(votos[0].dataRegistroVoto, "d 'de' MMMM 'de' yyyy, 'às' HH:mm", { locale: ptBR })
 			: '';
 
+	$: ultimaAtualizacaoTexto =
+		ultimaAtualizacao
+			? format(parseISO(ultimaAtualizacao), "d 'de' MMMM 'de' yyyy, 'às' HH:mm", { locale: ptBR })
+			: '';
+
 	function atualizarFiltro(tipo) {
 		filtroVoto = filtroVoto === tipo ? '' : tipo;
 	}
 
-	const API_BASE = 'https://dadosabertos.camara.leg.br/api/v2';
-	const CORS_PROXIES = [
-		'https://api.allorigins.win/raw?url=',
-		'https://cors.isomorphic-git.org/',
-		'https://thingproxy.freeboard.io/fetch/'
-	];
-	const RETRY_ATTEMPTS = 2;
-	const RETRY_BASE_DELAY = 250;
+	async function carregarComponentesResultados() {
+		if (VotesSummaryComponent && VotesTableComponent) return;
+		const [summaryModule, tableModule] = await Promise.all([
+			import('./components/VotesSummary.svelte'),
+			import('./components/VotesTable.svelte')
+		]);
+		VotesSummaryComponent = summaryModule.default;
+		VotesTableComponent = tableModule.default;
+	}
+
+	const DATA_BASE = `${base}/data`;
 
 	async function fetchJson(url, errorMessage) {
 		const response = await fetch(url);
 		if (!response.ok) {
-			throw new Error(errorMessage ?? `Falha na requisição (${response.status})`);
+			const error = new Error(errorMessage ?? `Falha na requisição (${response.status})`);
+			error.status = response.status;
+			throw error;
 		}
 		return response.json();
 	}
 
-	async function fetchJsonProxy(path, errorMessage) {
-		const upstream = `${API_BASE}${path}`;
-		let lastError;
-		for (const proxy of CORS_PROXIES) {
-			const url =
-				proxy === 'https://api.allorigins.win/raw?url='
-					? `${proxy}${encodeURIComponent(upstream)}`
-					: `${proxy}${upstream}`;
-			for (let attempt = 0; attempt <= RETRY_ATTEMPTS; attempt += 1) {
-				try {
-					return await fetchJson(url, errorMessage);
-				} catch (error) {
-					lastError = error;
-					if (attempt < RETRY_ATTEMPTS) {
-						const delay = RETRY_BASE_DELAY * (attempt + 1);
-						await new Promise((resolve) => setTimeout(resolve, delay));
-					}
-				}
-			}
-		}
-		throw lastError ?? new Error(errorMessage ?? 'Falha ao buscar dados.');
-	}
-
-	async function getResumoTexto(id) {
+	async function carregarIndices() {
 		try {
-			const detalhesData = await fetchJsonProxy(
-				`/votacoes/${id}`,
-				`Falha ao buscar detalhes (${id})`
-			);
-			const detalhes = detalhesData?.dados || {};
-			const afetadas = detalhes?.proposicoesAfetadas || [];
-			const objetos = detalhes?.objetosPossiveis || [];
-			let ementa = afetadas[0]?.ementa || objetos[0]?.ementa || '';
-
-			if (!ementa) {
-				const uriProposicao =
-					detalhes?.uriProposicaoObjeto || afetadas[0]?.uri || objetos[0]?.uri || '';
-				const idProposicao = uriProposicao.split('/').pop();
-				if (idProposicao) {
-					try {
-						const propData = await fetchJsonProxy(
-							`/proposicoes/${idProposicao}`,
-							`Falha ao buscar proposição (${idProposicao})`
-						);
-						ementa = propData?.dados?.ementa || '';
-					} catch {
-						ementa = '';
-					}
-				}
+			const data = await fetchJson(`${DATA_BASE}/votacoes/index.json`);
+			if (Array.isArray(data?.meses)) {
+				opcoesMes = data.meses;
 			}
-
-			return ementa || detalhes.ementa || '';
 		} catch {
-			return '';
+			opcoesMes = [];
+		}
+
+		try {
+			const data = await fetchJson(`${DATA_BASE}/votos/index.json`);
+			if (Array.isArray(data?.ids)) {
+				votosDisponiveis = new Set(data.ids.map((id) => String(id)));
+			}
+			votosIndexOk = true;
+		} catch {
+			votosDisponiveis = new Set();
+			votosIndexOk = false;
+		}
+
+		try {
+			const data = await fetchJson(`${DATA_BASE}/last-run.json`);
+			if (data?.generatedAt) ultimaAtualizacao = data.generatedAt;
+		} catch {
+			ultimaAtualizacao = '';
 		}
 	}
 
@@ -120,11 +107,11 @@
 			filtroVoto = '';
 			carregandoVotos = true;
 			erroVotos = '';
-			const data = await fetchJsonProxy(
-				`/votacoes/${votacaoId}/votos`,
+			const data = await fetchJson(
+				`${DATA_BASE}/votos/${votacaoId}.json`,
 				`Falha ao buscar votos (${votacaoId})`
 			);
-			const lista = Array.isArray(data.dados) ? data.dados : [];
+			const lista = Array.isArray(data?.votos) ? data.votos : [];
 			if (lista.length === 0) {
 				erroVotos = '';
 				votos = [];
@@ -143,9 +130,10 @@
 				}
 				return;
 			}
-			votos = lista
-				.filter((voto) => voto.tipoVoto !== 'Artigo 17')
-				.map((voto) => ({ ...voto, dataRegistroVoto: parseISO(voto.dataRegistroVoto) }));
+			votos = lista.map((voto) => ({
+				...voto,
+				dataRegistroVoto: parseISO(voto.dataRegistroVoto)
+			}));
 			const contagem = votos.reduce(
 				(acc, voto) => {
 					switch (voto.tipoVoto) {
@@ -171,9 +159,14 @@
 			const ausentes = Math.max(0, 513 - total);
 			const totalGeral = 513;
 			resumoVotos = { sim, nao, abstencao, obstrucao, ausentes, total, totalGeral };
-			resumoTexto = await getResumoTexto(votacaoId);
+			resumoTexto = data?.resumoTexto || '';
+			carregarComponentesResultados();
 		} catch (error) {
-			erroVotos = 'Ocorreu um erro ao buscar votos.';
+			if (error?.status === 404) {
+				erroVotos = 'Sem dados para esta votacao.';
+			} else {
+				erroVotos = 'Ocorreu um erro ao buscar votos.';
+			}
 			console.error('Ocorreu um erro:', error);
 			votos = [];
 			resumoVotos = {};
@@ -190,53 +183,42 @@
 				listaVotacoes = [];
 				return;
 			}
+			if (!votosIndexOk) {
+				erroLista = 'Dados locais incompletos. Rode npm run fetch:data.';
+				listaVotacoes = [];
+				return;
+			}
 			const inicio = parseISO(`${dataInicio}-01`);
-			const fim = endOfMonth(parseISO(`${dataInicio}-01`));
-			if (Number.isNaN(inicio.getTime()) || Number.isNaN(fim.getTime())) {
+			if (Number.isNaN(inicio.getTime())) {
 				erroLista = 'Mes invalido.';
 				listaVotacoes = [];
 				return;
 			}
 			carregandoLista = true;
 			erroLista = '';
-			const mapa = new Map();
-			let cursor = inicio;
-			while (cursor <= fim) {
-				const chunkFim = addMonths(cursor, 3) > fim ? fim : addMonths(cursor, 3);
-				const params = new URLSearchParams({
-					dataInicio: format(cursor, 'yyyy-MM-dd'),
-					dataFim: format(chunkFim, 'yyyy-MM-dd'),
-					itens: '100',
-					ordem: 'DESC'
-				});
-				const data = await fetchJsonProxy(
-					`/votacoes?${params.toString()}`,
-					'Falha ao listar votacoes'
-				);
-				const baseLista = Array.isArray(data.dados) ? data.dados : [];
-				baseLista.forEach((item) => {
-					if (item && item.id != null) mapa.set(String(item.id), item);
-				});
-				cursor = addDays(chunkFim, 1);
+			const data = await fetchJson(
+				`${DATA_BASE}/votacoes/${dataInicio}.json`,
+				'Falha ao listar votacoes'
+			);
+			const baseLista = Array.isArray(data?.votacoes) ? data.votacoes : [];
+			if (votosDisponiveis.size > 0) {
+				listaVotacoes = baseLista
+					.map((item) => ({ ...item, hasVotos: votosDisponiveis.has(String(item?.id)) }))
+					.filter((item) => item.hasVotos);
+			} else {
+				listaVotacoes = baseLista;
 			}
-
-			const resultadoRegex =
-				/Sim:\s*\d+|Não:\s*\d+|Abstenç[ãa]o:\s*\d+|Obstruç[ãa]o:\s*\d+|Total:\s*\d+/i;
-			const listaUnica = Array.from(mapa.values());
-			listaVotacoes = listaUnica
-				.map((item) => {
-					const descricao = item?.descricao || '';
-					const hasResultado = resultadoRegex.test(descricao);
-					return { ...item, hasResultado };
-				})
-				.filter((item) => item.hasResultado === true);
 			if (votacaoId) {
 				selecionadoIndex = listaVotacoes.findIndex((item) => String(item.id) === String(votacaoId));
 			} else {
 				selecionadoIndex = -1;
 			}
 		} catch (error) {
-			erroLista = 'Ocorreu um erro ao buscar votacoes.';
+			if (error?.status === 404) {
+				erroLista = 'Sem dados para este mes.';
+			} else {
+				erroLista = 'Ocorreu um erro ao buscar votacoes.';
+			}
 			console.error('Ocorreu um erro:', error);
 			listaVotacoes = [];
 			selecionadoIndex = -1;
@@ -283,17 +265,26 @@
       filtroVoto = '';
     }
 
-	onMount(fetchVotos);
+	onMount(() => {
+		carregarIndices();
+	});
 </script>
 
 <main class="container">
-	<h1 class="pagina-titulo">Como votou seu deputado?</h1>
+	<h1 class="pagina-titulo">Voto a voto</h1>
+	{#if ultimaAtualizacaoTexto}
+		<p class="atualizacao">Atualizado em {ultimaAtualizacaoTexto}</p>
+	{/if}
+	{#if !votosIndexOk}
+		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
+	{/if}
 	<p>Demonstração de uso de API que integra dados abertos de votações da Câmara dos Deputados, estruturando votos nominaispor deputado e por votação.</p>
     <VotesSearch
       bind:dataInicio
       {carregandoLista}
       {erroLista}
       {listaVotacoes}
+	  {opcoesMes}
       onListar={fetchListaVotacoes}
       onLimpar={limparLista}
       onSelect={selecionarVotacao}
@@ -305,38 +296,43 @@
 	{#if carregandoVotos}
 		<p>Buscando votos...</p>
 	{:else if votos.length > 0}
-		<VotesSummary
-			{votacaoId}
-			{resumoTexto}
-			{resumoVotos}
-			{filtroVoto}
-			{fimTexto}
-			on:filterChange={(event) => atualizarFiltro(event.detail.tipo)}
-		>
-			<div class="resultado-nav">
-				<div class="resultado-total">Total de votos: {resumoVotos.total}</div>
-				<div class="resultado-controles">
-					<Button
-						size="small"
-						on:click={() => selecionarPorIndice(selecionadoIndex - 1, -1)}
-						disabled={selecionadoIndex <= 0}
-                        variant="primary"
-					>
-						Anterior
-					</Button>
-					<span class="resultado-status">{getNavStatus()}</span>
-					<Button
-						size="small"
-						on:click={() => selecionarPorIndice(selecionadoIndex + 1, 1)}
-						disabled={selecionadoIndex < 0 || selecionadoIndex >= listaVotacoes.length - 1}
-                        variant="primary"
-					>
-						Próximo
-					</Button>
+		{#if VotesSummaryComponent}
+			<svelte:component
+				this={VotesSummaryComponent}
+				{votacaoId}
+				{resumoTexto}
+				{resumoVotos}
+				{filtroVoto}
+				{fimTexto}
+				on:filterChange={(event) => atualizarFiltro(event.detail.tipo)}
+			>
+				<div class="resultado-nav">
+					<div class="resultado-total">Total de votos: {resumoVotos.total}</div>
+					<div class="resultado-controles">
+						<Button
+							size="small"
+							on:click={() => selecionarPorIndice(selecionadoIndex - 1, -1)}
+							disabled={selecionadoIndex <= 0}
+							variant="primary"
+						>
+							Anterior
+						</Button>
+						<span class="resultado-status">{getNavStatus()}</span>
+						<Button
+							size="small"
+							on:click={() => selecionarPorIndice(selecionadoIndex + 1, 1)}
+							disabled={selecionadoIndex < 0 || selecionadoIndex >= listaVotacoes.length - 1}
+							variant="primary"
+						>
+							Próximo
+						</Button>
+					</div>
 				</div>
-			</div>
-		</VotesSummary>
-		<VotesTable votos={votosExibidos} />
+			</svelte:component>
+		{/if}
+		{#if VotesTableComponent}
+			<svelte:component this={VotesTableComponent} votos={votosExibidos} />
+		{/if}
 	{:else}
 		<p />
 	{/if}
@@ -367,6 +363,12 @@
 		margin: 0 0 calc(var(--grid) * 1.5);
 		font-size: calc(var(--grid) * 3.5);
 		font-weight: 700;
+	}
+
+	.atualizacao {
+		margin: calc(var(--grid) * -1) 0 calc(var(--grid) * 1.5);
+		color: var(--color-text-subtle);
+		font-size: calc(var(--grid) * 1.4);
 	}
 
 	.resultado-nav {

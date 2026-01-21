@@ -1,0 +1,382 @@
+{
+  "id": "2365055-2",
+  "generatedAt": "2026-01-21T13:00:55.891Z",
+  "resumoTexto": "Requer a Vossa Excelência, nos termos do § 3º do art. 58 da Constituição Federal e dos arts. 35, 36 e 37, do Regimento Interno da Câmara dos Deputados, a criação de Comissão Parlamentar de Inquérito, com a finalidade de investigar esquemas de manipulação de resultados em partidas de futebol profissional no Brasil.",
+  "votos": [
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 66385,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/66385",
+        "nome": "Julio Arcoverde",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PI",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/66385.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 74043,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74043",
+        "nome": "Wellington Roberto",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "PB",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74043.jpg",
+        "email": "dep.wellingtonroberto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 74554,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/74554",
+        "nome": "José Rocha",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "BA",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/74554.jpg",
+        "email": "dep.joserocha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 141456,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/141456",
+        "nome": "Jilmar Tatto",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/141456.jpg",
+        "email": "dep.jilmartatto@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 150418,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/150418",
+        "nome": "Márcio Marinho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "BA",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/150418.jpg",
+        "email": "dep.marciomarinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 160512,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160512",
+        "nome": "Aureo Ribeiro",
+        "siglaPartido": "SOLIDARIEDADE",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37904",
+        "siglaUf": "RJ",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160512.jpg",
+        "email": "dep.aureoribeiro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 160665,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160665",
+        "nome": "Augusto Coutinho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "PE",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160665.jpg",
+        "email": "dep.augustocoutinho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 162067,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/162067",
+        "nome": "Kiko Celeguim",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "SP",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/162067.jpg",
+        "email": "dep.kikoceleguim@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 178860,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/178860",
+        "nome": "Paulo Azi",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "BA",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/178860.jpg",
+        "email": "dep.pauloazi@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 204367,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204367",
+        "nome": "Daniel Freitas",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "SC",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204367.jpg",
+        "email": "dep.danielfreitas@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 204379,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204379",
+        "nome": "Acácio Favacho",
+        "siglaPartido": "MDB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36899",
+        "siglaUf": "AP",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204379.jpg",
+        "email": "dep.acaciofavacho@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220571,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220571",
+        "nome": "Daniel Agrobom",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "GO",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220571.jpg",
+        "email": "dep.danielagrobom@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220585,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220585",
+        "nome": "Mersinho Lucena",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "PB",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220585.jpg",
+        "email": "dep.mersinholucena@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220601,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220601",
+        "nome": "Washington Quaquá",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RJ",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220601.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220602,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220602",
+        "nome": "Dimas Gadelha",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "RJ",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220602.jpg",
+        "email": "dep.dimasgadelha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220605,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220605",
+        "nome": "Bandeira de Mello",
+        "siglaPartido": "PSB",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36832",
+        "siglaUf": "RJ",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220605.jpg",
+        "email": "dep.bandeirademello@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220616,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220616",
+        "nome": "Luciano Vieira",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "RJ",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220616.jpg",
+        "email": "dep.lucianovieira@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220627,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220627",
+        "nome": "Paulinho Freire",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "RN",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220627.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220628,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220628",
+        "nome": "Mauricio do Vôlei",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220628.jpg",
+        "email": "dep.mauriciodovolei@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220631,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220631",
+        "nome": "Samuel Viana",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "MG",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220631.jpg",
+        "email": "dep.samuelviana@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220649,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220649",
+        "nome": "Delegado da Cunha",
+        "siglaPartido": "PP",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37903",
+        "siglaUf": "SP",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220649.jpg",
+        "email": "dep.delegadodacunha@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220660,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220660",
+        "nome": "Yury do Paredão",
+        "siglaPartido": "PL",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37906",
+        "siglaUf": "CE",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220660.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220671,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220671",
+        "nome": "Dilvanda Faro",
+        "siglaPartido": "PT",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36844",
+        "siglaUf": "PA",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220671.jpg",
+        "email": "dep.dilvandafaro@camara.leg.br"
+      }
+    },
+    {
+      "tipoVoto": "Não",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220713,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220713",
+        "nome": "Saullo Vianna",
+        "siglaPartido": "UNIÃO",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/38009",
+        "siglaUf": "AM",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220713.jpg",
+        "email": null
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "dataRegistroVoto": "2023-06-06T15:05:04",
+      "deputado_": {
+        "id": 220714,
+        "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/220714",
+        "nome": "Adail Filho",
+        "siglaPartido": "REPUBLICANOS",
+        "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37908",
+        "siglaUf": "AM",
+        "idLegislatura": 57,
+        "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/220714.jpg",
+        "email": "dep.adailfilho@camara.leg.br"
+      }
+    }
+  ]
+}

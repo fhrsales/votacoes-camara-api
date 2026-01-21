@@ -37,7 +37,7 @@ npm run build
 ## Observações
 
 - O app é **estático** no Pages.  
-- As chamadas de API usam um **proxy CORS público** para funcionar no navegador.
+- Os dados são gerados diariamente e salvos em JSON em `static/data`.
 
 ## Troubleshooting
 
@@ -45,10 +45,10 @@ npm run build
 
 Confirme que o `fallback: 'index.html'` está ativo em `svelte.config.js`.
 
-### Erro de CORS ao buscar votações
+### Dados desatualizados
 
-O Pages é estático. Se o proxy CORS estiver instável, troque o endpoint usado em
-`src/routes/Votacoes.svelte` (`CORS_PROXY`).
+Execute `npm run fetch:data` localmente ou aguarde a rotina diária do GitHub Actions
+(`.github/workflows/scrape.yml`).
 
 ### Build não publica
 
