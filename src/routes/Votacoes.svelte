@@ -5,6 +5,7 @@
 	import { base } from '$app/paths';
 	import VotesSearch from './components/VotesSearch.svelte';
 	import Button from './components/ui/Button.svelte';
+	import AdBanner from './components/AdBanner.svelte';
 	export let votacaoId;
 
 	let votos = [];
@@ -279,6 +280,7 @@
 		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
 	{/if}
 	<p>Demonstração de uso de API que integra dados abertos de votações da Câmara dos Deputados, estruturando votos nominaispor deputado e por votação.</p>
+	<AdBanner />
     <VotesSearch
       bind:dataInicio
       {carregandoLista}
