@@ -8,7 +8,18 @@
 		try {
 			if (typeof window === 'undefined') return;
 			window.adsbygoogle = window.adsbygoogle || [];
-			window.adsbygoogle.push({});
+			let attempts = 0;
+			const tryPush = () => {
+				attempts += 1;
+				if (bannerEl && bannerEl.offsetWidth > 0) {
+					window.adsbygoogle.push({});
+					return;
+				}
+				if (attempts < 6) {
+					window.setTimeout(tryPush, 200);
+				}
+			};
+			tryPush();
 			const checkFilled = () => {
 				const status = bannerEl?.getAttribute('data-ad-status');
 				visible = status === 'filled';
@@ -45,10 +56,15 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		transition: opacity 180ms ease;
 	}
 
 	.ad-banner--hidden {
-		display: none;
+		opacity: 0;
+		max-height: 0;
+		margin: 0;
+		overflow: hidden;
+		pointer-events: none;
 	}
 
 	.ad-banner :global(ins.adsbygoogle) {
