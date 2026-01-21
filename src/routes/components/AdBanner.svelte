@@ -2,19 +2,30 @@
 	import { onMount } from 'svelte';
 
 	let bannerEl;
+	let visible = false;
 
 	onMount(() => {
 		try {
 			if (typeof window === 'undefined') return;
 			window.adsbygoogle = window.adsbygoogle || [];
 			window.adsbygoogle.push({});
+			const checkFilled = () => {
+				const status = bannerEl?.getAttribute('data-ad-status');
+				visible = status === 'filled';
+			};
+			const timer = window.setTimeout(checkFilled, 1200);
+			const timer2 = window.setTimeout(checkFilled, 3000);
+			return () => {
+				window.clearTimeout(timer);
+				window.clearTimeout(timer2);
+			};
 		} catch (error) {
 			console.warn('AdSense load failed', error);
 		}
 	});
 </script>
 
-<div class="ad-banner">
+<div class={`ad-banner ${visible ? 'ad-banner--visible' : 'ad-banner--hidden'}`}>
 	<ins
 		bind:this={bannerEl}
 		class="adsbygoogle"
@@ -30,14 +41,14 @@
 	.ad-banner {
 		width: 100%;
 		min-height: 90px;
-		margin: calc(var(--grid) * 1.5) 0;
-		padding: calc(var(--grid) * 1) 0;
-		border-radius: var(--radius-m);
-		background: var(--color-surface);
-		box-shadow: var(--shadow-1);
+		margin: 0 0 calc(var(--grid) * 1.5);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.ad-banner--hidden {
+		display: none;
 	}
 
 	.ad-banner :global(ins.adsbygoogle) {

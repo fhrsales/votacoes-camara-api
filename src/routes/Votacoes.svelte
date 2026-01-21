@@ -272,6 +272,7 @@
 </script>
 
 <main class="container">
+	<AdBanner />
 	<h1 class="pagina-titulo">Voto a voto</h1>
 	{#if ultimaAtualizacaoTexto}
 		<p class="atualizacao">Atualizado em {ultimaAtualizacaoTexto}</p>
@@ -280,7 +281,6 @@
 		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
 	{/if}
 	<p>Demonstração de uso de API que integra dados abertos de votações da Câmara dos Deputados, estruturando votos nominaispor deputado e por votação.</p>
-	<AdBanner />
     <VotesSearch
       bind:dataInicio
       {carregandoLista}
