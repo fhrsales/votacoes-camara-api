@@ -45,6 +45,18 @@
 			})(window, document, 'script', 'dataLayer', 'GTM-MQ54LS8H');
 		</script>
 		<!-- End Google Tag Manager -->
+		<!-- Google Analytics 4 (direct) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-D7VHBW5FWR"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			// Use SPA page_view events pushed to dataLayer in +layout.svelte
+			gtag('config', 'G-D7VHBW5FWR', { send_page_view: false });
+		</script>
+		<!-- End Google Analytics 4 (direct) -->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
