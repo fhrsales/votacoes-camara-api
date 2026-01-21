@@ -24,9 +24,14 @@
 				const status = bannerEl?.getAttribute('data-ad-status');
 				visible = status === 'filled';
 			};
+			const observer = new MutationObserver(checkFilled);
+			if (bannerEl) {
+				observer.observe(bannerEl, { attributes: true, attributeFilter: ['data-ad-status'] });
+			}
 			const timer = window.setTimeout(checkFilled, 1200);
 			const timer2 = window.setTimeout(checkFilled, 3000);
 			return () => {
+				observer.disconnect();
 				window.clearTimeout(timer);
 				window.clearTimeout(timer2);
 			};
@@ -51,20 +56,22 @@
 <style>
 	.ad-banner {
 		width: 100%;
-		min-height: 90px;
-		margin: 0 0 calc(var(--grid) * 1.5);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		overflow: hidden;
+		max-height: 0;
+		margin: 0;
+		opacity: 0;
+		visibility: hidden;
 		transition: opacity 180ms ease;
 	}
 
-	.ad-banner--hidden {
-		opacity: 0;
-		max-height: 0;
-		margin: 0;
-		overflow: hidden;
-		pointer-events: none;
+	.ad-banner--visible {
+		max-height: 500px;
+		margin: 0 0 calc(var(--grid) * 1.5);
+		opacity: 1;
+		visibility: visible;
 	}
 
 	.ad-banner :global(ins.adsbygoogle) {
