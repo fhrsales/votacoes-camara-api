@@ -4,11 +4,14 @@ import path from 'path';
 const API_BASE = 'https://dadosabertos.camara.leg.br/api/v2';
 const MONTHS = Number(process.env.VOTACOES_MONTHS ?? '12');
 const START_MONTH = process.env.VOTACOES_START;
+const DAYS = Number(process.env.VOTACOES_DAYS ?? '0');
+const START_DATE = process.env.VOTACOES_START_DATE;
 const DATA_DIR = path.join(process.cwd(), 'static', 'data');
 const LIST_DIR = path.join(DATA_DIR, 'votacoes');
 const VOTOS_DIR = path.join(DATA_DIR, 'votos');
 const RETRY_ATTEMPTS = Number(process.env.VOTACOES_RETRIES ?? '4');
 const RETRY_BASE_DELAY = Number(process.env.VOTACOES_RETRY_DELAY ?? '800');
+const MAX_RANGE_SPLITS = Number(process.env.VOTACOES_MAX_RANGE_SPLITS ?? '4');
 
 const monthNames = [
   'Janeiro',
@@ -65,12 +68,33 @@ function monthEnd(date) {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0);
 }
 
+function dayStart(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
 function addMonths(date, amount) {
   return new Date(date.getFullYear(), date.getMonth() + amount, 1);
 }
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function rangeDays(start, end) {
+  const ms = end.getTime() - start.getTime();
+  return Math.ceil(ms / (1000 * 60 * 60 * 24)) + 1;
+}
+
+function splitRange(start, end) {
+  const mid = new Date(start.getTime());
+  mid.setDate(mid.getDate() + Math.floor(rangeDays(start, end) / 2));
+  const leftEnd = new Date(mid.getFullYear(), mid.getMonth(), mid.getDate());
+  const rightStart = new Date(leftEnd.getTime());
+  rightStart.setDate(rightStart.getDate() + 1);
+  return [
+    [start, leftEnd],
+    [rightStart, end]
+  ];
 }
 
 async function fetchJson(url, errorMessage) {
@@ -113,6 +137,39 @@ async function fetchAll(url, errorMessage) {
     if (nextUrl) await sleep(200);
   }
   return results;
+}
+
+async function fetchVotacoesRange(start, end, errorMessage, depth = 0) {
+  const params = new URLSearchParams({
+    dataInicio: formatDate(start),
+    dataFim: formatDate(end),
+    itens: '100',
+    ordem: 'DESC'
+  });
+  const url = `${API_BASE}/votacoes?${params.toString()}`;
+
+  try {
+    return await fetchAll(url, errorMessage);
+  } catch (error) {
+    const canSplit = depth < MAX_RANGE_SPLITS && rangeDays(start, end) > 1;
+    if (error?.status === 504 && canSplit) {
+      const ranges = splitRange(start, end);
+      const results = [];
+      for (const [rangeStart, rangeEnd] of ranges) {
+        const label = `${formatDate(rangeStart)}..${formatDate(rangeEnd)}`;
+        const chunk = await fetchVotacoesRange(
+          rangeStart,
+          rangeEnd,
+          `${errorMessage} (${label})`,
+          depth + 1
+        );
+        results.push(...chunk);
+        await sleep(200);
+      }
+      return results;
+    }
+    throw error;
+  }
 }
 
 async function fetchResumoTexto(id) {
@@ -163,6 +220,17 @@ function buildMonthsList() {
   return months;
 }
 
+function buildDaysList() {
+  const base = START_DATE ? new Date(`${START_DATE}T00:00:00`) : new Date();
+  const start = dayStart(base);
+  const days = [];
+  for (let i = 0; i < DAYS; i += 1) {
+    const date = new Date(start.getFullYear(), start.getMonth(), start.getDate() - i);
+    days.push(date);
+  }
+  return days;
+}
+
 async function writeJson(filePath, data) {
   const payload = `${JSON.stringify(data, null, 2)}\n`;
   await writeFile(filePath, payload, 'utf8');
@@ -180,52 +248,118 @@ async function loadMonthIds(filePath) {
   }
 }
 
+async function loadMonthData(filePath) {
+  try {
+    const data = JSON.parse(await readFile(filePath, 'utf8'));
+    const votacoes = Array.isArray(data?.votacoes) ? data.votacoes : [];
+    return { ...data, votacoes };
+  } catch {
+    return { votacoes: [] };
+  }
+}
+
+function sortByDataHoraDesc(a, b) {
+  const aValue = a?.dataHoraRegistro ? new Date(a.dataHoraRegistro).getTime() : 0;
+  const bValue = b?.dataHoraRegistro ? new Date(b.dataHoraRegistro).getTime() : 0;
+  return bValue - aValue;
+}
+
 async function main() {
   await ensureDirs();
-  const months = buildMonthsList();
+  const useDays = DAYS > 0;
+  const months = useDays ? [] : buildMonthsList();
+  const days = useDays ? buildDaysList() : [];
   const generatedAt = new Date().toISOString();
   const votacoesIds = new Set();
 
-  for (const month of months) {
-    const [year, monthNum] = month.value.split('-').map(Number);
-    const start = monthStart(new Date(year, monthNum - 1, 1));
-    const end = monthEnd(start);
-    const params = new URLSearchParams({
-      dataInicio: formatDate(start),
-      dataFim: formatDate(end),
-      itens: '100',
-      ordem: 'DESC'
-    });
-    const url = `${API_BASE}/votacoes?${params.toString()}`;
-    const lista = await fetchAll(url, `Falha ao listar votações (${month.value})`);
+  if (useDays) {
     const resultadoRegex = /Sim:\s*\d+|Não:\s*\d+|Abstenç[ãa]o:\s*\d+|Obstruç[ãa]o:\s*\d+|Total:\s*\d+/i;
-    const listaFiltrada = lista
-      .map((item) => {
-        const descricao = item?.descricao || '';
-        const hasResultado = resultadoRegex.test(descricao);
-        return { ...item, hasResultado };
-      })
-      .filter((item) => item.hasResultado === true);
+    const updatesByMonth = new Map();
 
-    listaFiltrada.forEach((item) => {
-      if (item?.id != null) votacoesIds.add(String(item.id));
-    });
+    for (const date of days) {
+      const start = dayStart(date);
+      const end = dayStart(date);
+      const lista = await fetchVotacoesRange(
+        start,
+        end,
+        `Falha ao listar votações (${formatDate(start)})`
+      );
+      const listaFiltrada = lista
+        .map((item) => {
+          const descricao = item?.descricao || '';
+          const hasResultado = resultadoRegex.test(descricao);
+          return { ...item, hasResultado };
+        })
+        .filter((item) => item.hasResultado === true);
 
-    const monthPath = path.join(LIST_DIR, `${month.value}.json`);
-    const existingIds = await loadMonthIds(monthPath);
-    const newIds = new Set(listaFiltrada.map((item) => String(item?.id)).filter(Boolean));
-    const hasSameSize = existingIds.size === newIds.size;
-    const hasAllIds = hasSameSize && Array.from(newIds).every((id) => existingIds.has(id));
-
-    if (!hasAllIds) {
-      await writeJson(monthPath, {
-        mes: month.value,
-        generatedAt,
-        votacoes: listaFiltrada
+      listaFiltrada.forEach((item) => {
+        if (item?.id != null) votacoesIds.add(String(item.id));
       });
+
+      const monthValue = formatMonth(start);
+      const existing = updatesByMonth.get(monthValue) ?? [];
+      updatesByMonth.set(monthValue, existing.concat(listaFiltrada));
+
+      await sleep(200);
     }
 
-    await sleep(250);
+    for (const [monthValue, updates] of updatesByMonth.entries()) {
+      const monthPath = path.join(LIST_DIR, `${monthValue}.json`);
+      const existingData = await loadMonthData(monthPath);
+      const merged = new Map(
+        existingData.votacoes.map((item) => [String(item?.id), item]).filter(([id]) => id !== 'undefined')
+      );
+
+      updates.forEach((item) => {
+        if (item?.id != null) merged.set(String(item.id), item);
+      });
+
+      const mergedList = Array.from(merged.values()).sort(sortByDataHoraDesc);
+      await writeJson(monthPath, {
+        mes: monthValue,
+        generatedAt,
+        votacoes: mergedList
+      });
+    }
+  } else {
+    for (const month of months) {
+      const [year, monthNum] = month.value.split('-').map(Number);
+      const start = monthStart(new Date(year, monthNum - 1, 1));
+      const end = monthEnd(start);
+      const lista = await fetchVotacoesRange(
+        start,
+        end,
+        `Falha ao listar votações (${month.value})`
+      );
+      const resultadoRegex = /Sim:\s*\d+|Não:\s*\d+|Abstenç[ãa]o:\s*\d+|Obstruç[ãa]o:\s*\d+|Total:\s*\d+/i;
+      const listaFiltrada = lista
+        .map((item) => {
+          const descricao = item?.descricao || '';
+          const hasResultado = resultadoRegex.test(descricao);
+          return { ...item, hasResultado };
+        })
+        .filter((item) => item.hasResultado === true);
+
+      listaFiltrada.forEach((item) => {
+        if (item?.id != null) votacoesIds.add(String(item.id));
+      });
+
+      const monthPath = path.join(LIST_DIR, `${month.value}.json`);
+      const existingIds = await loadMonthIds(monthPath);
+      const newIds = new Set(listaFiltrada.map((item) => String(item?.id)).filter(Boolean));
+      const hasSameSize = existingIds.size === newIds.size;
+      const hasAllIds = hasSameSize && Array.from(newIds).every((id) => existingIds.has(id));
+
+      if (!hasAllIds) {
+        await writeJson(monthPath, {
+          mes: month.value,
+          generatedAt,
+          votacoes: listaFiltrada
+        });
+      }
+
+      await sleep(250);
+    }
   }
 
   const existingMonthFiles = await readdir(LIST_DIR).catch(() => []);
@@ -234,8 +368,9 @@ async function main() {
     .map((file) => file.replace('.json', ''))
     .filter(isMonthValue);
 
+  const newValues = useDays ? days.map((date) => formatMonth(date)) : months.map((item) => item.value);
   const monthValues = Array.from(
-    new Set([...months.map((item) => item.value), ...existingValues])
+    new Set([...newValues, ...existingValues])
   ).sort(sortMonthValuesDesc);
 
   const mergedMonths = monthValues.map((value) => ({

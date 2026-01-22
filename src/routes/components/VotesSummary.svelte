@@ -147,7 +147,7 @@
   </div>
 	<p class="summary-note">
 		{#if resumoTexto}
-			{resumoTexto} ·
+			{resumoTexto}
 		{/if}
 		Votado em {fimTexto}
 	</p>

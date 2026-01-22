@@ -2,7 +2,7 @@ name: Atualizar dados de votações
 
 on:
   schedule:
-    - cron: '15 6 * * *'
+    - cron: '15 9 * * *'
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,8 @@ jobs:
           node-version: 18
       - name: Atualizar dados
         env:
-          VOTACOES_MONTHS: 12
+          TZ: America/Sao_Paulo
+          VOTACOES_DAYS: 1
         run: node scripts/fetch-votacoes.mjs
       - name: Commit e push
         run: |
