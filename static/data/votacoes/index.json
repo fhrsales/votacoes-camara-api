@@ -1,6 +1,10 @@
 {
-  "generatedAt": "2026-01-21T14:11:10.602Z",
+  "generatedAt": "2026-01-22T12:30:27.186Z",
   "meses": [
+    {
+      "value": "2026-01",
+      "label": "Janeiro 2026"
+    },
     {
       "value": "2025-12",
       "label": "Dezembro 2025"
