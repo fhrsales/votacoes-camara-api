@@ -24,6 +24,9 @@ jobs:
         env:
           TZ: America/Sao_Paulo
           VOTACOES_DAYS: 1
+          VOTACOES_FETCH_TIMEOUT: 30000
+          VOTACOES_RETRIES: 6
+          VOTACOES_RETRY_DELAY: 1200
         run: node scripts/fetch-votacoes.mjs
       - name: Commit e push
         run: |

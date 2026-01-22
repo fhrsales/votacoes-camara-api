@@ -12,6 +12,7 @@ const VOTOS_DIR = path.join(DATA_DIR, 'votos');
 const RETRY_ATTEMPTS = Number(process.env.VOTACOES_RETRIES ?? '4');
 const RETRY_BASE_DELAY = Number(process.env.VOTACOES_RETRY_DELAY ?? '800');
 const MAX_RANGE_SPLITS = Number(process.env.VOTACOES_MAX_RANGE_SPLITS ?? '4');
+const FETCH_TIMEOUT_MS = Number(process.env.VOTACOES_FETCH_TIMEOUT ?? '15000');
 
 const monthNames = [
   'Janeiro',
@@ -101,9 +102,13 @@ async function fetchJson(url, errorMessage) {
   let lastError;
   for (let attempt = 0; attempt <= RETRY_ATTEMPTS; attempt += 1) {
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
       const response = await fetch(url, {
-        headers: { accept: 'application/json' }
+        headers: { accept: 'application/json' },
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
       if (!response.ok) {
         const error = new Error(`${errorMessage ?? 'Falha na requisição'} (${response.status})`);
         error.status = response.status;
@@ -113,7 +118,10 @@ async function fetchJson(url, errorMessage) {
     } catch (error) {
       lastError = error;
       if (attempt < RETRY_ATTEMPTS) {
-        const baseDelay = error?.status === 504 ? RETRY_BASE_DELAY * 4 : RETRY_BASE_DELAY;
+        const timeoutCode = error?.cause?.code === 'UND_ERR_CONNECT_TIMEOUT';
+        const aborted = error?.name === 'AbortError';
+        const isTimeout = timeoutCode || aborted;
+        const baseDelay = error?.status === 504 || isTimeout ? RETRY_BASE_DELAY * 4 : RETRY_BASE_DELAY;
         await sleep(baseDelay * (attempt + 1));
       }
     }
