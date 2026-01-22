@@ -91,7 +91,7 @@
 		}
 
 		try {
-			const data = await fetchJson(`${DATA_BASE}/last-run.json`);
+			const data = await fetchJson(`${DATA_BASE}/last-run.json?ts=${Date.now()}`);
 			if (data?.generatedAt) ultimaAtualizacao = data.generatedAt;
 		} catch {
 			ultimaAtualizacao = '';
