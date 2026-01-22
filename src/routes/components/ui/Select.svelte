@@ -38,6 +38,8 @@
 		border-radius: 25px; /* Use rounded corners as per HIG */
 		color: white;
 		font-size: 16px;
+        font-family: var(--font-primary);
+		font-weight: 600;
 		cursor: pointer;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         background-color: var(--color-dark);

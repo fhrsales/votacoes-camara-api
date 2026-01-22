@@ -28,6 +28,8 @@
 		border-radius: 25px; /* Use rounded corners as per HIG */
 		background-color: rgba(255, 255, 255, 0.1); /* Translucent background */
 		color: white;
+        font-family: var(--font-primary);
+		font-weight: 600;
 		font-size: 16px;
 		cursor: pointer;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
