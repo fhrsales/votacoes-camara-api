@@ -316,8 +316,18 @@
 							on:click={() => selecionarPorIndice(selecionadoIndex - 1, -1)}
 							disabled={selecionadoIndex <= 0}
 							variant="primary"
+							shape="circle"
+							aria-label="Anterior"
 						>
-							Anterior
+							<svg
+								class="resultado-icon"
+								viewBox="0 0 1024 1024"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+								focusable="false"
+							>
+								<path d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z" />
+							</svg>
 						</Button>
 						<span class="resultado-status">{getNavStatus()}</span>
 						<Button
@@ -325,8 +335,18 @@
 							on:click={() => selecionarPorIndice(selecionadoIndex + 1, 1)}
 							disabled={selecionadoIndex < 0 || selecionadoIndex >= listaVotacoes.length - 1}
 							variant="primary"
+							shape="circle"
+							aria-label="Próximo"
 						>
-							Próximo
+							<svg
+								class="resultado-icon resultado-icon--next"
+								viewBox="0 0 1024 1024"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+								focusable="false"
+							>
+								<path d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z" />
+							</svg>
 						</Button>
 					</div>
 				</div>
@@ -395,5 +415,15 @@
 	.resultado-status {
 		color: var(--color-text-subtle);
 		font-size: calc(var(--grid) * 1.5);
+	}
+
+	.resultado-icon {
+		width: 14px;
+		height: 14px;
+		fill: currentColor;
+	}
+
+	.resultado-icon--next {
+		transform: rotate(180deg);
 	}
 </style>

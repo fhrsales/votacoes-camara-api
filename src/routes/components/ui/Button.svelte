@@ -5,6 +5,7 @@
 	export let full = false;
 	export let type = 'button';
 	export let variant = 'default';
+	export let shape = 'default';
 
 	const dispatch = createEventDispatcher();
 </script>
@@ -13,7 +14,9 @@
 	{type}
 	class={`ui-button ${size === 'small' ? 'ui-button--small' : ''} ${
 		full ? 'ui-button--full' : ''
-	} ${variant === 'primary' ? 'ui-button--primary' : ''}`}
+	} ${variant === 'primary' ? 'ui-button--primary' : ''} ${
+		shape === 'circle' ? 'ui-button--circle' : ''
+	}`}
 	on:click={(event) => dispatch('click', event)}
 	{...$$restProps}
 >
@@ -60,6 +63,21 @@
 
 	.ui-button--small {
 		padding: calc(var(--grid) * 0.5) calc(var(--grid) * 1);
+	}
+
+	.ui-button--circle {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+	}
+
+	.ui-button--small.ui-button--circle {
+		width: 34px;
+		height: 34px;
 	}
 
 	.ui-button--full {

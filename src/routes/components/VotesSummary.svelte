@@ -41,12 +41,6 @@
 
 <section class="summary">
 	<h2>Resultado da votação {votacaoId}</h2>
-	<p class="summary-note">
-		{#if resumoTexto}
-			{resumoTexto} ·
-		{/if}
-		Votado em {fimTexto}
-	</p>
 	<div class="stacked">
 		<div
 			class="stacked-tooltip"
@@ -151,6 +145,12 @@
   <div class="summary-footer">
     <slot />
   </div>
+	<p class="summary-note">
+		{#if resumoTexto}
+			{resumoTexto} ·
+		{/if}
+		Votado em {fimTexto}
+	</p>
 </section>
 
 <style>
@@ -171,7 +171,7 @@
 	}
 
 	.summary-note {
-		margin: 0 0 calc(var(--grid) * 4.5);
+		margin: calc(var(--grid) * 1.5) 0;
 		font-size: calc(var(--grid) * 1.5);
 		color: var(--color-text-muted);
 	}
@@ -188,6 +188,7 @@
 		background: var(--color-track);
 		border-radius: var(--radius-pill);
 		overflow: hidden;
+        margin-top: calc(var(--grid) * 3.5);
 	}
 
 	.segment {
@@ -260,5 +261,6 @@
     flex-wrap: wrap;
     font-size: calc(var(--grid) * 1.5);
     color: var(--color-text);
+    margin-bottom: calc(var(--grid) * 1.5);
   }
 </style>
