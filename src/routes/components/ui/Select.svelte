@@ -42,13 +42,14 @@
 		font-weight: 600;
 		cursor: pointer;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-color: var(--color-dark);
+        background-color: var(--color-tertiary);
+		color: var(--color-dark);
 		/* The magic for the glass effect */
 		backdrop-filter: blur(10px) saturate(1.5); /* Blur and saturate background */
 		-webkit-backdrop-filter: blur(10px) saturate(1.5); /* Vendor prefix for compatibility */
 
 		/* Add a subtle border or glow effect */
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		border: 1px solid var(--color-dark);
 
 
 		/* display: block;
@@ -64,8 +65,8 @@
 	}
 
 	.ui-select:hover {
-		background: var(--color-tertiary);
-		color: var(--color-dark);
+		background: var(--color-dark);
+		color: var(--color-tertiary);
 		border: 1px solid var(--color-dark);
 	}
 
@@ -91,12 +92,12 @@
 		transform: translateY(-50%);
 		width: 18px;
 		height: 18px;
-		fill: var(--color-tertiary);
+		fill: var(--color-dark);
 		pointer-events: none;
 	}
 
 	.ui-select-wrapper:hover .ui-select__icon,
 	.ui-select:focus + .ui-select__icon {
-		fill: var(--color-dark);
+		fill: var(--color-tertiary);
 	}
 </style>

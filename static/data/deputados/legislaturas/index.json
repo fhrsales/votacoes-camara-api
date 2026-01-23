@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-01-23T00:04:16.155Z",
+  "legislaturas": [
+    {
+      "id": 57,
+      "dataInicio": "2023-02-01",
+      "dataFim": "2027-01-31"
+    },
+    {
+      "id": 56,
+      "dataInicio": "2019-02-01",
+      "dataFim": "2023-01-31"
+    },
+    {
+      "id": 55,
+      "dataInicio": "2015-02-01",
+      "dataFim": "2019-01-31"
+    },
+    {
+      "id": 54,
+      "dataInicio": "2011-02-01",
+      "dataFim": "2015-01-31"
+    },
+    {
+      "id": 53,
+      "dataInicio": "2007-02-01",
+      "dataFim": "2011-01-31"
+    },
+    {
+      "id": 52,
+      "dataInicio": "2003-02-01",
+      "dataFim": "2007-01-31"
+    },
+    {
+      "id": 51,
+      "dataInicio": "1999-02-01",
+      "dataFim": "2003-01-31"
+    }
+  ]
+}

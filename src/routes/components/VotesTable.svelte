@@ -1,5 +1,9 @@
 <script>
+  import Button from './ui/Button.svelte';
+
   export let votos = [];
+  let expandido = false;
+  const limiteInicial = 5;
 
   function votoClasse(tipo) {
     if (!tipo) return '';
@@ -8,6 +12,8 @@
       .replace('ã', 'a')
       .replace('ç', 'c');
   }
+
+  $: votosExibidos = expandido ? votos : votos.slice(0, limiteInicial);
 </script>
 
 <section class="table-wrap">
@@ -22,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        {#each votos as voto}
+        {#each votosExibidos as voto}
           <tr>
             <td data-label="Foto">
               <img class="photo" src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" />
@@ -39,6 +45,13 @@
         {/each}
       </tbody>
     </table>
+    {#if votos.length > limiteInicial}
+      <div class="table-actions">
+        <Button size="small" variant="primary" on:click={() => (expandido = !expandido)}>
+          {expandido ? 'Ver menos' : 'Ver todos'}
+        </Button>
+      </div>
+    {/if}
   {:else}
     <p class="empty">Sem votos para este filtro.</p>
   {/if}
@@ -49,6 +62,12 @@
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .table-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(var(--grid) * 1);
   }
 
   table {
@@ -135,6 +154,15 @@
 
   .badge--obstrucao::before {
     background: var(--color-info);
+  }
+
+  .badge--ausentes {
+    background: var(--color-neutral);
+    color: var(--color-text);
+  }
+
+  .badge--ausentes::before {
+    background: var(--color-text-subtle);
   }
 
   @media (max-width: 720px) {

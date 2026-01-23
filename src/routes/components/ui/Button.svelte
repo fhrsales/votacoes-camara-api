@@ -76,8 +76,8 @@
 	}
 
 	.ui-button--small.ui-button--circle {
-		width: 34px;
-		height: 34px;
+		width: 24px;
+		height: 24px;
 	}
 
 	.ui-button--full {
@@ -85,14 +85,14 @@
 	}
 
 	.ui-button--primary {
-		background: var(--color-dark);
+		background: var(--color-tertiary);
 		border: 1px solid var(--color-dark);
-		color: var(--color-tertiary);
+		color: var(--color-dark);
 	}
 
 	.ui-button--primary:hover {
-		background: var(--color-tertiary);
-		color: var(--color-dark);
+		background: var(--color-dark);
+		color: var(--color-tertiary);
 		border: 1px solid var(--color-dark);
 		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 	}
