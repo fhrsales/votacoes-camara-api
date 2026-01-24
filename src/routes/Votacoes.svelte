@@ -450,14 +450,14 @@
 
 <main class="container">
 	<AdBanner />
-	<h1 class="pagina-titulo">Voto a voto</h1>
+	<h1 class="pagina-titulo">Voto a Voto: Monitorando a Democracia em Tempo Real</h1>
 	{#if ultimaAtualizacaoTexto}
 		<p class="atualizacao">Atualizado em {ultimaAtualizacaoTexto}</p>
 	{/if}
 	{#if !votosIndexOk}
 		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
 	{/if}
-	<p>Demonstração de uso de API que integra dados abertos de votações da Câmara dos Deputados, estruturando votos nominaispor deputado e por votação.</p>
+	<p>Ferramenta automatizada de transparência que transforma dados brutos da API oficial em insights visuais, rastreando cada votação na Câmara dos Deputados desde outubro de 2022.</p>
     <VotesSearch
       bind:dataInicio
       {carregandoLista}
