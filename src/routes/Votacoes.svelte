@@ -457,7 +457,7 @@
 	{#if !votosIndexOk}
 		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
 	{/if}
-	<p>Ferramenta automatizada de transparência que transforma dados brutos da API oficial em insights visuais, rastreando cada votação na Câmara dos Deputados desde outubro de 2022.</p>
+	<p>Ferramenta automatizada de transparência que converte dados brutos da API oficial em insights visuais, permitindo acompanhar e analisar todas as votações da Câmara dos Deputados desde outubro de 2022.</p>
     <VotesSearch
       bind:dataInicio
       {carregandoLista}
