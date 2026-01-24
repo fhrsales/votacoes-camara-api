@@ -377,14 +377,24 @@ async function main() {
     .filter(isMonthValue);
 
   const newValues = useDays ? days.map((date) => formatMonth(date)) : months.map((item) => item.value);
-  const monthValues = Array.from(
-    new Set([...newValues, ...existingValues])
-  ).sort(sortMonthValuesDesc);
+  const monthValues = Array.from(new Set([...newValues, ...existingValues])).sort(
+    sortMonthValuesDesc
+  );
 
-  const mergedMonths = monthValues.map((value) => ({
-    value,
-    label: monthLabelFromValue(value)
-  }));
+  const monthsWithData = await Promise.all(
+    monthValues.map(async (value) => {
+      const monthPath = path.join(LIST_DIR, `${value}.json`);
+      const data = await loadMonthData(monthPath);
+      return data.votacoes.length > 0 ? value : null;
+    })
+  );
+
+  const mergedMonths = monthsWithData
+    .filter(Boolean)
+    .map((value) => ({
+      value,
+      label: monthLabelFromValue(value)
+    }));
 
   await writeJson(path.join(LIST_DIR, 'index.json'), {
     generatedAt,

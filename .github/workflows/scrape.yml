@@ -28,6 +28,9 @@ jobs:
           VOTACOES_RETRIES: 6
           VOTACOES_RETRY_DELAY: 1200
         run: node scripts/fetch-votacoes.mjs
+      - name: Atualizar last-run
+        run: |
+          node -e "const fs=require('fs');fs.writeFileSync('static/data/last-run.json', JSON.stringify({generatedAt:new Date().toISOString()}, null, 2) + '\n');"
       - name: Commit e push
         run: |
           if git status --porcelain | grep -q .; then
