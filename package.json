@@ -7,16 +7,12 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"fetch:data": "node scripts/fetch-votacoes.mjs",
-		"fetch:batches": "node scripts/fetch-batches.mjs",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"test": "playwright test",
-		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.5.0",
@@ -28,8 +24,7 @@
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"typescript": "^5.0.0",
-		"vite": "^4.3.0",
-		"vitest": "^0.25.3"
+		"vite": "^4.3.0"
 	},
 	"type": "module",
 	"dependencies": {
