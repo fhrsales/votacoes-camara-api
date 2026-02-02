@@ -32,6 +32,7 @@ jobs:
         run: |
           node -e "const fs=require('fs');fs.writeFileSync('static/data/last-run.json', JSON.stringify({generatedAt:new Date().toISOString()}, null, 2) + '\n');"
       - name: Commit e push
+        id: commit
         run: |
           if git status --porcelain | grep -q .; then
             git config user.name "github-actions[bot]"
@@ -40,6 +41,18 @@ jobs:
             git commit -m "chore: atualizar dados de votacoes (auto)"
             git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git
             git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
           else
             echo "Sem alteracoes"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           fi
+      - name: Disparar deploy do Pages
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer $GH_PAT" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/pages.yml/dispatches \
+            -d '{"ref":"main"}'

@@ -79,11 +79,7 @@
 		width: 100%;
 	}
 
-	@media (max-width: 372px) {
-		.ui-select-wrapper {
-			width: 100%;
-		}
-	}
+
 
 	.ui-select__icon {
 		position: absolute;

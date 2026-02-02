@@ -228,6 +228,12 @@
 		width: 100%;
 	}
 
+	@media (max-width: 720px) {
+		.summary {
+			position: static;
+		}
+	}
+
 	h2 {
 		margin: 0;
 		font-size: calc(var(--grid) * 2);
