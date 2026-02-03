@@ -25,7 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+          # For workflow_run, build the latest HEAD of the branch where the scrape ran,
+          # so the new data commit is included.
+          ref: ${{ github.event_name == 'workflow_run' && (github.event.workflow_run.head_branch || 'main') || github.ref_name }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
