@@ -2,6 +2,7 @@
   import Button from './ui/Button.svelte';
 
   export let votos = [];
+  export let onShowGraficos = () => {};
   let expandido = false;
   const limiteInicial = 5;
 
@@ -50,6 +51,9 @@
         <Button size="small" variant="primary" on:click={() => (expandido = !expandido)}>
           {expandido ? 'Ver menos' : 'Ver todos'}
         </Button>
+        <Button size="small" variant="primary" on:click={onShowGraficos}>
+          Gráficos
+        </Button>
       </div>
     {/if}
   {:else}
@@ -67,6 +71,7 @@
   .table-actions {
     display: flex;
     justify-content: center;
+    gap: calc(var(--grid) * 1);
     margin-top: calc(var(--grid) * 1);
   }
 

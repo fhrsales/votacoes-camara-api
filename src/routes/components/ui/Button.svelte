@@ -15,6 +15,8 @@
 	class={`ui-button ${size === 'small' ? 'ui-button--small' : ''} ${
 		full ? 'ui-button--full' : ''
 	} ${variant === 'primary' ? 'ui-button--primary' : ''} ${
+		variant === 'ghost' ? 'ui-button--ghost' : ''
+	} ${
 		shape === 'circle' ? 'ui-button--circle' : ''
 	}`}
 	on:click={(event) => dispatch('click', event)}
@@ -95,6 +97,19 @@
 		color: var(--color-tertiary);
 		border: 1px solid var(--color-dark);
 		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+	}
+
+	.ui-button--ghost {
+		background: transparent;
+		border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
+		color: var(--color-text);
+		box-shadow: none;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+
+	.ui-button--ghost:hover {
+		background: color-mix(in srgb, var(--color-text) 8%, transparent);
 	}
 
 	@media (max-width: 372px) {

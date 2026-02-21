@@ -8,11 +8,25 @@
 	export let fimTexto = '';
 
 	const dispatch = createEventDispatcher();
+	const resumoVazio = {
+		sim: 0,
+		nao: 0,
+		abstencao: 0,
+		obstrucao: 0,
+		ausentes: 0,
+		total: 0,
+		totalGeral: 0
+	};
+	let resumoSafe = { ...resumoVazio };
 	let tooltipTexto = '';
 	let tooltipValor = '';
 	let tooltipCor = '';
 	let tooltipPos = { x: 0, y: 0 };
 	let hoverTipo = '';
+	let mostrarNota = false;
+	$: temFim = Boolean(fimTexto);
+	$: temResumoTexto = Boolean(resumoTexto);
+	$: temResultado = resumoSafe.totalGeral > 0 || resumoSafe.total > 0;
 
 	const cores = {
 		Sim: 'var(--color-success)',
@@ -52,17 +66,16 @@
 		};
 	}
 
-	function labelOculto(valor) {
-		if (!resumoVotos?.totalGeral) return true;
-		return (valor / resumoVotos.totalGeral) * 100 < 8;
+	function labelOculto(valor, totalBase) {
+		if (!totalBase) return true;
+		return (valor / totalBase) * 100 < 8;
 	}
 
 	function solicitarFiltro(tipo) {
 		dispatch('filterChange', { tipo });
 	}
 
-	function calcularLarguras() {
-		const total = resumoVotos?.totalGeral || 0;
+	function calcularLarguras(total, resumo) {
 		if (!total) {
 			return {
 				sim: 0,
@@ -73,11 +86,11 @@
 			};
 		}
 		const bruto = {
-			sim: (resumoVotos.sim / total) * 100,
-			abstencao: (resumoVotos.abstencao / total) * 100,
-			obstrucao: (resumoVotos.obstrucao / total) * 100,
-			ausentes: (resumoVotos.ausentes / total) * 100,
-			nao: (resumoVotos.nao / total) * 100
+			sim: (resumo.sim / total) * 100,
+			abstencao: (resumo.abstencao / total) * 100,
+			obstrucao: (resumo.obstrucao / total) * 100,
+			ausentes: (resumo.ausentes / total) * 100,
+			nao: (resumo.nao / total) * 100
 		};
 		const arred = {
 			sim: Math.floor(bruto.sim * 100) / 100,
@@ -92,12 +105,34 @@
 		return { ...arred, nao: arred.nao + resto };
 	}
 
-	$: larguras = calcularLarguras();
+	$: resumoSafe = {
+		...resumoVazio,
+		...resumoVotos,
+		sim: Number(resumoVotos?.sim) || 0,
+		nao: Number(resumoVotos?.nao) || 0,
+		abstencao: Number(resumoVotos?.abstencao) || 0,
+		obstrucao: Number(resumoVotos?.obstrucao) || 0,
+		ausentes: Number(resumoVotos?.ausentes) || 0,
+		total: Number(resumoVotos?.total) || 0,
+		totalGeral: Number(resumoVotos?.totalGeral) || 0
+	};
+
+	$: totalBase =
+		resumoSafe.totalGeral ||
+		resumoSafe.total ||
+		resumoSafe.sim +
+			resumoSafe.nao +
+			resumoSafe.abstencao +
+			resumoSafe.obstrucao +
+			resumoSafe.ausentes ||
+		0;
+
+	$: larguras = calcularLarguras(totalBase, resumoSafe);
 </script>
 
 <section class="summary">
 	<div class="summary-header">
-		<h2>Resultado da votação {votacaoId}</h2>
+	<h2>Resultado da votação{temResultado && votacaoId ? ` ${votacaoId}` : ''}</h2>
 		<slot />
 	</div>
 	<div class="stacked">
@@ -114,12 +149,12 @@
 			<div
 				class="segment segment--sim"
 				class:segment--active={filtroVoto === 'Sim'}
-				class:segment--hide={labelOculto(resumoVotos.sim)}
+				class:segment--hide={labelOculto(resumoSafe.sim, totalBase)}
 				class:segment--dimmed={hoverTipo && hoverTipo !== 'Sim'}
-				on:mouseenter={(event) => abrirTooltip('Sim', resumoVotos.sim, event)}
+				on:mouseenter={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
 				on:mousemove={moverTooltip}
 				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Sim', resumoVotos.sim, event)}
+				on:focus={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
 				on:blur={fecharTooltip}
 				on:click={() => solicitarFiltro('Sim')}
 				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Sim')}
@@ -127,17 +162,17 @@
 				style={`width: ${larguras.sim}%`}
 				tabindex="0"
 			>
-				<span class="segment-count">{resumoVotos.sim}</span>
+				<span class="segment-count">{resumoSafe.sim}</span>
 			</div>
 			<div
 				class="segment segment--abstencao"
 				class:segment--active={filtroVoto === 'Abstenção'}
-				class:segment--hide={labelOculto(resumoVotos.abstencao)}
+				class:segment--hide={labelOculto(resumoSafe.abstencao, totalBase)}
 				class:segment--dimmed={hoverTipo && hoverTipo !== 'Abstenção'}
-				on:mouseenter={(event) => abrirTooltip('Abstenção', resumoVotos.abstencao, event)}
+				on:mouseenter={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
 				on:mousemove={moverTooltip}
 				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Abstenção', resumoVotos.abstencao, event)}
+				on:focus={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
 				on:blur={fecharTooltip}
 				on:click={() => solicitarFiltro('Abstenção')}
 				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Abstenção')}
@@ -145,17 +180,17 @@
 				style={`width: ${larguras.abstencao}%`}
 				tabindex="0"
 			>
-				<span class="segment-count">{resumoVotos.abstencao}</span>
+				<span class="segment-count">{resumoSafe.abstencao}</span>
 			</div>
 			<div
 				class="segment segment--obstrucao"
 				class:segment--active={filtroVoto === 'Obstrução'}
-				class:segment--hide={labelOculto(resumoVotos.obstrucao)}
+				class:segment--hide={labelOculto(resumoSafe.obstrucao, totalBase)}
 				class:segment--dimmed={hoverTipo && hoverTipo !== 'Obstrução'}
-				on:mouseenter={(event) => abrirTooltip('Obstrução', resumoVotos.obstrucao, event)}
+				on:mouseenter={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
 				on:mousemove={moverTooltip}
 				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Obstrução', resumoVotos.obstrucao, event)}
+				on:focus={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
 				on:blur={fecharTooltip}
 				on:click={() => solicitarFiltro('Obstrução')}
 				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Obstrução')}
@@ -163,17 +198,17 @@
 				style={`width: ${larguras.obstrucao}%`}
 				tabindex="0"
 			>
-				<span class="segment-count">{resumoVotos.obstrucao}</span>
+				<span class="segment-count">{resumoSafe.obstrucao}</span>
 			</div>
 			<div
 				class="segment segment--ausentes"
 				class:segment--active={filtroVoto === 'Ausentes'}
-				class:segment--hide={labelOculto(resumoVotos.ausentes)}
+				class:segment--hide={labelOculto(resumoSafe.ausentes, totalBase)}
 				class:segment--dimmed={hoverTipo && hoverTipo !== 'Ausentes'}
-				on:mouseenter={(event) => abrirTooltip('Ausentes', resumoVotos.ausentes, event)}
+				on:mouseenter={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
 				on:mousemove={moverTooltip}
 				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Ausentes', resumoVotos.ausentes, event)}
+				on:focus={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
 				on:blur={fecharTooltip}
 				on:click={() => solicitarFiltro('Ausentes')}
 				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Ausentes')}
@@ -181,17 +216,17 @@
 				style={`width: ${larguras.ausentes}%`}
 				tabindex="0"
 			>
-				<span class="segment-count">{resumoVotos.ausentes}</span>
+				<span class="segment-count">{resumoSafe.ausentes}</span>
 			</div>
 			<div
 				class="segment segment--nao"
 				class:segment--active={filtroVoto === 'Não'}
-				class:segment--hide={labelOculto(resumoVotos.nao)}
+				class:segment--hide={labelOculto(resumoSafe.nao, totalBase)}
 				class:segment--dimmed={hoverTipo && hoverTipo !== 'Não'}
-				on:mouseenter={(event) => abrirTooltip('Não', resumoVotos.nao, event)}
+				on:mouseenter={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
 				on:mousemove={moverTooltip}
 				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Não', resumoVotos.nao, event)}
+				on:focus={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
 				on:blur={fecharTooltip}
 				on:click={() => solicitarFiltro('Não')}
 				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Não')}
@@ -199,28 +234,57 @@
 				style={`width: ${larguras.nao}%`}
 				tabindex="0"
 			>
-				<span class="segment-count">{resumoVotos.nao}</span>
+				<span class="segment-count">{resumoSafe.nao}</span>
 			</div>
 		</div>
 	</div>
   <div class="summary-filters">
 		<slot name="filters" />
   </div>
-	<p class="summary-note">
-		{#if resumoTexto}
-			{resumoTexto}
-		{/if}
-		Votado em {fimTexto}
-	</p>
+	{#if temFim || temResumoTexto}
+		<div class="summary-note-row">
+			{#if temFim}
+				<span class="summary-note-inline">Votado em {fimTexto}</span>
+			{:else}
+				<span class="summary-note-inline" aria-hidden="true" />
+			{/if}
+			{#if temResumoTexto}
+				<button
+					type="button"
+					class="summary-note-trigger"
+					aria-label="Ver texto do resumo"
+					on:click={() => (mostrarNota = true)}
+				>
+					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path
+							d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5V5.25A1.5 1.5 0 0 1 6 3.75zm1.5 4.5h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h6a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5z"
+						/>
+					</svg>
+				</button>
+			{/if}
+		</div>
+	{/if}
+	{#if mostrarNota}
+		<div class="summary-note-modal" role="dialog" aria-modal="true">
+			<div class="summary-note-backdrop" on:click={() => (mostrarNota = false)} />
+			<div class="summary-note-card">
+				<h3>Resumo da votação</h3>
+				<p>{resumoTexto}</p>
+				<button type="button" class="summary-note-close" on:click={() => (mostrarNota = false)}>
+					Fechar
+				</button>
+			</div>
+		</div>
+	{/if}
 </section>
 
 <style>
 	.summary {
 		margin: calc(var(--grid) * 2) 0 calc(var(--grid) * 2.5);
-		padding: calc(var(--grid) * 1.5);
+		padding: 0;
 		border-radius: var(--radius-m);
-		background: var(--color-surface);
-        box-shadow: var(--shadow-2);
+		background: transparent;
+		box-shadow: none;
 		position: sticky;
 		top: 0;
 		z-index: 2;
@@ -253,13 +317,84 @@
 		margin: 0;
 	}
 
-	.summary-note {
-		margin: calc(var(--grid) * 1.5) 0;
+	.summary-note-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: calc(var(--grid) * 1);
+		margin-top: calc(var(--grid) * 1);
+	}
+
+	.summary-note-inline {
 		font-size: calc(var(--grid) * 1.5);
 		color: var(--color-text-muted);
-		max-height: calc(1.4em * 4);
-		overflow-y: auto;
-		line-height: 1.4;
+	}
+
+	.summary-note-trigger {
+		border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
+		background: transparent;
+		color: var(--color-text);
+		border-radius: 999px;
+		width: 34px;
+		height: 34px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.summary-note-trigger svg {
+		width: 16px;
+		height: 16px;
+		fill: currentColor;
+	}
+
+	.summary-note-modal {
+		position: fixed;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		z-index: 50;
+	}
+
+	.summary-note-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.45);
+	}
+
+	.summary-note-card {
+		position: relative;
+		background: var(--color-surface);
+		border-radius: var(--radius-m);
+		padding: calc(var(--grid) * 2);
+		width: min(560px, 90vw);
+		box-shadow: var(--shadow-2);
+		z-index: 1;
+	}
+
+	.summary-note-card h3 {
+		margin: 0 0 calc(var(--grid) * 1);
+		font-size: calc(var(--grid) * 2);
+	}
+
+	.summary-note-card p {
+		margin: 0 0 calc(var(--grid) * 2);
+		font-size: calc(var(--grid) * 1.6);
+		line-height: 1.5;
+		color: var(--color-text);
+	}
+
+	.summary-note-close {
+		border: 1px solid var(--color-dark);
+		background: var(--color-tertiary);
+		color: var(--color-dark);
+		border-radius: 999px;
+		padding: 8px 16px;
+		font-size: 14px;
+		font-weight: 700;
+		cursor: pointer;
 	}
 
 	.stacked {

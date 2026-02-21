@@ -7,6 +7,8 @@
 	export let opcoesMes = null;
 	export let onListar = () => {};
 	export let onSelect = (item) => {};
+	export let inline = false;
+	export let showStatus = true;
 	let ultimoMes = '';
 
 	const meses = [
@@ -49,30 +51,54 @@
 	}
 </script>
 
-<section class="search-panel">
-	<div class="search-card">
-		<div class="search-row">
-			<Select
-				aria-label="Escolha um período de votação"
-				bind:value={dataInicio}
-				options={opcoesDisponiveis}
-				placeholder="Escolha um período de votação"
-			/>
-		</div>
+{#if inline}
+	<div class="search-inline">
+		<Select
+			aria-label="Escolha um período de votação"
+			bind:value={dataInicio}
+			options={opcoesDisponiveis}
+			placeholder="Escolha um período de votação"
+		/>
+	</div>
+	{#if showStatus}
 		{#if erroLista}
 			<p class="error">{erroLista}</p>
 		{/if}
-	</div>
-
-	{#if carregandoLista}
-		<p class="loading">Buscando votações...</p>
+		{#if carregandoLista}
+			<p class="loading">Buscando votações...</p>
+		{/if}
 	{/if}
-</section>
+{:else}
+	<section class="search-panel">
+		<div class="search-card">
+			<div class="search-row">
+				<Select
+					aria-label="Escolha um período de votação"
+					bind:value={dataInicio}
+					options={opcoesDisponiveis}
+					placeholder="Escolha um período de votação"
+				/>
+			</div>
+			{#if erroLista}
+				<p class="error">{erroLista}</p>
+			{/if}
+		</div>
+
+		{#if carregandoLista}
+			<p class="loading">Buscando votações...</p>
+		{/if}
+	</section>
+{/if}
 
 <style>
 	.search-panel {
 		margin-bottom: calc(var(--grid) * 2);
 		max-width: 100%;
+	}
+
+	.search-inline {
+		display: inline-flex;
+		align-items: end;
 	}
 
 	.search-row {
