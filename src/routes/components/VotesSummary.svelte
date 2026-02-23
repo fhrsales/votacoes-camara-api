@@ -6,6 +6,8 @@
 	export let resumoVotos = {};
 	export let filtroVoto = '';
 	export let fimTexto = '';
+	export let fimTextoCurto = '';
+	export let temMes = false;
 
 	const dispatch = createEventDispatcher();
 	const resumoVazio = {
@@ -25,6 +27,7 @@
 	let hoverTipo = '';
 	let mostrarNota = false;
 	$: temFim = Boolean(fimTexto);
+	$: temFimCurto = Boolean(fimTextoCurto);
 	$: temResumoTexto = Boolean(resumoTexto);
 	$: temResultado = resumoSafe.totalGeral > 0 || resumoSafe.total > 0;
 
@@ -131,139 +134,137 @@
 </script>
 
 <section class="summary">
-	<div class="summary-header">
-	<h2>Resultado da votação{temResultado && votacaoId ? ` ${votacaoId}` : ''}</h2>
-		<slot />
-	</div>
-	<div class="stacked">
-		<div
-			class="stacked-tooltip"
-			class:visible={tooltipTexto}
-			style={`left: ${tooltipPos.x}px; top: ${tooltipPos.y}px;`}
-		>
-			<div>{tooltipTexto}</div>
-			<hr />
-			<div>{tooltipValor}</div>
-		</div>
-		<div class="stacked-bar">
-			<div
-				class="segment segment--sim"
-				class:segment--active={filtroVoto === 'Sim'}
-				class:segment--hide={labelOculto(resumoSafe.sim, totalBase)}
-				class:segment--dimmed={hoverTipo && hoverTipo !== 'Sim'}
-				on:mouseenter={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
-				on:mousemove={moverTooltip}
-				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
-				on:blur={fecharTooltip}
-				on:click={() => solicitarFiltro('Sim')}
-				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Sim')}
-				role="button"
-				style={`width: ${larguras.sim}%`}
-				tabindex="0"
-			>
-				<span class="segment-count">{resumoSafe.sim}</span>
-			</div>
-			<div
-				class="segment segment--abstencao"
-				class:segment--active={filtroVoto === 'Abstenção'}
-				class:segment--hide={labelOculto(resumoSafe.abstencao, totalBase)}
-				class:segment--dimmed={hoverTipo && hoverTipo !== 'Abstenção'}
-				on:mouseenter={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
-				on:mousemove={moverTooltip}
-				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
-				on:blur={fecharTooltip}
-				on:click={() => solicitarFiltro('Abstenção')}
-				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Abstenção')}
-				role="button"
-				style={`width: ${larguras.abstencao}%`}
-				tabindex="0"
-			>
-				<span class="segment-count">{resumoSafe.abstencao}</span>
-			</div>
-			<div
-				class="segment segment--obstrucao"
-				class:segment--active={filtroVoto === 'Obstrução'}
-				class:segment--hide={labelOculto(resumoSafe.obstrucao, totalBase)}
-				class:segment--dimmed={hoverTipo && hoverTipo !== 'Obstrução'}
-				on:mouseenter={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
-				on:mousemove={moverTooltip}
-				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
-				on:blur={fecharTooltip}
-				on:click={() => solicitarFiltro('Obstrução')}
-				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Obstrução')}
-				role="button"
-				style={`width: ${larguras.obstrucao}%`}
-				tabindex="0"
-			>
-				<span class="segment-count">{resumoSafe.obstrucao}</span>
-			</div>
-			<div
-				class="segment segment--ausentes"
-				class:segment--active={filtroVoto === 'Ausentes'}
-				class:segment--hide={labelOculto(resumoSafe.ausentes, totalBase)}
-				class:segment--dimmed={hoverTipo && hoverTipo !== 'Ausentes'}
-				on:mouseenter={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
-				on:mousemove={moverTooltip}
-				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
-				on:blur={fecharTooltip}
-				on:click={() => solicitarFiltro('Ausentes')}
-				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Ausentes')}
-				role="button"
-				style={`width: ${larguras.ausentes}%`}
-				tabindex="0"
-			>
-				<span class="segment-count">{resumoSafe.ausentes}</span>
-			</div>
-			<div
-				class="segment segment--nao"
-				class:segment--active={filtroVoto === 'Não'}
-				class:segment--hide={labelOculto(resumoSafe.nao, totalBase)}
-				class:segment--dimmed={hoverTipo && hoverTipo !== 'Não'}
-				on:mouseenter={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
-				on:mousemove={moverTooltip}
-				on:mouseleave={fecharTooltip}
-				on:focus={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
-				on:blur={fecharTooltip}
-				on:click={() => solicitarFiltro('Não')}
-				on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Não')}
-				role="button"
-				style={`width: ${larguras.nao}%`}
-				tabindex="0"
-			>
-				<span class="segment-count">{resumoSafe.nao}</span>
-			</div>
-		</div>
-	</div>
-  <div class="summary-filters">
-		<slot name="filters" />
-  </div>
-	{#if temFim || temResumoTexto}
-		<div class="summary-note-row">
-			{#if temFim}
-				<span class="summary-note-inline">Votado em {fimTexto}</span>
-			{:else}
-				<span class="summary-note-inline" aria-hidden="true" />
+	{#if temMes}
+		<div class="summary-header">
+			<h2>Votação{temResultado && votacaoId ? ` ${votacaoId}` : ''}</h2>
+			{#if temFimCurto}
+				<span class="summary-note-inline">({fimTextoCurto})</span>
 			{/if}
-			{#if temResumoTexto}
-				<button
-					type="button"
-					class="summary-note-trigger"
-					aria-label="Ver texto do resumo"
-					on:click={() => (mostrarNota = true)}
+			<div class="summary-actions">
+				<slot />
+				{#if temResumoTexto}
+					<button
+						type="button"
+						class="summary-note-trigger"
+						aria-label="Ver texto do resumo"
+						on:click={() => (mostrarNota = true)}
+					>
+						<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path
+								d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5V5.25A1.5 1.5 0 0 1 6 3.75zm1.5 4.5h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h6a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5z"
+							/>
+						</svg>
+					</button>
+				{/if}
+			</div>
+		</div>
+		<div class="stacked">
+			<div
+				class="stacked-tooltip"
+				class:visible={tooltipTexto}
+				style={`left: ${tooltipPos.x}px; top: ${tooltipPos.y}px;`}
+			>
+				<div>{tooltipTexto}</div>
+				<hr />
+				<div>{tooltipValor}</div>
+			</div>
+			<div class="stacked-bar">
+				<div
+					class="segment segment--sim"
+					class:segment--active={filtroVoto === 'Sim'}
+					class:segment--hide={labelOculto(resumoSafe.sim, totalBase)}
+					class:segment--dimmed={hoverTipo && hoverTipo !== 'Sim'}
+					on:mouseenter={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
+					on:mousemove={moverTooltip}
+					on:mouseleave={fecharTooltip}
+					on:focus={(event) => abrirTooltip('Sim', resumoSafe.sim, event)}
+					on:blur={fecharTooltip}
+					on:click={() => solicitarFiltro('Sim')}
+					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Sim')}
+					role="button"
+					style={`width: ${larguras.sim}%`}
+					tabindex="0"
 				>
-					<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path
-							d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5V5.25A1.5 1.5 0 0 1 6 3.75zm1.5 4.5h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h9a.75.75 0 0 0 0-1.5h-9a.75.75 0 0 0 0 1.5zm0 4h6a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5z"
-						/>
-					</svg>
-				</button>
-			{/if}
+					<span class="segment-count">{resumoSafe.sim}</span>
+				</div>
+				<div
+					class="segment segment--abstencao"
+					class:segment--active={filtroVoto === 'Abstenção'}
+					class:segment--hide={labelOculto(resumoSafe.abstencao, totalBase)}
+					class:segment--dimmed={hoverTipo && hoverTipo !== 'Abstenção'}
+					on:mouseenter={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
+					on:mousemove={moverTooltip}
+					on:mouseleave={fecharTooltip}
+					on:focus={(event) => abrirTooltip('Abstenção', resumoSafe.abstencao, event)}
+					on:blur={fecharTooltip}
+					on:click={() => solicitarFiltro('Abstenção')}
+					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Abstenção')}
+					role="button"
+					style={`width: ${larguras.abstencao}%`}
+					tabindex="0"
+				>
+					<span class="segment-count">{resumoSafe.abstencao}</span>
+				</div>
+				<div
+					class="segment segment--obstrucao"
+					class:segment--active={filtroVoto === 'Obstrução'}
+					class:segment--hide={labelOculto(resumoSafe.obstrucao, totalBase)}
+					class:segment--dimmed={hoverTipo && hoverTipo !== 'Obstrução'}
+					on:mouseenter={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
+					on:mousemove={moverTooltip}
+					on:mouseleave={fecharTooltip}
+					on:focus={(event) => abrirTooltip('Obstrução', resumoSafe.obstrucao, event)}
+					on:blur={fecharTooltip}
+					on:click={() => solicitarFiltro('Obstrução')}
+					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Obstrução')}
+					role="button"
+					style={`width: ${larguras.obstrucao}%`}
+					tabindex="0"
+				>
+					<span class="segment-count">{resumoSafe.obstrucao}</span>
+				</div>
+				<div
+					class="segment segment--ausentes"
+					class:segment--active={filtroVoto === 'Ausentes'}
+					class:segment--hide={labelOculto(resumoSafe.ausentes, totalBase)}
+					class:segment--dimmed={hoverTipo && hoverTipo !== 'Ausentes'}
+					on:mouseenter={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
+					on:mousemove={moverTooltip}
+					on:mouseleave={fecharTooltip}
+					on:focus={(event) => abrirTooltip('Ausentes', resumoSafe.ausentes, event)}
+					on:blur={fecharTooltip}
+					on:click={() => solicitarFiltro('Ausentes')}
+					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Ausentes')}
+					role="button"
+					style={`width: ${larguras.ausentes}%`}
+					tabindex="0"
+				>
+					<span class="segment-count">{resumoSafe.ausentes}</span>
+				</div>
+				<div
+					class="segment segment--nao"
+					class:segment--active={filtroVoto === 'Não'}
+					class:segment--hide={labelOculto(resumoSafe.nao, totalBase)}
+					class:segment--dimmed={hoverTipo && hoverTipo !== 'Não'}
+					on:mouseenter={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
+					on:mousemove={moverTooltip}
+					on:mouseleave={fecharTooltip}
+					on:focus={(event) => abrirTooltip('Não', resumoSafe.nao, event)}
+					on:blur={fecharTooltip}
+					on:click={() => solicitarFiltro('Não')}
+					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Não')}
+					role="button"
+					style={`width: ${larguras.nao}%`}
+					tabindex="0"
+				>
+					<span class="segment-count">{resumoSafe.nao}</span>
+				</div>
+			</div>
 		</div>
 	{/if}
+	<div class="summary-filters">
+		<slot name="filters" />
+	</div>
 	{#if mostrarNota}
 		<div class="summary-note-modal" role="dialog" aria-modal="true">
 			<div class="summary-note-backdrop" on:click={() => (mostrarNota = false)} />
@@ -311,6 +312,12 @@
 		gap: calc(var(--grid) * 1);
 		margin-bottom: calc(var(--grid) * 1);
 		flex-wrap: nowrap;
+	}
+
+	.summary-actions {
+		display: inline-flex;
+		align-items: center;
+		gap: calc(var(--grid) * 1);
 	}
 
 	.summary-header :global(.resultado-nav) {

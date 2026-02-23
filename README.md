@@ -48,7 +48,17 @@ Confirme que o `fallback: 'index.html'` está ativo em `svelte.config.js`.
 ### Dados desatualizados
 
 Execute `npm run fetch:data` localmente ou aguarde a rotina diária do GitHub Actions
-(`.github/workflows/scrape.yml`).
+(`.github/workflows/scrape.yml`). Para rodar manualmente, abra **Actions → Atualizar dados de votações**
+e clique em **Run workflow**. Ao finalizar com sucesso, o deploy do Pages é disparado automaticamente
+via `workflow_run` do `.github/workflows/pages.yml`. Você também pode disparar o deploy manualmente em
+**Actions → Deploy to GitHub Pages**.
+
+Para verificar o status, acompanhe o card do workflow em **Actions** e abra o job mais recente para ver
+logs e o resultado (success/failed).
+
+Links diretos:
+- `https://github.com/fhrsales/votacoes-camara-api/actions/workflows/scrape.yml`
+- `https://github.com/fhrsales/votacoes-camara-api/actions/workflows/pages.yml`
 
 ### Build não publica
 

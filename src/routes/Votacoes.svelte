@@ -195,6 +195,10 @@ import { EffectFade, Pagination } from 'swiper/modules';
 		votos.length > 0
 			? format(votos[0].dataRegistroVoto, "d 'de' MMMM 'de' yyyy, 'às' HH:mm", { locale: ptBR })
 			: '';
+	$: fimTextoCurto =
+		votos.length > 0
+			? format(votos[0].dataRegistroVoto, "dd/MM/yy, 'às' HH:mm", { locale: ptBR })
+			: '';
 
 	$: ultimaAtualizacaoTexto = ultimaAtualizacao
 		? format(parseISO(ultimaAtualizacao), "d 'de' MMMM 'de' yyyy, 'às' HH:mm", { locale: ptBR })
@@ -670,6 +674,8 @@ import { EffectFade, Pagination } from 'swiper/modules';
 			resumoVotos={resumoVotosGrafico}
 			{filtroVoto}
 			{fimTexto}
+			{fimTextoCurto}
+			temMes={Boolean(dataInicio)}
 			on:filterChange={(event) => atualizarFiltro(event.detail.tipo)}
 		>
 			<div class="resultado-nav">
