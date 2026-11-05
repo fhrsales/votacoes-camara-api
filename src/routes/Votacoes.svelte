@@ -1,5 +1,5 @@
 <script>
-	import { onDestroy, onMount, tick } from 'svelte';
+	import { onMount } from 'svelte';
 	import { format, parseISO } from 'date-fns';
 	import ptBR from 'date-fns/locale/pt-BR';
 	import { base } from '$app/paths';
@@ -7,10 +7,11 @@
 	import Button from './components/ui/Button.svelte';
 	import Select from './components/ui/Select.svelte';
 	import BubbleChart from './components/BubbleChart.svelte';
-	import Swiper from 'swiper';
-import { EffectFade, Pagination } from 'swiper/modules';
-	import 'swiper/css';
-	import 'swiper/css/effect-fade';
+	import Hemiciclo from './components/Hemiciclo.svelte';
+	import PartidosDivergente from './components/PartidosDivergente.svelte';
+	import MapaUF from './components/MapaUF.svelte';
+	import { reveal, countUp } from '$lib/motion.js';
+	import { CADEIRAS_UF } from '$lib/votos.js';
 	export let votacaoId;
 
 	let votos = [];
@@ -47,19 +48,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 	let layoutBolhas = 'pack';
 	let legislaturasIndex = [];
 	let deputadosLegislatura = [];
-	let swiperEl;
-	let summaryEl;
-	let secondScreenEl;
-	let swiperInstance;
-	let temGraficos = false;
-	let mostrarHero = true;
-	let heroHiding = false;
-
-	function ajustarAlturaViewport() {
-		if (typeof window === 'undefined') return;
-		const altura = window.innerHeight * 0.01;
-		document.documentElement.style.setProperty('--vh', `${altura}px`);
-	}
+	let mostrarTabela = false;
 
 	$: votosExibidos = votosComAusentes
 		.filter((voto) => (filtroVoto ? voto.tipoVoto === filtroVoto : true))
@@ -100,7 +89,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 		);
 		const { sim, nao, abstencao, obstrucao } = contagem;
 		const total = votosRegistrados.length;
-		const totalGeral = deputadosLegislatura.length || 513;
+		const totalGeral = 513;
 		const ausentes = Math.max(0, totalGeral - total);
 		resumoVotos = { sim, nao, abstencao, obstrucao, ausentes, total, totalGeral };
 	}
@@ -230,17 +219,24 @@ import { EffectFade, Pagination } from 'swiper/modules';
 		return response.json();
 	}
 
+	// The legislature file lists everyone who served (substitutes included), so absentees
+	// are capped per state at its fixed number of seats; the plenary always adds up to 513.
 	$: votosComAusentes = (() => {
 		if (!deputadosLegislatura.length) return votosRegistrados;
 		const idsVotaram = new Set(votosRegistrados.map((voto) => voto?.deputado_?.id).filter(Boolean));
 		const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? null;
-		const ausentes = deputadosLegislatura
-			.filter((dep) => dep?.id && !idsVotaram.has(dep.id))
-			.map((dep) => ({
-				tipoVoto: 'Ausentes',
-				dataRegistroVoto: dataRegistro,
-				deputado_: dep
-			}));
+		const vagas = { ...CADEIRAS_UF };
+		for (const v of votosRegistrados) {
+			const uf = v?.deputado_?.siglaUf;
+			if (uf in vagas) vagas[uf] -= 1;
+		}
+		const ausentes = [];
+		for (const dep of deputadosLegislatura) {
+			if (!dep?.id || idsVotaram.has(dep.id) || !(vagas[dep.siglaUf] > 0)) continue;
+			idsVotaram.add(dep.id);
+			vagas[dep.siglaUf] -= 1;
+			ausentes.push({ tipoVoto: 'Ausentes', dataRegistroVoto: dataRegistro, deputado_: dep });
+		}
 		return [...votosRegistrados, ...ausentes];
 	})();
 
@@ -308,7 +304,10 @@ import { EffectFade, Pagination } from 'swiper/modules';
 		}
 	}
 
+	let pedidoVotos = 0;
+
 	async function fetchVotos() {
+		const pedido = ++pedidoVotos;
 		try {
 			if (!votacaoId) {
 				erroVotos = 'Selecione uma votacao para buscar os votos.';
@@ -327,6 +326,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 				`${DATA_BASE}/votos/${votacaoId}.json`,
 				`Falha ao buscar votos (${votacaoId})`
 			);
+			if (pedido !== pedidoVotos) return;
 			const lista = Array.isArray(data?.votos) ? data.votos : [];
 			if (lista.length === 0) {
 				erroVotos = '';
@@ -353,6 +353,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 			}));
 			const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? null;
 			await carregarDeputadosLegislatura(dataRegistro);
+			if (pedido !== pedidoVotos) return;
 			votos = votosRegistrados;
 
 			const contagem = votosRegistrados.reduce(
@@ -377,7 +378,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 			);
 			const { sim, nao, abstencao, obstrucao } = contagem;
 			const total = votosRegistrados.length;
-			const totalGeral = deputadosLegislatura.length || 513;
+			const totalGeral = 513;
 			const ausentes = Math.max(0, totalGeral - total);
 			resumoVotos = { sim, nao, abstencao, obstrucao, ausentes, total, totalGeral };
 			resumoTexto = data?.resumoTexto || '';
@@ -395,7 +396,7 @@ import { EffectFade, Pagination } from 'swiper/modules';
 			resumoVotos = { ...resumoVazio };
 			resumoTexto = '';
 		} finally {
-			carregandoVotos = false;
+			if (pedido === pedidoVotos) carregandoVotos = false;
 		}
 	}
 
@@ -496,11 +497,6 @@ import { EffectFade, Pagination } from 'swiper/modules';
 	$: temResultados = resumoVotosGrafico?.totalGeral > 0;
 	$: temLista = listaVotacoes.length > 0;
 
-	function irParaSlide(indice) {
-		if (!swiperInstance) return;
-		swiperInstance.slideTo(indice);
-	}
-
 	function limparLista() {
 		listaVotacoes = [];
 		selecionadoIndex = -1;
@@ -518,589 +514,678 @@ import { EffectFade, Pagination } from 'swiper/modules';
 		filtroNome = '';
 	}
 
-	function criarSwiper() {
-		if (!swiperEl) return;
-		const alturaViewport = () => {
-			const alturaJanela = Math.round(window.innerHeight || 0);
-			const alturaResumo = summaryEl?.offsetHeight || 0;
-			return Math.max(0, alturaJanela - alturaResumo);
-		};
-		const atualizarAltura = () => {
-			const altura = alturaViewport();
-			if (!altura) return;
-			swiperInstance.params.height = altura;
-			swiperInstance.height = altura;
-			swiperEl.style.height = `${altura}px`;
-		};
-		swiperInstance = new Swiper(swiperEl, {
-			modules: [Pagination, EffectFade],
-			direction: 'vertical',
-			slidesPerView: 1,
-			speed: 700,
-			spaceBetween: 0,
-			loop: false,
-			effect: 'fade',
-			fadeEffect: { crossFade: true },
-			watchOverflow: true,
-			allowTouchMove: false,
-			mousewheel: false,
-			pagination: false,
-			resistanceRatio: 0.7,
-			threshold: 15,
-			observeParents: true,
-			observer: true,
-			autoHeight: false,
-			height: alturaViewport()
-		});
-		swiperEl.style.height = `${alturaViewport()}px`;
-		const aoResize = () => {
-			atualizarAltura();
-			swiperInstance.update();
-		};
-		window.addEventListener('resize', aoResize);
-		window.addEventListener('orientationchange', aoResize);
-		swiperInstance.on('destroy', () => {
-			window.removeEventListener('resize', aoResize);
-			window.removeEventListener('orientationchange', aoResize);
-		});
-		atualizarAltura();
-		swiperInstance.update();
-		// pagination disabled
-		requestAnimationFrame(() => {
-			atualizarAltura();
-			swiperInstance.update();
-			// pagination disabled
-		});
-		setTimeout(() => {
-			atualizarAltura();
-			swiperInstance.update();
-			// pagination disabled
-		}, 300);
+	$: votoAtual = selecionadoIndex >= 0 ? listaVotacoes[selecionadoIndex] : null;
+	$: descricaoAtual = (votoAtual?.descricao || '').replace(/\s*(Sim|Não|Abstenç[ãa]o|Obstruç[ãa]o|Total):\s*\d+;?\.?/gi, '').trim();
+	$: votosBaseEstado = votosComAusentes.filter((v) => (filtroEstado ? v?.deputado_?.siglaUf === filtroEstado : true));
+	$: votosBasePartido = votosComAusentes.filter((v) => (filtroPartido ? v?.deputado_?.siglaPartido === filtroPartido : true));
+	$: filtrosAtivos = [filtroVoto, filtroPartido, filtroEstado, filtroNome].filter(Boolean);
+
+	function limparFiltros() {
+		filtroVoto = '';
+		filtroEstado = '';
+		filtroPartido = '';
+		filtroNome = '';
 	}
 
-	function destruirSwiper() {
-		if (swiperInstance) {
-			swiperInstance.destroy(true, true);
-			swiperInstance = null;
+	function aoTeclar(event) {
+		const alvo = event.target;
+		if (alvo?.closest?.('input, select, textarea, [contenteditable]')) return;
+		if (!temLista || event.metaKey || event.ctrlKey || event.altKey) return;
+		if (event.key === 'ArrowRight' && selecionadoIndex < listaVotacoes.length - 1) {
+			selecionarPorIndice(selecionadoIndex + 1, 1);
+		} else if (event.key === 'ArrowLeft' && selecionadoIndex > 0) {
+			selecionarPorIndice(selecionadoIndex - 1, -1);
 		}
 	}
 
 	onMount(() => {
 		carregarIndices();
 		carregarComponentesResultados();
-		ajustarAlturaViewport();
-		window.addEventListener('resize', ajustarAlturaViewport);
-		window.addEventListener('orientationchange', ajustarAlturaViewport);
-		let ticking = false;
-		const checarHero = () => {
-			if (!mostrarHero || !secondScreenEl) return;
-			const topoSecond = secondScreenEl.getBoundingClientRect().top;
-			if (topoSecond <= 0) {
-				heroHiding = true;
-				setTimeout(() => {
-					mostrarHero = false;
-					heroHiding = false;
-					window.scrollTo({ top: 0, behavior: 'smooth' });
-				}, 260);
-			}
-		};
-		const aoScroll = () => {
-			if (ticking) return;
-			ticking = true;
-			requestAnimationFrame(() => {
-				checarHero();
-				ticking = false;
-			});
-		};
-		window.addEventListener('scroll', aoScroll, { passive: true });
-		requestAnimationFrame(checarHero);
-		criarSwiper();
-		return () => {
-			window.removeEventListener('resize', ajustarAlturaViewport);
-			window.removeEventListener('orientationchange', ajustarAlturaViewport);
-			window.removeEventListener('scroll', aoScroll);
-		};
 	});
-
-	onDestroy(() => {
-		if (swiperInstance) swiperInstance.destroy(true, true);
-	});
-
-	$: if (swiperInstance) {
-		if (summaryEl) {
-			const altura = Math.max(0, Math.round(window.innerHeight || 0) - summaryEl.offsetHeight);
-			if (altura) {
-				swiperInstance.params.height = altura;
-				swiperInstance.height = altura;
-				swiperEl.style.height = `${altura}px`;
-			}
-		}
-		swiperInstance.update();
-		// pagination disabled
-	}
-
-	$: if ((votos.length > 0) !== temGraficos) {
-		temGraficos = votos.length > 0;
-		tick().then(() => {
-			destruirSwiper();
-			criarSwiper();
-		});
-	}
 </script>
 
-{#if mostrarHero}
-	<div class={`page-hero ${heroHiding ? 'page-hero--hide' : ''}`}>
-		<div class="hero">
-			<h1 class="pagina-titulo">Voto a Voto: Monitorando a Democracia em Tempo Real</h1>
-			<h2>
-				Monitoramento e análise dos dados de votação da API oficial da Câmara dos Deputados, acompanhando todas as votações realizadas desde outubro de 2022
-			</h2>
-			{#if ultimaAtualizacaoTexto}
-				<time class="atualizacao" datetime={ultimaAtualizacao}>
-					Atualizado em {ultimaAtualizacaoTexto}
-				</time>
-			{/if}
+<svelte:window on:keydown={aoTeclar} />
+
+<header class="hero">
+	<p class="ds-label hero-in" style="--d:0ms">Câmara dos Deputados · dados abertos</p>
+	<h1 class="hero-title hero-in" style="--d:80ms">Voto a voto</h1>
+	<p class="hero-lead hero-in" style="--d:180ms">
+		Cada votação nominal do plenário, deputado por deputado. Os dados vêm da API oficial da
+		Câmara e são atualizados todos os dias.
+	</p>
+	<dl class="hero-stats hero-in" style="--d:280ms">
+		<div><dt>votações nominais</dt><dd use:countUp={votosDisponiveis.size}>0</dd></div>
+		<div><dt>meses com votação</dt><dd use:countUp={opcoesMes.length}>0</dd></div>
+		<div><dt>cadeiras no plenário</dt><dd use:countUp={513}>0</dd></div>
+	</dl>
+	{#if ultimaAtualizacaoTexto}
+		<p class="hero-update hero-in" style="--d:360ms">
+			<span class="pulse" aria-hidden="true" />
+			<time datetime={ultimaAtualizacao}>Atualizado em {ultimaAtualizacaoTexto}</time>
+		</p>
+	{/if}
+</header>
+
+{#if VotesSummaryComponent}
+	<div class="barra">
+		<div class="barra-inner">
+			<svelte:component
+				this={VotesSummaryComponent}
+				{votacaoId}
+				{resumoTexto}
+				resumoVotos={resumoVotosGrafico}
+				{filtroVoto}
+				{fimTexto}
+				{fimTextoCurto}
+				temMes={Boolean(dataInicio)}
+				on:filterChange={(event) => atualizarFiltro(event.detail.tipo)}
+			>
+				<div class="resultado-nav">
+					{#if temLista && temVotacao}
+						<Button
+							size="small"
+							shape="circle"
+							on:click={() => selecionarPorIndice(selecionadoIndex - 1, -1)}
+							disabled={selecionadoIndex <= 0}
+							aria-label="Votação anterior"
+						>
+							<svg class="seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+						</Button>
+						<span class="resultado-status" aria-live="polite">
+							<b>{selecionadoIndex + 1}</b>/{listaVotacoes.length}
+						</span>
+						<Button
+							size="small"
+							shape="circle"
+							on:click={() => selecionarPorIndice(selecionadoIndex + 1, 1)}
+							disabled={selecionadoIndex < 0 || selecionadoIndex >= listaVotacoes.length - 1}
+							aria-label="Próxima votação"
+						>
+							<svg class="seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+						</Button>
+					{/if}
+				</div>
+				<div class="resultado-filtros" slot="filters">
+					<VotesSearch
+						bind:dataInicio
+						{carregandoLista}
+						{erroLista}
+						{listaVotacoes}
+						{opcoesMes}
+						onListar={fetchListaVotacoes}
+						onSelect={selecionarVotacao}
+						inline={true}
+						showStatus={false}
+					/>
+					{#if temResultados}
+						<Select
+							bind:value={filtroNome}
+							options={[
+								{ value: '', label: 'Todos os deputados' },
+								...Array.from(new Set(votosComAusentes.map((v) => v?.deputado_?.nome).filter(Boolean)))
+									.sort()
+									.map((nome) => ({ value: nome, label: nome }))
+							]}
+							placeholder=""
+							aria-label="Filtrar por deputado"
+						/>
+						<Select bind:value={filtroEstado} options={opcoesEstado} placeholder="" aria-label="Filtrar por estado" />
+						<Select bind:value={filtroPartido} options={opcoesPartido} placeholder="" aria-label="Filtrar por partido" />
+						{#if filtrosAtivos.length}
+							<button type="button" class="limpar" on:click={limparFiltros}>
+								Limpar filtros <span>{filtrosAtivos.length}</span>
+							</button>
+						{/if}
+					{/if}
+				</div>
+			</svelte:component>
+			{#if erroLista}<p class="erro">{erroLista}</p>{/if}
 		</div>
 	</div>
 {/if}
 
-<div class="second-screen" bind:this={secondScreenEl}>
-{#if VotesSummaryComponent}
-	<div class="page-section" bind:this={summaryEl}>
-		<svelte:component
-			this={VotesSummaryComponent}
-			{votacaoId}
-			{resumoTexto}
-			resumoVotos={resumoVotosGrafico}
-			{filtroVoto}
-			{fimTexto}
-			{fimTextoCurto}
-			temMes={Boolean(dataInicio)}
-			on:filterChange={(event) => atualizarFiltro(event.detail.tipo)}
-		>
-			<div class="resultado-nav">
-				{#if temResultados}
-					<div class="resultado-total">Total de votos: {resumoVotosGrafico.total}</div>
-				{/if}
-				<div class="resultado-controles">
-					{#if temLista && temVotacao}
-						<Button
-							size="small"
-							on:click={() => selecionarPorIndice(selecionadoIndex - 1, -1)}
-							disabled={selecionadoIndex <= 0}
-							variant="primary"
-							shape="circle"
-							aria-label="Anterior"
-						>
-							<svg
-								class="resultado-icon"
-								viewBox="0 0 1024 1024"
-								xmlns="http://www.w3.org/2000/svg"
-								aria-hidden="true"
-								focusable="false"
-							>
-								<path
-									d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z"
-								/>
-							</svg>
-						</Button>
-						<span class="resultado-status">{navStatus}</span>
-						<Button
-							size="small"
-							on:click={() => selecionarPorIndice(selecionadoIndex + 1, 1)}
-							disabled={selecionadoIndex < 0 || selecionadoIndex >= listaVotacoes.length - 1}
-							variant="primary"
-							shape="circle"
-							aria-label="Próximo"
-						>
-							<svg
-								class="resultado-icon resultado-icon--next"
-								viewBox="0 0 1024 1024"
-								xmlns="http://www.w3.org/2000/svg"
-								aria-hidden="true"
-								focusable="false"
-							>
-								<path
-									d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z"
-								/>
-							</svg>
-						</Button>
-					{/if}
+<main class="conteudo">
+	{#if !votosIndexOk}
+		<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
+	{/if}
+	{#if erroVotos}<p class="erro">{erroVotos}</p>{/if}
+
+	{#if !dataInicio}
+		<section class="vazio" use:reveal>
+			<p class="ds-label">Para começar</p>
+			<h2 class="sec-title">Escolha um mês</h2>
+			<p class="sec-lead">Use o seletor acima. A votação mais recente do mês abre logo em seguida.</p>
+			{#if opcoesMes.length}
+				<div class="atalhos">
+					{#each opcoesMes.slice(0, 6) as mes}
+						<button type="button" class="atalho" on:click={() => (dataInicio = mes.value)}>{mes.label}</button>
+					{/each}
 				</div>
-			</div>
-			<div class="resultado-filtros" slot="filters">
-				<VotesSearch
-					bind:dataInicio
-					{carregandoLista}
-					{erroLista}
-					{listaVotacoes}
-					{opcoesMes}
-					onListar={fetchListaVotacoes}
-					onSelect={selecionarVotacao}
-					inline={true}
-					showStatus={false}
+			{/if}
+		</section>
+	{:else if votos.length === 0 && (carregandoVotos || carregandoLista)}
+		<div class="carregando" aria-live="polite">
+			<span /><span /><span />
+			<p>Buscando votos</p>
+		</div>
+	{/if}
+	{#if dataInicio && votos.length > 0}
+	<div class="resultados" class:resultados--carregando={carregandoVotos} aria-busy={carregandoVotos}>
+		{#key votacaoId}
+			<section class="sec sec--abre">
+				<p class="ds-label">Em votação · {fimTexto}</p>
+				{#if resumoTexto}
+					<h2 class="sec-title sec-title--ementa">{resumoTexto}</h2>
+				{/if}
+				{#if descricaoAtual}
+					<p class="sec-lead">{descricaoAtual}</p>
+				{/if}
+			</section>
+		{/key}
+
+		<section class="sec" use:reveal>
+			<hr class="regua" />
+			<p class="ds-label">01 · Plenário</p>
+			<h2 class="sec-title">Como as 513 cadeiras votaram</h2>
+			<p class="sec-lead">Cada ponto é um deputado. Toque ou passe o cursor para ver quem é; o toque também filtra a página.</p>
+			<div class="figura">
+				<Hemiciclo
+					votos={votosComAusentes}
+					chave={votacaoId}
+					{filtroVoto}
+					{filtroEstado}
+					{filtroPartido}
+					{filtroNome}
+					on:tipo={(e) => atualizarFiltro(e.detail)}
+					on:deputado={(e) => (filtroNome = filtroNome === e.detail ? '' : e.detail)}
 				/>
-				{#if temResultados}
-					<Select
-						bind:value={filtroNome}
-						options={[
-							{ value: '', label: 'Todos os deputados' },
-							...Array.from(
-								new Set(
-									votosComAusentes
-										.map((voto) => voto?.deputado_?.nome)
-										.filter(Boolean)
-								)
-							)
-								.sort()
-								.map((nome) => ({ value: nome, label: nome }))
-						]}
-						placeholder=""
-						aria-label="Filtrar por deputado"
-					/>
-					<Select
-						bind:value={filtroEstado}
-						options={opcoesEstado}
-						placeholder=""
-						aria-label="Filtrar por estado"
-					/>
-					<Select
-						bind:value={filtroPartido}
-						options={opcoesPartido}
-						placeholder=""
-						aria-label="Filtrar por partido"
-					/>
-				{/if}
-			</div>
-		</svelte:component>
-		{#if erroLista}
-			<p class="erro">{erroLista}</p>
-		{/if}
-		{#if carregandoLista}
-			<p>Buscando votações...</p>
-		{/if}
-	</div>
-{/if}
-
-<div class="swiper" bind:this={swiperEl}>
-	<div class="swiper-wrapper">
-		<section class="swiper-slide">
-			<div class="slide-content">
-				{#if !votosIndexOk}
-					<p class="erro">Dados locais incompletos. Rode <code>npm run fetch:data</code>.</p>
-				{/if}
-				{#if erroVotos}
-					<p class="erro">{erroVotos}</p>
-				{/if}
-
-				{#if carregandoVotos}
-					<p>Buscando votos...</p>
-				{:else if votos.length > 0}
-					{#if VotesTableComponent}
-						<svelte:component
-							this={VotesTableComponent}
-							votos={votosExibidos}
-							onShowGraficos={() => irParaSlide(1)}
-						/>
-					{/if}
-				{:else}
-					<p />
-				{/if}
 			</div>
 		</section>
 
-		{#if votos.length > 0}
-			<section class="swiper-slide">
-				<div class="slide-content slide-content--charts">
-					<div class="resultado-graficos">
-						<div class="resultado-graficos-grid">
-							<BubbleChart
-								title="Votação por partido"
-								items={dadosPorPartido}
-								layoutMode={layoutBolhas}
-							/>
-							<BubbleChart
-								title="Votação por estado"
-								items={dadosPorEstado}
-								layoutMode={layoutBolhas}
-							/>
-						</div>
-						<div class="resultado-graficos-actions">
-							<Button
-								size="small"
-								variant="primary"
-								on:click={() => (layoutBolhas = layoutBolhas === 'pack' ? 'stack' : 'pack')}
-							>
-								{layoutBolhas === 'pack' ? 'Agrupar' : 'Desagrupar'}
-							</Button>
-							<Button size="small" variant="primary" on:click={() => irParaSlide(0)}>
-								Ver tabela
-							</Button>
-						</div>
-					</div>
-				</div>
+		<div class="duas">
+			<section class="sec" use:reveal>
+				<hr class="regua" />
+				<p class="ds-label">02 · Partidos</p>
+				<h2 class="sec-title">Do mais a favor ao mais contra</h2>
+				<p class="sec-lead">Não à esquerda, sim à direita. Clique num partido para filtrar o resto da página.</p>
+				<PartidosDivergente
+					votos={votosBaseEstado}
+					chave={votacaoId}
+					selecionado={filtroPartido}
+					on:partido={(e) => (filtroPartido = e.detail)}
+				/>
 			</section>
-		{/if}
+
+			<section class="sec" use:reveal={{ delay: 120 }}>
+				<hr class="regua" />
+				<p class="ds-label">03 · Estados</p>
+				<h2 class="sec-title">O voto pelo mapa</h2>
+				<p class="sec-lead">Percentual de sim entre quem votou sim ou não, por bancada estadual.</p>
+				<MapaUF
+					votos={votosBasePartido}
+					chave={votacaoId}
+					selecionado={filtroEstado}
+					on:estado={(e) => (filtroEstado = e.detail)}
+				/>
+			</section>
+		</div>
+
+		<section class="sec" use:reveal>
+			<hr class="regua" />
+			<p class="ds-label">04 · Bolhas</p>
+			<h2 class="sec-title">O peso de cada bancada</h2>
+			<div class="bolhas">
+				<BubbleChart title="Por partido" items={dadosPorPartido} layoutMode={layoutBolhas} />
+				<BubbleChart title="Por estado" items={dadosPorEstado} layoutMode={layoutBolhas} />
+			</div>
+			<div class="acoes">
+				<Button size="small" on:click={() => (layoutBolhas = layoutBolhas === 'pack' ? 'stack' : 'pack')}>
+					{layoutBolhas === 'pack' ? 'Separar por voto' : 'Juntar de novo'}
+				</Button>
+			</div>
+		</section>
+
+		<section class="sec" use:reveal>
+			<hr class="regua" />
+			<p class="ds-label">05 · Deputados</p>
+			<h2 class="sec-title">Voto a voto, nome a nome</h2>
+			<p class="sec-lead">{votosExibidos.length.toLocaleString('pt-BR')} deputados com os filtros atuais.</p>
+			{#if VotesTableComponent}
+				<svelte:component this={VotesTableComponent} votos={votosExibidos} />
+			{/if}
+		</section>
 	</div>
-</div>
-</div>
+	{/if}
+</main>
+
+<footer class="rodape">
+	<hr class="regua" />
+	<p>
+		Fonte: <a href="https://dadosabertos.camara.leg.br" target="_blank" rel="noreferrer">Dados Abertos da Câmara dos Deputados</a>.
+		Só entram votações nominais, com placar registrado.
+	</p>
+</footer>
 
 <style>
-	.page-hero {
-		width: 100%;
-		max-width: calc(var(--grid) * 110);
+	.hero,
+	.conteudo,
+	.rodape,
+	.barra-inner {
+		width: calc(100% - var(--grid) * 4);
+		max-width: var(--w-page);
 		margin: 0 auto;
-		padding: calc(var(--grid) * 2);
-		box-sizing: border-box;
-		height: calc(var(--vh, 1vh) * 100) !important;
-		min-height: calc(var(--vh, 1vh) * 100) !important;
-		display: flex;
-		flex-direction: column;
-		transition: opacity 220ms ease, transform 220ms ease;
-	}
-
-	.page-hero--hide {
-		opacity: 0;
-		transform: translateY(-16px);
-		pointer-events: none;
-	}
-
-	.page-section {
-		width: 100%;
-		max-width: calc(var(--grid) * 120);
-		margin: 0 auto;
-		/* padding: 0 calc(var(--grid) * 2) calc(var(--grid) * 2); */
-		box-sizing: border-box;
-		position: sticky;
-		top: 0;
-		z-index: 5;
-		background: var(--color-bg);
-		/* padding-top: calc(var(--grid) * 2); */
-		/* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); */
-	}
-
-	.second-screen {
-		min-height: 100svh;
-		min-height: calc(var(--vh, 1vh) * 100);
-		height: 100svh;
-		height: calc(var(--vh, 1vh) * 100);
-		display: flex;
-		flex-direction: column;
-	}
-
-	.slide-content {
-		width: 100%;
-		max-width: calc(var(--grid) * 120);
-		margin: 0 auto;
-		padding: calc(var(--grid) * 2);
-		box-sizing: border-box;
-		min-height: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		overflow-y: auto;
-	}
-
-	.slide-content--charts {
-		max-width: calc(var(--grid) * 120);
-		padding: calc(var(--grid) * 1.5);
-		overflow: hidden;
-	}
-
-	.swiper {
-		height: 100%;
-		width: 100%;
-		flex: 1 1 auto;
-		min-height: 0;
-	}
-
-	.swiper-wrapper {
-		height: 100%;
-	}
-
-	.swiper-slide {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-
-
-	.erro {
-		color: var(--color-error);
-		margin: calc(var(--grid) * 0.5) 0 calc(var(--grid) * 1.5);
-		font-size: calc(var(--grid) * 1.5);
-	}
-
-	.pagina-titulo {
-		margin: 0 0 calc(var(--grid) * 1.5);
-		font-size: calc(var(--grid) * 3.5);
-		line-height: calc(var(--grid) * 4.2);
-		font-weight: 700;
 	}
 
 	.hero {
-		flex: 1;
-		min-height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: calc(var(--grid) * 1);
+		padding: calc(var(--grid) * 12) 0 calc(var(--grid) * 6);
+		max-width: 875px;
 	}
 
-	.hero :global(h1),
-	.hero :global(h2),
-	.hero .atualizacao {
-		opacity: 0;
-		transform: translateY(calc(var(--grid) * 3));
-		animation: hero-fade-up 700ms ease-out forwards;
+	.hero-in {
+		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+		animation-delay: var(--d);
 	}
 
-	.hero :global(h1) {
-		animation-delay: 0ms;
-	}
-
-	.hero :global(h2) {
-		animation-delay: 220ms;
-		margin: 0;
-		font-size: calc(var(--grid) * 2);
-		line-height: calc(var(--grid) * 3);
-		font-weight: 400;
-	}
-
-	.hero .atualizacao {
-		animation-delay: 440ms;
-	}
-
-	@keyframes hero-fade-up {
+	@keyframes settle {
 		from {
 			opacity: 0;
-			transform: translateY(calc(var(--grid) * 3));
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+			transform: translateY(28px);
 		}
 	}
 
-	.atualizacao {
-		display: block;
-		margin: calc(var(--grid) * 0.8) 0 calc(var(--grid) * 1.5);
-		color: var(--color-text-subtle);
-		font-size: calc(var(--grid) * 1.4);
-		line-height: calc(var(--grid) * 2.1);
+	.hero-title {
+		font-size: clamp(calc(var(--grid) * 6), 11vw, calc(var(--grid) * 13));
+		line-height: 0.95;
+		letter-spacing: -0.03em;
+		margin: 0 0 calc(var(--grid) * 3);
+	}
+
+	.hero-lead {
+		font-size: calc(var(--grid) * 3);
 		font-weight: 300;
-		text-transform: uppercase;
+		line-height: 1.45;
+		letter-spacing: -0.02em;
+		max-width: 720px;
+		margin: 0 0 calc(var(--grid) * 5);
+	}
+
+	.hero-stats {
+		display: flex;
+		flex-wrap: wrap;
+		gap: calc(var(--grid) * 2) calc(var(--grid) * 6);
+		margin: 0 0 calc(var(--grid) * 4);
+		padding-top: calc(var(--grid) * 2);
+		border-top: 2px solid var(--color-dark);
+	}
+
+	.hero-stats div {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	.hero-stats dd {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: calc(var(--grid) * 5.5);
+		line-height: 1;
+		letter-spacing: -0.02em;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.hero-stats dt {
+		font-size: var(--t-caption);
+		color: var(--color-text-muted);
+		margin-top: calc(var(--grid) * 0.6);
+	}
+
+	.hero-update {
+		display: flex;
+		align-items: center;
+		gap: calc(var(--grid) * 1);
+		font-size: var(--t-caption);
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+
+	.pulse {
+		position: relative;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--vote-sim);
+	}
+
+	.pulse::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		background: var(--vote-sim);
+		animation: pulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+	}
+
+	@keyframes pulse {
+		from {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		to {
+			transform: scale(3.2);
+			opacity: 0;
+		}
+	}
+
+	.barra {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		background: color-mix(in srgb, var(--color-light) 88%, transparent);
+		backdrop-filter: blur(14px) saturate(1.4);
+		-webkit-backdrop-filter: blur(14px) saturate(1.4);
+		border-top: 2px solid var(--color-dark);
+		border-bottom: 1px solid var(--color-rule);
 	}
 
 	.resultado-nav {
-		display: flex;
-		width: 100%;
-		justify-content: flex-end;
+		display: inline-flex;
 		align-items: center;
 		gap: calc(var(--grid) * 1);
-		font-size: calc(var(--grid) * 1.5);
+		flex-shrink: 0;
 	}
 
-	.resultado-total {
+	@media (max-width: 600px) {
+		.resultado-nav {
+			gap: 2px;
+		}
+
+		.resultado-status {
+			min-width: 5ch;
+		}
+	}
+
+	.resultado-status {
+		font-size: var(--t-label);
+		font-variant-numeric: tabular-nums;
+		color: var(--color-text-muted);
+		min-width: 6ch;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+	.resultado-status b {
+		color: var(--color-dark);
 		font-weight: 600;
-		padding-left: calc(var(--grid) * 1);
-		padding-right: calc(var(--grid) * 1);
-		border-left: 1px solid color-mix(in srgb, var(--color-text) 50%, transparent);
-		border-right: 1px solid color-mix(in srgb, var(--color-text) 50%, transparent);
 	}
 
-	.resultado-controles {
-		display: flex;
-		align-items: center;
-		gap: calc(var(--grid) * 1);
+	.resultados {
+		transition: opacity 360ms var(--ease);
+	}
+
+	.resultados--carregando {
+		opacity: 0.45;
+		pointer-events: none;
+	}
+
+	.seta {
+		width: 14px;
+		height: 14px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
 	}
 
 	.resultado-filtros {
 		display: flex;
 		align-items: center;
-		gap: calc(var(--grid) * 1);
-		margin: calc(var(--grid) * 1) 0 calc(var(--grid) * 1.5);
+		gap: calc(var(--grid) * 0.8);
 		flex-wrap: wrap;
 	}
 
-	.resultado-status {
-		color: var(--color-text-subtle);
-		font-size: calc(var(--grid) * 1.5);
+	.limpar {
+		border: 0;
+		background: none;
+		font: inherit;
+		font-size: var(--t-label);
+		font-weight: 500;
+		color: var(--color-dark);
+		cursor: pointer;
+		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 0.4);
+		text-decoration: underline 2px var(--color-primary);
+		text-underline-offset: 5px;
+		animation: settle 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
 	}
 
-	.resultado-icon {
+	.limpar span {
+		display: inline-grid;
+		place-items: center;
+		min-width: 18px;
+		height: 18px;
+		margin-left: 4px;
+		border-radius: 999px;
+		background: var(--color-primary);
+		color: var(--color-on-primary);
+		font-size: 11px;
+		text-decoration: none;
+	}
+
+	.conteudo {
+		padding-bottom: calc(var(--grid) * 8);
+	}
+
+	.sec {
+		margin-top: calc(var(--grid) * 8);
+	}
+
+	.sec--abre {
+		max-width: 875px;
+		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	}
+
+	.regua {
+		border: 0;
+		border-top: 2px solid var(--color-dark);
+		margin: 0 0 calc(var(--grid) * 3);
+		transform-origin: left;
+		animation: draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	}
+
+	@keyframes draw {
+		from {
+			transform: scaleX(0);
+		}
+	}
+
+	.sec-title {
+		font-size: calc(var(--grid) * 3.4);
+		line-height: 1.12;
+		margin: 0 0 calc(var(--grid) * 1.5);
+		max-width: 760px;
+	}
+
+	.sec-title--ementa {
+		font-size: calc(var(--grid) * 3.6);
+		line-height: 1.18;
+	}
+
+	.sec-lead {
+		font-size: var(--t-body);
+		color: var(--color-text-muted);
+		max-width: var(--w-text);
+		margin: 0 0 calc(var(--grid) * 4);
+	}
+
+	.figura {
+		max-width: 980px;
+		margin: 0 auto;
+	}
+
+	.duas {
+		display: grid;
+		grid-template-columns: 1.15fr 1fr;
+		gap: 0 calc(var(--grid) * 8);
+		align-items: start;
+	}
+
+	.bolhas {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: calc(var(--grid) * 6);
+	}
+
+	.acoes {
+		display: flex;
+		justify-content: center;
+		margin-top: calc(var(--grid) * 2);
+	}
+
+	.vazio {
+		margin-top: calc(var(--grid) * 6);
+		padding: calc(var(--grid) * 4) 0;
+	}
+
+	.atalhos {
+		display: flex;
+		flex-wrap: wrap;
+		gap: calc(var(--grid) * 1);
+	}
+
+	.atalho {
+		border: 1px solid var(--color-dark);
+		border-radius: 999px;
+		background: none;
+		color: var(--color-dark);
+		font: inherit;
+		font-size: var(--t-label);
+		font-weight: 500;
+		padding: calc(var(--grid) * 0.9) calc(var(--grid) * 1.8);
+		cursor: pointer;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
+	}
+
+	.atalho:hover {
+		background: var(--color-dark);
+		color: var(--color-light);
+		transform: translateY(-2px);
+	}
+
+	.carregando {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: calc(var(--grid) * 10) 0;
+		justify-content: center;
+		color: var(--color-text-muted);
+	}
+
+	.carregando span {
 		width: 10px;
 		height: 10px;
-		fill: currentColor;
+		border-radius: 50%;
+		background: var(--vote-sim);
+		animation: bounce 900ms cubic-bezier(0.2, 0.8, 0.2, 1) infinite alternate;
 	}
 
-	.resultado-icon--next {
-		transform: rotate(180deg);
+	.carregando span:nth-child(2) {
+		background: var(--vote-abstencao);
+		animation-delay: 150ms;
 	}
 
-	.resultado-graficos {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: calc(var(--grid) * 2);
-		flex: 1 1 auto;
-		min-height: 0;
-		justify-content: space-between;
+	.carregando span:nth-child(3) {
+		background: var(--vote-nao);
+		animation-delay: 300ms;
 	}
 
-	.resultado-graficos-grid {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(260px, 1fr));
-		gap: calc(var(--grid) * 6);
-		width: 100%;
-		flex: 1 1 auto;
-		min-height: 0;
-		align-content: start;
+	.carregando p {
+		margin: 0 0 0 calc(var(--grid) * 1);
+		font-size: var(--t-caption);
 	}
 
-	.resultado-graficos-actions {
-		display: inline-flex;
-		gap: calc(var(--grid) * 0.8);
-		margin-top: calc(var(--grid) * 1.5);
-		margin-bottom: calc(var(--grid) * 0.5);
-	}
-
-	@media (max-width: 640px) {
-		.slide-content {
-			padding: calc(var(--grid) * 1.5);
-			padding-right: calc(var(--grid) * 2.5);
+	@keyframes bounce {
+		to {
+			transform: translateY(-10px);
+			opacity: 0.4;
 		}
+	}
 
-		.pagina-titulo {
-			font-size: calc(var(--grid) * 2.8);
-			line-height: calc(var(--grid) * 3.2);
-		}
+	.erro {
+		color: var(--color-danger);
+		font-size: var(--t-caption);
+		margin: calc(var(--grid) * 2) 0;
+	}
 
-		.hero :global(h2) {
-			font-size: calc(var(--grid) * 1.8);
-			line-height: calc(var(--grid) * 2.8);
-		}
+	.rodape {
+		padding-bottom: calc(var(--grid) * 6);
+		font-size: var(--t-caption);
+		color: var(--color-text-muted);
+	}
 
-		.resultado-graficos-grid {
+	.rodape a {
+		color: var(--color-dark);
+		font-weight: 600;
+		text-decoration: none;
+		transition: color 180ms var(--ease);
+	}
+
+	.rodape a:hover {
+		color: var(--color-primary);
+		text-decoration: underline 2px;
+		text-underline-offset: 4px;
+	}
+
+	@media (max-width: 900px) {
+		.duas,
+		.bolhas {
 			grid-template-columns: 1fr;
 		}
 	}
 
-	.resultado-graficos-toggle {
-		align-self: center;
-		margin-top: 0;
-		padding: 6px 14px;
-		border-radius: 20px;
-		border: 1px solid var(--color-dark);
-		background: var(--color-tertiary);
-		color: var(--color-dark);
-		font-size: 13px;
-		font-weight: 600;
-		cursor: pointer;
-	}
+	@media (max-width: 600px) {
+		.hero {
+			padding-top: calc(var(--grid) * 7);
+		}
 
-	.resultado-graficos-toggle:hover {
-		background: var(--color-dark);
-		color: var(--color-tertiary);
+		/* One scrolling row of filters keeps the sticky bar short on a phone */
+		.resultado-filtros {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			scrollbar-width: none;
+			margin: 0 calc(var(--grid) * -2);
+			padding: 2px calc(var(--grid) * 2);
+			scroll-snap-type: x proximity;
+			scroll-padding-inline: calc(var(--grid) * 2);
+			-webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 24px), transparent);
+			mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 24px), transparent);
+		}
+
+		.resultado-filtros::-webkit-scrollbar {
+			display: none;
+		}
+
+		.resultado-filtros > :global(*) {
+			flex: 0 0 auto;
+			scroll-snap-align: start;
+		}
+
+		.hero-lead {
+			font-size: calc(var(--grid) * 2.3);
+		}
+
+		.hero-stats dd {
+			font-size: calc(var(--grid) * 4.2);
+		}
+
+		.sec-title {
+			font-size: calc(var(--grid) * 2.6);
+		}
+
+		.sec-title--ementa {
+			font-size: calc(var(--grid) * 2.6);
+		}
+
+		.sec {
+			margin-top: calc(var(--grid) * 6);
+		}
 	}
 </style>

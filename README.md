@@ -36,8 +36,24 @@ npm run build
 
 ## Observações
 
-- O app é **estático** no Pages.  
-- Os dados são gerados diariamente e salvos em JSON em `static/data`.
+- O app é **estático** no Pages.
+- Visual no design system do Portfolio (`src/portfolio/` são cópias dos tokens de `Code/Portfolio/ds-bundle`; `src/app.css` só mapeia os nomes antigos).
+- Os dados são salvos em JSON em `static/data`.
+
+## Atualização automática
+
+`.github/workflows/scrape.yml` roda às 06:30 e às 22:00 (Brasília). A cada execução, reconstrói por inteiro
+o mês atual e o anterior, grava o commit em `main` e chama `pages.yml` como job para publicar.
+A versão antiga buscava só o próprio dia, de manhã, antes de qualquer sessão. Por isso
+os meses de 2026 ficaram vazios. Além disso, o deploy dependia de um `workflow_run` que parou
+de disparar em fevereiro.
+
+Para reprocessar mais meses: **Actions → Atualizar dados de votações → Run workflow** e informe
+quantos meses buscar. Localmente:
+
+```bash
+TZ=America/Sao_Paulo VOTACOES_START=2026-11 VOTACOES_MONTHS=11 npm run fetch:data
+```
 
 ## Troubleshooting
 

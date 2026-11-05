@@ -4,9 +4,7 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
-  workflow_run:
-    workflows: ['Atualizar dados de votações']
-    types: [completed]
+  workflow_call:
 
 permissions:
   contents: read
@@ -19,19 +17,17 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # For workflow_run, build the latest HEAD of the branch where the scrape ran,
-          # so the new data commit is included.
-          ref: ${{ github.event_name == 'workflow_run' && (github.event.workflow_run.head_branch || 'main') || github.ref_name }}
+          # When called after the scrape, build the tip of main so the new data commit is in.
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - name: Install
         run: npm ci

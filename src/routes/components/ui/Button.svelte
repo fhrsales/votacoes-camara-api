@@ -27,95 +27,66 @@
 
 <style>
 	.ui-button {
-		/* Basic styling for a button */
-		padding: 10px 20px;
-		border: none;
-		border-radius: 25px; /* Use rounded corners as per HIG */
-		background-color: rgba(255, 255, 255, 0.1); /* Translucent background */
-		color: white;
-        font-family: var(--font-primary);
-		font-weight: 600;
-		font-size: 16px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: calc(var(--grid) * 0.6);
+		padding: calc(var(--grid) * 0.9) calc(var(--grid) * 1.8);
+		border: 1px solid var(--color-dark);
+		border-radius: 999px;
+		background: transparent;
+		color: var(--color-dark);
+		font-family: var(--font-primary);
+		font-size: var(--t-label);
+		font-weight: 500;
+		line-height: 1.2;
 		cursor: pointer;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-		/* The magic for the glass effect */
-		backdrop-filter: blur(10px) saturate(1.5); /* Blur and saturate background */
-		-webkit-backdrop-filter: blur(10px) saturate(1.5); /* Vendor prefix for compatibility */
-
-		/* Add a subtle border or glow effect */
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		transition: background-color 180ms var(--ease), color 180ms var(--ease),
+			border-color 180ms var(--ease);
 	}
 
-	/* .ui-button {
-		background: var(--color-surface);
-		border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
-		padding: calc(var(--grid) * 0.5) calc(var(--grid) * 1.5);
-		border-radius: var(--radius-s);		cursor: pointer;
-        font-family: var(--font-primary);
-		font-weight: 600;
-		font-size: calc(var(--grid) * 1.5);
-		color: var(--color-primary);
-	} */
+	.ui-button:hover:not(:disabled) {
+		background: var(--color-dark);
+		color: var(--color-light);
+	}
 
 	.ui-button:disabled {
-		opacity: 0.6;
+		opacity: 0.35;
 		cursor: not-allowed;
 	}
 
 	.ui-button--small {
-		padding: calc(var(--grid) * 0.5) calc(var(--grid) * 1);
+		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 1.4);
 	}
 
-	.ui-button--circle {
-		width: 40px;
-		height: 40px;
-		padding: 0;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 50%;
-	}
-
+	.ui-button--circle,
 	.ui-button--small.ui-button--circle {
-		width: 24px;
-		height: 24px;
+		width: calc(var(--grid) * 3.6);
+		height: calc(var(--grid) * 3.6);
+		padding: 0;
 	}
 
 	.ui-button--full {
 		width: 100%;
 	}
 
-	.ui-button--primary {
-		background: var(--color-tertiary);
-		border: 1px solid var(--color-dark);
-		color: var(--color-dark);
-	}
-
-	.ui-button--primary:hover {
-		background: var(--color-dark);
-		color: var(--color-tertiary);
-		border: 1px solid var(--color-dark);
-		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-	}
-
 	.ui-button--ghost {
-		background: transparent;
-		border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
-		color: var(--color-text);
-		box-shadow: none;
-		backdrop-filter: none;
-		-webkit-backdrop-filter: none;
+		border-color: var(--color-rule);
 	}
-
-	.ui-button--ghost:hover {
-		background: color-mix(in srgb, var(--color-text) 8%, transparent);
-	}
-
-	@media (max-width: 372px) {
-		.ui-button {
-			width: 100%;
-			text-align: left;
+	@media (pointer: coarse) {
+		.ui-button--circle,
+		.ui-button--small.ui-button--circle {
+			width: 44px;
+			height: 44px;
 		}
+
+		.ui-button:active:not(:disabled) {
+			transform: scale(0.94);
+		}
+	}
+
+	.ui-button {
+		-webkit-tap-highlight-color: transparent;
+		transition-property: background-color, color, border-color, transform;
 	}
 </style>

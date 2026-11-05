@@ -30,70 +30,52 @@
 	}
 
 	.ui-select {
-        -webkit-appearance: none;
+		-webkit-appearance: none;
 		appearance: none;
-        /* Basic styling for a button */
-		padding: 10px 44px 10px 20px;
-		border: none;
-		border-radius: 25px; /* Use rounded corners as per HIG */
-		color: white;
-		font-size: 16px;
-        font-family: var(--font-primary);
-		font-weight: 600;
-		cursor: pointer;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-color: var(--color-tertiary);
+		padding: calc(var(--grid) * 0.9) calc(var(--grid) * 4) calc(var(--grid) * 0.9)
+			calc(var(--grid) * 1.8);
+		border: 1px solid var(--color-dark);
+		border-radius: 999px;
+		background: var(--color-light);
 		color: var(--color-dark);
-		/* The magic for the glass effect */
-		backdrop-filter: blur(10px) saturate(1.5); /* Blur and saturate background */
-		-webkit-backdrop-filter: blur(10px) saturate(1.5); /* Vendor prefix for compatibility */
-
-		/* Add a subtle border or glow effect */
-		border: 1px solid var(--color-dark);
-
-
-		/* display: block;
-		padding: 4px calc(var(--grid) * 1.2);
-		border: 1px solid var(--color-dark);
-		border-radius: var(--radius-s);
-		background: var(--color-dark);
 		font-family: var(--font-primary);
-		font-weight: 600;
+		font-size: var(--t-label);
+		font-weight: 500;
+		line-height: 1.2;
 		cursor: pointer;
-		color: var(--color-tertiary);
-		transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; */
+		max-width: 100%;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease);
 	}
 
 	.ui-select:hover {
 		background: var(--color-dark);
-		color: var(--color-tertiary);
-		border: 1px solid var(--color-dark);
+		color: var(--color-light);
 	}
 
-    .ui-select:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px var(--color-accent);
-    }
+	.ui-select:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+	}
 
-	.ui-select-wrapper--full {
+	.ui-select-wrapper--full,
+	.ui-select-wrapper--full .ui-select {
 		width: 100%;
 	}
 
-
-
 	.ui-select__icon {
 		position: absolute;
-		right: 14px;
+		right: calc(var(--grid) * 1.4);
 		top: 50%;
 		transform: translateY(-50%);
-		width: 18px;
-		height: 18px;
-		fill: var(--color-dark);
+		width: 16px;
+		height: 16px;
+		fill: currentColor;
+		color: var(--color-dark);
 		pointer-events: none;
+		transition: color 180ms var(--ease);
 	}
 
-	.ui-select-wrapper:hover .ui-select__icon,
-	.ui-select:focus + .ui-select__icon {
-		fill: var(--color-tertiary);
+	.ui-select-wrapper:hover .ui-select__icon {
+		color: var(--color-light);
 	}
 </style>

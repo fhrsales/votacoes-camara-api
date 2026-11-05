@@ -1,6 +1,7 @@
 <script>
 	import { hierarchy, pack } from 'd3';
 	import { flip } from 'svelte/animate';
+	import { cubicOut } from 'svelte/easing';
 
 	export let title = '';
 	export let items = [];
@@ -11,11 +12,11 @@
 
 	const tipos = ['Sim', 'Não', 'Abstenção', 'Obstrução', 'Ausentes'];
 	const cores = {
-		Sim: 'var(--color-success)',
-		'Não': 'var(--color-danger)',
-		Abstenção: 'var(--color-warning)',
-		Obstrução: 'var(--color-info)',
-		Ausentes: 'var(--color-neutral)'
+		Sim: 'var(--vote-sim)',
+		'Não': 'var(--vote-nao)',
+		Abstenção: 'var(--vote-abstencao)',
+		Obstrução: 'var(--vote-obstrucao)',
+		Ausentes: 'var(--vote-ausentes)'
 	};
 
 	let tooltip = {
@@ -172,7 +173,7 @@
 				{#each layoutRender as node (node.label + '-' + node.tipo)}
 					<g
 						transform={`translate(${node.x}, ${node.y})`}
-						animate:flip={{ duration: 350 }}
+						animate:flip={{ duration: 600, easing: cubicOut }}
 						class={hoveredKey && hoveredKey !== `${node.label}-${node.tipo}` ? 'is-dimmed' : ''}
 						on:mouseenter={(e) => showTooltip(e, node)}
 						on:mousemove={moveTooltip}
@@ -213,7 +214,10 @@
 
 	.bubble-chart h3 {
 		margin: 0 0 calc(var(--grid) * 1);
-		font-size: calc(var(--grid) * 2);
+		font-family: var(--font-primary);
+		font-size: var(--t-caption);
+		font-weight: 600;
+		letter-spacing: 0;
         width: 100%;
         text-align: left;
 	}
@@ -254,19 +258,19 @@
 	.uva-tooltip {
 		position: absolute;
 		pointer-events: none;
-		background: var(--color-surface);
-		color: var(--color-text);
-		padding: calc(var(--grid) * 0.5) calc(var(--grid) * 1);
-		border-radius: var(--radius-s);
+		background: var(--color-dark);
+		color: var(--color-light);
+		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 1.2);
+		border-radius: 12px;
 		box-shadow: var(--shadow-2);
 		font-size: calc(var(--grid) * 1.4);
 		z-index: 9999;
-		transition: opacity 120ms ease;
+		transition: opacity 180ms var(--ease);
 	}
 
 	.uva-tooltip hr {
 		border: none;
-		border-top: 1px solid color-mix(in srgb, var(--color-text) 25%, transparent);
+		border-top: 1px solid color-mix(in srgb, var(--color-light) 30%, transparent);
 		margin: calc(var(--grid) * 0.4) 0;
 	}
 
@@ -279,14 +283,18 @@
 	}
 
 	.bubble-circle {
-		stroke: #fff;
-		stroke-width: 2;
+		stroke: var(--color-light);
+		stroke-width: 1.5;
 		cursor: pointer;
-		transition: r 400ms ease, transform 400ms ease;
+		transition: r 600ms var(--ease), transform 600ms var(--ease), opacity 180ms var(--ease);
+	}
+
+	g {
+		transition: opacity 180ms var(--ease);
 	}
 
 	.is-dimmed {
-		opacity: 0.1;
+		opacity: 0.15;
 	}
 	@media (max-width: 560px) {
 		.uva-container-bubble-chart {

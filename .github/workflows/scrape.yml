@@ -1,49 +1,69 @@
 name: Atualizar dados de votações
 
+# Runs twice a day (06:30 and 22:00 in Brasília) and rebuilds the current and the
+# previous month in full. The old setup fetched only "today", early in the morning,
+# before any session had happened, so every month since January came out empty.
 on:
   schedule:
-    - cron: '15 9 * * *'
+    - cron: '30 9 * * *'
+    - cron: '0 1 * * *'
   workflow_dispatch:
+    inputs:
+      meses:
+        description: 'Quantos meses para trás buscar (padrão 2)'
+        required: false
+        default: '2'
 
 permissions:
   contents: write
-  actions: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: main
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - name: Atualizar dados
         env:
           TZ: America/Sao_Paulo
-          VOTACOES_DAYS: 1
+          VOTACOES_MONTHS: ${{ github.event.inputs.meses || '2' }}
           VOTACOES_FETCH_TIMEOUT: 30000
           VOTACOES_RETRIES: 6
           VOTACOES_RETRY_DELAY: 1200
         run: node scripts/fetch-votacoes.mjs
-      - name: Atualizar last-run
-        run: |
-          node -e "const fs=require('fs');fs.writeFileSync('static/data/last-run.json', JSON.stringify({generatedAt:new Date().toISOString()}, null, 2) + '\n');"
       - name: Commit e push
-        id: commit
         run: |
-          if git status --porcelain | grep -q .; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add static/data
-            git commit -m "chore: atualizar dados de votacoes (auto)"
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            git push
-            echo "pushed=true" >> "$GITHUB_OUTPUT"
-          else
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/data
+          if git diff --cached --quiet; then
             echo "Sem alteracoes"
-            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+          git commit -m "chore: atualizar dados de votacoes (auto)"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
+
+  # A push made with GITHUB_TOKEN does not trigger other workflows, and the old
+  # workflow_run chain stopped firing in February, so deploy from here directly.
+  deploy:
+    needs: scrape
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml

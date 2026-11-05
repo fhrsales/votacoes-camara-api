@@ -216,7 +216,7 @@ async function ensureDirs() {
 }
 
 function buildMonthsList() {
-  const now = START_MONTH ? new Date(`${START_MONTH}-01T00:00:00Z`) : new Date();
+  const now = START_MONTH ? new Date(`${START_MONTH}-01T12:00:00`) : new Date();
   const months = [];
   for (let i = 0; i < MONTHS; i += 1) {
     const date = addMonths(now, -i);
