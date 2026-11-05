@@ -1,5 +1,104 @@
 {
   "mes": "2026-06",
-  "generatedAt": "2026-06-28T10:09:40.569Z",
-  "votacoes": []
+  "generatedAt": "2026-11-05T23:41:12.762Z",
+  "votacoes": [
+    {
+      "id": "2633410-8",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2633410-8",
+      "data": "2026-06-17",
+      "dataHoraRegistro": "2026-06-17T20:05:07",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82555",
+      "proposicaoObjeto": "REQ 3557/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2633410",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 273; Não: 160; Abstenção: 4; Total: 437.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2610975-23",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2610975-23",
+      "data": "2026-06-17",
+      "dataHoraRegistro": "2026-06-17T19:27:17",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82555",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitada a Emenda n° 102. Sim: 22; Não: 378; Abstenção: 1; Total: 401.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "2382675-97",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2382675-97",
+      "data": "2026-06-17",
+      "dataHoraRegistro": "2026-06-17T18:54:03",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82555",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 4.133, de 2023, adotado pelo relator da Comissão de Ciência, Tecnologia e Inovação. Sim: 308; Não: 129; Abstenção: 1; Total: 438.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2382675-89",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2382675-89",
+      "data": "2026-06-17",
+      "dataHoraRegistro": "2026-06-17T18:14:20",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82555",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitado o Requerimento. Sim: 117; Não: 250; Total: 367.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "947810-85",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/947810-85",
+      "data": "2026-06-17",
+      "dataHoraRegistro": "2026-06-17T17:19:33",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82555",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Mantido o texto. Sim: 285; Não: 106; Abstenção: 1; Total: 392.",
+      "aprovacao": null,
+      "hasResultado": true
+    },
+    {
+      "id": "2122125-115",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2122125-115",
+      "data": "2026-06-16",
+      "dataHoraRegistro": "2026-06-16T20:08:44",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82513",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovada a Subemenda Substitutiva ao Projeto de Lei Complementar nº 337, de 2017, adotada pelo relator da Comissão de Constituição e Justiça e de Cidadania. Sim: 417; Não: 19; Total: 436.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2629954-8",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2629954-8",
+      "data": "2026-06-03",
+      "dataHoraRegistro": "2026-06-03T12:10:37",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82402",
+      "proposicaoObjeto": "REQ 3336/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2629954",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 311; Não: 135; Abstenção: 2; Total: 448.",
+      "aprovacao": 1,
+      "hasResultado": true
+    }
+  ]
 }

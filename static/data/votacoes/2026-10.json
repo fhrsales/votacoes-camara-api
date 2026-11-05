@@ -1,5 +1,48 @@
 {
   "mes": "2026-10",
-  "generatedAt": "2026-10-31T15:17:25.554Z",
-  "votacoes": []
+  "generatedAt": "2026-11-05T23:40:20.850Z",
+  "votacoes": [
+    {
+      "id": "2236186-60",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2236186-60",
+      "data": "2026-10-14",
+      "dataHoraRegistro": "2026-10-14T20:56:14",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/83057",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitada a Subemenda Substitutiva ao Projeto de Lei Complementar nº 281, de 2019, adotada pelo relator da Comissão Especial. Sim: 252; Não: 176; Total: 428.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "2635476-36",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2635476-36",
+      "data": "2026-10-14",
+      "dataHoraRegistro": "2026-10-14T19:42:50",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/83057",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovada a Subemenda Substitutiva Global ao Projeto de Lei Complementar nº 186, de 2026, adotada pelo relator da Comissão de Indústria, Comércio e Serviços, ressalvados os destaques. Sim: 461; Não: 4; Total: 465.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2635476-23",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2635476-23",
+      "data": "2026-10-14",
+      "dataHoraRegistro": "2026-10-14T17:20:23",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/83057",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitado o Requerimento. Sim: 11; Não: 387; Total: 398.",
+      "aprovacao": 0,
+      "hasResultado": true
+    }
+  ]
 }

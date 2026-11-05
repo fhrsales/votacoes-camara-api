@@ -1,5 +1,76 @@
 {
   "mes": "2026-08",
-  "generatedAt": "2026-08-31T09:32:04.919Z",
-  "votacoes": []
+  "generatedAt": "2026-11-05T23:41:12.762Z",
+  "votacoes": [
+    {
+      "id": "2580259-24",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2580259-24",
+      "data": "2026-08-12",
+      "dataHoraRegistro": "2026-08-12T19:48:20",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82876",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 230, de 2025, adotado pela relatora da Comissão de Finanças e Tributação. Sim: 333; Não: 91; Total: 424.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2611992-24",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2611992-24",
+      "data": "2026-08-12",
+      "dataHoraRegistro": "2026-08-12T19:11:36",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82876",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 80, de 2026, adotado pelo relator da Comissão de Finanças e Tributação. Sim: 327; Não: 26; Total: 353.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2618177-82",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2618177-82",
+      "data": "2026-08-12",
+      "dataHoraRegistro": "2026-08-12T18:07:21",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82876",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitada a Emenda de Plenário nº 1. Sim: 105; Não: 233; Total: 338.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "2618177-73",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2618177-73",
+      "data": "2026-08-12",
+      "dataHoraRegistro": "2026-08-12T17:58:49",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82876",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitadas as Emendas de Plenário. Sim: 108; Não: 275; Abstenção: 1; Total: 384.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "2618177-71",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2618177-71",
+      "data": "2026-08-12",
+      "dataHoraRegistro": "2026-08-12T17:49:46",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82876",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo Reformulado ao Projeto de Lei Complementar nº 114, de 2026, adotado pela relatora da Comissão de Minas e Energia, ressalvado o destaque. Sim: 318; Não: 113; Abstenção: 1; Total: 432.",
+      "aprovacao": 1,
+      "hasResultado": true
+    }
+  ]
 }

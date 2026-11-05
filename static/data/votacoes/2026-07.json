@@ -1,5 +1,90 @@
 {
   "mes": "2026-07",
-  "generatedAt": "2026-07-31T11:34:24.344Z",
-  "votacoes": []
+  "generatedAt": "2026-11-05T23:41:12.762Z",
+  "votacoes": [
+    {
+      "id": "2638483-34",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2638483-34",
+      "data": "2026-07-14",
+      "dataHoraRegistro": "2026-07-14T18:50:14",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82772",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Rejeitada a Emenda de Plenário nº 2. Sim: 134; Não: 285; Abstenção: 2; Total: 421.",
+      "aprovacao": 0,
+      "hasResultado": true
+    },
+    {
+      "id": "2637721-10",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2637721-10",
+      "data": "2026-07-14",
+      "dataHoraRegistro": "2026-07-14T17:59:11",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82772",
+      "proposicaoObjeto": "REQ 3797/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2637721",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 276; Não: 139; Abstenção: 1; Total: 416.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2606313-36",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2606313-36",
+      "data": "2026-07-07",
+      "dataHoraRegistro": "2026-07-07T20:50:36",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82729",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 41, de 2026, adotado pela relatora da Comissão de Defesa dos Direitos da Mulher. Sim: 470; Não: 1; Total: 471.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2610579-7",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2610579-7",
+      "data": "2026-07-02",
+      "dataHoraRegistro": "2026-07-02T11:20:51",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82694",
+      "proposicaoObjeto": "REQ 1492/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2610579",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 305; Não: 112; Abstenção: 1; Total: 418.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2606189-10",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2606189-10",
+      "data": "2026-07-01",
+      "dataHoraRegistro": "2026-07-01T18:34:21",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82660",
+      "proposicaoObjeto": "REQ 1233/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2606189",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 279; Não: 162; Abstenção: 1; Total: 442.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
+    {
+      "id": "2636281-8",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2636281-8",
+      "data": "2026-07-01",
+      "dataHoraRegistro": "2026-07-01T18:06:36",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/82660",
+      "proposicaoObjeto": "REQ 3690/2026",
+      "uriProposicaoObjeto": "https://dadosabertos.camara.leg.br/api/v2/proposicoes/2636281",
+      "descricao": "Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 293; Não: 158; Abstenção: 3; Total: 454.",
+      "aprovacao": 1,
+      "hasResultado": true
+    }
+  ]
 }
