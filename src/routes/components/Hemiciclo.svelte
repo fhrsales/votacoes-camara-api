@@ -132,7 +132,7 @@
 
 		{#if hover && !mini}
 			<div class="hemi-tip" style={`left:${tip.x}px;top:${tip.y}px`}>
-				<img src={hover.deputado_?.urlFoto} alt="" width="40" height="40" loading="lazy" />
+				<img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" />
 				<div>
 					<strong>{hover.deputado_?.nome}</strong>
 					<span>{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
@@ -292,15 +292,15 @@
 
 	.hemi-tip {
 		position: absolute;
-		transform: translate(-50%, calc(-100% - 14px));
+		transform: translate(-50%, calc(-100% - 18px));
 		display: flex;
-		gap: calc(var(--grid) * 1);
+		gap: calc(var(--grid) * 1.6);
 		align-items: center;
-		padding: calc(var(--grid) * 0.8) calc(var(--grid) * 1.2) calc(var(--grid) * 0.8)
-			calc(var(--grid) * 0.8);
+		padding: calc(var(--grid) * 1.4) calc(var(--grid) * 2.4) calc(var(--grid) * 1.4)
+			calc(var(--grid) * 1.4);
 		background: var(--color-dark);
 		color: var(--color-light);
-		border-radius: 999px;
+		border-radius: 16px;
 		box-shadow: var(--shadow-2);
 		pointer-events: none;
 		white-space: nowrap;
@@ -308,9 +308,19 @@
 		animation: tip-in 180ms var(--ease);
 	}
 
+	.hemi-tip::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%);
+		border: 8px solid transparent;
+		border-top-color: var(--color-dark);
+	}
+
 	.hemi-tip img {
-		width: 40px;
-		height: 40px;
+		width: 52px;
+		height: 52px;
 		border-radius: 50%;
 		object-fit: cover;
 		background: color-mix(in srgb, var(--color-light) 20%, transparent);
@@ -319,8 +329,13 @@
 	.hemi-tip div {
 		display: flex;
 		flex-direction: column;
+		gap: 2px;
 		font-size: var(--t-small);
-		line-height: 1.35;
+		line-height: 1.3;
+	}
+
+	.hemi-tip strong {
+		font-size: var(--t-caption);
 	}
 
 	.hemi-tip span {
@@ -346,7 +361,7 @@
 	@keyframes tip-in {
 		from {
 			opacity: 0;
-			transform: translate(-50%, calc(-100% - 6px));
+			transform: translate(-50%, calc(-100% - 10px));
 		}
 	}
 

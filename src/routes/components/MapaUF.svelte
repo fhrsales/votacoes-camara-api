@@ -135,10 +135,10 @@
 	.uf-tip {
 		position: absolute;
 		left: 50%;
-		bottom: calc(100% + 8px);
+		bottom: calc(100% + 12px);
 		transform: translate(-50%, 4px);
-		padding: 5px 10px;
-		border-radius: 999px;
+		padding: calc(var(--grid) * 1) calc(var(--grid) * 1.6);
+		border-radius: 12px;
 		background: var(--color-dark);
 		color: var(--color-light);
 		font-size: var(--t-small);
@@ -146,6 +146,16 @@
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+	}
+
+	.uf-tip::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%);
+		border: 7px solid transparent;
+		border-top-color: var(--color-dark);
 	}
 
 	.uf:hover .uf-tip {

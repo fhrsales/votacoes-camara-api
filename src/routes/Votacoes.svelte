@@ -49,6 +49,7 @@
 	let legislaturasIndex = [];
 	let deputadosLegislatura = [];
 	let mostrarTabela = false;
+	let emails = {};
 
 	$: votosExibidos = votosComAusentes
 		.filter((voto) => (filtroVoto ? voto.tipoVoto === filtroVoto : true))
@@ -295,6 +296,13 @@
 			if (data?.generatedAt) ultimaAtualizacao = data.generatedAt;
 		} catch {
 			ultimaAtualizacao = '';
+		}
+
+		try {
+			const data = await fetchJson(`${DATA_BASE}/deputados/emails.json`);
+			emails = data?.emails ?? {};
+		} catch {
+			emails = {};
 		}
 
 		try {
@@ -822,9 +830,18 @@
 			<hr class="regua" />
 			<p class="ds-label">05 · Deputados</p>
 			<h2 class="sec-title">Voto a voto, nome a nome</h2>
-			<p class="sec-lead">{votosExibidos.length.toLocaleString('pt-BR')} deputados com os filtros atuais.</p>
+			<p class="sec-lead">
+				{votosExibidos.length.toLocaleString('pt-BR')} deputados com os filtros atuais. Use o
+				envelope ao lado de cada nome para escrever ao deputado sobre este voto: o e-mail já sai
+				endereçado, com a votação e o voto dele no texto.
+			</p>
 			{#if VotesTableComponent}
-				<svelte:component this={VotesTableComponent} votos={votosExibidos} />
+				<svelte:component
+					this={VotesTableComponent}
+					votos={votosExibidos}
+					{emails}
+					votacao={{ id: votacaoId, ementa: resumoTexto, descricao: descricaoAtual, data: fimTexto }}
+				/>
 			{/if}
 		</section>
 	</div>
@@ -947,14 +964,15 @@
 	}
 
 	.hero-title {
-		font-size: clamp(calc(var(--grid) * 6.5), 9vw, calc(var(--grid) * 13));
-		line-height: 0.95;
+		font-size: clamp(calc(var(--grid) * 5.5), 7vw, calc(var(--grid) * 11));
+		white-space: nowrap;
+		line-height: 1;
 		letter-spacing: -0.03em;
-		margin: 0 0 calc(var(--grid) * 3);
+		margin: calc(var(--grid) * 1.5) 0 calc(var(--grid) * 3);
 	}
 
 	.hero-lead {
-		font-size: calc(var(--grid) * 3);
+		font-size: calc(var(--grid) * 3.2);
 		font-weight: 300;
 		line-height: 1.45;
 		letter-spacing: -0.02em;
@@ -968,8 +986,8 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: calc(var(--grid) * 2) calc(var(--grid) * 4);
 		margin: 0 0 calc(var(--grid) * 4);
-		padding-top: calc(var(--grid) * 2);
-		border-top: 2px solid var(--color-dark);
+		padding-top: calc(var(--grid) * 4);
+		border-top: 1px solid var(--color-rule);
 	}
 
 	.hero-stats div {
@@ -1282,7 +1300,7 @@
 	}
 
 	.sec-title {
-		font-size: calc(var(--grid) * 3.4);
+		font-size: calc(var(--grid) * 4);
 		line-height: 1.12;
 		margin: 0 0 calc(var(--grid) * 1.5);
 		max-width: 760px;
@@ -1294,7 +1312,7 @@
 	}
 
 	.sec-lead {
-		font-size: var(--t-body);
+		font-size: var(--t-lead);
 		color: var(--color-text-muted);
 		max-width: var(--w-text);
 		margin: 0 0 calc(var(--grid) * 4);

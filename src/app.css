@@ -44,11 +44,12 @@
 	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 
 	/* Small type roles from the DS, in grid multiples */
-	--t-label: calc(var(--grid) * 1.5);
-	--t-caption: calc(var(--grid) * 1.7);
-	--t-control: calc(var(--grid) * 1.7);
-	--t-small: calc(var(--grid) * 1.6);
-	--t-body: calc(var(--grid) * 2);
+	--t-label: calc(var(--grid) * 1.6);
+	--t-caption: calc(var(--grid) * 1.9);
+	--t-control: calc(var(--grid) * 1.8);
+	--t-small: calc(var(--grid) * 1.8);
+	--t-body: calc(var(--grid) * 2.2);
+	--t-lead: calc(var(--grid) * 2.3);
 }
 
 *,

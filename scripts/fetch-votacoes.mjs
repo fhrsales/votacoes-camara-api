@@ -272,8 +272,26 @@ function sortByDataHoraDesc(a, b) {
   return bValue - aValue;
 }
 
+// Contact e-mails of the deputies currently in office (one request per run).
+async function atualizarEmails() {
+  try {
+    const deputados = await fetchAll(`${API_BASE}/deputados?itens=1000`, 'Falha ao listar deputados');
+    const emails = {};
+    for (const dep of deputados) {
+      if (dep?.id && dep?.email) emails[dep.id] = dep.email;
+    }
+    if (Object.keys(emails).length === 0) return;
+    const dir = path.join(DATA_DIR, 'deputados');
+    await mkdir(dir, { recursive: true });
+    await writeJson(path.join(dir, 'emails.json'), { emails });
+  } catch (error) {
+    console.warn('Falha ao atualizar e-mails:', error?.message ?? error);
+  }
+}
+
 async function main() {
   await ensureDirs();
+  if (process.env.VOTACOES_SKIP_EMAILS !== '1') await atualizarEmails();
   const useDays = DAYS > 0;
   const months = useDays ? [] : buildMonthsList();
   const days = useDays ? buildDaysList() : [];
@@ -448,7 +466,15 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+
+if (process.env.VOTACOES_ONLY_EMAILS === '1') {
+  ensureDirs()
+    .then(atualizarEmails)
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
+} else main().catch((error) => {
   console.error(error);
   process.exit(1);
 });

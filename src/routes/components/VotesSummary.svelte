@@ -543,9 +543,9 @@
 		transform: translate(-50%, -100%);
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 5px 12px;
-		border-radius: 999px;
+		gap: 10px;
+		padding: calc(var(--grid) * 1) calc(var(--grid) * 1.6);
+		border-radius: 12px;
 		background: var(--color-dark);
 		color: var(--color-light);
 		box-shadow: var(--shadow-2);
@@ -582,7 +582,7 @@
 		left: 50%;
 		top: 100%;
 		transform: translateX(-50%);
-		border: 6px solid transparent;
+		border: 7px solid transparent;
 		border-top-color: var(--color-dark);
 	}
 

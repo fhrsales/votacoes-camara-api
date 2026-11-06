@@ -135,8 +135,8 @@
 			label: item.label,
 			value: item.value,
 			tipo: item.tipo,
-			x: event.clientX - rect.left + 16,
-			y: event.clientY - rect.top + 16
+			x: event.clientX - rect.left,
+			y: event.clientY - rect.top
 		};
 	}
 
@@ -145,8 +145,8 @@
 		const rect = event.currentTarget.ownerSVGElement.getBoundingClientRect();
 		tooltip = {
 			...tooltip,
-			x: event.clientX - rect.left + 16,
-			y: event.clientY - rect.top + 16
+			x: event.clientX - rect.left,
+			y: event.clientY - rect.top
 		};
 	}
 
@@ -260,12 +260,24 @@
 		pointer-events: none;
 		background: var(--color-dark);
 		color: var(--color-light);
-		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 1.2);
-		border-radius: 12px;
+		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
+		border-radius: 14px;
 		box-shadow: var(--shadow-2);
 		font-size: var(--t-small);
+		white-space: nowrap;
+		transform: translate(-50%, calc(-100% - 16px));
 		z-index: 9999;
 		transition: opacity 180ms var(--ease);
+	}
+
+	.uva-tooltip::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%);
+		border: 7px solid transparent;
+		border-top-color: var(--color-dark);
 	}
 
 	.uva-tooltip hr {

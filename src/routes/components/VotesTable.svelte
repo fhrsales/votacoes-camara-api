@@ -3,6 +3,45 @@
 
   export let votos = [];
   export let onShowGraficos = () => {};
+  export let emails = {};
+  export let votacao = {};
+
+  function emailDe(dep) {
+    return emails?.[dep?.id] || dep?.email || '';
+  }
+
+  function corte(texto, n) {
+    const t = (texto || '').trim();
+    return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t;
+  }
+
+  function mailto(voto) {
+    const dep = voto.deputado_ || {};
+    const email = emailDe(dep);
+    if (!email) return '';
+    const tema = votacao?.ementa || votacao?.descricao || `votação ${votacao?.id || ''}`;
+    const assunto = `Sobre o seu voto: ${corte(tema, 90)}`;
+    const comoVotou =
+      voto.tipoVoto === 'Ausentes'
+        ? 'não há registro do seu voto'
+        : `o seu voto foi "${voto.tipoVoto}"`;
+    const corpo = [
+      `Prezado(a) deputado(a) ${dep.nome},`,
+      '',
+      `Na votação nominal de ${votacao?.data || 'plenário'}${votacao?.id ? ` (${votacao.id})` : ''}, sobre:`,
+      `"${corte(tema, 400)}"`,
+      votacao?.descricao ? `Resultado: ${votacao.descricao}` : '',
+      '',
+      `${comoVotou.charAt(0).toUpperCase()}${comoVotou.slice(1)}.`,
+      '',
+      '[Escreva aqui a sua mensagem]',
+      '',
+      'Atenciosamente,'
+    ]
+      .filter((linha, i, arr) => !(linha === '' && arr[i - 1] === ''))
+      .join('\n');
+    return `mailto:${email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+  }
   let expandido = false;
   const limiteInicial = 12;
 
@@ -26,6 +65,7 @@
           <th>Partido</th>
           <th>Estado</th>
           <th>Voto</th>
+          <th class="th-mail"><span class="sr">Escrever</span></th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +84,21 @@
               <span class={`badge badge--${votoClasse(voto.tipoVoto)}`}>
                 {voto.tipoVoto}
               </span>
+            </td>
+            <td data-label="Escrever" class="td-mail">
+              {#if mailto(voto)}
+                <a
+                  class="mail"
+                  href={mailto(voto)}
+                  aria-label={`Escrever para ${voto.deputado_.nome}`}
+                  title={`Escrever para ${voto.deputado_.nome}`}
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5.5" width="18" height="13" rx="2.5" />
+                    <path d="M4 7.5l8 6 8-6" />
+                  </svg>
+                </a>
+              {/if}
             </td>
           </tr>
         {/each}
@@ -76,7 +131,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: calc(var(--grid) * 1.9);
+    font-size: calc(var(--grid) * 2.1);
   }
 
   th {
@@ -124,6 +179,45 @@
     font-weight: 400;
     font-size: var(--t-small);
     color: var(--color-text-muted);
+  }
+
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .td-mail {
+    width: 56px;
+    text-align: right;
+  }
+
+  .mail {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--color-dark);
+    transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
+  }
+
+  .mail svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .mail:hover {
+    background: var(--color-dark);
+    color: var(--color-light);
+    transform: translateY(-2px) rotate(-6deg);
   }
 
   .empty {
