@@ -547,6 +547,17 @@
 		return venceu === 'Sim' ? 'Sim venceu' : 'Não venceu';
 	})();
 	$: desfechoPositivo = /^(aprovad|mantid)/i.test(desfecho) || desfecho === 'Sim venceu';
+	// The hero shows the first vote loaded and stays put: redrawing 513 circles off screen
+	// on every change of vote only made the page stutter
+	let votosHero = [];
+	let placarHero = { Sim: 0, Não: 0 };
+	let dataHero = '';
+	$: if (!votosHero.length && votosComAusentes.length && deputadosLegislatura.length) {
+		votosHero = votosComAusentes;
+		placarHero = { Sim: placar.Sim, Não: placar.Não };
+		const d = votosComAusentes[0]?.dataRegistroVoto;
+		dataHero = d ? format(d, "dd/MM/yy, 'às' HH:mm", { locale: ptBR }) : '';
+	}
 	$: filtrosAtivos = [filtroVoto, filtroPartido, filtroEstado, filtroNome].filter(Boolean);
 
 	function limparFiltros() {
@@ -592,15 +603,15 @@
 	</div>
 
 	<figure class="hero-plenario hero-in" style="--d:220ms">
-		<Hemiciclo votos={votosComAusentes} chave={`hero-${votacaoId}`} mini />
-		{#if presentes}
+		<Hemiciclo votos={votosHero} chave="hero" mini />
+		{#if votosHero.length}
 			<figcaption>
 				<span class="hero-placar">
-					<b style="color:var(--vote-sim)" use:countUp={placar.Sim}>0</b>
+					<b style="color:var(--vote-sim)" use:countUp={placarHero.Sim}>0</b>
 					<i>×</i>
-					<b style="color:var(--vote-nao)" use:countUp={placar.Não}>0</b>
+					<b style="color:var(--vote-nao)" use:countUp={placarHero.Não}>0</b>
 				</span>
-				<span>Última votação carregada · {fimTextoCurto}</span>
+				<span>Votação mais recente · {dataHero}</span>
 			</figcaption>
 		{/if}
 	</figure>
@@ -790,7 +801,7 @@
 		</section>
 
 		<div class="duas">
-			<section class="sec" use:reveal>
+			<section class="sec sec--leve" use:reveal>
 				<hr class="regua" />
 				<p class="ds-label">02 · Partidos</p>
 				<h2 class="sec-title">Do mais a favor ao mais contra</h2>
@@ -803,7 +814,7 @@
 				/>
 			</section>
 
-			<section class="sec" use:reveal={{ delay: 120 }}>
+			<section class="sec sec--leve" use:reveal={{ delay: 120 }}>
 				<hr class="regua" />
 				<p class="ds-label">03 · Estados</p>
 				<h2 class="sec-title">O voto pelo mapa</h2>
@@ -825,7 +836,7 @@
 			</section>
 		</div>
 
-		<section class="sec" use:reveal>
+		<section class="sec sec--leve" use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">04 · Bolhas</p>
 			<h2 class="sec-title">O peso de cada bancada</h2>
@@ -834,13 +845,30 @@
 				<BubbleChart title="Por estado" items={dadosPorEstado} layoutMode={layoutBolhas} />
 			</div>
 			<div class="acoes">
-				<Button size="small" on:click={() => (layoutBolhas = layoutBolhas === 'pack' ? 'stack' : 'pack')}>
-					{layoutBolhas === 'pack' ? 'Separar por voto' : 'Juntar de novo'}
-				</Button>
+				<div class="alternar" role="radiogroup" aria-label="Como agrupar as bolhas">
+					<button
+						type="button"
+						role="radio"
+						aria-checked={layoutBolhas === 'pack'}
+						class:ativo={layoutBolhas === 'pack'}
+						on:click={() => (layoutBolhas = 'pack')}
+					>
+						Tudo junto
+					</button>
+					<button
+						type="button"
+						role="radio"
+						aria-checked={layoutBolhas === 'stack'}
+						class:ativo={layoutBolhas === 'stack'}
+						on:click={() => (layoutBolhas = 'stack')}
+					>
+						Por tipo de voto
+					</button>
+				</div>
 			</div>
 		</section>
 
-		<section class="sec" use:reveal>
+		<section class="sec sec--leve" use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">05 · Deputados</p>
 			<h2 class="sec-title">Voto a voto, nome a nome</h2>
@@ -1182,6 +1210,12 @@
 		margin-top: calc(var(--grid) * 8);
 	}
 
+	/* Off-screen sections skip rendering work until they are near the viewport */
+	.sec--leve {
+		content-visibility: auto;
+		contain-intrinsic-size: auto 900px;
+	}
+
 	.sec--abre {
 		max-width: 875px;
 		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
@@ -1372,6 +1406,40 @@
 		display: flex;
 		justify-content: center;
 		margin-top: calc(var(--grid) * 2);
+	}
+
+	.alternar {
+		display: inline-flex;
+		padding: 3px;
+		border: 1px solid var(--color-rule);
+		border-radius: 999px;
+		background: var(--color-light);
+	}
+
+	.alternar button {
+		border: 0;
+		background: transparent;
+		color: var(--color-text-muted);
+		font: inherit;
+		font-size: var(--t-control);
+		font-weight: 500;
+		padding: calc(var(--grid) * 0.8) calc(var(--grid) * 1.8);
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease);
+	}
+
+	.alternar button:hover {
+		color: var(--color-dark);
+	}
+
+	.alternar .ativo {
+		background: var(--color-dark);
+		color: var(--color-light);
+	}
+
+	.alternar .ativo:hover {
+		color: var(--color-light);
 	}
 
 	.vazio {

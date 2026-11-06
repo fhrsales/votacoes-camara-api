@@ -1,8 +1,6 @@
 <script>
 	import { hierarchy, pack } from 'd3';
-	import { flip } from 'svelte/animate';
 	import { portal } from '$lib/motion.js';
-	import { cubicOut } from 'svelte/easing';
 
 	export let title = '';
 	export let items = [];
@@ -183,8 +181,8 @@
 			<svg viewBox={`0 0 ${size} ${size}`} style="width: 100%; height: 100%;">
 				{#each layoutRender as node (node.label + '-' + node.tipo)}
 					<g
-						transform={`translate(${node.x}, ${node.y})`}
-						animate:flip={{ duration: 600, easing: cubicOut }}
+						class:bolha={true}
+						style={`transform: translate(${node.x.toFixed(1)}px, ${node.y.toFixed(1)}px)`}
 						class={hoveredKey && hoveredKey !== `${node.label}-${node.tipo}` ? 'is-dimmed' : ''}
 						on:mouseenter={(e) => showTooltip(e, node)}
 						on:mousemove={moveTooltip}
@@ -370,8 +368,9 @@
 		transition: r 600ms var(--ease), transform 600ms var(--ease), opacity 180ms var(--ease);
 	}
 
-	g {
-		transition: opacity 180ms var(--ease);
+	/* Moving bubbles by CSS transform: no layout reads per bubble, unlike animate:flip */
+	.bolha {
+		transition: transform 600ms var(--ease), opacity 180ms var(--ease);
 	}
 
 	.is-dimmed {

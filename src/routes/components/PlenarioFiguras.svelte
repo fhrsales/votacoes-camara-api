@@ -190,14 +190,23 @@
 		return 1 - Math.pow(1 - t, 3);
 	}
 
-	function pintarPessoa(c, f, x, y, u, k, opac) {
-		// x, y: feet position in device pixels; u: drawing units per silhouette unit
-		c.setTransform(u * k, 0, 0, u * k, x - 20 * u * k, y - 99.6 * u * k);
-		c.globalAlpha = opac;
-		const lista = caminhos[f.variante];
-		const tipo = f.voto.tipoVoto;
+	// Each silhouette x vote style is drawn once into a small bitmap; every frame then just
+	// stamps 513 bitmaps, instead of stroking and filling ~7,000 vector paths.
+	const SPRITE_ESCALA = 2.4; // sprite pixels per silhouette unit (sharp up to ~170px tall)
+	const SPRITE_MARGEM = 8;
+	let sprites = new Map();
+
+	function sprite(variante, tipo, emFoco) {
+		const chave = `${variante}|${tipo}|${emFoco ? 1 : 0}`;
+		let img = sprites.get(chave);
+		if (img) return img;
+		img = document.createElement('canvas');
+		img.width = Math.ceil(40 * SPRITE_ESCALA + SPRITE_MARGEM * 2);
+		img.height = Math.ceil(100 * SPRITE_ESCALA + SPRITE_MARGEM * 2);
+		const c = img.getContext('2d');
+		c.setTransform(SPRITE_ESCALA, 0, 0, SPRITE_ESCALA, SPRITE_MARGEM, SPRITE_MARGEM);
+		const lista = caminhos[variante];
 		const vazado = tipo === 'Ausentes' || tipo === 'Obstrução';
-		const emFoco = hover === f.voto;
 		// paper halo keeps overlapping people apart, without seams inside one person
 		c.lineJoin = 'round';
 		c.lineWidth = 5;
@@ -212,6 +221,23 @@
 			c.fillStyle = emFoco ? cores.ambar : cores[tipo];
 		}
 		for (const p of lista) c.fill(p);
+		sprites.set(chave, img);
+		return img;
+	}
+
+	function pintarPessoa(c, f, x, y, u, k, opac) {
+		// x, y: feet position in device pixels; u: drawing units per silhouette unit
+		if (opac <= 0.005) return;
+		const img = sprite(f.variante, f.voto.tipoVoto, hover === f.voto);
+		const fator = (u * k) / SPRITE_ESCALA;
+		c.globalAlpha = opac;
+		c.drawImage(
+			img,
+			x - (20 * SPRITE_ESCALA + SPRITE_MARGEM) * fator,
+			y - (99.6 * SPRITE_ESCALA + SPRITE_MARGEM) * fator,
+			img.width * fator,
+			img.height * fator
+		);
 	}
 
 	function abrirCamada() {
@@ -253,6 +279,7 @@
 
 		ctx.setTransform(1, 0, 0, 1, 0, 0);
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.imageSmoothingQuality = 'high';
 
 		if (chegando) {
 			// Walk in across the whole window, from outside it, onto the chamber
@@ -265,6 +292,7 @@
 			}
 			ctxCamada.setTransform(1, 0, 0, 1, 0, 0);
 			ctxCamada.clearRect(0, 0, camada.width, camada.height);
+			ctxCamada.imageSmoothingQuality = 'high';
 			const caixa = canvas.getBoundingClientRect();
 			for (const f of figuras) {
 				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / DURACAO));
