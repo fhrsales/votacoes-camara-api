@@ -16,12 +16,6 @@
   });
 </script>
 
-<svelte:head>
-  <title>Voto a voto — como votaram deputados e senadores</title>
-  <meta
-    name="description"
-    content="Votações nominais da Câmara dos Deputados e do Senado Federal: o resultado de cada votação e como cada parlamentar votou."
-  />
-</svelte:head>
+
 
 <slot />

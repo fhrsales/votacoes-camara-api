@@ -2,7 +2,9 @@
 <html lang="pt-BR">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" type="image/png" sizes="64x64" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<!-- Load Google Fonts without render-blocking: preload + media swap -->
@@ -25,6 +27,23 @@
 		</noscript>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#ffffff" />
+		<title>Voto a voto — como votaram deputados e senadores</title>
+		<meta name="description" content="Votações nominais da Câmara dos Deputados e do Senado Federal: o resultado de cada votação e como cada parlamentar votou, com dados oficiais atualizados todos os dias." />
+		<link rel="canonical" href="https://fhrsales.github.io/votacoes-camara-api/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:site_name" content="Voto a voto" />
+		<meta property="og:title" content="Voto a voto — como votaram deputados e senadores" />
+		<meta property="og:description" content="Cada votação nominal da Câmara e do Senado, parlamentar por parlamentar. Dados oficiais, atualizados todos os dias." />
+		<meta property="og:url" content="https://fhrsales.github.io/votacoes-camara-api/" />
+		<meta property="og:image" content="https://fhrsales.github.io/votacoes-camara-api/og.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Voto a voto: plenário em pontos com o resultado de uma votação, Câmara e Senado" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Voto a voto — como votaram deputados e senadores" />
+		<meta name="twitter:description" content="Cada votação nominal da Câmara e do Senado, parlamentar por parlamentar." />
+		<meta name="twitter:image" content="https://fhrsales.github.io/votacoes-camara-api/og.png" />
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
