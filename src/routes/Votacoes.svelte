@@ -772,7 +772,7 @@
 		<section class="sec" use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">01 · Plenário</p>
-			<h2 class="sec-title">O plenário, cadeira por cadeira</h2>
+			<h2 class="sec-title">O plenário, deputado a deputado</h2>
 			<p class="sec-lead">Cada figura é um deputado ou uma deputada, no lugar do seu voto. Toque ou passe o cursor para ver quem é; o clique filtra a página.</p>
 			<div class="figura">
 				<PlenarioFiguras
