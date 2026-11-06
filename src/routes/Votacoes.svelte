@@ -1232,7 +1232,7 @@
 
 	.kpi-split i {
 		display: block;
-		border-radius: 2px;
+		border-radius: 999px;
 		transform-origin: left;
 		animation: draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards 200ms;
 	}

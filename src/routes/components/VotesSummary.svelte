@@ -172,9 +172,14 @@
 				<b>{tooltipValor}</b>
 				{#if totalBase}<span class="tip-pct">{Math.round((Number(tooltipValor) / totalBase) * 100)}%</span>{/if}
 			</div>
+			<div class="stacked-row">
+			<button type="button" class="stacked-end stacked-end--sim" on:click={() => solicitarFiltro('Sim')}>
+				<b>{resumoSafe.sim}</b><span>sim</span>
+			</button>
 			<div class="stacked-bar">
 				<div
 					class="segment segment--sim"
+					class:segment--vazio={!resumoSafe.sim}
 					class:segment--active={filtroVoto === 'Sim'}
 					class:segment--hide={labelOculto(resumoSafe.sim, totalBase)}
 					class:segment--dimmed={hoverTipo && hoverTipo !== 'Sim'}
@@ -189,10 +194,10 @@
 					style={`width: ${larguras.sim}%`}
 					tabindex="0"
 				>
-					<span class="segment-count">{resumoSafe.sim}</span>
 				</div>
 				<div
 					class="segment segment--abstencao"
+					class:segment--vazio={!resumoSafe.abstencao}
 					class:segment--active={filtroVoto === 'Abstenção'}
 					class:segment--hide={labelOculto(resumoSafe.abstencao, totalBase)}
 					class:segment--dimmed={hoverTipo && hoverTipo !== 'Abstenção'}
@@ -207,10 +212,10 @@
 					style={`width: ${larguras.abstencao}%`}
 					tabindex="0"
 				>
-					<span class="segment-count">{resumoSafe.abstencao}</span>
 				</div>
 				<div
 					class="segment segment--obstrucao"
+					class:segment--vazio={!resumoSafe.obstrucao}
 					class:segment--active={filtroVoto === 'Obstrução'}
 					class:segment--hide={labelOculto(resumoSafe.obstrucao, totalBase)}
 					class:segment--dimmed={hoverTipo && hoverTipo !== 'Obstrução'}
@@ -225,10 +230,10 @@
 					style={`width: ${larguras.obstrucao}%`}
 					tabindex="0"
 				>
-					<span class="segment-count">{resumoSafe.obstrucao}</span>
 				</div>
 				<div
 					class="segment segment--ausentes"
+					class:segment--vazio={!resumoSafe.ausentes}
 					class:segment--active={filtroVoto === 'Ausentes'}
 					class:segment--hide={labelOculto(resumoSafe.ausentes, totalBase)}
 					class:segment--dimmed={hoverTipo && hoverTipo !== 'Ausentes'}
@@ -243,10 +248,10 @@
 					style={`width: ${larguras.ausentes}%`}
 					tabindex="0"
 				>
-					<span class="segment-count">{resumoSafe.ausentes}</span>
 				</div>
 				<div
 					class="segment segment--nao"
+					class:segment--vazio={!resumoSafe.nao}
 					class:segment--active={filtroVoto === 'Não'}
 					class:segment--hide={labelOculto(resumoSafe.nao, totalBase)}
 					class:segment--dimmed={hoverTipo && hoverTipo !== 'Não'}
@@ -261,8 +266,11 @@
 					style={`width: ${larguras.nao}%`}
 					tabindex="0"
 				>
-					<span class="segment-count">{resumoSafe.nao}</span>
 				</div>
+			</div>
+			<button type="button" class="stacked-end stacked-end--nao" on:click={() => solicitarFiltro('Não')}>
+				<b>{resumoSafe.nao}</b><span>não</span>
+			</button>
 			</div>
 		</div>
 	{/if}
@@ -412,10 +420,55 @@
 		margin-bottom: calc(var(--grid) * 1.2);
 	}
 
+	.stacked-row {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: calc(var(--grid) * 1.4);
+	}
+
+	.stacked-end {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 5px;
+		border: 0;
+		background: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		transition: transform 180ms var(--ease);
+	}
+
+	.stacked-end:hover {
+		transform: translateY(-1px);
+	}
+
+	.stacked-end b {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: calc(var(--grid) * 3);
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.stacked-end span {
+		font-size: var(--t-small);
+		font-weight: 600;
+	}
+
+	.stacked-end--sim {
+		color: var(--vote-sim);
+	}
+
+	.stacked-end--nao {
+		color: var(--vote-nao);
+		flex-direction: row-reverse;
+	}
+
 	.stacked-bar {
 		display: flex;
-		gap: 2px;
-		height: calc(var(--grid) * 3.2);
+		gap: 3px;
+		height: calc(var(--grid) * 1.6);
 	}
 
 	.segment {
@@ -423,7 +476,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-		padding-left: 8px;
 		color: #fff;
 		font-size: var(--t-small);
 		font-weight: 600;
@@ -432,19 +484,22 @@
 		overflow: hidden;
 		transform-origin: left center;
 		animation: stacked-grow 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
-		transition: width 360ms var(--ease), opacity 180ms var(--ease), filter 180ms var(--ease);
+		transition: width 360ms var(--ease), opacity 180ms var(--ease), filter 180ms var(--ease),
+			transform 180ms var(--ease);
 	}
 
-	.segment:first-child {
-		border-radius: 3px 0 0 3px;
-	}
-
-	.segment:last-child {
-		border-radius: 0 3px 3px 0;
+	.segment {
+		border-radius: 999px;
+		min-width: 0;
 	}
 
 	.segment:hover {
 		filter: brightness(1.08);
+		transform: scaleY(1.3);
+	}
+
+	.segment--vazio {
+		display: none;
 	}
 
 	.segment--dimmed {
@@ -458,12 +513,9 @@
 	}
 
 	.segment--active {
-		box-shadow: inset 0 -4px 0 var(--color-dark);
+		transform: scaleY(1.45);
 	}
 
-	.segment--hide .segment-count {
-		display: none;
-	}
 
 	.segment--sim {
 		background: var(--vote-sim);
@@ -471,8 +523,6 @@
 
 	.segment--nao {
 		background: var(--vote-nao);
-		justify-content: flex-end;
-		padding: 0 8px 0 0;
 	}
 
 	.segment--abstencao {

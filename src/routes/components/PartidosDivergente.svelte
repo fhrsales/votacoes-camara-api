@@ -131,7 +131,7 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		height: calc(var(--grid) * 2.2);
+		height: calc(var(--grid) * 1.8);
 	}
 
 	.div-track::after {
@@ -146,6 +146,7 @@
 
 	.div-side {
 		display: flex;
+		gap: 2px;
 		height: 100%;
 		animation: grow 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 		animation-delay: calc(var(--i) * 28ms);
@@ -163,6 +164,7 @@
 	.seg {
 		display: block;
 		height: 100%;
+		border-radius: 999px;
 		transition: width 360ms var(--ease);
 	}
 
