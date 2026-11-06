@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import { countUp } from '$lib/motion.js';
+	import { countUp, portal } from '$lib/motion.js';
 	import { COR, TIPOS, contar } from '$lib/votos.js';
 
 	/** Every seat: registered votes plus absentees, one entry per deputy. */
@@ -15,18 +15,17 @@
 
 	const dispatch = createEventDispatcher();
 	const CADEIRAS = 513;
-	const FILEIRAS = 12;
-	const R0 = 0.4;
-	// A floor plane seen in perspective: the chamber is a half disc on it, its open side
-	// toward the viewer. Near people are big and low, far ones small and high.
+	// A floor plane seen in perspective. Each vote is a loose crowd standing on it, side by
+	// side; near people are big and low, far ones small and high.
 	const LARGURA = 1000;
 	const CENTRO_X = 500;
 	const CHAO_Y = 560; // where the nearest feet stand
-	const HORIZONTE_Y = 120; // where the plane would vanish
-	const RAIO_X = 405; // x 1.18 at the front corners keeps everyone inside the 1000 width
-	const PERTO = 1.1; // distance from the eye to the front corners
-	const FUNDO = 1.5; // extra distance to the back of the chamber
-	const FIG_ALTURA = 64; // height of a person at the front
+	const HORIZONTE_Y = 90; // where the plane would vanish
+	const MEIA_LARGURA = 470; // half the floor width at the front, in drawing units
+	const PERTO = 1.0; // distance from the eye to the front of the crowd
+	const FUNDO = 1.35; // how fast things shrink with depth
+	const OURO = Math.PI * (3 - Math.sqrt(5)); // golden angle, for an even organic spread
+	const FIG_ALTURA = 74; // height of a person at the front
 	const VARIANTES_H = ['pf-h1', 'pf-h2'];
 	const VARIANTES_M = ['pf-m1', 'pf-m2'];
 
@@ -51,70 +50,86 @@
 		});
 	})();
 
-	function geometria(n) {
-		if (!n) return [];
-		const raios = Array.from({ length: FILEIRAS }, (_, i) => R0 + ((1 - R0) * i) / (FILEIRAS - 1));
-		const soma = raios.reduce((a, b) => a + b, 0);
-		const porFileira = raios.map((r) => Math.max(1, Math.round((n * r) / soma)));
-		let diff = n - porFileira.reduce((a, b) => a + b, 0);
-		for (let i = FILEIRAS - 1; diff !== 0; i = (i - 1 + FILEIRAS) % FILEIRAS) {
-			porFileira[i] += Math.sign(diff);
-			diff -= Math.sign(diff);
+	// Lay the groups side by side on the floor and spread each one like a sunflower head:
+	// even density, no rows, no arc. Inside a group people are sorted by party, so parties
+	// stand together too.
+	function montar(lista) {
+		const grupos = TIPOS.map((tipo) => ({
+			tipo,
+			pessoas: lista.filter((v) => v.tipoVoto === tipo)
+		})).filter((g) => g.pessoas.length);
+		const folga = 0.1; // gap between groups, in floor units
+		const largura = 2; // floor width, x from -1 to 1
+		const SX = 1.35; // groups are wider than deep: a crowd spread along the floor
+		const SZ = 0.6;
+		// Group radius grows with the square root of its size; solve for the spacing
+		const somaRaiz = grupos.reduce((a, g) => a + Math.sqrt(g.pessoas.length), 0);
+		const c = (largura - folga * (grupos.length - 1)) / (2 * SX * somaRaiz);
+		let cursor = -1;
+		const saida = [];
+		const rotulos = [];
+		for (const g of grupos) {
+			const raio = c * Math.sqrt(g.pessoas.length);
+			const cx = cursor + raio * SX;
+			const cz = raio * SZ + 0.03;
+			cursor += raio * SX * 2 + folga;
+			g.pessoas.forEach((voto, k) => {
+				const id = Number(voto.deputado_?.id) || k;
+				const rr = c * Math.sqrt(k + 0.5) * (0.96 + ruido(id, 4) * 0.08);
+				const th = k * OURO + ruido(id, 5) * 0.35;
+				saida.push({
+					voto,
+					x: cx + rr * Math.cos(th) * SX,
+					z: Math.max(0, cz + rr * Math.sin(th) * SZ),
+					grupo: g.tipo
+				});
+			});
+			rotulos.push({ tipo: g.tipo, n: g.pessoas.length, x: cx });
 		}
-		const pontos = [];
-		raios.forEach((r, fileira) => {
-			const k = porFileira[fileira];
-			for (let j = 0; j < k; j += 1) {
-				// Odd rows sit half a seat over, and everyone is nudged a little off the grid
-				const n0 = pontos.length;
-				const passo = 1 / Math.max(1, k - 1);
-				let t = k === 1 ? 0.5 : fileira % 2 ? (j + 0.5) / k : j / (k - 1);
-				t += (ruido(n0, 1) - 0.5) * passo * 0.5;
-				t = Math.min(1, Math.max(0, t));
-				const ang = Math.PI - Math.PI * t;
-				const rr = r + (ruido(n0, 2) - 0.5) * ((1 - R0) / (FILEIRAS - 1)) * 0.55;
-				pontos.push({ ang, r: rr, fileira, n0 });
-			}
-		});
-		// Order by angle so votes fill the chamber from left to right
-		return pontos.sort((a, b) => b.ang - a.ang || a.r - b.r);
+		return { saida, rotulos };
 	}
 
 	// True perspective on the floor plane: size and height both follow 1 / distance
-	function projetar(p) {
-		const x = Math.cos(p.ang) * p.r;
-		const prof = Math.sin(p.ang) * p.r; // 0 at the front corners, 1 at the back centre
-		const escala = PERTO / (PERTO + prof * FUNDO);
+	function projetar(x, z) {
+		const escala = PERTO / (PERTO + z * FUNDO);
 		return {
-			x: CENTRO_X + x * RAIO_X * escala * 1.18,
+			x: CENTRO_X + x * MEIA_LARGURA * escala,
 			y: HORIZONTE_Y + (CHAO_Y - HORIZONTE_Y) * escala,
-			escala,
-			prof
+			escala
 		};
 	}
 
-	$: pontos = geometria(ordenados.length);
-	$: figuras = ordenados
-		.map((voto, i) => {
-			const p = pontos[i];
-			const q = projetar(p);
+	$: montagem = montar(ordenados);
+	$: figuras = montagem.saida
+		.map((p) => {
+			const { voto } = p;
+			const q = projetar(p.x, p.z);
 			const mulher = mulheres.has(voto.deputado_?.id);
-			const id = Number(voto.deputado_?.id) || i;
+			const id = Number(voto.deputado_?.id) || 0;
 			const lista = mulher ? VARIANTES_M : VARIANTES_H;
+			const altura = FIG_ALTURA * q.escala * (0.94 + ruido(id, 3) * 0.1);
+			// Everyone walks in from the front edge, spread along it, then takes their place
+			const entradaX = CENTRO_X + (ruido(id, 6) - 0.5) * LARGURA * 1.1;
+			const entradaY = CHAO_Y + 90 + ruido(id, 7) * 60;
+			const entradaEscala = (FIG_ALTURA * 1.15) / 100;
 			return {
 				voto,
 				...q,
-				mulher,
+				z: p.z,
+				altura,
 				variante: lista[id % lista.length],
-				altura: FIG_ALTURA * q.escala * (0.94 + ruido(id, 3) * 0.1),
-				atraso: Math.round(((Math.PI - p.ang) / Math.PI) * 700 + p.fileira * 20)
+				para: `translate(${q.x.toFixed(1)}px, ${q.y.toFixed(1)}px) scale(${(altura / 100).toFixed(4)})`,
+				de: `translate(${entradaX.toFixed(1)}px, ${entradaY.toFixed(1)}px) scale(${entradaEscala.toFixed(4)})`,
+				atraso: Math.round(ruido(id, 8) * 900 + (1 - q.escala) * 500)
 			};
 		})
 		// Paint from the back to the front so nearer people overlap those behind
-		.sort((a, b) => b.prof - a.prof);
+		.sort((a, b) => b.z - a.z);
+	$: rotulos = montagem.rotulos.map((r) => ({ ...r, ...projetar(r.x, 0) }));
 	$: c = contar(ordenados);
 	$: resultado = c.Sim >= c.Não ? 'Sim' : 'Não';
 	$: topo = Math.min(...figuras.map((f) => f.y - f.altura), CHAO_Y) - 10;
+	const RODAPE = 46;
 
 	function apagada(v, filtroVoto, filtroEstado, filtroPartido, filtroNome) {
 		if (filtroVoto && v.tipoVoto !== filtroVoto) return true;
@@ -129,12 +144,16 @@
 		mover(event);
 	}
 
+	// The tooltip lives on <body> with fixed position, above the sticky bar and everything else.
+	// Near the top of the window it opens below the cursor instead.
 	function mover(event) {
-		if (!wrapEl) return;
-		const caixa = wrapEl.getBoundingClientRect();
-		const x = (event.clientX ?? caixa.left + caixa.width / 2) - caixa.left;
-		const y = (event.clientY ?? caixa.top) - caixa.top;
-		tip = { x: Math.min(Math.max(x, 130), caixa.width - 130), y };
+		const x = event.clientX ?? window.innerWidth / 2;
+		const y = event.clientY ?? 0;
+		tip = {
+			x: Math.min(Math.max(x, 140), window.innerWidth - 140),
+			y,
+			baixo: y < 230
+		};
 	}
 </script>
 
@@ -142,64 +161,67 @@
 	<div class="pf-stage" bind:this={wrapEl} on:mouseleave={() => (hover = null)}>
 		{#key chave}
 			<svg
-				viewBox={`0 ${topo} ${LARGURA} ${CHAO_Y + 14 - topo}`}
+				viewBox={`0 ${topo} ${LARGURA} ${CHAO_Y + RODAPE - topo}`}
 				role="img"
 				aria-label={`Plenário: ${c.Sim} sim, ${c.Não} não, ${c.Abstenção} abstenções, ${c.Obstrução} obstruções, ${c.Ausentes} ausentes`}
 			>
 				<defs>
 					<!-- Standing politicians, 40 x 100, feet at the bottom centre. Drawn for this page. -->
 					<g id="pf-h1">
-						<path d="M20 1.6C24.2 1.6 26.6 4.6 26.3 8.8C26 12.8 23.6 15.8 20 15.8C16.4 15.8 14 12.8 13.7 8.8C13.4 4.6 15.8 1.6 20 1.6Z" />
-						<path d="M17.4 14.6H22.6V19.4H17.4Z" />
-						<path d="M12 19.4L17.4 18L20 23L22.6 18L28 19.4C29.8 19.9 30.4 21.2 30.4 23.2L29.4 58.4L27.2 97.4C27.2 98.8 26.2 99.4 24.4 99.4H21.2L20.6 62.6H19.4L18.8 99.4H15.6C13.8 99.4 12.8 98.8 12.8 97.4L10.6 58.4L9.6 23.2C9.6 21.2 10.2 19.9 12 19.4Z" />
-						<path d="M9 20.8C7.1 21.3 6.2 22.7 6.1 24.8L5.1 52C5 54 5.8 55.6 7.3 55.6C8.6 55.6 9.3 54.6 9.4 53L9.9 31Z" />
-						<path d="M31 20.8C32.9 21.3 33.8 22.7 33.9 24.8L34.9 52C35 54 34.2 55.6 32.7 55.6C31.4 55.6 30.7 54.6 30.6 53L30.1 31Z" />
+						<path d="M20 0.9C22.9 0.9 24.5 3.3 24.4 6.5C24.3 9.8 22.6 12.4 20 12.4C17.4 12.4 15.7 9.8 15.6 6.5C15.5 3.3 17.1 0.9 20 0.9Z" />
+						<path d="M18.1 11H21.9L22.2 19H17.8Z" />
+						<path d="M17.8 14.6L20 18.6L22.2 14.6C25 15.2 28.6 15.6 30.6 16.8C31.8 17.6 32.2 19 32 21L30.6 32C30 36 28.2 39 27.6 42L27.8 54.6H12.2L12.4 42C11.8 39 10 36 9.4 32L8 21C7.8 19 8.2 17.6 9.4 16.8C11.4 15.6 15 15.2 17.8 14.6Z" />
+						<path d="M8.3 17.3C6.6 18.1 6 19.9 6.1 22.5L6.6 37L6.9 50.2C6.9 52.6 7.4 54.8 8.6 55.8C9.8 56.6 10.8 55.6 10.6 53.6L10.5 50L10.6 37L11 26Z" />
+						<path d="M 31.7 17.3 C 33.4 18.1 34 19.9 33.9 22.5 L 33.4 37 L 33.1 50.2 C 33.1 52.6 32.6 54.8 31.4 55.8 C 30.2 56.6 29.2 55.6 29.4 53.6 L 29.5 50 L 29.4 37 L 29 26Z" />
+						<path d="M12.4 54.2H19.6L19.3 58.6L18.5 74.4L18.1 95.4L18.5 97.4C18.7 98.9 17.7 99.6 15.4 99.6H12.2C11.4 99.6 11.3 98.8 12.1 98.2L14.5 96.4L14.3 74.4L12.7 60Z" />
+						<path d="M 27.6 54.2 H 20.4 L 20.7 58.6 L 21.5 74.4 L 21.9 95.4 L 21.5 97.4 C 21.3 98.9 22.3 99.6 24.6 99.6 H 27.8 C 28.6 99.6 28.7 98.8 27.9 98.2 L 25.5 96.4 L 25.7 74.4 L 27.3 60Z" />
 					</g>
 					<g id="pf-h2">
-						<path d="M20 1.4C24.4 1.4 26.8 4.4 26.5 8.8C26.2 12.8 23.8 15.8 20 15.8C16.2 15.8 13.8 12.8 13.5 8.8C13.2 4.4 15.6 1.4 20 1.4Z" />
-						<path d="M17.4 14.6H22.6V19.4H17.4Z" />
-						<path d="M11.6 19.4L17.4 18L20 23L22.6 18L28.4 19.4C30.4 19.9 31 21.2 31 23.4L29.8 58.4L27.6 97.4C27.6 98.8 26.6 99.4 24.8 99.4H21.2L20.6 62.6H19.4L18.8 99.4H15.2C13.4 99.4 12.4 98.8 12.4 97.4L10.2 58.4L9 23.4C9 21.2 9.6 19.9 11.6 19.4Z" />
-						<path d="M8.8 20.9C6.8 21.5 5.9 23 5.9 25.2L5.8 40.4C5.8 43.4 7.2 45.4 9.8 47.2L17.4 52.6C18.8 53.6 20.6 53.2 21 51.8C21.3 50.5 20.4 49.6 19.4 49L11.6 43.2L10.4 31Z" />
-						<path d="M31.2 20.9C33.2 21.5 34.1 23 34.1 25.2L34.2 40.4C34.2 43.4 32.8 45.4 30.2 47.2L22.6 52.6C21.2 53.6 19.4 53.2 19 51.8C18.7 50.5 19.6 49.6 20.6 49L28.4 43.2L29.6 31Z" />
+						<path d="M20 0.9C22.9 0.9 24.5 3.3 24.4 6.5C24.3 9.8 22.6 12.4 20 12.4C17.4 12.4 15.7 9.8 15.6 6.5C15.5 3.3 17.1 0.9 20 0.9Z" />
+						<path d="M18.1 11H21.9L22.2 19H17.8Z" />
+						<path d="M17.8 14.6L20 18.6L22.2 14.6C25 15.2 28.6 15.6 30.6 16.8C31.8 17.6 32.2 19 32 21L30.6 32C30 36 28.2 39 27.6 42L27.8 54.6H12.2L12.4 42C11.8 39 10 36 9.4 32L8 21C7.8 19 8.2 17.6 9.4 16.8C11.4 15.6 15 15.2 17.8 14.6Z" />
+						<path d="M8.3 17.3C6.6 18.1 5.8 19.9 5.6 22.5L4.9 37L4.5 50.2C4.4 52.6 4.9 54.8 6.1 55.8C7.3 56.6 8.3 55.6 8.2 53.6L8.4 50L9.5 37L11 26Z" />
+						<path d="M 31.7 17.3 C 33.4 18.1 34.2 19.9 34.4 22.5 L 35.1 37 L 35.5 50.2 C 35.6 52.6 35.1 54.8 33.9 55.8 C 32.7 56.6 31.7 55.6 31.8 53.6 L 31.6 50 L 30.5 37 L 29 26Z" />
+						<path d="M12.4 54.2H19.6L19 58.6L17.3 74.4L16.2 95.4L16.6 97.4C16.8 98.9 15.8 99.6 13.5 99.6H10.3C9.5 99.6 9.4 98.8 10.2 98.2L12.6 96.4L13.1 74.4L12.7 60Z" />
+						<path d="M 27.6 54.2 H 20.4 L 21 58.6 L 22.7 74.4 L 23.8 95.4 L 23.4 97.4 C 23.2 98.9 24.2 99.6 26.5 99.6 H 29.7 C 30.5 99.6 30.6 98.8 29.8 98.2 L 27.4 96.4 L 26.9 74.4 L 27.3 60Z" />
 					</g>
 					<g id="pf-m1">
-						<path d="M20 1.4C25.6 1.4 27.6 5.6 27.2 10.2L27.8 18.8C25.6 20.2 22.8 20.6 20 20.6C17.2 20.6 14.4 20.2 12.2 18.8L12.8 10.2C12.4 5.6 14.4 1.4 20 1.4Z" />
-						<path d="M13.2 20.6L17.6 19.4L20 22.6L22.4 19.4L26.8 20.6C28.4 21 29 22.2 29 24.2L28 40C27.8 42 27.4 44 27.6 46L30.4 69C30.6 70.4 29.6 71 28.2 71H11.8C10.4 71 9.4 70.4 9.6 69L12.4 46C12.6 44 12.2 42 12 40L11 24.2C11 22.2 11.6 21 13.2 20.6Z" />
-						<path d="M14.4 70H18.4L17.8 94.6L18.8 97.2C19.2 98.6 18.4 99.4 16.6 99.4H15.2C14.2 99.4 13.9 98.8 14.4 98L15.4 94.6Z" />
-						<path d="M21.6 70H25.6L24.6 94.6L25.6 98C26.1 98.8 25.8 99.4 24.8 99.4H23.4C21.6 99.4 20.8 98.6 21.2 97.2L22.2 94.6Z" />
-						<path d="M11.4 21.6C9.6 22.2 8.8 23.6 8.8 25.6L8.3 50.8C8.2 52.7 8.9 54 10.1 54C11.2 54 11.7 53.1 11.8 51.8L12.1 30Z" />
-						<path d="M28.6 21.6C30.4 22.2 31.2 23.6 31.2 25.6L31.7 50.8C31.8 52.7 31.1 54 29.9 54C28.8 54 28.3 53.1 28.2 51.8L27.9 30Z" />
+						<path d="M20 0.8C24.4 0.8 25.9 4 25.5 8.2L25.9 15.2C24 16.3 22 16.5 20 16.5C18 16.5 16 16.3 14.1 15.2L14.5 8.2C14.1 4 15.6 0.8 20 0.8Z" />
+						<path d="M18.4 12H21.6L21.8 19.2H18.2Z" />
+						<path d="M17.8 15.8L20 18.8L22.2 15.8C24.4 16.3 27 16.6 28.5 17.5C29.6 18.2 30 19.6 29.8 21.6L28.8 31C28.3 35 26.6 38 26.3 41C26.7 44.6 27.8 47.6 27.9 51L27.3 72.4H12.7L12.1 51C12.2 47.6 13.3 44.6 13.7 41C13.4 38 11.7 35 11.2 31L10.2 21.6C10 19.6 10.4 18.2 11.5 17.5C13 16.6 15.6 16.3 17.8 15.8Z" />
+						<path d="M10.6 17.8C9.2 18.6 8.7 20.2 8.8 22.6L9.2 36L9.6 49C9.6 51.2 10.1 53 11.1 53.8C12.1 54.4 12.9 53.6 12.8 51.8L12.7 48L12.9 36L13.1 26Z" />
+						<path d="M 29.4 17.8 C 30.8 18.6 31.3 20.2 31.2 22.6 L 30.8 36 L 30.4 49 C 30.4 51.2 29.9 53 28.9 53.8 C 27.9 54.4 27.1 53.6 27.2 51.8 L 27.3 48 L 27.1 36 L 26.9 26Z" />
+						<path d="M14.6 71.6H18.6L18.1 80L17.7 94.2L18.5 97.4C18.7 98.7 17.9 99.5 16.5 99.5H15.5C14.7 99.5 14.5 98.9 15 98.3L15.5 94.2L14.9 80Z" />
+						<path d="M 25.4 71.6 H 21.4 L 21.9 80 L 22.3 94.2 L 21.5 97.4 C 21.3 98.7 22.1 99.5 23.5 99.5 H 24.5 C 25.3 99.5 25.5 98.9 25 98.3 L 24.5 94.2 L 25.1 80Z" />
 					</g>
 					<g id="pf-m2">
-						<circle cx="20" cy="3.6" r="3.4" />
-						<path d="M20 4.2C24 4.2 26 7 25.8 10.6C25.6 14.2 23.4 16.6 20 16.6C16.6 16.6 14.4 14.2 14.2 10.6C14 7 16 4.2 20 4.2Z" />
-						<path d="M17.8 15.6H22.2V20H17.8Z" />
-						<path d="M13 20.2L17.8 19L20 22.8L22.2 19L27 20.2C28.6 20.6 29.2 21.8 29.2 23.8L28.4 56.6L26.6 97.4C26.6 98.8 25.6 99.4 24 99.4H21.2L20.6 63H19.4L18.8 99.4H16C14.4 99.4 13.4 98.8 13.4 97.4L11.6 56.6L10.8 23.8C10.8 21.8 11.4 20.6 13 20.2Z" />
-						<path d="M10.2 21.4C8.4 22 7.6 23.4 7.6 25.4L7 51.2C6.9 53.1 7.6 54.4 8.8 54.4C9.9 54.4 10.4 53.5 10.5 52.2L11 30Z" />
-						<path d="M29.8 21.4C31.6 22 32.4 23.4 32.4 25.4L33 51.2C33.1 53.1 32.4 54.4 31.2 54.4C30.1 54.4 29.6 53.5 29.5 52.2L29 30Z" />
+						<path d="M20 0.6A2.6 2.6 0 1 1 19.99 0.6Z" />
+						<path d="M20 2.2C22.7 2.2 24.2 4.4 24.1 7.4C24 10.4 22.4 12.8 20 12.8C17.6 12.8 16 10.4 15.9 7.4C15.8 4.4 17.3 2.2 20 2.2Z" />
+						<path d="M18.3 11.4H21.7L21.9 19H18.1Z" />
+						<path d="M17.9 15.2L20 18.6L22.1 15.2C24.6 15.7 27.4 16 29 17C30.1 17.7 30.5 19.1 30.3 21.1L29.2 31C28.6 35 26.9 38 26.6 41C27 45 27.6 49 27.6 54.2H12.4C12.4 49 13 45 13.4 41C13.1 38 11.4 35 10.8 31L9.7 21.1C9.5 19.1 9.9 17.7 11 17C12.6 16 15.4 15.7 17.9 15.2Z" />
+						<path d="M10.4 17.4C9 18.2 8.5 19.8 8.6 22.2L9 36L9.4 49.4C9.4 51.6 9.9 53.4 10.9 54.2C11.9 54.8 12.7 54 12.6 52.2L12.5 48.4L12.7 36L12.9 26Z" />
+						<path d="M 29.6 17.4 C 31 18.2 31.5 19.8 31.4 22.2 L 31 36 L 30.6 49.4 C 30.6 51.6 30.1 53.4 29.1 54.2 C 28.1 54.8 27.3 54 27.4 52.2 L 27.5 48.4 L 27.3 36 L 27.1 26Z" />
+						<path d="M12.8 53.8H19.6L19.2 60L18.3 75L18 95.8L18.6 97.6C18.8 98.8 17.9 99.5 16.4 99.5H14.6C13.8 99.5 13.6 98.9 14.2 98.4L15.2 95.8L14.8 75L13.1 60Z" />
+						<path d="M 27.2 53.8 H 20.4 L 20.8 60 L 21.7 75 L 22 95.8 L 21.4 97.6 C 21.2 98.8 22.1 99.5 23.6 99.5 H 25.4 C 26.2 99.5 26.4 98.9 25.8 98.4 L 24.8 95.8 L 25.2 75 L 26.9 60Z" />
 					</g>
 				</defs>
 
 				{#each figuras as f (f.voto)}
-					<ellipse
-						class="sombra"
-						class:sombra--off={apagada(f.voto, filtroVoto, filtroEstado, filtroPartido, filtroNome)}
-						cx={f.x.toFixed(1)}
-						cy={f.y.toFixed(1)}
-						rx={(f.altura * 0.22).toFixed(1)}
-						ry={(f.altura * 0.045).toFixed(1)}
-					/>
-				{/each}
-
-				{#each figuras as f, i (i)}
-					<g transform={`translate(${f.x.toFixed(1)} ${f.y.toFixed(1)}) scale(${(f.altura / 100).toFixed(4)})`}>
+					<g class="pessoa" style={`transform:${f.para};--de:${f.de};--d:${f.atraso}ms`}>
+						<ellipse
+							class="sombra"
+							class:sombra--off={apagada(f.voto, filtroVoto, filtroEstado, filtroPartido, filtroNome)}
+							cx="0"
+							cy="0"
+							rx="21"
+							ry="4.2"
+						/>
 						<use
 							href={`#${f.variante}`}
 							x="-20"
 							y="-99.6"
 							class="halo"
 							class:halo--off={apagada(f.voto, filtroVoto, filtroEstado, filtroPartido, filtroNome)}
-							style={`--d:${f.atraso}ms`}
 							aria-hidden="true"
 						/>
 						<use
@@ -209,7 +231,6 @@
 							class={`fig fig--${f.voto.tipoVoto === 'Não' ? 'nao' : f.voto.tipoVoto.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')}`}
 							class:fig--off={apagada(f.voto, filtroVoto, filtroEstado, filtroPartido, filtroNome)}
 							class:fig--on={hover === f.voto}
-							style={`--d:${f.atraso}ms`}
 							on:mouseenter={(e) => mostrar(e, f)}
 							on:mousemove={mover}
 							on:click={() => dispatch('deputado', f.voto.deputado_?.nome)}
@@ -220,11 +241,18 @@
 						/>
 					</g>
 				{/each}
+
+				{#each rotulos as r (r.tipo)}
+					<text class="rotulo" x={r.x.toFixed(1)} y={CHAO_Y + 36}>
+						<tspan class="rotulo-n">{r.n}</tspan>
+						<tspan dx="6">{r.tipo.toLowerCase()}</tspan>
+					</text>
+				{/each}
 			</svg>
 		{/key}
 
 		{#if hover}
-			<div class="pf-tip" style={`left:${tip.x}px;top:${tip.y}px`}>
+			<div class="pf-tip" class:pf-tip--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal>
 				<img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" />
 				<div>
 					<strong>{hover.deputado_?.nome}</strong>
@@ -289,20 +317,25 @@
 		opacity: 0.6;
 	}
 
-	.fig {
-		transform-box: fill-box;
-		transform-origin: 50% 100%;
-		cursor: pointer;
-		animation: fig-in 560ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	.pessoa {
+		animation: chegada 1500ms cubic-bezier(0.25, 0.7, 0.2, 1) backwards;
 		animation-delay: var(--d);
-		transition: opacity 360ms var(--ease), transform 180ms var(--ease), fill 360ms var(--ease);
 	}
 
-	@keyframes fig-in {
+	/* They come in from the front edge and walk to their group */
+	@keyframes chegada {
 		from {
+			transform: var(--de);
 			opacity: 0;
-			transform: translateY(14px) scaleY(0.6);
 		}
+		12% {
+			opacity: 1;
+		}
+	}
+
+	.fig {
+		cursor: pointer;
+		transition: opacity 360ms var(--ease), fill 180ms var(--ease);
 	}
 
 	.sombra {
@@ -323,11 +356,20 @@
 		stroke-width: 5;
 		stroke-linejoin: round;
 		pointer-events: none;
-		transform-box: fill-box;
-		transform-origin: 50% 100%;
-		animation: fig-in 560ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
-		animation-delay: var(--d);
 		transition: opacity 360ms var(--ease);
+	}
+
+	.rotulo {
+		text-anchor: middle;
+		font-family: var(--font-primary);
+		font-size: 17px;
+		fill: var(--color-text-muted);
+	}
+
+	.rotulo-n {
+		font-family: var(--font-display);
+		font-size: 24px;
+		fill: var(--color-dark);
 	}
 
 	.halo--off {
@@ -362,9 +404,9 @@
 		paint-order: normal;
 	}
 
+	/* Hover only recolours: the person stays exactly where they are */
 	.fig:hover,
 	.fig--on {
-		transform: scale(1.35);
 		fill: var(--accent-amber);
 	}
 
@@ -373,7 +415,7 @@
 	}
 
 	.pf-tip {
-		position: absolute;
+		position: fixed;
 		transform: translate(-50%, calc(-100% - 22px));
 		display: flex;
 		gap: calc(var(--grid) * 1.6);
@@ -386,8 +428,20 @@
 		box-shadow: var(--shadow-2);
 		pointer-events: none;
 		white-space: nowrap;
-		z-index: 5;
+		z-index: 1000;
 		animation: tip-in 180ms var(--ease);
+	}
+
+	.pf-tip--baixo {
+		transform: translate(-50%, 26px);
+		animation: none;
+	}
+
+	.pf-tip--baixo::after {
+		top: auto;
+		bottom: 100%;
+		border-top-color: transparent;
+		border-bottom-color: var(--color-dark);
 	}
 
 	.pf-tip::after {
@@ -543,5 +597,10 @@
 
 	.legend-item--off {
 		opacity: 0.35;
+	}
+	@media (max-width: 600px) {
+		.rotulo {
+			display: none;
+		}
 	}
 </style>

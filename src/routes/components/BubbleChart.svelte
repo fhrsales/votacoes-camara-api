@@ -1,6 +1,7 @@
 <script>
 	import { hierarchy, pack } from 'd3';
 	import { flip } from 'svelte/animate';
+	import { portal } from '$lib/motion.js';
 	import { cubicOut } from 'svelte/easing';
 
 	export let title = '';
@@ -136,8 +137,9 @@
 			value: item.value,
 			tipo: item.tipo,
 			total: items.filter((d) => d.label === item.label).reduce((a, d) => a + d.value, 0),
-			x: event.clientX - rect.left,
-			y: event.clientY - rect.top
+			x: Math.min(Math.max(event.clientX, 120), window.innerWidth - 120),
+			y: event.clientY,
+			baixo: event.clientY < 220
 		};
 	}
 
@@ -146,8 +148,9 @@
 		const rect = event.currentTarget.ownerSVGElement.getBoundingClientRect();
 		tooltip = {
 			...tooltip,
-			x: event.clientX - rect.left,
-			y: event.clientY - rect.top
+			x: Math.min(Math.max(event.clientX, 120), window.innerWidth - 120),
+			y: event.clientY,
+			baixo: event.clientY < 220
 		};
 	}
 
@@ -164,6 +167,8 @@
 		<div class="uva-container-bubble-chart">
 			<div
 				class="uva-tooltip"
+				class:uva-tooltip--baixo={tooltip.baixo}
+				use:portal
 				style={`opacity: ${tooltip.visible ? 1 : 0}; left: ${tooltip.x}px; top: ${tooltip.y}px;`}
 			>
 				<span class="tip-label">{tooltip.label}</span>
@@ -262,7 +267,7 @@
 	}
 
 	.uva-tooltip {
-		position: absolute;
+		position: fixed;
 		pointer-events: none;
 		background: var(--color-dark);
 		color: var(--color-light);
@@ -272,8 +277,19 @@
 		font-size: var(--t-small);
 		white-space: nowrap;
 		transform: translate(-50%, calc(-100% - 16px));
-		z-index: 9999;
+		z-index: 1000;
 		transition: opacity 180ms var(--ease);
+	}
+
+	.uva-tooltip--baixo {
+		transform: translate(-50%, 22px);
+	}
+
+	.uva-tooltip--baixo::after {
+		top: auto !important;
+		bottom: 100%;
+		border-top-color: transparent !important;
+		border-bottom-color: var(--color-dark);
 	}
 
 	.uva-tooltip::after {

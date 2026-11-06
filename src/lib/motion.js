@@ -65,3 +65,14 @@ export function countUp(node, value) {
 		destroy: () => cancelAnimationFrame(frame)
 	};
 }
+
+/** Moves a node to <body>, so fixed tooltips escape stacking contexts and sticky bars. */
+export function portal(node) {
+	if (typeof document === 'undefined') return {};
+	document.body.appendChild(node);
+	return {
+		destroy() {
+			node.remove();
+		}
+	};
+}
