@@ -367,7 +367,7 @@
 	.summary-note-card {
 		position: relative;
 		background: var(--color-light);
-		border-top: 2px solid var(--color-dark);
+		border-top: 1px solid var(--color-rule);
 		padding: calc(var(--grid) * 3);
 		width: min(580px, 90vw);
 		box-shadow: var(--shadow-surface);

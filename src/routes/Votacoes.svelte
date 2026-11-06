@@ -10,6 +10,7 @@
 	import Hemiciclo from './components/Hemiciclo.svelte';
 	import PartidosDivergente from './components/PartidosDivergente.svelte';
 	import MapaUF from './components/MapaUF.svelte';
+	import Plenario3D from './components/Plenario3D.svelte';
 	import { reveal, countUp } from '$lib/motion.js';
 	import { CADEIRAS_UF } from '$lib/votos.js';
 	export let votacaoId;
@@ -50,6 +51,8 @@
 	let deputadosLegislatura = [];
 	let mostrarTabela = false;
 	let emails = {};
+	let mulheres = new Set();
+	let sem3d = false;
 
 	$: votosExibidos = votosComAusentes
 		.filter((voto) => (filtroVoto ? voto.tipoVoto === filtroVoto : true))
@@ -300,6 +303,7 @@
 		try {
 			const data = await fetchJson(`${DATA_BASE}/deputados/emails.json`);
 			emails = data?.emails ?? {};
+			mulheres = new Set(data?.mulheres ?? []);
 		} catch {
 			emails = {};
 		}
@@ -734,7 +738,7 @@
 				<dl class="ficha-kpis">
 					<div class="kpi kpi--desfecho">
 						<dt>Resultado</dt>
-						<dd style={`color:${desfechoPositivo ? 'var(--vote-sim)' : 'var(--vote-nao)'}`}>{desfecho}</dd>
+						<dd>{desfecho}</dd>
 					</div>
 					<div class="kpi">
 						<dt>Placar</dt>
@@ -769,9 +773,23 @@
 		<section class="sec" use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">01 · Plenário</p>
-			<h2 class="sec-title">Como as 513 cadeiras votaram</h2>
-			<p class="sec-lead">Cada ponto é um deputado. Toque ou passe o cursor para ver quem é; o toque também filtra a página.</p>
+			<h2 class="sec-title">O plenário, cadeira por cadeira</h2>
+			<p class="sec-lead">Cada figura é um deputado ou uma deputada, no lugar do seu voto. Toque ou passe o cursor para ver quem é; o clique filtra a página.</p>
 			<div class="figura">
+				{#if !sem3d}
+					<Plenario3D
+						votos={votosComAusentes}
+						chave={votacaoId}
+						{mulheres}
+						{filtroVoto}
+						{filtroEstado}
+						{filtroPartido}
+						{filtroNome}
+						on:fallback={() => (sem3d = true)}
+						on:tipo={(e) => atualizarFiltro(e.detail)}
+						on:deputado={(e) => (filtroNome = filtroNome === e.detail ? '' : e.detail)}
+					/>
+				{:else}
 				<Hemiciclo
 					votos={votosComAusentes}
 					chave={votacaoId}
@@ -782,6 +800,7 @@
 					on:tipo={(e) => atualizarFiltro(e.detail)}
 					on:deputado={(e) => (filtroNome = filtroNome === e.detail ? '' : e.detail)}
 				/>
+				{/if}
 			</div>
 		</section>
 
@@ -803,7 +822,15 @@
 				<hr class="regua" />
 				<p class="ds-label">03 · Estados</p>
 				<h2 class="sec-title">O voto pelo mapa</h2>
-				<p class="sec-lead">Percentual de sim entre quem votou sim ou não, por bancada estadual.</p>
+				<p class="sec-lead">
+					{#if filtroPartido}
+						Só deputados do {filtroPartido}: percentual de sim entre quem votou sim ou não, por estado.
+						Estados com “–” não têm voto sim ou não do {filtroPartido}.
+					{:else}
+						Percentual de sim entre quem votou sim ou não, por bancada estadual. Quanto mais escuro,
+						mais sim.
+					{/if}
+				</p>
 				<MapaUF
 					votos={votosBasePartido}
 					chave={votacaoId}
@@ -834,7 +861,7 @@
 			<h2 class="sec-title">Voto a voto, nome a nome</h2>
 			<p class="sec-lead">
 				{votosExibidos.length.toLocaleString('pt-BR')} deputados com os filtros atuais. Use o
-				envelope ao lado de cada nome para escrever ao deputado sobre este voto: o e-mail já sai
+				envelope ao lado de cada nome para escrever ao deputado sobre este voto: o e‑mail já sai
 				endereçado, com a votação e o voto dele no texto.
 			</p>
 			{#if VotesTableComponent}
@@ -1052,7 +1079,7 @@
 		position: absolute;
 		inset: 0;
 		border-radius: 50%;
-		background: var(--vote-sim);
+		background: var(--accent-amber);
 		animation: pulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
 	}
 
@@ -1074,7 +1101,7 @@
 		background: color-mix(in srgb, var(--color-light) 88%, transparent);
 		backdrop-filter: blur(14px) saturate(1.4);
 		-webkit-backdrop-filter: blur(14px) saturate(1.4);
-		border-top: 2px solid var(--color-dark);
+		border-top: 1px solid var(--color-rule);
 		border-bottom: 1px solid var(--color-rule);
 	}
 
@@ -1192,7 +1219,7 @@
 
 	.ficha-kpis {
 		margin: 0;
-		border-top: 2px solid var(--color-dark);
+		border-top: 1px solid var(--color-rule);
 	}
 
 	.kpi {
@@ -1307,8 +1334,8 @@
 
 	.regua {
 		border: 0;
-		border-top: 2px solid var(--color-dark);
-		margin: 0 0 calc(var(--grid) * 3);
+		border-top: 1px solid var(--color-rule);
+		margin: 0 0 calc(var(--grid) * 4.5);
 		transform-origin: left;
 		animation: draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 	}
@@ -1323,7 +1350,7 @@
 		font-size: calc(var(--grid) * 4);
 		line-height: 1.12;
 		margin: 0 0 calc(var(--grid) * 1.5);
-		max-width: 760px;
+		max-width: none;
 	}
 
 	.sec-title--ementa {
@@ -1334,7 +1361,7 @@
 	.sec-lead {
 		font-size: var(--t-lead);
 		color: var(--color-text-muted);
-		max-width: var(--w-text);
+		max-width: none;
 		margin: 0 0 calc(var(--grid) * 4);
 	}
 

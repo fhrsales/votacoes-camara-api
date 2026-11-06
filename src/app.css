@@ -22,12 +22,17 @@
 	--color-accent: var(--color-primary);
 	--color-bg: var(--color-light);
 
-	/* Vote palette: data colours, kept muted so the vermilion accent still leads */
-	--vote-sim: #1f7a70;
-	--vote-nao: #d9381e;
-	--vote-abstencao: #c8952c;
-	--vote-obstrucao: #4f5596;
-	--vote-ausentes: #b9b9c0;
+	/* Monochrome on purpose: no party reads into the colours. Ink for yes, greys for the rest. */
+	--vote-sim: #121214;
+	--vote-obstrucao: #55555c;
+	--vote-nao: #8d8d94;
+	--vote-abstencao: #c4c4ca;
+	--vote-ausentes: #dcdce1;
+
+	/* A neutral amber replaces the Portfolio vermilion as this site's only accent */
+	--color-primary: #9a6f0e;
+	--color-on-primary: #ffffff;
+	--accent-amber: #c9962b;
 	--color-success: var(--vote-sim);
 	--color-danger: var(--vote-nao);
 	--color-warning: var(--vote-abstencao);

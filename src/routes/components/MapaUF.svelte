@@ -8,17 +8,23 @@
 
 	const dispatch = createEventDispatcher();
 
-	// Tile cartogram of Brazil: [column, row]
+	// Hexagon cartogram of Brazil, pointy-top, odd rows shifted half a cell east: [column, row].
+	// One hexagon per state, placed so the wide North, the north-east bulge and the narrow
+	// South still read as the country.
 	const GRADE = {
-		RR: [1, 0], AP: [2, 0],
-		AC: [0, 1], AM: [1, 1], PA: [2, 1], MA: [3, 1], CE: [4, 1], RN: [5, 1],
-		RO: [1, 2], TO: [2, 2], PI: [3, 2], PE: [4, 2], PB: [5, 2],
-		MT: [1, 3], GO: [2, 3], BA: [3, 3], SE: [4, 3], AL: [5, 3],
-		MS: [1, 4], DF: [2, 4], MG: [3, 4], ES: [4, 4],
-		PR: [2, 5], SP: [3, 5], RJ: [4, 5],
-		SC: [2, 6],
-		RS: [2, 7]
+		RR: [2, 0], AP: [3, 0],
+		AM: [1, 1], PA: [2, 1], MA: [3, 1], CE: [4, 1], RN: [5, 1],
+		AC: [0, 2], RO: [1, 2], MT: [2, 2], TO: [3, 2], PI: [4, 2], PE: [5, 2], PB: [6, 2],
+		MS: [1, 3], GO: [2, 3], DF: [3, 3], BA: [4, 3], SE: [5, 3], AL: [6, 3],
+		SP: [2, 4], MG: [3, 4], ES: [4, 4],
+		PR: [1, 5], RJ: [3, 5],
+		SC: [1, 6],
+		RS: [0, 7]
 	};
+	const COLUNAS = 7.5;
+	const LINHAS = 8;
+	const ALTURA_HEX = 2 / Math.sqrt(3); // height of a pointy-top hexagon of width 1
+	const ALTURA_TOTAL = (LINHAS - 1) * 0.75 * ALTURA_HEX + ALTURA_HEX;
 
 	$: porUf = new Map(agruparPor(votos, (v) => v?.deputado_?.siglaUf).map((u) => [u.chave, u]));
 
@@ -27,17 +33,23 @@
 		const votaram = d ? d.Sim + d.Não : 0;
 		if (!votaram) return { d, share: null, bg: 'var(--color-track)', ink: 'var(--color-dark)' };
 		const share = d.Sim / votaram;
-		const forca = Math.round(Math.abs(share - 0.5) * 2 * 100);
-		const base = share >= 0.5 ? 'var(--vote-sim)' : 'var(--vote-nao)';
-		const bg = `color-mix(in srgb, ${base} ${Math.max(14, forca)}%, var(--color-light))`;
-		return { d, share, bg, ink: forca > 55 ? '#fff' : 'var(--color-dark)' };
+		const forca = Math.round(8 + share * 92);
+		const bg = `color-mix(in srgb, var(--vote-sim) ${forca}%, var(--color-light))`;
+		return { d, share, bg, ink: forca > 52 ? '#fff' : 'var(--color-dark)' };
 	}
 
-	$: tiles = Object.entries(GRADE).map(([uf, [col, row]]) => ({ uf, col, row, ...tile(uf, porUf) }));
+	$: tiles = Object.entries(GRADE).map(([uf, [col, row]]) => ({
+		uf,
+		col,
+		row,
+		x: ((col + (row % 2 ? 0.5 : 0)) / COLUNAS) * 100,
+		y: ((row * 0.75 * ALTURA_HEX) / ALTURA_TOTAL) * 100,
+		...tile(uf, porUf)
+	}));
 </script>
 
 {#key chave}
-	<div class="mapa" role="list">
+	<div class="mapa" role="list" style={`aspect-ratio:${COLUNAS} / ${ALTURA_TOTAL}`}>
 		{#each tiles as t, i (t.uf)}
 			<button
 				type="button"
@@ -45,14 +57,17 @@
 				class="uf"
 				class:uf--off={selecionado && selecionado !== t.uf}
 				class:uf--sel={selecionado === t.uf}
-				style={`grid-column:${t.col + 1};grid-row:${t.row + 1};--bg:${t.bg};--ink:${t.ink};--i:${t.row * 6 + t.col}`}
+				style={`left:${t.x}%;top:${t.y}%;width:${100 / COLUNAS}%;height:${(ALTURA_HEX / ALTURA_TOTAL) * 100}%;--bg:${t.bg};--ink:${t.ink};--i:${t.row * 6 + t.col}`}
 				on:click={() => dispatch('estado', selecionado === t.uf ? '' : t.uf)}
 				aria-label={t.d
 					? `${t.uf}: ${t.d.Sim} sim, ${t.d.Não} não, ${t.d.Ausentes} ausentes`
 					: `${t.uf}: sem votos`}
 			>
+				<span class="hex" aria-hidden="true" />
 				<span class="uf-sigla">{t.uf}</span>
-				<span class="uf-pct">{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}</span>
+				<span class="uf-pct">
+					{#if t.share === null}–{:else}{Math.round(t.share * 100)}%<small>sim</small>{/if}
+				</span>
 				{#if t.d}
 					<span class="uf-tip">
 						<span class="tip-label">{t.uf} · {t.d.total} cadeiras</span>
@@ -88,43 +103,62 @@
 
 <style>
 	.mapa {
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		grid-template-rows: repeat(8, auto);
-		gap: 5px;
-		max-width: 470px;
+		position: relative;
+		width: 100%;
+		max-width: 520px;
 		margin: 0 auto;
 	}
 
 	.uf {
-		position: relative;
-		aspect-ratio: 1;
+		position: absolute;
 		border: 0;
-		border-radius: 6px;
-		background: var(--bg);
+		padding: 0;
+		background: none;
 		color: var(--ink);
 		font: inherit;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		align-items: flex-start;
-		padding: 7px 8px;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
 		cursor: pointer;
 		animation: tile-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 		animation-delay: calc(var(--i) * 14ms);
-		transition: transform 180ms var(--ease), box-shadow 180ms var(--ease),
-			opacity 360ms var(--ease), background-color 360ms var(--ease);
+		transition: transform 180ms var(--ease), opacity 360ms var(--ease);
+	}
+
+	.hex {
+		position: absolute;
+		inset: 2.5%;
+		background: var(--bg);
+		clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+		transition: background-color 360ms var(--ease), filter 180ms var(--ease);
+		z-index: -1;
 	}
 
 	.uf:hover,
 	.uf--sel {
-		transform: translateY(-3px) scale(1.04);
-		box-shadow: var(--shadow-2);
-		z-index: 2;
+		transform: translateY(-3px) scale(1.06);
+		z-index: 3;
 	}
 
-	.uf--sel {
-		box-shadow: var(--shadow-2), inset 0 -3px 0 var(--color-dark);
+	.uf:hover .hex {
+		filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+	}
+
+	.uf--sel .hex {
+		inset: 0;
+		box-shadow: none;
+		filter: drop-shadow(0 0 0 var(--color-dark));
+	}
+
+	.uf--sel::before {
+		content: '';
+		position: absolute;
+		inset: -2%;
+		background: var(--accent-amber);
+		clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+		z-index: -2;
 	}
 
 	.uf--off {
@@ -138,17 +172,29 @@
 		}
 	}
 
+	.uf {
+		isolation: isolate;
+	}
+
 	.uf-sigla {
-		font-size: var(--t-small);
+		font-size: calc(var(--grid) * 1.4);
 		font-weight: 600;
 		letter-spacing: 0.02em;
 	}
 
 	.uf-pct {
 		font-family: var(--font-display);
-		font-size: calc(var(--grid) * 2.4);
+		font-size: calc(var(--grid) * 2);
 		line-height: 1;
 		font-variant-numeric: tabular-nums;
+	}
+
+	.uf-pct small {
+		font-family: var(--font-primary);
+		font-size: 0.5em;
+		font-weight: 600;
+		margin-left: 3px;
+		opacity: 0.75;
 	}
 
 	.uf-tip {
@@ -258,7 +304,7 @@
 		width: 160px;
 		height: 8px;
 		border-radius: 999px;
-		background: linear-gradient(90deg, var(--vote-nao), var(--color-light), var(--vote-sim));
+		background: linear-gradient(90deg, color-mix(in srgb, var(--vote-sim) 8%, var(--color-light)), var(--vote-sim));
 		box-shadow: inset 0 0 0 1px var(--color-rule);
 	}
 
@@ -269,17 +315,16 @@
 	}
 
 	@media (max-width: 600px) {
-		.uf {
-			padding: 4px 5px;
-			border-radius: 4px;
-		}
-
 		.uf-sigla {
-			font-size: calc(var(--grid) * 1.35);
+			font-size: calc(var(--grid) * 1.15);
 		}
 
 		.uf-pct {
-			font-size: calc(var(--grid) * 1.8);
+			font-size: calc(var(--grid) * 1.45);
+		}
+
+		.uf-pct small {
+			display: none;
 		}
 	}
 </style>

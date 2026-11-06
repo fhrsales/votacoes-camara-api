@@ -97,6 +97,8 @@
 						class="seat"
 						class:seat--off={apagada(s.voto, filtroVoto, filtroEstado, filtroPartido, filtroNome)}
 						class:seat--on={hover === s.voto}
+						class:seat--anel={s.voto.tipoVoto === 'Obstrução'}
+						class:seat--vazio={s.voto.tipoVoto === 'Ausentes'}
 						cx={s.x * ESCALA}
 						cy={s.y * ESCALA}
 						r={ESCALA * 0.021}
@@ -203,6 +205,18 @@
 	.seat:hover,
 	.seat--on {
 		transform: scale(1.7);
+	}
+
+	.seat--anel {
+		fill: var(--color-light) !important;
+		stroke: var(--vote-sim);
+		stroke-width: 3;
+	}
+
+	.seat--vazio {
+		fill: var(--color-light) !important;
+		stroke: var(--color-rule);
+		stroke-width: 2.5;
 	}
 
 	.seat--off {

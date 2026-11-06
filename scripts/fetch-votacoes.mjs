@@ -283,7 +283,27 @@ async function atualizarEmails() {
     if (Object.keys(emails).length === 0) return;
     const dir = path.join(DATA_DIR, 'deputados');
     await mkdir(dir, { recursive: true });
-    await writeJson(path.join(dir, 'emails.json'), { emails });
+
+    // Women of the current legislature, for the plenary silhouettes. Keep the last list on failure.
+    let mulheres = [];
+    try {
+      const index = JSON.parse(await readFile(path.join(dir, 'legislaturas', 'index.json'), 'utf8'));
+      const idLegislatura = Math.max(...(index?.legislaturas ?? []).map((l) => Number(l.id)).filter(Boolean));
+      const lista = await fetchAll(
+        `${API_BASE}/deputados?idLegislatura=${idLegislatura}&siglaSexo=F&itens=1000`,
+        'Falha ao listar deputadas'
+      );
+      mulheres = Array.from(new Set(lista.map((dep) => dep.id).filter(Boolean)));
+    } catch (error) {
+      console.warn('Falha ao listar deputadas:', error?.message ?? error);
+      try {
+        const anterior = JSON.parse(await readFile(path.join(dir, 'emails.json'), 'utf8'));
+        mulheres = anterior?.mulheres ?? [];
+      } catch {
+        mulheres = [];
+      }
+    }
+    await writeJson(path.join(dir, 'emails.json'), { emails, mulheres });
   } catch (error) {
     console.warn('Falha ao atualizar e-mails:', error?.message ?? error);
   }

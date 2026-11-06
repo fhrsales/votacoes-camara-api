@@ -140,7 +140,7 @@
     font-weight: 600;
     color: var(--color-text-muted);
     padding: 0 calc(var(--grid) * 1) calc(var(--grid) * 1);
-    border-bottom: 2px solid var(--color-dark);
+    border-bottom: 1px solid var(--color-rule);
   }
 
   td {
