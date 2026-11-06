@@ -467,7 +467,9 @@
 
 	.stacked-bar {
 		display: flex;
-		gap: 3px;
+		gap: 2px;
+		border-radius: 999px;
+		overflow: hidden;
 		height: calc(var(--grid) * 1.6);
 	}
 
@@ -489,13 +491,11 @@
 	}
 
 	.segment {
-		border-radius: 999px;
 		min-width: 0;
 	}
 
 	.segment:hover {
-		filter: brightness(1.08);
-		transform: scaleY(1.3);
+		filter: brightness(1.1);
 	}
 
 	.segment--vazio {
@@ -513,7 +513,7 @@
 	}
 
 	.segment--active {
-		transform: scaleY(1.45);
+		filter: brightness(0.85);
 	}
 
 

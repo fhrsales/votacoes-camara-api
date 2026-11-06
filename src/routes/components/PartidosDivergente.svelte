@@ -45,12 +45,16 @@
 					<span class="div-name">{p.chave}</span>
 					<span class="div-track">
 						<span class="div-side div-side--nao">
-							<i class="seg" style={`width:${w(p.Não)};background:var(--vote-nao)`} />
-							<i class="seg" style={`width:${w(p.Obstrução)};background:var(--vote-obstrucao)`} />
+							<span class="pill" style={`width:${w(p.Não + p.Obstrução)}`}>
+								<i class="seg" style={`flex:${p.Não};background:var(--vote-nao)`} />
+								<i class="seg" style={`flex:${p.Obstrução};background:var(--vote-obstrucao)`} />
+							</span>
 						</span>
 						<span class="div-side div-side--sim">
-							<i class="seg" style={`width:${w(p.Sim)};background:var(--vote-sim)`} />
-							<i class="seg" style={`width:${w(p.Abstenção)};background:var(--vote-abstencao)`} />
+							<span class="pill" style={`width:${w(p.Sim + p.Abstenção)}`}>
+								<i class="seg" style={`flex:${p.Sim};background:var(--vote-sim)`} />
+								<i class="seg" style={`flex:${p.Abstenção};background:var(--vote-abstencao)`} />
+							</span>
 						</span>
 					</span>
 					<span class="div-n">
@@ -146,10 +150,23 @@
 
 	.div-side {
 		display: flex;
-		gap: 2px;
 		height: 100%;
 		animation: grow 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 		animation-delay: calc(var(--i) * 28ms);
+	}
+
+	.pill {
+		display: flex;
+		gap: 2px;
+		height: 100%;
+		overflow: hidden;
+		border-radius: 0 999px 999px 0;
+		transition: width 360ms var(--ease);
+	}
+
+	.div-side--nao .pill {
+		flex-direction: row-reverse;
+		border-radius: 999px 0 0 999px;
 	}
 
 	.div-side--nao {
@@ -164,8 +181,7 @@
 	.seg {
 		display: block;
 		height: 100%;
-		border-radius: 999px;
-		transition: width 360ms var(--ease);
+		min-width: 0;
 	}
 
 	@keyframes grow {
