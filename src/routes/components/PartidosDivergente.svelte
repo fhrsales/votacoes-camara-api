@@ -81,7 +81,7 @@
 		grid-column: 2;
 		text-align: right;
 		padding-right: calc(var(--grid) * 1);
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 	}
 
 	.div-head-sim {
@@ -217,7 +217,7 @@
 	}
 
 	.div-n .n-nao {
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 	}
 
 	.div-n small {

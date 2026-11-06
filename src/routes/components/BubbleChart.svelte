@@ -191,6 +191,7 @@
 						on:focus={(e) => showTooltip(e, node)}
 						on:blur={hideTooltip}
 						role="button"
+						aria-label={`${node.label}, ${node.tipo}: ${node.value}`}
 						tabindex="0"
 					>
 						<circle

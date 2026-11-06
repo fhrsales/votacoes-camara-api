@@ -730,7 +730,7 @@
 	}
 
 	.score--nao {
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 		flex-direction: row-reverse;
 	}
 

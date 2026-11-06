@@ -193,6 +193,7 @@
 					on:click={() => solicitarFiltro('Sim')}
 					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Sim')}
 					role="button"
+					aria-label={`Sim: ${resumoSafe.sim}`}
 					style={`width: ${larguras.sim}%`}
 					tabindex="0"
 				>
@@ -211,6 +212,7 @@
 					on:click={() => solicitarFiltro('Abstenção')}
 					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Abstenção')}
 					role="button"
+					aria-label={`Abstenção: ${resumoSafe.abstencao}`}
 					style={`width: ${larguras.abstencao}%`}
 					tabindex="0"
 				>
@@ -229,6 +231,7 @@
 					on:click={() => solicitarFiltro('Obstrução')}
 					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Obstrução')}
 					role="button"
+					aria-label={`Obstrução: ${resumoSafe.obstrucao}`}
 					style={`width: ${larguras.obstrucao}%`}
 					tabindex="0"
 				>
@@ -247,6 +250,7 @@
 					on:click={() => solicitarFiltro('Ausentes')}
 					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Ausentes')}
 					role="button"
+					aria-label={`Ausentes: ${resumoSafe.ausentes}`}
 					style={`width: ${larguras.ausentes}%`}
 					tabindex="0"
 				>
@@ -265,6 +269,7 @@
 					on:click={() => solicitarFiltro('Não')}
 					on:keydown={(e) => e.key === 'Enter' && solicitarFiltro('Não')}
 					role="button"
+					aria-label={`Não: ${resumoSafe.nao}`}
 					style={`width: ${larguras.nao}%`}
 					tabindex="0"
 				>
@@ -463,7 +468,7 @@
 	}
 
 	.stacked-end--nao {
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 		flex-direction: row-reverse;
 	}
 

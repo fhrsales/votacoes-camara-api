@@ -29,6 +29,8 @@
 	--vote-abstencao: #bccbd4;
 	--vote-ausentes: #dce4e9;
 	--vote-ausentes-traco: #8aa0ad;
+	/* The light petrol as text: dark enough to read on paper (4.9:1) */
+	--vote-nao-texto: #587585;
 
 	/* Labels in the same petrol; amber is the second highlight, for what the reader picks */
 	--color-primary: #24475a;

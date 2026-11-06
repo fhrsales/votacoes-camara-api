@@ -5,6 +5,11 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" type="image/png" sizes="64x64" />
 		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+		<!-- The first data files, fetched while the scripts download instead of after -->
+		<link rel="preload" href="%sveltekit.assets%/data/votacoes/index.json" as="fetch" crossorigin="anonymous" />
+		<link rel="preload" href="%sveltekit.assets%/data/votos/index.json" as="fetch" crossorigin="anonymous" />
+		<link rel="preload" href="%sveltekit.assets%/data/deputados/emails.json" as="fetch" crossorigin="anonymous" />
+		<link rel="preload" href="%sveltekit.assets%/data/deputados/legislaturas/index.json" as="fetch" crossorigin="anonymous" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<!-- Load Google Fonts without render-blocking: preload + media swap -->

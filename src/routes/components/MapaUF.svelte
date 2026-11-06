@@ -37,11 +37,10 @@
 </script>
 
 {#key chave}
-	<div class="mapa" role="list">
+	<div class="mapa" role="group" aria-label="Votos por estado">
 		{#each tiles as t, i (t.uf)}
 			<button
 				type="button"
-				role="listitem"
 				class="uf"
 				class:uf--off={selecionado && selecionado !== t.uf}
 				class:uf--sel={selecionado === t.uf}

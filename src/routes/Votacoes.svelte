@@ -1,7 +1,7 @@
 <script>
 	import { onMount, tick } from 'svelte';
 	import { format, parseISO } from 'date-fns';
-	import ptBR from 'date-fns/locale/pt-BR';
+	import ptBR from 'date-fns/locale/pt-BR/index.js';
 	import { base } from '$app/paths';
 	import VotesSearch from './components/VotesSearch.svelte';
 	import Button from './components/ui/Button.svelte';
@@ -295,10 +295,15 @@
 		return item?.id ?? null;
 	}
 
+	let legislaturaCarregada = null;
+
 	async function carregarDeputadosLegislatura(dataRegistro) {
-		deputadosLegislatura = [];
 		const id = encontrarLegislaturaId(dataRegistro);
+		if (id && id === legislaturaCarregada && deputadosLegislatura.length) return;
+		deputadosLegislatura = [];
+		legislaturaCarregada = null;
 		if (!id) return;
+		legislaturaCarregada = id;
 		try {
 			const data = await fetchJson(
 				`${DATA_BASE}/deputados/legislaturas/legislatura-${id}.json`,
@@ -311,48 +316,25 @@
 	}
 
 	async function carregarIndices() {
-		try {
-			const data = await fetchJson(`${DATA_BASE}/votacoes/index.json`);
-			if (Array.isArray(data?.meses)) {
-				opcoesMes = data.meses;
-			}
-		} catch {
-			opcoesMes = [];
-		}
+		// The index files do not depend on each other: fetch them all at once
+		const [meses, ids, ultima, contatos, legislaturas] = await Promise.all([
+			fetchJson(`${DATA_BASE}/votacoes/index.json`).catch(() => null),
+			fetchJson(`${DATA_BASE}/votos/index.json`).catch(() => null),
+			fetchJson(`${base}/data/last-run.json?ts=${Date.now()}`).catch(() => null),
+			fetchJson(`${DATA_BASE}/deputados/emails.json`).catch(() => null),
+			casa === 'camara'
+				? fetchJson(`${DATA_BASE}/deputados/legislaturas/index.json`).catch(() => null)
+				: Promise.resolve(null)
+		]);
 
-		try {
-			const data = await fetchJson(`${DATA_BASE}/votos/index.json`);
-			if (Array.isArray(data?.ids)) {
-				votosDisponiveis = new Set(data.ids.map((id) => String(id)));
-			}
-			votosIndexOk = true;
-		} catch {
-			votosDisponiveis = new Set();
-			votosIndexOk = false;
-		}
-
-		try {
-			const data = await fetchJson(`${base}/data/last-run.json?ts=${Date.now()}`);
-			if (data?.generatedAt) ultimaAtualizacao = data.generatedAt;
-		} catch {
-			ultimaAtualizacao = '';
-		}
-
-		try {
-			const data = await fetchJson(`${DATA_BASE}/deputados/emails.json`);
-			emails = data?.emails ?? {};
-			mulheres = new Set(data?.mulheres ?? []);
-		} catch {
-			emails = {};
-		}
-
+		opcoesMes = Array.isArray(meses?.meses) ? meses.meses : [];
+		votosIndexOk = Boolean(ids);
+		votosDisponiveis = new Set(Array.isArray(ids?.ids) ? ids.ids.map((id) => String(id)) : []);
+		ultimaAtualizacao = ultima?.generatedAt ?? '';
+		emails = contatos?.emails ?? {};
+		mulheres = new Set(contatos?.mulheres ?? []);
 		if (casa === 'camara') {
-			try {
-				const data = await fetchJson(`${DATA_BASE}/deputados/legislaturas/index.json`);
-				legislaturasIndex = Array.isArray(data?.legislaturas) ? data.legislaturas : [];
-			} catch {
-				legislaturasIndex = [];
-			}
+			legislaturasIndex = Array.isArray(legislaturas?.legislaturas) ? legislaturas.legislaturas : [];
 		}
 
 		// Open the latest month only now: absentees need the legislature index loaded first.
@@ -377,10 +359,17 @@
 			filtroNome = '';
 			carregandoVotos = true;
 			erroVotos = '';
+			// The list already carries the vote date, so the legislature file can load alongside
+			const itemAtual = listaVotacoes.find((item) => String(item.id) === String(votacaoId));
+			const legislatura =
+				casa === 'camara' && itemAtual?.dataHoraRegistro
+					? carregarDeputadosLegislatura(parseISO(itemAtual.dataHoraRegistro))
+					: null;
 			const data = await fetchJson(
 				`${DATA_BASE}/votos/${votacaoId}.json`,
 				`Falha ao buscar votos (${votacaoId})`
 			);
+			if (legislatura) await legislatura;
 			if (pedido !== pedidoVotos) return;
 			const lista = Array.isArray(data?.votos) ? data.votos : [];
 			if (lista.length === 0) {
@@ -414,7 +403,7 @@
 				votosRegistrados = todos;
 			}
 			const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? todos[0]?.dataRegistroVoto ?? null;
-			if (casa === 'camara') await carregarDeputadosLegislatura(dataRegistro);
+			if (casa === 'camara' && !legislatura) await carregarDeputadosLegislatura(dataRegistro);
 			if (pedido !== pedidoVotos) return;
 			votos = votosRegistrados;
 
@@ -600,9 +589,12 @@
 	let votosHero = [];
 	let placarHero = { Sim: 0, Não: 0 };
 	let dataHero = '';
-	$: if (!votosHero.length && votosComAusentes.length && (casa === 'senado' || deputadosLegislatura.length)) {
+	$: if (!votosHero.length && votosRegistrados.length && votosComAusentes.length && (casa === 'senado' || deputadosLegislatura.length)) {
 		votosHero = votosComAusentes;
-		placarHero = { Sim: placar.Sim, Não: placar.Não };
+		placarHero = {
+			Sim: votosRegistrados.filter((v) => v.tipoVoto === 'Sim').length,
+			Não: votosRegistrados.filter((v) => v.tipoVoto === 'Não').length
+		};
 		const d = votosComAusentes[0]?.dataRegistroVoto;
 		dataHero = d ? format(d, casa === 'senado' ? 'dd/MM/yy' : "dd/MM/yy, 'às' HH:mm", { locale: ptBR }) : '';
 	}
@@ -710,7 +702,7 @@
 				<span class="hero-placar">
 					<b style="color:var(--vote-sim)" use:countUp={placarHero.Sim}>0</b>
 					<i>×</i>
-					<b style="color:var(--vote-nao)" use:countUp={placarHero.Não}>0</b>
+					<b style="color:var(--vote-nao-texto)" use:countUp={placarHero.Não}>0</b>
 				</span>
 				<span>Votação mais recente · {dataHero}</span>
 			</figcaption>
@@ -1401,7 +1393,7 @@
 	}
 
 	.kpi-placar b:last-child {
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 	}
 
 	.kpi-placar i {

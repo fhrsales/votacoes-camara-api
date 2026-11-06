@@ -283,7 +283,7 @@
 	}
 
 	.score--nao {
-		color: var(--vote-nao);
+		color: var(--vote-nao-texto);
 	}
 
 	.score-x {
