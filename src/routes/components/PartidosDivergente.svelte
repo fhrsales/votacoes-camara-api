@@ -67,7 +67,7 @@
 	.div-head {
 		display: grid;
 		grid-template-columns: 9ch 1fr 1fr 11ch;
-		font-size: var(--t-label);
+		font-size: var(--t-small);
 		font-weight: 600;
 		color: var(--color-text-muted);
 		margin-bottom: calc(var(--grid) * 1);
@@ -116,7 +116,7 @@
 	}
 
 	.div-name {
-		font-size: var(--t-label);
+		font-size: var(--t-small);
 		font-weight: 600;
 		transition: color 180ms var(--ease), transform 180ms var(--ease);
 	}
@@ -131,7 +131,7 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		height: calc(var(--grid) * 1.8);
+		height: calc(var(--grid) * 2.2);
 	}
 
 	.div-track::after {
@@ -180,7 +180,7 @@
 		align-items: baseline;
 		justify-content: flex-end;
 		gap: 4px;
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		font-variant-numeric: tabular-nums;
 		color: var(--vote-sim);
 	}
@@ -195,7 +195,7 @@
 
 	.div-n small {
 		color: var(--color-text-muted);
-		font-size: calc(var(--grid) * 1.2);
+		font-size: calc(var(--grid) * 1.4);
 		margin-left: 4px;
 	}
 

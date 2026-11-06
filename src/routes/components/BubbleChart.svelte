@@ -191,7 +191,7 @@
 						{#if node.showLabel && node.r > 14}
 							<text
 								dy="0.35em"
-								style="font-size: 12px;"
+								style="font-size: 13px;"
 							>
 								{node.label}
 							</text>
@@ -215,7 +215,7 @@
 	.bubble-chart h3 {
 		margin: 0 0 calc(var(--grid) * 1);
 		font-family: var(--font-primary);
-		font-size: var(--t-caption);
+		font-size: calc(var(--grid) * 1.9);
 		font-weight: 600;
 		letter-spacing: 0;
         width: 100%;
@@ -263,7 +263,7 @@
 		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 1.2);
 		border-radius: 12px;
 		box-shadow: var(--shadow-2);
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		z-index: 9999;
 		transition: opacity 180ms var(--ease);
 	}

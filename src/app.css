@@ -45,7 +45,9 @@
 
 	/* Small type roles from the DS, in grid multiples */
 	--t-label: calc(var(--grid) * 1.5);
-	--t-caption: calc(var(--grid) * 1.6);
+	--t-caption: calc(var(--grid) * 1.7);
+	--t-control: calc(var(--grid) * 1.7);
+	--t-small: calc(var(--grid) * 1.6);
 	--t-body: calc(var(--grid) * 2);
 }
 
@@ -80,9 +82,27 @@ h3 {
 	color: var(--color-on-primary);
 }
 
-:focus-visible {
-	outline: 2px solid var(--color-primary);
-	outline-offset: 2px;
+/* No focus ring on controls: clicking a button or a dropdown should leave no highlight */
+button,
+select,
+a,
+[role='button'],
+[tabindex] {
+	-webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+select:focus,
+a:focus,
+[role='button']:focus,
+[tabindex]:focus,
+button:focus-visible,
+select:focus-visible,
+a:focus-visible,
+[role='button']:focus-visible,
+[tabindex]:focus-visible {
+	outline: none;
+	box-shadow: none;
 }
 
 /* The DS label: the only uppercase text on a page */

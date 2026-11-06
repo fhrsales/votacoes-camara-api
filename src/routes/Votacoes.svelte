@@ -273,6 +273,7 @@
 			const data = await fetchJson(`${DATA_BASE}/votacoes/index.json`);
 			if (Array.isArray(data?.meses)) {
 				opcoesMes = data.meses;
+				if (!dataInicio && opcoesMes.length) dataInicio = opcoesMes[0].value;
 			}
 		} catch {
 			opcoesMes = [];
@@ -518,6 +519,21 @@
 	$: descricaoAtual = (votoAtual?.descricao || '').replace(/\s*(Sim|Não|Abstenç[ãa]o|Obstruç[ãa]o|Total):\s*\d+;?\.?/gi, '').trim();
 	$: votosBaseEstado = votosComAusentes.filter((v) => (filtroEstado ? v?.deputado_?.siglaUf === filtroEstado : true));
 	$: votosBasePartido = votosComAusentes.filter((v) => (filtroPartido ? v?.deputado_?.siglaPartido === filtroPartido : true));
+	$: placar = (() => {
+		const c = { Sim: 0, Não: 0, Abstenção: 0, Obstrução: 0 };
+		for (const v of votosRegistrados) if (v.tipoVoto in c) c[v.tipoVoto] += 1;
+		return c;
+	})();
+	$: presentes = votosRegistrados.length;
+	$: presencaPct = Math.round((presentes / 513) * 100);
+	$: margem = Math.abs(placar.Sim - placar.Não);
+	$: venceu = placar.Sim >= placar.Não ? 'Sim' : 'Não';
+	$: desfecho = (() => {
+		const m = (votoAtual?.descricao || '').match(/^\s*(Aprovad[oa]s?|Rejeitad[oa]s?|Mantid[oa]s?|Retirad[oa]s?|Prejudicad[oa]s?)/i);
+		if (m) return m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase();
+		return venceu === 'Sim' ? 'Sim venceu' : 'Não venceu';
+	})();
+	$: desfechoPositivo = /^(aprovad|mantid)/i.test(desfecho) || desfecho === 'Sim venceu';
 	$: filtrosAtivos = [filtroVoto, filtroPartido, filtroEstado, filtroNome].filter(Boolean);
 
 	function limparFiltros() {
@@ -547,23 +563,45 @@
 <svelte:window on:keydown={aoTeclar} />
 
 <header class="hero">
-	<p class="ds-label hero-in" style="--d:0ms">Câmara dos Deputados · dados abertos</p>
-	<h1 class="hero-title hero-in" style="--d:80ms">Voto a voto</h1>
-	<p class="hero-lead hero-in" style="--d:180ms">
-		Cada votação nominal do plenário, deputado por deputado. Os dados vêm da API oficial da
-		Câmara e são atualizados todos os dias.
-	</p>
-	<dl class="hero-stats hero-in" style="--d:280ms">
+	<div class="hero-texto">
+		<p class="ds-label hero-in" style="--d:0ms">Câmara dos Deputados · dados abertos</p>
+		<h1 class="hero-title hero-in" style="--d:80ms">Voto a voto</h1>
+		<p class="hero-lead hero-in" style="--d:180ms">
+			Cada votação nominal do plenário, deputado por deputado. Os dados vêm da API oficial da
+			Câmara e são atualizados todos os dias.
+		</p>
+		{#if ultimaAtualizacaoTexto}
+			<p class="hero-update hero-in" style="--d:280ms">
+				<span class="pulse" aria-hidden="true" />
+				<time datetime={ultimaAtualizacao}>Atualizado em {ultimaAtualizacaoTexto}</time>
+			</p>
+		{/if}
+	</div>
+
+	<figure class="hero-plenario hero-in" style="--d:220ms">
+		<Hemiciclo votos={votosComAusentes} chave={`hero-${votacaoId}`} mini />
+		{#if presentes}
+			<figcaption>
+				<span class="hero-placar">
+					<b style="color:var(--vote-sim)" use:countUp={placar.Sim}>0</b>
+					<i>×</i>
+					<b style="color:var(--vote-nao)" use:countUp={placar.Não}>0</b>
+				</span>
+				<span>Última votação carregada · {fimTextoCurto}</span>
+			</figcaption>
+		{/if}
+	</figure>
+
+	<dl class="hero-stats hero-in" style="--d:360ms">
 		<div><dt>votações nominais</dt><dd use:countUp={votosDisponiveis.size}>0</dd></div>
 		<div><dt>meses com votação</dt><dd use:countUp={opcoesMes.length}>0</dd></div>
 		<div><dt>cadeiras no plenário</dt><dd use:countUp={513}>0</dd></div>
+		<div><dt>atualizações por dia</dt><dd>2</dd></div>
 	</dl>
-	{#if ultimaAtualizacaoTexto}
-		<p class="hero-update hero-in" style="--d:360ms">
-			<span class="pulse" aria-hidden="true" />
-			<time datetime={ultimaAtualizacao}>Atualizado em {ultimaAtualizacaoTexto}</time>
-		</p>
-	{/if}
+
+	<a class="hero-seta" href="#votacao" aria-label="Ir para a votação">
+		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+	</a>
 </header>
 
 {#if VotesSummaryComponent}
@@ -672,14 +710,49 @@
 	{#if dataInicio && votos.length > 0}
 	<div class="resultados" class:resultados--carregando={carregandoVotos} aria-busy={carregandoVotos}>
 		{#key votacaoId}
-			<section class="sec sec--abre">
-				<p class="ds-label">Em votação · {fimTexto}</p>
-				{#if resumoTexto}
-					<h2 class="sec-title sec-title--ementa">{resumoTexto}</h2>
-				{/if}
-				{#if descricaoAtual}
-					<p class="sec-lead">{descricaoAtual}</p>
-				{/if}
+			<section class="ficha" id="votacao">
+				<div class="ficha-texto">
+					<p class="ds-label">Em votação · {fimTexto}</p>
+					{#if resumoTexto}
+						<h2 class="ficha-ementa">{resumoTexto}</h2>
+					{/if}
+					{#if descricaoAtual}
+						<p class="sec-lead">{descricaoAtual}</p>
+					{/if}
+				</div>
+
+				<dl class="ficha-kpis">
+					<div class="kpi kpi--desfecho">
+						<dt>Resultado</dt>
+						<dd style={`color:${desfechoPositivo ? 'var(--vote-sim)' : 'var(--vote-nao)'}`}>{desfecho}</dd>
+					</div>
+					<div class="kpi">
+						<dt>Placar</dt>
+						<dd>
+							<span class="kpi-placar">
+								<b use:countUp={placar.Sim}>0</b><i>×</i><b use:countUp={placar.Não}>0</b>
+							</span>
+							<span class="kpi-split" aria-hidden="true">
+								<i style={`flex:${placar.Sim || 0.0001};background:var(--vote-sim)`} />
+								<i style={`flex:${placar.Não || 0.0001};background:var(--vote-nao)`} />
+							</span>
+						</dd>
+					</div>
+					<div class="kpi kpi--anel">
+						<dt>Presença</dt>
+						<dd>
+							<svg viewBox="0 0 44 44" class="anel" aria-hidden="true">
+								<circle cx="22" cy="22" r="18" class="anel-fundo" />
+								<circle cx="22" cy="22" r="18" class="anel-valor" pathLength="100" style={`stroke-dasharray:${presencaPct} 100`} />
+							</svg>
+							<span><b use:countUp={presentes}>0</b> de 513 <small>{presencaPct}%</small></span>
+						</dd>
+					</div>
+					<div class="kpi">
+						<dt>Margem</dt>
+						<dd><b use:countUp={margem}>0</b> <small>votos para o {venceu.toLowerCase()}</small></dd>
+					</div>
+				</dl>
 			</section>
 		{/key}
 
@@ -777,8 +850,88 @@
 	}
 
 	.hero {
-		padding: calc(var(--grid) * 12) 0 calc(var(--grid) * 6);
-		max-width: 875px;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+		grid-template-areas: 'texto plenario' 'stats stats';
+		align-items: center;
+		gap: calc(var(--grid) * 4) calc(var(--grid) * 6);
+		min-height: min(100svh, 980px);
+		padding: calc(var(--grid) * 8) 0 calc(var(--grid) * 4);
+		position: relative;
+	}
+
+	.hero-texto {
+		grid-area: texto;
+	}
+
+	.hero-plenario {
+		grid-area: plenario;
+		margin: 0;
+	}
+
+	.hero-plenario figcaption {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: calc(var(--grid) * 0.6);
+		margin-top: calc(var(--grid) * 1.5);
+		font-size: var(--t-small);
+		color: var(--color-text-muted);
+	}
+
+	.hero-placar {
+		display: inline-flex;
+		align-items: baseline;
+		gap: calc(var(--grid) * 1.2);
+		font-family: var(--font-display);
+		font-size: calc(var(--grid) * 4.4);
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.hero-placar b {
+		font-weight: 500;
+	}
+
+	.hero-placar i {
+		font-style: normal;
+		font-size: 0.6em;
+		opacity: 0.35;
+	}
+
+	.hero-seta {
+		position: absolute;
+		left: 50%;
+		bottom: calc(var(--grid) * 1);
+		transform: translateX(-50%);
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		color: var(--color-dark);
+		animation: nudge 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+	}
+
+	.hero-seta svg {
+		width: 22px;
+		height: 22px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	@keyframes nudge {
+		0%,
+		60%,
+		100% {
+			transform: translate(-50%, 0);
+		}
+		30% {
+			transform: translate(-50%, 8px);
+		}
 	}
 
 	.hero-in {
@@ -794,7 +947,7 @@
 	}
 
 	.hero-title {
-		font-size: clamp(calc(var(--grid) * 6), 11vw, calc(var(--grid) * 13));
+		font-size: clamp(calc(var(--grid) * 6.5), 9vw, calc(var(--grid) * 13));
 		line-height: 0.95;
 		letter-spacing: -0.03em;
 		margin: 0 0 calc(var(--grid) * 3);
@@ -805,14 +958,15 @@
 		font-weight: 300;
 		line-height: 1.45;
 		letter-spacing: -0.02em;
-		max-width: 720px;
-		margin: 0 0 calc(var(--grid) * 5);
+		max-width: 560px;
+		margin: 0 0 calc(var(--grid) * 3);
 	}
 
 	.hero-stats {
-		display: flex;
-		flex-wrap: wrap;
-		gap: calc(var(--grid) * 2) calc(var(--grid) * 6);
+		grid-area: stats;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: calc(var(--grid) * 2) calc(var(--grid) * 4);
 		margin: 0 0 calc(var(--grid) * 4);
 		padding-top: calc(var(--grid) * 2);
 		border-top: 2px solid var(--color-dark);
@@ -833,7 +987,7 @@
 	}
 
 	.hero-stats dt {
-		font-size: var(--t-caption);
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
 		margin-top: calc(var(--grid) * 0.6);
 	}
@@ -842,7 +996,7 @@
 		display: flex;
 		align-items: center;
 		gap: calc(var(--grid) * 1);
-		font-size: var(--t-caption);
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
 		margin: 0;
 	}
@@ -981,6 +1135,135 @@
 	.sec--abre {
 		max-width: 875px;
 		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	}
+
+	.ficha {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+		gap: calc(var(--grid) * 4) calc(var(--grid) * 8);
+		padding-top: calc(var(--grid) * 6);
+		align-items: start;
+		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	}
+
+	.ficha-ementa {
+		font-size: clamp(calc(var(--grid) * 3), 3.4vw, calc(var(--grid) * 4.4));
+		line-height: 1.14;
+		margin: 0 0 calc(var(--grid) * 2);
+	}
+
+	.ficha-kpis {
+		margin: 0;
+		border-top: 2px solid var(--color-dark);
+	}
+
+	.kpi {
+		display: grid;
+		grid-template-columns: 9ch 1fr;
+		align-items: center;
+		gap: calc(var(--grid) * 2);
+		padding: calc(var(--grid) * 1.8) 0;
+		border-bottom: 1px solid var(--color-rule);
+		animation: settle 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+	}
+
+	.kpi:nth-child(2) { animation-delay: 80ms; }
+	.kpi:nth-child(3) { animation-delay: 160ms; }
+	.kpi:nth-child(4) { animation-delay: 240ms; }
+
+	.kpi dt {
+		font-size: var(--t-small);
+		color: var(--color-text-muted);
+	}
+
+	.kpi dd {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: calc(var(--grid) * 1.2);
+		font-size: var(--t-caption);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.kpi dd b {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: calc(var(--grid) * 3.4);
+		line-height: 1;
+	}
+
+	.kpi dd small {
+		font-size: var(--t-small);
+		color: var(--color-text-muted);
+	}
+
+	.kpi--desfecho dd {
+		font-family: var(--font-display);
+		font-size: calc(var(--grid) * 4.4);
+		line-height: 1;
+	}
+
+	.kpi-placar {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 8px;
+	}
+
+	.kpi-placar b:first-child {
+		color: var(--vote-sim);
+	}
+
+	.kpi-placar b:last-child {
+		color: var(--vote-nao);
+	}
+
+	.kpi-placar i {
+		font-style: normal;
+		opacity: 0.35;
+	}
+
+	.kpi-split {
+		flex: 1;
+		display: flex;
+		gap: 2px;
+		height: 10px;
+		min-width: 60px;
+	}
+
+	.kpi-split i {
+		display: block;
+		border-radius: 2px;
+		transform-origin: left;
+		animation: draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards 200ms;
+	}
+
+	.anel {
+		width: 52px;
+		height: 52px;
+		transform: rotate(-90deg);
+		flex: 0 0 auto;
+	}
+
+	.anel circle {
+		fill: none;
+		stroke-width: 6;
+	}
+
+	.anel-fundo {
+		stroke: var(--color-track);
+	}
+
+	.anel-valor {
+		stroke: var(--color-dark);
+		stroke-linecap: round;
+		transition: stroke-dasharray 600ms var(--ease);
+		animation: anel 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards 200ms;
+	}
+
+	@keyframes anel {
+		from {
+			stroke-dasharray: 0 100;
+		}
 	}
 
 	.regua {
@@ -1136,8 +1419,24 @@
 
 	@media (max-width: 900px) {
 		.duas,
-		.bolhas {
+		.bolhas,
+		.ficha {
 			grid-template-columns: 1fr;
+		}
+
+		.hero {
+			grid-template-columns: 1fr;
+			grid-template-areas: 'texto' 'plenario' 'stats';
+			min-height: 0;
+			padding-bottom: calc(var(--grid) * 6);
+		}
+
+		.hero-stats {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.hero-seta {
+			display: none;
 		}
 	}
 

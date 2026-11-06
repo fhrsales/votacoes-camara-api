@@ -76,12 +76,12 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--t-caption);
+    font-size: calc(var(--grid) * 1.9);
   }
 
   th {
     text-align: left;
-    font-size: calc(var(--grid) * 1.4);
+    font-size: var(--t-small);
     font-weight: 600;
     color: var(--color-text-muted);
     padding: 0 calc(var(--grid) * 1) calc(var(--grid) * 1);
@@ -122,7 +122,7 @@
   .sub {
     display: none;
     font-weight: 400;
-    font-size: calc(var(--grid) * 1.4);
+    font-size: var(--t-small);
     color: var(--color-text-muted);
   }
 
@@ -146,7 +146,7 @@
     display: inline-flex;
     align-items: center;
     gap: calc(var(--grid) * 0.7);
-    font-size: var(--t-label);
+    font-size: var(--t-small);
     font-weight: 600;
     color: var(--color-dark);
   }

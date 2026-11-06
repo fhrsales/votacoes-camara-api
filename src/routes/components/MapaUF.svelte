@@ -105,8 +105,7 @@
 	}
 
 	.uf--sel {
-		outline: 2px solid var(--color-dark);
-		outline-offset: 2px;
+		box-shadow: var(--shadow-2), inset 0 -3px 0 var(--color-dark);
 	}
 
 	.uf--off {
@@ -121,14 +120,14 @@
 	}
 
 	.uf-sigla {
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		font-weight: 600;
 		letter-spacing: 0.02em;
 	}
 
 	.uf-pct {
 		font-family: var(--font-display);
-		font-size: calc(var(--grid) * 2);
+		font-size: calc(var(--grid) * 2.4);
 		line-height: 1;
 		font-variant-numeric: tabular-nums;
 	}
@@ -142,7 +141,7 @@
 		border-radius: 999px;
 		background: var(--color-dark);
 		color: var(--color-light);
-		font-size: calc(var(--grid) * 1.3);
+		font-size: var(--t-small);
 		white-space: nowrap;
 		opacity: 0;
 		pointer-events: none;
@@ -160,7 +159,7 @@
 		justify-content: center;
 		gap: calc(var(--grid) * 1);
 		margin-top: calc(var(--grid) * 2.5);
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
 	}
 
@@ -185,11 +184,11 @@
 		}
 
 		.uf-sigla {
-			font-size: calc(var(--grid) * 1.1);
+			font-size: calc(var(--grid) * 1.35);
 		}
 
 		.uf-pct {
-			font-size: calc(var(--grid) * 1.4);
+			font-size: calc(var(--grid) * 1.8);
 		}
 	}
 </style>

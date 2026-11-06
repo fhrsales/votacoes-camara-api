@@ -10,6 +10,8 @@
 	export let filtroEstado = '';
 	export let filtroPartido = '';
 	export let filtroNome = '';
+	/** Decorative version for the hero: no score, legend or interaction. */
+	export let mini = false;
 
 	const dispatch = createEventDispatcher();
 	const CADEIRAS = 513;
@@ -81,7 +83,7 @@
 	}
 </script>
 
-<figure class="hemi">
+<figure class="hemi" class:hemi--mini={mini} aria-hidden={mini}>
 	<div class="hemi-stage" bind:this={wrapEl} on:mouseleave={() => (hover = null)}>
 		{#key chave}
 			<svg
@@ -111,6 +113,7 @@
 			</svg>
 		{/key}
 
+		{#if !mini}
 		<div class="hemi-center">
 			<div class="hemi-score">
 				<span class="score score--sim"><b use:countUp={c.Sim}>0</b><small>sim</small></span>
@@ -125,8 +128,9 @@
 			</p>
 		</div>
 		<span class="hemi-maioria">{maioria} · maioria absoluta</span>
+		{/if}
 
-		{#if hover}
+		{#if hover && !mini}
 			<div class="hemi-tip" style={`left:${tip.x}px;top:${tip.y}px`}>
 				<img src={hover.deputado_?.urlFoto} alt="" width="40" height="40" loading="lazy" />
 				<div>
@@ -138,6 +142,7 @@
 		{/if}
 	</div>
 
+	{#if !mini}
 	<figcaption class="hemi-legend">
 		{#each TIPOS as tipo}
 			<button
@@ -152,6 +157,7 @@
 			</button>
 		{/each}
 	</figcaption>
+	{/if}
 </figure>
 
 <style>
@@ -161,6 +167,14 @@
 
 	.hemi-stage {
 		position: relative;
+	}
+
+	.hemi--mini {
+		pointer-events: none;
+	}
+
+	.hemi--mini .hemi-axis {
+		opacity: 0.2;
 	}
 
 	svg {
@@ -262,7 +276,7 @@
 
 	.hemi-verdict {
 		margin: calc(var(--grid) * 1) 0 0;
-		font-size: var(--t-caption);
+		font-size: calc(var(--grid) * 1.9);
 		color: var(--color-text-muted);
 	}
 
@@ -271,7 +285,7 @@
 		top: -2px;
 		left: 50%;
 		transform: translate(8px, 0);
-		font-size: calc(var(--grid) * 1.3);
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
 		white-space: nowrap;
 	}
@@ -305,8 +319,8 @@
 	.hemi-tip div {
 		display: flex;
 		flex-direction: column;
-		font-size: calc(var(--grid) * 1.4);
-		line-height: 1.3;
+		font-size: var(--t-small);
+		line-height: 1.35;
 	}
 
 	.hemi-tip span {
@@ -352,7 +366,7 @@
 		background: none;
 		padding: calc(var(--grid) * 0.4) 0;
 		font: inherit;
-		font-size: var(--t-label);
+		font-size: var(--t-caption);
 		color: var(--color-dark);
 		cursor: pointer;
 		transition: opacity 180ms var(--ease);

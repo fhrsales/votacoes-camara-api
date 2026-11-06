@@ -39,7 +39,7 @@
 		background: var(--color-light);
 		color: var(--color-dark);
 		font-family: var(--font-primary);
-		font-size: var(--t-label);
+		font-size: var(--t-control);
 		font-weight: 500;
 		line-height: 1.2;
 		cursor: pointer;
@@ -52,9 +52,10 @@
 		color: var(--color-light);
 	}
 
+	.ui-select:focus,
 	.ui-select:focus-visible {
-		outline: 2px solid var(--color-primary);
-		outline-offset: 2px;
+		outline: none;
+		box-shadow: none;
 	}
 
 	.ui-select-wrapper--full,

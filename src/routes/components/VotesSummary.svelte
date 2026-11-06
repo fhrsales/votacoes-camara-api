@@ -39,18 +39,25 @@
 		Ausentes: 'var(--color-neutral)'
 	};
 
+	let stackedEl;
+
+	// Position relative to the whole bar (the tooltip lives in .stacked), not to the segment.
+	function posicionar(event) {
+		if (!stackedEl) return;
+		const caixa = stackedEl.getBoundingClientRect();
+		const alvo = event?.currentTarget?.getBoundingClientRect?.();
+		const temPonteiro = typeof event?.clientX === 'number' && event.clientX > 0;
+		const x = temPonteiro ? event.clientX - caixa.left : alvo ? alvo.left + alvo.width / 2 - caixa.left : 0;
+		const margem = 70;
+		tooltipPos = { x: Math.min(Math.max(x, margem), caixa.width - margem), y: -8 };
+	}
+
 	function abrirTooltip(tipo, valor, event) {
 		tooltipTexto = tipo;
 		tooltipValor = String(valor);
 		tooltipCor = cores[tipo] || 'var(--color-text)';
 		hoverTipo = tipo;
-		if (event?.currentTarget?.getBoundingClientRect) {
-			const rect = event.currentTarget.getBoundingClientRect();
-			tooltipPos = {
-				x: event.clientX - rect.left + 12,
-				y: event.clientY - rect.top - 12
-			};
-		}
+		posicionar(event);
 	}
 
 	function fecharTooltip() {
@@ -61,12 +68,7 @@
 	}
 
 	function moverTooltip(event) {
-		if (!event?.currentTarget?.getBoundingClientRect) return;
-		const rect = event.currentTarget.getBoundingClientRect();
-		tooltipPos = {
-			x: event.clientX - rect.left + 12,
-			y: event.clientY - rect.top - 12
-		};
+		posicionar(event);
 	}
 
 	function labelOculto(valor, totalBase) {
@@ -158,15 +160,17 @@
 				{/if}
 			</div>
 		</div>
-		<div class="stacked">
+		<div class="stacked" bind:this={stackedEl}>
 			<div
 				class="stacked-tooltip"
 				class:visible={tooltipTexto}
 				style={`left: ${tooltipPos.x}px; top: ${tooltipPos.y}px;`}
 			>
-				<div>{tooltipTexto}</div>
+				<i style={`background:${tooltipCor}`} />
+				<span>{tooltipTexto}</span>
 				<hr />
-				<div>{tooltipValor}</div>
+				<b>{tooltipValor}</b>
+				{#if totalBase}<span class="tip-pct">{Math.round((Number(tooltipValor) / totalBase) * 100)}%</span>{/if}
 			</div>
 			<div class="stacked-bar">
 				<div
@@ -287,7 +291,7 @@
 
 	h2 {
 		margin: 0;
-		font-size: calc(var(--grid) * 2.4);
+		font-size: calc(var(--grid) * 2.8);
 		line-height: 1.1;
 		white-space: nowrap;
 	}
@@ -307,7 +311,7 @@
 	}
 
 	.summary-note-inline {
-		font-size: var(--t-label);
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
 		white-space: nowrap;
 	}
@@ -411,7 +415,7 @@
 	.stacked-bar {
 		display: flex;
 		gap: 2px;
-		height: calc(var(--grid) * 2.6);
+		height: calc(var(--grid) * 3.2);
 	}
 
 	.segment {
@@ -421,7 +425,7 @@
 		justify-content: flex-start;
 		padding-left: 8px;
 		color: #fff;
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		font-weight: 600;
 		font-variant-numeric: tabular-nums;
 		cursor: pointer;
@@ -488,13 +492,14 @@
 		position: absolute;
 		transform: translate(-50%, -100%);
 		display: flex;
+		align-items: center;
 		gap: 8px;
 		padding: 5px 12px;
 		border-radius: 999px;
 		background: var(--color-dark);
 		color: var(--color-light);
 		box-shadow: var(--shadow-2);
-		font-size: calc(var(--grid) * 1.4);
+		font-size: var(--t-small);
 		white-space: nowrap;
 		opacity: 0;
 		pointer-events: none;
@@ -504,6 +509,31 @@
 
 	.stacked-tooltip.visible {
 		opacity: 1;
+	}
+
+	.stacked-tooltip i {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+	}
+
+	.stacked-tooltip b {
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tip-pct {
+		opacity: 0.65;
+	}
+
+	.stacked-tooltip::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%);
+		border: 6px solid transparent;
+		border-top-color: var(--color-dark);
 	}
 
 	.stacked-tooltip hr {
