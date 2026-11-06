@@ -1,0 +1,46 @@
+{
+  "mes": "2026-11",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7112",
+      "data": "2026-11-03",
+      "dataHoraRegistro": "2026-11-03T00:00:00",
+      "sequencial": 4426,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2025",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 18, de 2025, nos termos do parecer da Comissão Diretora (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7111",
+      "data": "2026-11-03",
+      "dataHoraRegistro": "2026-11-03T00:00:00",
+      "sequencial": 4425,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2025",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 85 à Proposta de Emenda à Constituição nº 18, de 2025, nos termos do acordo de Plenário.",
+      "hasResultado": true
+    },
+    {
+      "id": "7110",
+      "data": "2026-11-03",
+      "dataHoraRegistro": "2026-11-03T00:00:00",
+      "sequencial": 4424,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2025",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 18, de 2025, nos termos dos pareceres, ressalvado o destaque (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7109",
+      "data": "2026-11-03",
+      "dataHoraRegistro": "2026-11-03T00:00:00",
+      "sequencial": 4423,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2025",
+      "descricao": "Aprovado. Votação nominal dos Requerimentos nºs 741 e 742, de 2026, do Relator, para que as Emendas nºs 84 e 87 passem a constituir proposições em separado.",
+      "hasResultado": true
+    }
+  ]
+}

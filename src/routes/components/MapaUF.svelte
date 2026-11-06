@@ -89,6 +89,7 @@
 
 <style>
 	.mapa {
+		container-type: inline-size;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		grid-template-rows: repeat(8, auto);
@@ -294,5 +295,26 @@
 		.uf-pct small {
 			display: none;
 		}
+	}
+	/* Narrow tiles: drop the small "sim" and shrink the number so nothing is cut */
+	@container (max-width: 470px) {
+		.uf-pct {
+			font-size: clamp(11px, 4.4cqi, 22px);
+		}
+
+		.uf-pct small {
+			display: none;
+		}
+
+		.uf-sigla {
+			font-size: clamp(10px, 3cqi, 15px);
+		}
+	}
+
+	.uf-pct,
+	.uf-sigla {
+		max-width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 </style>

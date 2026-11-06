@@ -48,6 +48,10 @@ A versão antiga buscava só o próprio dia, de manhã, antes de qualquer sessã
 os meses de 2026 ficaram vazios. Além disso, o deploy dependia de um `workflow_run` que parou
 de disparar em fevereiro.
 
+O Senado entra no mesmo workflow: `scripts/fetch-senado.mjs` lê `https://legis.senado.leg.br/dadosabertos/votacao`
+(votações nominais abertas, com o voto de cada senador) e grava no mesmo formato da Câmara em `static/data/senado`.
+No site, o seletor Câmara | Senado troca a casa (link direto: `?casa=senado`).
+
 Para reprocessar mais meses: **Actions → Atualizar dados de votações → Run workflow** e informe
 quantos meses buscar. Localmente:
 

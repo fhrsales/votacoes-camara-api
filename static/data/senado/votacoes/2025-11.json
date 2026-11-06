@@ -1,0 +1,16 @@
+{
+  "mes": "2025-11",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7029",
+      "data": "2025-11-25",
+      "dataHoraRegistro": "2025-11-25T00:00:00",
+      "sequencial": 4345,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 185/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 185, de 2024, nos termos dos pareceres.",
+      "hasResultado": true
+    }
+  ]
+}

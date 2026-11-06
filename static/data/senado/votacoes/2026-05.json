@@ -1,0 +1,16 @@
+{
+  "mes": "2026-05",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7091",
+      "data": "2026-05-27",
+      "dataHoraRegistro": "2026-05-27T00:00:00",
+      "sequencial": 4404,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 11/2026",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 11, de 2026.",
+      "hasResultado": true
+    }
+  ]
+}

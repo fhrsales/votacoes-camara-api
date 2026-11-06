@@ -13,10 +13,12 @@
 	export let filtroNome = '';
 	/** Ids of women deputies, for the silhouettes. */
 	export let mulheres = new Set();
+	/** 513 in the Câmara, 81 in the Senado: fewer people stand in fewer, bigger rows. */
+	export let cadeiras = 513;
 
 	const dispatch = createEventDispatcher();
-	const CADEIRAS = 513;
-	const FILEIRAS = 12;
+	$: CADEIRAS = cadeiras;
+	$: FILEIRAS = cadeiras > 200 ? 12 : 5;
 	const R0 = 0.4;
 	// A floor plane seen in perspective; the chamber is a loose half ring on it.
 	const LARGURA = 1000;
@@ -26,7 +28,7 @@
 	const RAIO_X = 400;
 	const PERTO = 1.1;
 	const FUNDO = 1.5;
-	const FIG_ALTURA = 70; // height of a person at the front, in drawing units
+	$: FIG_ALTURA = cadeiras > 200 ? 70 : 104; // height of a person at the front, in drawing units
 	const RODAPE = 30;
 	const FOLGA_GRUPO = 0.018; // breathing room between vote groups, as a share of the arc
 	const VARIANTES_H = ['h1', 'h2'];
@@ -130,7 +132,7 @@
 				const g = grupos.indexOf(voto.tipoVoto);
 				const q = projetar(p.t * encolhe + g * FOLGA_GRUPO, p.r);
 				const id = Number(voto.deputado_?.id) || i;
-				const mulher = mulheres.has(voto.deputado_?.id);
+				const mulher = mulheres.has(voto.deputado_?.id) || voto.deputado_?.sexo === 'F';
 				const lista = mulher ? VARIANTES_M : VARIANTES_H;
 				const altura = FIG_ALTURA * q.escala * (0.93 + ruido(id, 3) * 0.12);
 				return {
@@ -506,7 +508,7 @@
 				<div>
 					<strong>{hover.deputado_?.nome}</strong>
 					<span>{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
-					<em style={`--c:${COR[hover.tipoVoto]}`}>{hover.tipoVoto}</em>
+					<em style={`--c:${COR[hover.tipoVoto]}`}>{hover.situacao || hover.tipoVoto}</em>
 				</div>
 			</div>
 		{/if}

@@ -1,0 +1,16 @@
+{
+  "mes": "2026-09",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7105",
+      "data": "2026-09-03",
+      "dataHoraRegistro": "2026-09-03T00:00:00",
+      "sequencial": 4419,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 74/2026",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 74, de 2026, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

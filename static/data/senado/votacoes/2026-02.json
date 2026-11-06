@@ -1,0 +1,36 @@
+{
+  "mes": "2026-02",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7049",
+      "data": "2026-02-25",
+      "dataHoraRegistro": "2026-02-25T00:00:00",
+      "sequencial": 4362,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 14/2026",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 14, de 2026, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7048",
+      "data": "2026-02-24",
+      "dataHoraRegistro": "2026-02-24T00:00:00",
+      "sequencial": 4361,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 22/2025",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 22, de 2025, nos termos do parecer da Comissão Diretora (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7047",
+      "data": "2026-02-24",
+      "dataHoraRegistro": "2026-02-24T00:00:00",
+      "sequencial": 4360,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 22/2025",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 5 (Substitutivo) à Proposta de Emenda à Constituição nº 22, de 2025, nos termos do parecer de Plenário (1º Turno).",
+      "hasResultado": true
+    }
+  ]
+}

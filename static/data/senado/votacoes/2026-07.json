@@ -1,0 +1,56 @@
+{
+  "mes": "2026-07",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7100",
+      "data": "2026-07-15",
+      "dataHoraRegistro": "2026-07-15T00:00:00",
+      "sequencial": 4413,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 18/2021",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 4 ao Projeto de Lei Complementar nº 18, de 2021, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "7099",
+      "data": "2026-07-15",
+      "dataHoraRegistro": "2026-07-15T00:00:00",
+      "sequencial": 4412,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 18/2021",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 2 ao Projeto de Lei Complementar nº 18, de 2021, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "7098",
+      "data": "2026-07-15",
+      "dataHoraRegistro": "2026-07-15T00:00:00",
+      "sequencial": 4411,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 18/2021",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 18, de 2021, nos termos dos pareceres, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "7097",
+      "data": "2026-07-14",
+      "dataHoraRegistro": "2026-07-14T00:00:00",
+      "sequencial": 4410,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 14/2021",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 14, de 2021 (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7096",
+      "data": "2026-07-14",
+      "dataHoraRegistro": "2026-07-14T00:00:00",
+      "sequencial": 4409,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 14/2021",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 14, de 2021, nos termos do parecer (1º turno).",
+      "hasResultado": true
+    }
+  ]
+}

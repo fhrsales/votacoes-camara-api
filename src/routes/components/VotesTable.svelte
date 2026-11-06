@@ -5,6 +5,7 @@
   export let onShowGraficos = () => {};
   export let emails = {};
   export let votacao = {};
+  export let tratamento = 'deputado(a)';
 
   function emailDe(dep) {
     return emails?.[dep?.id] || dep?.email || '';
@@ -26,7 +27,7 @@
         ? 'não há registro do seu voto'
         : `o seu voto foi "${voto.tipoVoto}"`;
     const corpo = [
-      `Prezado(a) deputado(a) ${dep.nome},`,
+      `Prezado(a) ${tratamento} ${dep.nome},`,
       '',
       `Na votação nominal de ${votacao?.data || 'plenário'}${votacao?.id ? ` (${votacao.id})` : ''}, sobre:`,
       `"${corte(tema, 400)}"`,

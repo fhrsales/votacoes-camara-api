@@ -17,10 +17,10 @@
 </script>
 
 <svelte:head>
-  <title>Votações da Câmara — Como votou seu deputado?</title>
+  <title>Voto a voto — como votaram deputados e senadores</title>
   <meta
     name="description"
-    content="Explore votações nominais da Câmara dos Deputados, veja o resumo por votação e como cada deputado votou."
+    content="Votações nominais da Câmara dos Deputados e do Senado Federal: o resultado de cada votação e como cada parlamentar votou."
   />
 </svelte:head>
 

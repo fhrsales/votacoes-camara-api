@@ -1,0 +1,36 @@
+{
+  "mes": "2026-10",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7108",
+      "data": "2026-10-15",
+      "dataHoraRegistro": "2026-10-15T00:00:00",
+      "sequencial": 4422,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 186/2026",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 186, de 2026, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7107",
+      "data": "2026-10-14",
+      "dataHoraRegistro": "2026-10-14T00:00:00",
+      "sequencial": 4421,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 221/2019",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 221, de 2019, em segundo turno.",
+      "hasResultado": true
+    },
+    {
+      "id": "7106",
+      "data": "2026-10-14",
+      "dataHoraRegistro": "2026-10-14T00:00:00",
+      "sequencial": 4420,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 221/2019",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 221, de 2019, em primeiro turno.",
+      "hasResultado": true
+    }
+  ]
+}

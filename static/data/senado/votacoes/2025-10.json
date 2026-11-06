@@ -1,0 +1,36 @@
+{
+  "mes": "2025-10",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7017",
+      "data": "2025-10-22",
+      "dataHoraRegistro": "2025-10-22T00:00:00",
+      "sequencial": 4333,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 204/2025",
+      "descricao": "Aprovado. Emenda nº 2 (Substitutivo) ao Projeto de Lei Complementar nº 204, de 2025, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7016",
+      "data": "2025-10-21",
+      "dataHoraRegistro": "2025-10-21T00:00:00",
+      "sequencial": 4332,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 769/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 769, de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7015",
+      "data": "2025-10-07",
+      "dataHoraRegistro": "2025-10-07T00:00:00",
+      "sequencial": 4331,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 235/2019 (Substitutivo-CD)",
+      "descricao": "Aprovado. Votação nominal do Substitutivo da Câmara dos Deputados ao PLP nº 235, de 2019, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

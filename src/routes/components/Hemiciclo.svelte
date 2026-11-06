@@ -12,10 +12,12 @@
 	export let filtroNome = '';
 	/** Decorative version for the hero: no score, legend or interaction. */
 	export let mini = false;
+	/** Seats in the house: 513 in the Câmara, 81 in the Senado */
+	export let total = 513;
 
 	const dispatch = createEventDispatcher();
-	const CADEIRAS = 513;
-	const FILEIRAS = 11;
+	$: CADEIRAS = total;
+	$: FILEIRAS = total > 200 ? 11 : 5;
 	const R0 = 0.47;
 	const ESCALA = 420;
 
@@ -101,7 +103,7 @@
 						class:seat--vazio={s.voto.tipoVoto === 'Ausentes'}
 						cx={s.x * ESCALA}
 						cy={s.y * ESCALA}
-						r={ESCALA * 0.021}
+						r={ESCALA * (total > 200 ? 0.021 : 0.05)}
 						style={`fill:${COR[s.voto.tipoVoto]};--d:${Math.round(((Math.PI - s.ang) / Math.PI) * 700 + s.fileira * 18)}ms`}
 						on:mouseenter={(e) => mostrar(e, s)}
 						on:mousemove={mover}

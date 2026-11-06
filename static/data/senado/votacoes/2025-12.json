@@ -1,0 +1,166 @@
+{
+  "mes": "2025-12",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7046",
+      "data": "2025-12-17",
+      "dataHoraRegistro": "2025-12-17T00:00:00",
+      "sequencial": 4359,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 857/2024",
+      "descricao": "Rejeitado. Solicita urgência para o Projeto de Lei nº 2.234, de 2022",
+      "hasResultado": true
+    },
+    {
+      "id": "7043",
+      "data": "2025-12-17",
+      "dataHoraRegistro": "2025-12-17T00:00:00",
+      "sequencial": 4358,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 128/2025",
+      "descricao": "Aprovado. Votação nominal do Art. 7º do Projeto de Lei Complementar nº 128, de 2025, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "7042",
+      "data": "2025-12-17",
+      "dataHoraRegistro": "2025-12-17T00:00:00",
+      "sequencial": 4357,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 128/2025",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 128, de 2025, nos termos do parecer, ressalvado o destaque.",
+      "hasResultado": true
+    },
+    {
+      "id": "7041",
+      "data": "2025-12-17",
+      "dataHoraRegistro": "2025-12-17T00:00:00",
+      "sequencial": 4356,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2162/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 2.162, de 2023, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7045",
+      "data": "2025-12-17",
+      "dataHoraRegistro": "2025-12-17T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2234/2022",
+      "descricao": "Rejeitado. Votação nominal do Requerimento nº 857, de 2024, que solicita urgência para o Projeto de Lei nº 2.234, de 2022.",
+      "hasResultado": true
+    },
+    {
+      "id": "7040",
+      "data": "2025-12-16",
+      "dataHoraRegistro": "2025-12-16T00:00:00",
+      "sequencial": 4355,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 76/2019",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 76, de 2019, nos termos do parecer da Comissão Diretora (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7039",
+      "data": "2025-12-16",
+      "dataHoraRegistro": "2025-12-16T00:00:00",
+      "sequencial": 4354,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 76/2019",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 76, de 2019, nos termos dos pareceres (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7038",
+      "data": "2025-12-16",
+      "dataHoraRegistro": "2025-12-16T00:00:00",
+      "sequencial": 4353,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 143/2020",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 143, de 2020, nos termos do último parecer de Plenário.",
+      "hasResultado": true
+    },
+    {
+      "id": "7037",
+      "data": "2025-12-10",
+      "dataHoraRegistro": "2025-12-10T00:00:00",
+      "sequencial": 4352,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 5582/2025",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 117 (Substitutivo) ao Projeto de Lei nº 5.582, de 2025, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7036",
+      "data": "2025-12-10",
+      "dataHoraRegistro": "2025-12-10T00:00:00",
+      "sequencial": 4351,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 169/2019",
+      "descricao": "Aprovado. Votação nominal do 2º turno da Proposta de Emenda à Constituição nº 169, de 2019.",
+      "hasResultado": true
+    },
+    {
+      "id": "7035",
+      "data": "2025-12-10",
+      "dataHoraRegistro": "2025-12-10T00:00:00",
+      "sequencial": 4350,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 169/2019",
+      "descricao": "Aprovado. Votação nominal do 1º turno da Proposta de Emenda à Constituição nº 169, de 2019, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7033",
+      "data": "2025-12-09",
+      "dataHoraRegistro": "2025-12-09T00:00:00",
+      "sequencial": 4349,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 48/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 48, de 2023, nos termos do parecer da Comissão Diretora (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7032",
+      "data": "2025-12-09",
+      "dataHoraRegistro": "2025-12-09T00:00:00",
+      "sequencial": 4348,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 48/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 48, de 2023, nos termos do parecer (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7031",
+      "data": "2025-12-09",
+      "dataHoraRegistro": "2025-12-09T00:00:00",
+      "sequencial": 4347,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 911/2025",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 911, de 2025, de iniciativa de Líderes, que solicita calendário especial para a Proposta de Emenda à Constituição nº 48, de 2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "7034",
+      "data": "2025-12-09",
+      "dataHoraRegistro": "2025-12-09T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 48/2023",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 911, de 2025, de iniciativa de Líderes, que solicita calendário especial para a Proposta de Emenda à Constituição nº 48, de 2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "7030",
+      "data": "2025-12-03",
+      "dataHoraRegistro": "2025-12-03T00:00:00",
+      "sequencial": 4346,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 163/2025",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao Projeto de Lei Complementar nº 163, de 2025, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

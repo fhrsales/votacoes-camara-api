@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { format, parseISO } from 'date-fns';
 	import ptBR from 'date-fns/locale/pt-BR';
 	import { base } from '$app/paths';
@@ -14,6 +14,37 @@
 	import { reveal, countUp } from '$lib/motion.js';
 	import { CADEIRAS_UF } from '$lib/votos.js';
 	export let votacaoId;
+
+	// Both houses share the page; only the data folder, the seat count and the words change
+	const CASAS = {
+		camara: {
+			nome: 'Câmara dos Deputados',
+			curta: 'Câmara',
+			daCasa: 'da Câmara dos Deputados',
+			pasta: '',
+			cadeiras: 513,
+			pessoa: 'deputado',
+			pessoaF: 'deputada',
+			pessoas: 'deputados',
+			tratamento: 'deputado(a)',
+			fonte: { url: 'https://dadosabertos.camara.leg.br', nome: 'Dados Abertos da Câmara dos Deputados' }
+		},
+		senado: {
+			nome: 'Senado Federal',
+			curta: 'Senado',
+			daCasa: 'do Senado Federal',
+			pasta: '/senado',
+			cadeiras: 81,
+			pessoa: 'senador',
+			pessoaF: 'senadora',
+			pessoas: 'senadores',
+			tratamento: 'senador(a)',
+			fonte: { url: 'https://legis.senado.leg.br/dadosabertos', nome: 'Dados Abertos do Senado Federal' }
+		}
+	};
+	let casa = 'camara';
+	$: C = CASAS[casa];
+	let ausentesCasa = [];
 
 	let votos = [];
 	let votosRegistrados = [];
@@ -92,7 +123,7 @@
 		);
 		const { sim, nao, abstencao, obstrucao } = contagem;
 		const total = votosRegistrados.length;
-		const totalGeral = 513;
+		const totalGeral = CASAS[casa].cadeiras;
 		const ausentes = Math.max(0, totalGeral - total);
 		resumoVotos = { sim, nao, abstencao, obstrucao, ausentes, total, totalGeral };
 	}
@@ -185,11 +216,17 @@
 
 	$: fimTexto =
 		votos.length > 0
-			? format(votos[0].dataRegistroVoto, "d 'de' MMMM 'de' yyyy, 'às' HH:mm", { locale: ptBR })
+			? format(
+					votos[0].dataRegistroVoto,
+					casa === 'senado' ? "d 'de' MMMM 'de' yyyy" : "d 'de' MMMM 'de' yyyy, 'às' HH:mm",
+					{ locale: ptBR }
+			  )
 			: '';
 	$: fimTextoCurto =
 		votos.length > 0
-			? format(votos[0].dataRegistroVoto, "dd/MM/yy, 'às' HH:mm", { locale: ptBR })
+			? format(votos[0].dataRegistroVoto, casa === 'senado' ? 'dd/MM/yy' : "dd/MM/yy, 'às' HH:mm", {
+					locale: ptBR
+			  })
 			: '';
 
 	$: ultimaAtualizacaoTexto = ultimaAtualizacao
@@ -210,7 +247,7 @@
 		VotesTableComponent = tableModule.default;
 	}
 
-	const DATA_BASE = `${base}/data`;
+	let DATA_BASE = `${base}/data`;
 
 	async function fetchJson(url, errorMessage) {
 		const response = await fetch(url);
@@ -225,6 +262,8 @@
 	// The legislature file lists everyone who served (substitutes included), so absentees
 	// are capped per state at its fixed number of seats; the plenary always adds up to 513.
 	$: votosComAusentes = (() => {
+		// The Senado data already lists who was absent, by name
+		if (casa === 'senado') return [...votosRegistrados, ...ausentesCasa];
 		if (!deputadosLegislatura.length) return votosRegistrados;
 		const idsVotaram = new Set(votosRegistrados.map((voto) => voto?.deputado_?.id).filter(Boolean));
 		const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? null;
@@ -293,7 +332,7 @@
 		}
 
 		try {
-			const data = await fetchJson(`${DATA_BASE}/last-run.json?ts=${Date.now()}`);
+			const data = await fetchJson(`${base}/data/last-run.json?ts=${Date.now()}`);
 			if (data?.generatedAt) ultimaAtualizacao = data.generatedAt;
 		} catch {
 			ultimaAtualizacao = '';
@@ -307,11 +346,13 @@
 			emails = {};
 		}
 
-		try {
-			const data = await fetchJson(`${DATA_BASE}/deputados/legislaturas/index.json`);
-			legislaturasIndex = Array.isArray(data?.legislaturas) ? data.legislaturas : [];
-		} catch {
-			legislaturasIndex = [];
+		if (casa === 'camara') {
+			try {
+				const data = await fetchJson(`${DATA_BASE}/deputados/legislaturas/index.json`);
+				legislaturasIndex = Array.isArray(data?.legislaturas) ? data.legislaturas : [];
+			} catch {
+				legislaturasIndex = [];
+			}
 		}
 
 		// Open the latest month only now: absentees need the legislature index loaded first.
@@ -361,12 +402,19 @@
 				}
 				return;
 			}
-			votosRegistrados = lista.map((voto) => ({
+			const todos = lista.map((voto) => ({
 				...voto,
 				dataRegistroVoto: parseISO(voto.dataRegistroVoto)
 			}));
-			const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? null;
-			await carregarDeputadosLegislatura(dataRegistro);
+			if (casa === 'senado') {
+				ausentesCasa = todos.filter((v) => v.tipoVoto === 'Ausentes');
+				votosRegistrados = todos.filter((v) => v.tipoVoto !== 'Ausentes');
+			} else {
+				ausentesCasa = [];
+				votosRegistrados = todos;
+			}
+			const dataRegistro = votosRegistrados[0]?.dataRegistroVoto ?? todos[0]?.dataRegistroVoto ?? null;
+			if (casa === 'camara') await carregarDeputadosLegislatura(dataRegistro);
 			if (pedido !== pedidoVotos) return;
 			votos = votosRegistrados;
 
@@ -392,7 +440,7 @@
 			);
 			const { sim, nao, abstencao, obstrucao } = contagem;
 			const total = votosRegistrados.length;
-			const totalGeral = 513;
+			const totalGeral = CASAS[casa].cadeiras;
 			const ausentes = Math.max(0, totalGeral - total);
 			resumoVotos = { sim, nao, abstencao, obstrucao, ausentes, total, totalGeral };
 			resumoTexto = data?.resumoTexto || '';
@@ -538,7 +586,7 @@
 		return c;
 	})();
 	$: presentes = votosRegistrados.length;
-	$: presencaPct = Math.round((presentes / 513) * 100);
+	$: presencaPct = Math.round((presentes / C.cadeiras) * 100);
 	$: margem = Math.abs(placar.Sim - placar.Não);
 	$: venceu = placar.Sim >= placar.Não ? 'Sim' : 'Não';
 	$: desfecho = (() => {
@@ -552,11 +600,11 @@
 	let votosHero = [];
 	let placarHero = { Sim: 0, Não: 0 };
 	let dataHero = '';
-	$: if (!votosHero.length && votosComAusentes.length && deputadosLegislatura.length) {
+	$: if (!votosHero.length && votosComAusentes.length && (casa === 'senado' || deputadosLegislatura.length)) {
 		votosHero = votosComAusentes;
 		placarHero = { Sim: placar.Sim, Não: placar.Não };
 		const d = votosComAusentes[0]?.dataRegistroVoto;
-		dataHero = d ? format(d, "dd/MM/yy, 'às' HH:mm", { locale: ptBR }) : '';
+		dataHero = d ? format(d, casa === 'senado' ? 'dd/MM/yy' : "dd/MM/yy, 'às' HH:mm", { locale: ptBR }) : '';
 	}
 	$: filtrosAtivos = [filtroVoto, filtroPartido, filtroEstado, filtroNome].filter(Boolean);
 
@@ -578,7 +626,47 @@
 		}
 	}
 
+	// Switching house resets everything and opens that house's latest vote
+	async function trocarCasa(nova) {
+		if (nova === casa) return;
+		casa = nova;
+		DATA_BASE = `${base}/data${CASAS[nova].pasta}`;
+		const url = new URL(window.location.href);
+		if (nova === 'senado') url.searchParams.set('casa', 'senado');
+		else url.searchParams.delete('casa');
+		history.replaceState(history.state, '', url);
+		pedidoVotos += 1;
+		listaVotacoes = [];
+		selecionadoIndex = -1;
+		votacaoId = '';
+		dataInicio = '';
+		votos = [];
+		votosRegistrados = [];
+		ausentesCasa = [];
+		deputadosLegislatura = [];
+		votosHero = [];
+		opcoesMes = [];
+		votosDisponiveis = new Set();
+		emails = {};
+		mulheres = new Set();
+		resumoTexto = '';
+		erroVotos = '';
+		erroLista = '';
+		filtroVoto = '';
+		filtroEstado = '';
+		filtroPartido = '';
+		filtroNome = '';
+		await carregarIndices();
+		await tick();
+		if (dataInicio) fetchListaVotacoes();
+	}
+
 	onMount(() => {
+		const pedida = new URL(window.location.href).searchParams.get('casa');
+		if (pedida === 'senado') {
+			casa = 'senado';
+			DATA_BASE = `${base}/data/senado`;
+		}
 		carregarIndices();
 		carregarComponentesResultados();
 	});
@@ -588,11 +676,24 @@
 
 <header class="hero">
 	<div class="hero-texto">
-		<p class="ds-label hero-in" style="--d:0ms">Câmara dos Deputados · dados abertos</p>
+		<div class="casas hero-in" style="--d:0ms" role="radiogroup" aria-label="Casa legislativa">
+			{#each Object.entries(CASAS) as [chave, info]}
+				<button
+					type="button"
+					role="radio"
+					aria-checked={casa === chave}
+					class:ativo={casa === chave}
+					on:click={() => trocarCasa(chave)}
+				>
+					{info.curta}
+				</button>
+			{/each}
+		</div>
+		<p class="ds-label hero-in" style="--d:40ms">{C.nome} · dados abertos</p>
 		<h1 class="hero-title hero-in" style="--d:80ms">Voto a voto</h1>
 		<p class="hero-lead hero-in" style="--d:180ms">
-			Cada votação nominal do plenário, deputado por deputado. Os dados vêm da API oficial da
-			Câmara e são atualizados todos os dias.
+			Cada votação nominal do plenário, {C.pessoa} por {C.pessoa}. Os dados vêm da API oficial
+			{C.daCasa} e são atualizados todos os dias.
 		</p>
 		{#if ultimaAtualizacaoTexto}
 			<p class="hero-update hero-in" style="--d:280ms">
@@ -603,7 +704,7 @@
 	</div>
 
 	<figure class="hero-plenario hero-in" style="--d:220ms">
-		<Hemiciclo votos={votosHero} chave="hero" mini />
+		<Hemiciclo votos={votosHero} chave={`hero-${casa}`} total={C.cadeiras} mini />
 		{#if votosHero.length}
 			<figcaption>
 				<span class="hero-placar">
@@ -619,7 +720,7 @@
 	<dl class="hero-stats hero-in" style="--d:360ms">
 		<div><dt>votações nominais</dt><dd use:countUp={votosDisponiveis.size}>0</dd></div>
 		<div><dt>meses com votação</dt><dd use:countUp={opcoesMes.length}>0</dd></div>
-		<div><dt>cadeiras no plenário</dt><dd use:countUp={513}>0</dd></div>
+		<div><dt>cadeiras no plenário</dt><dd use:countUp={C.cadeiras}>0</dd></div>
 		<div><dt>atualizações por dia</dt><dd>2</dd></div>
 	</dl>
 
@@ -683,13 +784,13 @@
 						<Select
 							bind:value={filtroNome}
 							options={[
-								{ value: '', label: 'Todos os deputados' },
+								{ value: '', label: `Todos os ${C.pessoas}` },
 								...Array.from(new Set(votosComAusentes.map((v) => v?.deputado_?.nome).filter(Boolean)))
 									.sort()
 									.map((nome) => ({ value: nome, label: nome }))
 							]}
 							placeholder=""
-							aria-label="Filtrar por deputado"
+							aria-label={`Filtrar por ${C.pessoa}`}
 						/>
 						<Select bind:value={filtroEstado} options={opcoesEstado} placeholder="" aria-label="Filtrar por estado" />
 						<Select bind:value={filtroPartido} options={opcoesPartido} placeholder="" aria-label="Filtrar por partido" />
@@ -769,7 +870,7 @@
 								<circle cx="22" cy="22" r="18" class="anel-fundo" />
 								<circle cx="22" cy="22" r="18" class="anel-valor" pathLength="100" style={`stroke-dasharray:${presencaPct} 100`} />
 							</svg>
-							<span><b use:countUp={presentes}>0</b> de 513 <small>{presencaPct}%</small></span>
+							<span><b use:countUp={presentes}>0</b> de {C.cadeiras} <small>{presencaPct}%</small></span>
 						</dd>
 					</div>
 					<div class="kpi">
@@ -783,11 +884,12 @@
 		<section class="sec" use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">01 · Plenário</p>
-			<h2 class="sec-title">O plenário, deputado a deputado</h2>
-			<p class="sec-lead">Cada figura é um deputado ou uma deputada, no lugar do seu voto. Toque ou passe o cursor para ver quem é; o clique filtra a página.</p>
+			<h2 class="sec-title">O plenário, {C.pessoa} a {C.pessoa}</h2>
+			<p class="sec-lead">Cada figura é um {C.pessoa} ou uma {C.pessoaF}, no lugar do seu voto. Toque ou passe o cursor para ver quem é; o clique filtra a página.</p>
 			<div class="figura">
 				<PlenarioFiguras
 					votos={votosComAusentes}
+					cadeiras={C.cadeiras}
 					chave={votacaoId}
 					{mulheres}
 					{filtroVoto}
@@ -820,7 +922,7 @@
 				<h2 class="sec-title">O voto pelo mapa</h2>
 				<p class="sec-lead">
 					{#if filtroPartido}
-						Só deputados do {filtroPartido}: percentual de sim entre quem votou sim ou não, por estado.
+						Só {C.pessoas} do {filtroPartido}: percentual de sim entre quem votou sim ou não, por estado.
 						Estados com “–” não têm voto sim ou não do {filtroPartido}.
 					{:else}
 						Percentual de sim entre quem votou sim ou não, por bancada estadual. Quanto mais escuro,
@@ -873,8 +975,8 @@
 			<p class="ds-label">05 · Deputados</p>
 			<h2 class="sec-title">Voto a voto, nome a nome</h2>
 			<p class="sec-lead">
-				{votosExibidos.length.toLocaleString('pt-BR')} deputados com os filtros atuais. Use o
-				envelope ao lado de cada nome para escrever ao deputado sobre este voto: o e‑mail já sai
+				{votosExibidos.length.toLocaleString('pt-BR')} {C.pessoas} com os filtros atuais. Use o
+				envelope ao lado de cada nome para escrever ao {C.pessoa} sobre este voto: o e‑mail já sai
 				endereçado, com a votação e o voto dele no texto.
 			</p>
 			{#if VotesTableComponent}
@@ -882,6 +984,7 @@
 					this={VotesTableComponent}
 					votos={votosExibidos}
 					{emails}
+					tratamento={C.tratamento}
 					votacao={{ id: votacaoId, ementa: resumoTexto, descricao: descricaoAtual, data: fimTexto }}
 				/>
 			{/if}
@@ -893,7 +996,7 @@
 <footer class="rodape">
 	<hr class="regua" />
 	<p>
-		Fonte: <a href="https://dadosabertos.camara.leg.br" target="_blank" rel="noreferrer">Dados Abertos da Câmara dos Deputados</a>.
+		Fonte: <a href={C.fonte.url} target="_blank" rel="noreferrer">{C.fonte.nome}</a>.
 		Só entram votações nominais, com placar registrado.
 	</p>
 </footer>
@@ -1406,6 +1509,37 @@
 		display: flex;
 		justify-content: center;
 		margin-top: calc(var(--grid) * 2);
+	}
+
+	.casas {
+		display: inline-flex;
+		padding: 3px;
+		margin-bottom: calc(var(--grid) * 2.4);
+		border: 1px solid var(--color-rule);
+		border-radius: 999px;
+	}
+
+	.casas button {
+		border: 0;
+		background: transparent;
+		color: var(--color-text-muted);
+		font: inherit;
+		font-size: var(--t-control);
+		font-weight: 500;
+		padding: calc(var(--grid) * 0.8) calc(var(--grid) * 2.2);
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease);
+	}
+
+	.casas button:hover {
+		color: var(--color-dark);
+	}
+
+	.casas .ativo,
+	.casas .ativo:hover {
+		background: var(--color-dark);
+		color: var(--color-light);
 	}
 
 	.alternar {

@@ -1,0 +1,36 @@
+{
+  "mes": "2026-03",
+  "generatedAt": "2026-11-06T01:08:11.187Z",
+  "votacoes": [
+    {
+      "id": "7052",
+      "data": "2026-03-25",
+      "dataHoraRegistro": "2026-03-25T00:00:00",
+      "sequencial": 4365,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 6/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar n° 6, de 2024.",
+      "hasResultado": true
+    },
+    {
+      "id": "7051",
+      "data": "2026-03-24",
+      "dataHoraRegistro": "2026-03-24T00:00:00",
+      "sequencial": 4364,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 77/2026",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 77, de 2026, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7050",
+      "data": "2026-03-24",
+      "dataHoraRegistro": "2026-03-24T00:00:00",
+      "sequencial": 4363,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 896/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 8 (Substitutivo) ao Projeto de Lei nº 896, de 2023, nos termos do parecer, ressalvado o destaque.",
+      "hasResultado": true
+    }
+  ]
+}
