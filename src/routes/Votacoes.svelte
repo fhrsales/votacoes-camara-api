@@ -274,7 +274,6 @@
 			const data = await fetchJson(`${DATA_BASE}/votacoes/index.json`);
 			if (Array.isArray(data?.meses)) {
 				opcoesMes = data.meses;
-				if (!dataInicio && opcoesMes.length) dataInicio = opcoesMes[0].value;
 			}
 		} catch {
 			opcoesMes = [];
@@ -311,6 +310,9 @@
 		} catch {
 			legislaturasIndex = [];
 		}
+
+		// Open the latest month only now: absentees need the legislature index loaded first.
+		if (!dataInicio && opcoesMes.length) dataInicio = opcoesMes[0].value;
 	}
 
 	let pedidoVotos = 0;
@@ -608,7 +610,7 @@
 	</dl>
 
 	<a class="hero-seta" href="#votacao" aria-label="Ir para a votação">
-		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+		<span class="mouse" aria-hidden="true"><i /></span>
 	</a>
 </header>
 
@@ -924,30 +926,48 @@
 		display: grid;
 		place-items: center;
 		width: 44px;
-		height: 44px;
-		border-radius: 50%;
+		height: 56px;
 		color: var(--color-dark);
-		animation: nudge 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+		opacity: 0.55;
+		transition: opacity 180ms var(--ease);
 	}
 
-	.hero-seta svg {
+	.hero-seta:hover {
+		opacity: 1;
+	}
+
+	.mouse {
+		position: relative;
 		width: 22px;
-		height: 22px;
-		fill: none;
-		stroke: currentColor;
-		stroke-width: 1.8;
-		stroke-linecap: round;
-		stroke-linejoin: round;
+		height: 34px;
+		border: 1.5px solid currentColor;
+		border-radius: 12px;
 	}
 
-	@keyframes nudge {
-		0%,
-		60%,
-		100% {
-			transform: translate(-50%, 0);
+	.mouse i {
+		position: absolute;
+		left: 50%;
+		top: 7px;
+		width: 3px;
+		height: 7px;
+		margin-left: -1.5px;
+		border-radius: 2px;
+		background: currentColor;
+		animation: roda 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+	}
+
+	@keyframes roda {
+		0% {
+			transform: translateY(0);
+			opacity: 1;
 		}
-		30% {
-			transform: translate(-50%, 8px);
+		70% {
+			transform: translateY(10px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 0;
 		}
 	}
 

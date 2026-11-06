@@ -54,7 +54,26 @@
 				<span class="uf-sigla">{t.uf}</span>
 				<span class="uf-pct">{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}</span>
 				{#if t.d}
-					<span class="uf-tip">{t.d.Sim} sim · {t.d.Não} não · {t.d.Ausentes} aus.</span>
+					<span class="uf-tip">
+						<span class="tip-label">{t.uf} · {t.d.total} cadeiras</span>
+						<span class="tip-big">
+							{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}<small>de sim</small>
+						</span>
+						<span class="tip-barra">
+							<i style={`flex:${t.d.Sim};background:var(--vote-sim)`} />
+							<i style={`flex:${t.d.Não};background:var(--vote-nao)`} />
+							<i style={`flex:${t.d.Abstenção + t.d.Obstrução};background:var(--vote-abstencao)`} />
+							<i style={`flex:${t.d.Ausentes};background:var(--vote-ausentes)`} />
+						</span>
+						<span class="tip-linhas">
+							<span><i style="background:var(--vote-sim)" />{t.d.Sim} sim</span>
+							<span><i style="background:var(--vote-nao)" />{t.d.Não} não</span>
+							{#if t.d.Abstenção + t.d.Obstrução}
+								<span><i style="background:var(--vote-abstencao)" />{t.d.Abstenção + t.d.Obstrução} outros</span>
+							{/if}
+							<span><i style="background:var(--vote-ausentes)" />{t.d.Ausentes} ausentes</span>
+						</span>
+					</span>
 				{/if}
 			</button>
 		{/each}
@@ -135,17 +154,79 @@
 	.uf-tip {
 		position: absolute;
 		left: 50%;
-		bottom: calc(100% + 12px);
+		bottom: calc(100% + 14px);
 		transform: translate(-50%, 4px);
-		padding: calc(var(--grid) * 1) calc(var(--grid) * 1.6);
-		border-radius: 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		min-width: 220px;
+		padding: calc(var(--grid) * 1.6) calc(var(--grid) * 1.8);
+		border-radius: 14px;
 		background: var(--color-dark);
 		color: var(--color-light);
-		font-size: var(--t-small);
+		box-shadow: var(--shadow-2);
+		text-align: left;
 		white-space: nowrap;
 		opacity: 0;
 		pointer-events: none;
+		z-index: 10;
 		transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+	}
+
+	.tip-label {
+		font-size: var(--t-label);
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: 0.7;
+	}
+
+	.tip-big {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		font-family: var(--font-display);
+		font-size: calc(var(--grid) * 4);
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tip-big small {
+		font-family: var(--font-primary);
+		font-size: var(--t-small);
+		opacity: 0.7;
+	}
+
+	.tip-barra {
+		display: flex;
+		gap: 2px;
+		height: 8px;
+		border-radius: 999px;
+		overflow: hidden;
+	}
+
+	.tip-barra i {
+		display: block;
+		min-width: 0;
+	}
+
+	.tip-linhas {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4px 16px;
+		font-size: calc(var(--grid) * 1.6);
+	}
+
+	.tip-linhas span {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.tip-linhas i {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
 	}
 
 	.uf-tip::after {

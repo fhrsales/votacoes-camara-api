@@ -135,6 +135,7 @@
 			label: item.label,
 			value: item.value,
 			tipo: item.tipo,
+			total: items.filter((d) => d.label === item.label).reduce((a, d) => a + d.value, 0),
 			x: event.clientX - rect.left,
 			y: event.clientY - rect.top
 		};
@@ -165,9 +166,14 @@
 				class="uva-tooltip"
 				style={`opacity: ${tooltip.visible ? 1 : 0}; left: ${tooltip.x}px; top: ${tooltip.y}px;`}
 			>
-				<div>{tooltip.label}</div>
-				<hr />
-				<div>{tooltip.tipo}: {tooltip.value}</div>
+				<span class="tip-label">{tooltip.label}</span>
+				<span class="tip-linha">
+					<b>{tooltip.value}</b>
+					<span class="tip-tipo"><i style={`background:${cores[tooltip.tipo]}`} />{tooltip.tipo}</span>
+				</span>
+				{#if tooltip.total}
+					<span class="tip-pct">{Math.round((tooltip.value / tooltip.total) * 100)}% da bancada de {tooltip.total}</span>
+				{/if}
 			</div>
 			<svg viewBox={`0 0 ${size} ${size}`} style="width: 100%; height: 100%;">
 				{#each layoutRender as node (node.label + '-' + node.tipo)}
@@ -278,6 +284,53 @@
 		transform: translateX(-50%);
 		border: 7px solid transparent;
 		border-top-color: var(--color-dark);
+	}
+
+	.uva-tooltip {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.tip-label {
+		font-size: var(--t-label);
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: 0.7;
+	}
+
+	.tip-linha {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+	}
+
+	.tip-linha b {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: calc(var(--grid) * 3.6);
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tip-tipo {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-weight: 600;
+	}
+
+	.tip-tipo i {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 25%, transparent);
+	}
+
+	.tip-pct {
+		font-size: calc(var(--grid) * 1.6);
+		opacity: 0.7;
 	}
 
 	.uva-tooltip hr {
