@@ -52,6 +52,8 @@
 	let observer;
 	let resizeObs;
 	let pronto = false;
+	let inicioTroca = -1e9; // when the last change of vote started
+	const DURACAO_TROCA = 1100;
 	let camada; // full-window canvas used only while people walk in
 	let ctxCamada;
 
@@ -287,10 +289,29 @@
 				return;
 			}
 			const k = escalaCss * dpr;
+			const tt = agora - inicioTroca;
+			const trocando = !reduzido && tt < 400 + DURACAO_TROCA;
 			for (const f of figuras) {
-				pintarPessoa(ctx, f, f.x * k, (f.y - topo) * k, f.altura / 100, k, f.alfa);
+				let x = f.x;
+				let y = f.y;
+				let u = f.altura / 100;
+				let opac = f.alfa;
+				if (trocando) {
+					const p = Math.min(1, Math.max(0, (tt - f.atrasoTroca) / DURACAO_TROCA));
+					const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+					if (f.de) {
+						// same deputy, new place: walk across from where they stood
+						x = f.de.x + (f.x - f.de.x) * e;
+						y = f.de.y + (f.y - f.de.y) * e;
+						u = (f.de.altura + (f.altura - f.de.altura) * e) / 100;
+					} else {
+						opac *= e;
+					}
+				}
+				pintarPessoa(ctx, f, x * k, (y - topo) * k, u, k, opac);
 			}
 			ctx.globalAlpha = 1;
+			if (trocando) mexendo = true;
 		}
 
 		if (mexendo) {
@@ -416,13 +437,23 @@
 		resizeObs?.disconnect();
 	});
 
-	// A new vote: rebuild and walk in again; a filter change only fades
+	// A new vote: everyone walks from where they stood to their place in the new vote,
+	// changing group if their vote changed. A filter change only fades.
 	let chaveMontada = null;
 	$: if (pronto && (chave !== chaveMontada || figuras.length !== ordenados.length)) {
+		const anteriores = new Map(figuras.map((f) => [f.voto.deputado_?.id, f]));
 		chaveMontada = chave;
 		montar();
+		for (const f of figuras) {
+			const id = f.voto.deputado_?.id;
+			const a = anteriores.get(id);
+			f.de = a ? { x: a.x, y: a.y, altura: a.altura } : null;
+			f.atrasoTroca = ruido(Number(id) || 0, 10) * 400;
+		}
+		if (comecou && anteriores.size) inicioTroca = performance.now();
+		cancelAnimationFrame(frame);
+		animando = false;
 		dimensionar();
-		if (comecou) comecar();
 	}
 	$: if (pronto) {
 		filtroVoto, filtroEstado, filtroPartido, filtroNome;
