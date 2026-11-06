@@ -127,7 +127,7 @@
 
 	.div-row button:hover .div-name,
 	.div-row--sel .div-name {
-		color: var(--color-primary);
+		color: var(--accent-amber-ink);
 		transform: translateX(4px);
 	}
 

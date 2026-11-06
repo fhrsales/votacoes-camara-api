@@ -22,17 +22,19 @@
 	--color-accent: var(--color-primary);
 	--color-bg: var(--color-light);
 
-	/* Monochrome on purpose: no party reads into the colours. Ink for yes, greys for the rest. */
-	--vote-sim: #121214;
-	--vote-obstrucao: #55555c;
-	--vote-nao: #8d8d94;
-	--vote-abstencao: #c4c4ca;
-	--vote-ausentes: #dcdce1;
+	/* One low-chroma petrol blue for the data, in steps: coloured, but no party reads into it */
+	--vote-sim: #24475a;
+	--vote-obstrucao: #4f7083;
+	--vote-nao: #8ea6b4;
+	--vote-abstencao: #bccbd4;
+	--vote-ausentes: #dce4e9;
+	--vote-ausentes-traco: #8aa0ad;
 
-	/* A neutral amber replaces the Portfolio vermilion as this site's only accent */
-	--color-primary: #9a6f0e;
+	/* Labels in the same petrol; amber is the second highlight, for what the reader picks */
+	--color-primary: #24475a;
 	--color-on-primary: #ffffff;
-	--accent-amber: #c9962b;
+	--accent-amber: #d39b22;
+	--accent-amber-ink: #8a5d00;
 	--color-success: var(--vote-sim);
 	--color-danger: var(--vote-nao);
 	--color-warning: var(--vote-abstencao);

@@ -205,6 +205,7 @@
 	.seat:hover,
 	.seat--on {
 		transform: scale(1.7);
+		fill: var(--accent-amber) !important;
 	}
 
 	.seat--anel {
@@ -215,8 +216,8 @@
 
 	.seat--vazio {
 		fill: var(--color-light) !important;
-		stroke: var(--color-rule);
-		stroke-width: 2.5;
+		stroke: var(--vote-ausentes-traco);
+		stroke-width: 3.2;
 	}
 
 	.seat--off {

@@ -10,7 +10,7 @@
 	import Hemiciclo from './components/Hemiciclo.svelte';
 	import PartidosDivergente from './components/PartidosDivergente.svelte';
 	import MapaUF from './components/MapaUF.svelte';
-	import Plenario3D from './components/Plenario3D.svelte';
+	import PlenarioFiguras from './components/PlenarioFiguras.svelte';
 	import { reveal, countUp } from '$lib/motion.js';
 	import { CADEIRAS_UF } from '$lib/votos.js';
 	export let votacaoId;
@@ -52,7 +52,6 @@
 	let mostrarTabela = false;
 	let emails = {};
 	let mulheres = new Set();
-	let sem3d = false;
 
 	$: votosExibidos = votosComAusentes
 		.filter((voto) => (filtroVoto ? voto.tipoVoto === filtroVoto : true))
@@ -776,23 +775,10 @@
 			<h2 class="sec-title">O plenário, cadeira por cadeira</h2>
 			<p class="sec-lead">Cada figura é um deputado ou uma deputada, no lugar do seu voto. Toque ou passe o cursor para ver quem é; o clique filtra a página.</p>
 			<div class="figura">
-				{#if !sem3d}
-					<Plenario3D
-						votos={votosComAusentes}
-						chave={votacaoId}
-						{mulheres}
-						{filtroVoto}
-						{filtroEstado}
-						{filtroPartido}
-						{filtroNome}
-						on:fallback={() => (sem3d = true)}
-						on:tipo={(e) => atualizarFiltro(e.detail)}
-						on:deputado={(e) => (filtroNome = filtroNome === e.detail ? '' : e.detail)}
-					/>
-				{:else}
-				<Hemiciclo
+				<PlenarioFiguras
 					votos={votosComAusentes}
 					chave={votacaoId}
+					{mulheres}
 					{filtroVoto}
 					{filtroEstado}
 					{filtroPartido}
@@ -800,7 +786,6 @@
 					on:tipo={(e) => atualizarFiltro(e.detail)}
 					on:deputado={(e) => (filtroNome = filtroNome === e.detail ? '' : e.detail)}
 				/>
-				{/if}
 			</div>
 		</section>
 
@@ -1171,7 +1156,7 @@
 		color: var(--color-dark);
 		cursor: pointer;
 		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 0.4);
-		text-decoration: underline 2px var(--color-primary);
+		text-decoration: underline 2px var(--accent-amber);
 		text-underline-offset: 5px;
 		animation: settle 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
 	}
@@ -1183,8 +1168,8 @@
 		height: 18px;
 		margin-left: 4px;
 		border-radius: 999px;
-		background: var(--color-primary);
-		color: var(--color-on-primary);
+		background: var(--accent-amber);
+		color: var(--color-dark);
 		font-size: 11px;
 		text-decoration: none;
 	}
