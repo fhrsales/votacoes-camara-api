@@ -52,6 +52,8 @@
 	let observer;
 	let resizeObs;
 	let pronto = false;
+	let camada; // full-window canvas used only while people walk in
+	let ctxCamada;
 
 	function ruido(i, sal) {
 		const x = Math.sin(i * 127.1 + sal * 311.7) * 43758.5453;
@@ -129,24 +131,14 @@
 				const mulher = mulheres.has(voto.deputado_?.id);
 				const lista = mulher ? VARIANTES_M : VARIANTES_H;
 				const altura = FIG_ALTURA * q.escala * (0.93 + ruido(id, 3) * 0.12);
-				// they come in from a random point on one of the four edges
-				const borda = Math.floor(ruido(id, 9) * 4);
-				const ao = ruido(id, 6);
-				const ex = borda === 0 ? -60 : borda === 1 ? LARGURA + 60 : ao * LARGURA;
-				const ey =
-					borda === 2
-						? CHAO_Y + RODAPE + 90
-						: borda === 3
-						? HORIZONTE_Y - 120
-						: HORIZONTE_Y + ao * (CHAO_Y - HORIZONTE_Y);
 				return {
 					voto,
 					...q,
 					altura,
 					variante: lista[id % lista.length],
-					ex,
-					ey,
-					ea: altura,
+					// they come in from outside the window: a random side and spot (0..1)
+					borda: Math.floor(ruido(id, 9) * 4),
+					ao: ruido(id, 6),
 					atraso: ruido(id, 8) * 900 + (1 - q.escala) * 600,
 					alfa: 1,
 					alfaAlvo: 1
@@ -196,13 +188,57 @@
 		return 1 - Math.pow(1 - t, 3);
 	}
 
+	function pintarPessoa(c, f, x, y, u, k, opac) {
+		// x, y: feet position in device pixels; u: drawing units per silhouette unit
+		c.setTransform(u * k, 0, 0, u * k, x - 20 * u * k, y - 99.6 * u * k);
+		c.globalAlpha = opac;
+		const lista = caminhos[f.variante];
+		const tipo = f.voto.tipoVoto;
+		const vazado = tipo === 'Ausentes' || tipo === 'Obstrução';
+		const emFoco = hover === f.voto;
+		// paper halo keeps overlapping people apart, without seams inside one person
+		c.lineJoin = 'round';
+		c.lineWidth = 5;
+		c.strokeStyle = cores.papel;
+		for (const p of lista) c.stroke(p);
+		if (vazado) {
+			c.lineWidth = 2.6;
+			c.strokeStyle = emFoco ? cores.ambar : tipo === 'Obstrução' ? cores.Sim : cores.traco;
+			for (const p of lista) c.stroke(p);
+			c.fillStyle = cores.papel;
+		} else {
+			c.fillStyle = emFoco ? cores.ambar : cores[tipo];
+		}
+		for (const p of lista) c.fill(p);
+	}
+
+	function abrirCamada() {
+		if (camada) return;
+		camada = document.createElement('canvas');
+		camada.className = 'pf-camada';
+		Object.assign(camada.style, {
+			position: 'fixed',
+			inset: '0',
+			width: '100vw',
+			height: '100vh',
+			pointerEvents: 'none',
+			zIndex: '15'
+		});
+		document.body.appendChild(camada);
+		ctxCamada = camada.getContext('2d');
+	}
+
+	function fecharCamada() {
+		camada?.remove();
+		camada = null;
+		ctxCamada = null;
+	}
+
 	function desenhar(agora) {
 		if (!ctx) return;
-		const k = escalaCss * dpr;
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const t0 = agora - inicio;
 		let mexendo = false;
+		const chegando = !reduzido && comecou && t0 < 900 + 600 + DURACAO + 50;
 
 		for (const f of figuras) {
 			if (Math.abs(f.alfa - f.alfaAlvo) > 0.01) {
@@ -211,45 +247,52 @@
 			} else {
 				f.alfa = f.alfaAlvo;
 			}
-			let x = f.x;
-			let y = f.y;
-			let a = f.altura;
-			let opac = f.alfa;
-			if (!reduzido) {
-				if (!comecou) continue;
-				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / DURACAO));
-				if (p < 1) mexendo = true;
-				if (p <= 0) continue;
-				const e = suavizar(p);
-				x = f.ex + (f.x - f.ex) * e;
-				y = f.ey + (f.y - f.ey) * e;
-				a = f.ea + (f.altura - f.ea) * e;
-				opac *= Math.min(1, p * 6);
-			}
-
-			const u = a / 100;
-			ctx.setTransform(u * k, 0, 0, u * k, (x - 20 * u) * k, (y - topo - 99.6 * u) * k);
-			ctx.globalAlpha = opac;
-			const lista = caminhos[f.variante];
-			const tipo = f.voto.tipoVoto;
-			const vazado = tipo === 'Ausentes' || tipo === 'Obstrução';
-			const emFoco = hover === f.voto;
-			// paper halo keeps overlapping people apart, without seams inside one person
-			ctx.lineJoin = 'round';
-			ctx.lineWidth = 5;
-			ctx.strokeStyle = cores.papel;
-			for (const p of lista) ctx.stroke(p);
-			if (vazado) {
-				ctx.lineWidth = 2.6;
-				ctx.strokeStyle = emFoco ? cores.ambar : tipo === 'Obstrução' ? cores.Sim : cores.traco;
-				for (const p of lista) ctx.stroke(p);
-				ctx.fillStyle = cores.papel;
-			} else {
-				ctx.fillStyle = emFoco ? cores.ambar : cores[tipo];
-			}
-			for (const p of lista) ctx.fill(p);
 		}
-		ctx.globalAlpha = 1;
+
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		if (chegando) {
+			// Walk in across the whole window, from outside it, onto the chamber
+			abrirCamada();
+			const vw = window.innerWidth;
+			const vh = window.innerHeight;
+			if (camada.width !== Math.round(vw * dpr) || camada.height !== Math.round(vh * dpr)) {
+				camada.width = Math.round(vw * dpr);
+				camada.height = Math.round(vh * dpr);
+			}
+			ctxCamada.setTransform(1, 0, 0, 1, 0, 0);
+			ctxCamada.clearRect(0, 0, camada.width, camada.height);
+			const caixa = canvas.getBoundingClientRect();
+			for (const f of figuras) {
+				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / DURACAO));
+				if (p <= 0) continue;
+				const alvoX = caixa.left + f.x * escalaCss;
+				const alvoY = caixa.top + (f.y - topo) * escalaCss;
+				const altura = f.altura * escalaCss; // CSS px
+				const fora = altura + 30;
+				const ox = f.borda === 0 ? -fora * 0.5 : f.borda === 1 ? vw + fora * 0.5 : f.ao * vw;
+				const oy = f.borda === 2 ? vh + 20 : f.borda === 3 ? -20 : f.ao * vh;
+				const e = suavizar(p);
+				const x = ox + (alvoX - ox) * e;
+				const y = oy + (alvoY - oy) * e;
+				pintarPessoa(ctxCamada, f, x * dpr, y * dpr, f.altura / 100, escalaCss * dpr, f.alfa);
+			}
+			ctxCamada.globalAlpha = 1;
+			mexendo = true;
+		} else {
+			fecharCamada();
+			if (!reduzido && !comecou) {
+				animando = false;
+				return;
+			}
+			const k = escalaCss * dpr;
+			for (const f of figuras) {
+				pintarPessoa(ctx, f, f.x * k, (f.y - topo) * k, f.altura / 100, k, f.alfa);
+			}
+			ctx.globalAlpha = 1;
+		}
+
 		if (mexendo) {
 			animando = true;
 			frame = requestAnimationFrame(desenhar);
@@ -281,24 +324,35 @@
 		for (let i = figuras.length - 1; i >= 0; i -= 1) {
 			const f = figuras[i];
 			const meia = f.altura * 0.17;
-			if (x >= f.x - meia && x <= f.x + meia && y <= f.y && y >= f.y - f.altura) return f.voto;
+			if (x >= f.x - meia && x <= f.x + meia && y <= f.y && y >= f.y - f.altura) return f;
 		}
 		return null;
+	}
+
+	// The tooltip points at the person's head, wherever the cursor touches them
+	function ancorar(f) {
+		const caixa = canvas.getBoundingClientRect();
+		const x = caixa.left + f.x * escalaCss;
+		const cabeca = caixa.top + (f.y - f.altura - topo) * escalaCss;
+		const pes = caixa.top + (f.y - topo) * escalaCss;
+		const baixo = cabeca < 230;
+		tip = {
+			x: Math.min(Math.max(x, 140), window.innerWidth - 140),
+			y: baixo ? pes : cabeca,
+			baixo
+		};
 	}
 
 	function aoMover(event) {
 		if (!figuras.length) return;
 		const achado = acertar(event);
-		if (achado !== hover) {
-			hover = achado;
+		const voto = achado?.voto ?? null;
+		if (voto !== hover) {
+			hover = voto;
+			if (achado) ancorar(achado);
 			redesenhar();
 		}
 		canvas.style.cursor = hover ? 'pointer' : 'default';
-		tip = {
-			x: Math.min(Math.max(event.clientX, 140), window.innerWidth - 140),
-			y: event.clientY,
-			baixo: event.clientY < 230
-		};
 	}
 
 	function aoSair() {
@@ -310,7 +364,7 @@
 
 	function aoClicar(event) {
 		const achado = acertar(event);
-		if (achado) dispatch('deputado', achado.deputado_?.nome);
+		if (achado) dispatch('deputado', achado.voto.deputado_?.nome);
 	}
 
 	onMount(() => {
@@ -343,10 +397,21 @@
 			{ threshold: 0.2 }
 		);
 		observer.observe(host);
+		// The tooltip is pinned to a person; hide it when the page moves under it
+		window.addEventListener('scroll', aoRolar, { passive: true });
 	});
+
+	function aoRolar() {
+		if (hover) {
+			hover = null;
+			redesenhar();
+		}
+	}
 
 	onDestroy(() => {
 		cancelAnimationFrame(frame);
+		fecharCamada();
+		if (typeof window !== 'undefined') window.removeEventListener('scroll', aoRolar);
 		observer?.disconnect();
 		resizeObs?.disconnect();
 	});
@@ -464,7 +529,7 @@
 
 	.pf-tip {
 		position: fixed;
-		transform: translate(-50%, calc(-100% - 22px));
+		transform: translate(-50%, calc(-100% - 14px));
 		display: flex;
 		gap: calc(var(--grid) * 1.6);
 		align-items: center;
@@ -491,7 +556,7 @@
 	}
 
 	.pf-tip--baixo {
-		transform: translate(-50%, 26px);
+		transform: translate(-50%, 14px);
 		animation: none;
 	}
 

@@ -12,11 +12,6 @@
 	export let onToggle = null;
 
 	const tipos = ['Sim', 'Não', 'Abstenção', 'Obstrução', 'Ausentes'];
-	// Each chart gets its own gradient ids, so two charts on a page do not clash
-	const uid = `esf-${Math.random().toString(36).slice(2, 8)}`;
-	const chaves = { Sim: 'sim', 'Não': 'nao', Abstenção: 'abst', Obstrução: 'obst', Ausentes: 'aus' };
-	const claros = new Set(['Ausentes', 'Abstenção']);
-
 	const cores = {
 		Sim: 'var(--vote-sim)',
 		'Não': 'var(--vote-nao)',
@@ -186,16 +181,6 @@
 				{/if}
 			</div>
 			<svg viewBox={`0 0 ${size} ${size}`} style="width: 100%; height: 100%;">
-				<defs>
-					<!-- Spheres: light from the top left, darker towards the far edge -->
-					{#each Object.entries(chaves) as [tipo, k]}
-						<radialGradient id={`${uid}-${k}`} cx="36%" cy="30%" r="72%" fx="30%" fy="24%">
-							<stop offset="0%" style={`stop-color: color-mix(in srgb, ${cores[tipo]} 45%, #ffffff)`} />
-							<stop offset="45%" style={`stop-color: ${cores[tipo]}`} />
-							<stop offset="100%" style={`stop-color: color-mix(in srgb, ${cores[tipo]} 72%, #000000)`} />
-						</radialGradient>
-					{/each}
-				</defs>
 				{#each layoutRender as node (node.label + '-' + node.tipo)}
 					<g
 						transform={`translate(${node.x}, ${node.y})`}
@@ -212,11 +197,10 @@
 						<circle
 							r={node.r}
 							class="bubble-circle"
-							style={`fill: url(#${uid}-${chaves[node.tipo] || 'sim'})`}
+							style={`fill: ${cores[node.tipo] || 'var(--color-dark)'}`}
 						/>
 						{#if node.showLabel && node.r > 14}
 							<text
-								class:texto-escuro={claros.has(node.tipo)}
 								dy="0.35em"
 								style="font-size: 13px;"
 							>
@@ -375,21 +359,13 @@
 		text-anchor: middle;
 		font-family: var(--font-primary);
 		font-weight: 600;
-		fill: #ffffff;
-		paint-order: stroke;
-		stroke: rgba(0, 0, 0, 0.18);
-		stroke-width: 2px;
+		fill: var(--color-tertiary);
 		pointer-events: none;
 	}
 
-	.texto-escuro {
-		fill: var(--color-dark);
-		stroke: rgba(255, 255, 255, 0.4);
-	}
-
 	.bubble-circle {
-		stroke: none;
-		filter: drop-shadow(0 3px 3px rgba(18, 30, 40, 0.22));
+		stroke: var(--color-light);
+		stroke-width: 1.5;
 		cursor: pointer;
 		transition: r 600ms var(--ease), transform 600ms var(--ease), opacity 180ms var(--ease);
 	}
