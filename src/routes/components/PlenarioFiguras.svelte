@@ -504,7 +504,7 @@
 		/>
 		{#if hover}
 			<div class="pf-tip" class:pf-tip--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal>
-				<img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" />
+				<span class="retrato foto"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
 				<div>
 					<strong>{hover.deputado_?.nome}</strong>
 					<span>{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
@@ -628,12 +628,10 @@
 		border-bottom-color: var(--color-dark);
 	}
 
-	.pf-tip img {
+	.pf-tip .foto {
 		width: 52px;
 		height: 52px;
-		border-radius: 50%;
-		object-fit: cover;
-		background: color-mix(in srgb, var(--color-light) 20%, transparent);
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 30%, transparent);
 	}
 
 	.pf-tip div {

@@ -179,7 +179,7 @@
 				{/if}
 			</div>
 			<svg viewBox={`0 0 ${size} ${size}`} style="width: 100%; height: 100%;">
-				{#each layoutRender as node (node.label + '-' + node.tipo)}
+				{#each layoutRender as node, i (node.label + '-' + node.tipo)}
 					<g
 						class:bolha={true}
 						style={`transform: translate(${node.x.toFixed(1)}px, ${node.y.toFixed(1)}px)`}
@@ -195,6 +195,7 @@
 						<circle
 							r={node.r}
 							class="bubble-circle"
+							style:--i={i}
 							style={`fill: ${cores[node.tipo] || 'var(--color-dark)'}`}
 						/>
 						{#if node.showLabel && node.r > 14}
@@ -362,6 +363,10 @@
 	}
 
 	.bubble-circle {
+		transform-box: fill-box;
+		transform-origin: center;
+		animation: bolha-in 700ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+		animation-delay: calc(var(--i) * 9ms);
 		stroke: var(--color-light);
 		stroke-width: 1.5;
 		cursor: pointer;
@@ -379,6 +384,12 @@
 	@media (max-width: 560px) {
 		.uva-container-bubble-chart {
 			max-width: 100%;
+		}
+	}
+	@keyframes bolha-in {
+		from {
+			opacity: 0;
+			transform: scale(0);
 		}
 	}
 </style>

@@ -73,7 +73,7 @@
         {#each votosExibidos as voto, i (i)}
           <tr style={`--i:${Math.min(i, 20)}`}>
             <td data-label="Foto">
-              <img class="photo" src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" loading="lazy" />
+              <span class="retrato photo"><img src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" height="48" loading="lazy" /></span>
             </td>
             <td data-label="Deputado">
               {voto.deputado_.nome}
@@ -230,10 +230,6 @@
   .photo {
     width: calc(var(--grid) * 4.6);
     height: calc(var(--grid) * 4.6);
-    border-radius: 50%;
-    background: var(--color-track);
-    object-fit: cover;
-    display: block;
     transition: transform 180ms var(--ease);
   }
 

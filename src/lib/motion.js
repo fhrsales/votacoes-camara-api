@@ -66,6 +66,25 @@ export function countUp(node, value) {
 	};
 }
 
+/** Adds .em-vista once the node is seen, which releases its paused entrance animations. */
+export function emVista(node) {
+	if (typeof IntersectionObserver === 'undefined') {
+		node.classList.add('em-vista');
+		return {};
+	}
+	const observer = new IntersectionObserver(
+		(entradas) => {
+			if (entradas.some((e) => e.isIntersecting)) {
+				node.classList.add('em-vista');
+				observer.disconnect();
+			}
+		},
+		{ threshold: 0.18 }
+	);
+	observer.observe(node);
+	return { destroy: () => observer.disconnect() };
+}
+
 /** Moves a node to <body>, so fixed tooltips escape stacking contexts and sticky bars. */
 export function portal(node) {
 	if (typeof document === 'undefined') return {};

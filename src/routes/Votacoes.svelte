@@ -11,7 +11,7 @@
 	import PartidosDivergente from './components/PartidosDivergente.svelte';
 	import MapaUF from './components/MapaUF.svelte';
 	import PlenarioFiguras from './components/PlenarioFiguras.svelte';
-	import { reveal, countUp } from '$lib/motion.js';
+	import { reveal, countUp, emVista } from '$lib/motion.js';
 	import { CADEIRAS_UF } from '$lib/votos.js';
 	export let votacaoId;
 
@@ -903,7 +903,7 @@
 		</section>
 
 		<div class="duas">
-			<section class="sec sec--leve" use:reveal>
+			<section class="sec sec--leve aguarda-vista" use:emVista use:reveal>
 				<hr class="regua" />
 				<p class="ds-label">02 · Partidos</p>
 				<h2 class="sec-title">Do mais a favor ao mais contra</h2>
@@ -916,7 +916,7 @@
 				/>
 			</section>
 
-			<section class="sec sec--leve" use:reveal={{ delay: 120 }}>
+			<section class="sec sec--leve aguarda-vista" use:emVista use:reveal={{ delay: 120 }}>
 				<hr class="regua" />
 				<p class="ds-label">03 · Estados</p>
 				<h2 class="sec-title">O voto pelo mapa</h2>
@@ -938,7 +938,7 @@
 			</section>
 		</div>
 
-		<section class="sec sec--leve" use:reveal>
+		<section class="sec sec--leve aguarda-vista" use:emVista use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">04 · Bolhas</p>
 			<h2 class="sec-title">O peso de cada bancada</h2>
@@ -970,7 +970,7 @@
 			</div>
 		</section>
 
-		<section class="sec sec--leve" use:reveal>
+		<section class="sec sec--leve aguarda-vista" use:emVista use:reveal>
 			<hr class="regua" />
 			<p class="ds-label">05 · Deputados</p>
 			<h2 class="sec-title">Voto a voto, nome a nome</h2>
@@ -1665,7 +1665,7 @@
 	}
 
 	.rodape a:hover {
-		color: var(--color-primary);
+		color: var(--accent-amber-ink);
 		text-decoration: underline 2px;
 		text-underline-offset: 4px;
 	}
