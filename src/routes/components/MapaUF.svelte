@@ -44,6 +44,8 @@
 				class="uf"
 				class:uf--off={selecionado && selecionado !== t.uf}
 				class:uf--sel={selecionado === t.uf}
+				class:uf--borda-dir={t.col >= 4}
+				class:uf--borda-esq={t.col <= 0}
 				style={`grid-column:${t.col + 1};grid-row:${t.row + 1};--bg:${t.bg};--ink:${t.ink};--i:${t.row * 6 + t.col}`}
 				on:click={() => dispatch('estado', selecionado === t.uf ? '' : t.uf)}
 				aria-label={t.d
@@ -247,6 +249,35 @@
 		transform: translateX(-50%);
 		border: 7px solid transparent;
 		border-top-color: var(--color-dark);
+	}
+
+	/* Tiles on the edges open their balloon inwards, so it never leaves the map */
+	.uf--borda-dir .uf-tip {
+		left: auto;
+		right: -4px;
+		transform: translate(0, 4px);
+	}
+
+	.uf--borda-dir .uf-tip::after {
+		left: auto;
+		right: 18px;
+		transform: none;
+	}
+
+	.uf--borda-esq .uf-tip {
+		left: -4px;
+		transform: translate(0, 4px);
+	}
+
+	.uf--borda-esq .uf-tip::after {
+		left: 18px;
+		transform: none;
+	}
+
+	.uf.uf--borda-dir:hover .uf-tip,
+	.uf.uf--borda-esq:hover .uf-tip {
+		opacity: 1;
+		transform: translate(0, 0);
 	}
 
 	.uf:hover .uf-tip {
