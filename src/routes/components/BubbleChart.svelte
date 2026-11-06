@@ -126,37 +126,60 @@
 	$: layout = computeLayout(items, layoutMode);
 	$: layoutRender = layoutMode === 'stack' ? [...layout].sort((a, b) => b.r - a.r) : layout;
 
+	// A tap fires mouseenter and then focus. Focus carries no pointer position, so it used to
+	// overwrite the tap position with NaN and the tooltip landed off screen. Fall back to the
+	// bubble's own centre when the event has no coordinates.
+	function ponto(event) {
+		if (typeof event.clientX === 'number' && (event.clientX || event.clientY)) {
+			return { x: event.clientX, y: event.clientY };
+		}
+		const r = event.currentTarget.getBoundingClientRect();
+		return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+	}
+
+	function posicao(event) {
+		const { x, y } = ponto(event);
+		return {
+			x: Math.min(Math.max(x, 120), window.innerWidth - 120),
+			y,
+			baixo: y < 220
+		};
+	}
+
 	function showTooltip(event, item) {
 		hoveredKey = `${item.label}-${item.tipo}`;
-		const rect = event.currentTarget.ownerSVGElement.getBoundingClientRect();
 		tooltip = {
 			visible: true,
 			label: item.label,
 			value: item.value,
 			tipo: item.tipo,
 			total: items.filter((d) => d.label === item.label).reduce((a, d) => a + d.value, 0),
-			x: Math.min(Math.max(event.clientX, 120), window.innerWidth - 120),
-			y: event.clientY,
-			baixo: event.clientY < 220
+			...posicao(event)
 		};
 	}
 
 	function moveTooltip(event) {
 		if (!tooltip.visible) return;
-		const rect = event.currentTarget.ownerSVGElement.getBoundingClientRect();
-		tooltip = {
-			...tooltip,
-			x: Math.min(Math.max(event.clientX, 120), window.innerWidth - 120),
-			y: event.clientY,
-			baixo: event.clientY < 220
-		};
+		tooltip = { ...tooltip, ...posicao(event) };
 	}
 
 	function hideTooltip() {
 		tooltip = { ...tooltip, visible: false };
 		hoveredKey = '';
 	}
+
+	// On a phone the tooltip is fixed to the screen, so close it once the page scrolls
+	// or the visitor taps somewhere else
+	function fecharSeFora(event) {
+		if (tooltip.visible && !event.target.closest?.('.bolha')) hideTooltip();
+	}
+
+	function fecharAoRolar() {
+		if (tooltip.visible) hideTooltip();
+	}
 </script>
+
+<svelte:window on:scroll|passive={fecharAoRolar} on:pointerdown={fecharSeFora} />
 
 	<section class="bubble-chart">
 		{#if title}
@@ -190,6 +213,7 @@
 						on:mouseleave={hideTooltip}
 						on:focus={(e) => showTooltip(e, node)}
 						on:blur={hideTooltip}
+						on:click={(e) => showTooltip(e, node)}
 						role="button"
 						aria-label={`${node.label}, ${node.tipo}: ${node.value}`}
 						tabindex="0"

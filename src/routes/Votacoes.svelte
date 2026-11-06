@@ -297,6 +297,12 @@
 
 	let legislaturaCarregada = null;
 
+	// Height of the sticky bar, so charts below it can size themselves to the space left on screen
+	let alturaBarra = 0;
+	$: if (typeof document !== 'undefined' && alturaBarra) {
+		document.documentElement.style.setProperty('--barra-h', `${alturaBarra}px`);
+	}
+
 	async function carregarDeputadosLegislatura(dataRegistro) {
 		const id = encontrarLegislaturaId(dataRegistro);
 		if (id && id === legislaturaCarregada && deputadosLegislatura.length) return;
@@ -722,7 +728,7 @@
 </header>
 
 {#if VotesSummaryComponent}
-	<div class="barra">
+	<div class="barra" bind:clientHeight={alturaBarra}>
 		<div class="barra-inner">
 			<svelte:component
 				this={VotesSummaryComponent}
@@ -1115,6 +1121,19 @@
 		from {
 			opacity: 0;
 			transform: translateY(28px);
+		}
+	}
+
+	/* The title and lead are the largest text on first paint. Starting them at opacity 0 made the
+	   browser count the page as painted only after the fade, so they just slide in */
+	.hero-title.hero-in,
+	.hero-lead.hero-in {
+		animation-name: settle-sem-fade;
+	}
+
+	@keyframes settle-sem-fade {
+		from {
+			transform: translateY(16px);
 		}
 	}
 
@@ -1686,8 +1705,18 @@
 	}
 
 	@media (max-width: 600px) {
+		/* Tighter on a phone so the placar under the plenary still shows in the first screen */
 		.hero {
-			padding-top: calc(var(--grid) * 7);
+			padding-top: calc(var(--grid) * 2.5);
+			row-gap: calc(var(--grid) * 2.5);
+		}
+
+		.hero-title {
+			margin: calc(var(--grid) * 1) 0 calc(var(--grid) * 1.5);
+		}
+
+		.hero-plenario figcaption {
+			margin-top: calc(var(--grid) * 0.8);
 		}
 
 		/* One scrolling row of filters keeps the sticky bar short on a phone */
@@ -1713,7 +1742,9 @@
 		}
 
 		.hero-lead {
-			font-size: calc(var(--grid) * 2.3);
+			font-size: calc(var(--grid) * 2);
+			line-height: 1.4;
+			margin-bottom: calc(var(--grid) * 2);
 		}
 
 		.hero-stats dd {

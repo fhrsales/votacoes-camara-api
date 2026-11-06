@@ -25,7 +25,7 @@
 </div>
 
 {#key chave}
-	<ol class="div-list">
+	<ol class="div-list" style={`--n:${partidos.length}`}>
 		{#each partidos as p, i (p.chave)}
 			<li
 				class="div-row"
@@ -238,6 +238,33 @@
 
 		.div-n small {
 			display: none;
+		}
+
+		/* Every party fits on one screen below the sticky bar: the row height is the space
+		   left divided by the number of parties */
+		.div-row button {
+			height: max(15px, calc((100svh - var(--barra-h, 160px) - 56px) / var(--n, 20)));
+			padding: 0;
+			font-size: 11.5px;
+		}
+
+		.div-name,
+		.div-n {
+			font-size: 11.5px;
+			line-height: 1;
+		}
+
+		.div-track {
+			height: min(12px, 70%);
+		}
+
+		.div-track::after {
+			top: -2px;
+			bottom: -2px;
+		}
+
+		.div-head {
+			margin-bottom: 4px;
 		}
 	}
 </style>

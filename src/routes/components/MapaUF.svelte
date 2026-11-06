@@ -95,7 +95,9 @@
 		grid-template-columns: repeat(6, 1fr);
 		grid-template-rows: repeat(8, auto);
 		gap: 5px;
-		max-width: 470px;
+		/* 8 rows of square tiles for 6 columns: cap the width so the whole map, legend included,
+		   fits on screen below the sticky bar */
+		max-width: min(470px, calc((100svh - var(--barra-h, 120px) - 80px) * 0.75));
 		margin: 0 auto;
 	}
 

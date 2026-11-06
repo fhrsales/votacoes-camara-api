@@ -162,3 +162,10 @@ a:focus-visible,
 		transition-duration: 0.01ms !important;
 	}
 }
+
+/* Hidden hover cards near the right edge (map tiles of the east coast) must not make the page
+   scroll sideways. clip, unlike hidden, keeps the sticky bar working */
+html,
+body {
+	overflow-x: clip;
+}
