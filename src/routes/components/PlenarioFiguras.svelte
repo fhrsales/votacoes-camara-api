@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-	import { countUp, portal } from '$lib/motion.js';
+	import { countUp, manterNaTela, portal } from '$lib/motion.js';
 	import { SILHUETAS } from '$lib/silhuetas.js';
 	import { COR, TIPOS, contar } from '$lib/votos.js';
 
@@ -164,7 +164,7 @@
 
 	function atualizarAlfas(imediato = false) {
 		for (const f of figuras) {
-			f.alfaAlvo = apagada(f.voto) ? 0.12 : 1;
+			f.alfaAlvo = apagada(f.voto) ? 0.07 : 1;
 			if (imediato) f.alfa = f.alfaAlvo;
 		}
 	}
@@ -198,8 +198,10 @@
 	const SPRITE_MARGEM = 8;
 	let sprites = new Map();
 
-	function sprite(variante, tipo, emFoco) {
-		const chave = `${variante}|${tipo}|${emFoco ? 1 : 0}`;
+	// estado: 'normal'; 'forte' (passes an active filter); 'foco' (hovered or picked by name)
+	function sprite(variante, tipo, estado) {
+		const emFoco = estado === 'foco';
+		const chave = `${variante}|${tipo}|${estado}`;
 		let img = sprites.get(chave);
 		if (img) return img;
 		img = document.createElement('canvas');
@@ -214,9 +216,13 @@
 		c.lineWidth = 5;
 		c.strokeStyle = cores.papel;
 		for (const p of lista) c.stroke(p);
-		if (vazado) {
-			c.lineWidth = 2.6;
-			c.strokeStyle = emFoco ? cores.ambar : tipo === 'Obstrução' ? cores.Sim : cores.traco;
+		if (vazado && emFoco) {
+			// someone picked who did not vote: a solid amber figure, never a faint outline
+			c.fillStyle = cores.ambar;
+		} else if (vazado) {
+			const forte = estado === 'forte';
+			c.lineWidth = forte ? 3.6 : 2.6;
+			c.strokeStyle = tipo === 'Obstrução' || forte ? cores.Sim : cores.traco;
 			for (const p of lista) c.stroke(p);
 			c.fillStyle = cores.papel;
 		} else {
@@ -230,7 +236,10 @@
 	function pintarPessoa(c, f, x, y, u, k, opac) {
 		// x, y: feet position in device pixels; u: drawing units per silhouette unit
 		if (opac <= 0.005) return;
-		const img = sprite(f.variante, f.voto.tipoVoto, hover === f.voto);
+		const escolhido = hover === f.voto || (filtroNome && f.voto.deputado_?.nome === filtroNome);
+		const filtrando = filtroVoto || filtroEstado || filtroPartido || filtroNome;
+		const estado = escolhido ? 'foco' : filtrando && f.alfaAlvo === 1 ? 'forte' : 'normal';
+		const img = sprite(f.variante, f.voto.tipoVoto, estado);
 		const fator = (u * k) / SPRITE_ESCALA;
 		c.globalAlpha = opac;
 		c.drawImage(
@@ -503,7 +512,7 @@
 			aria-label={`Plenário: ${c.Sim} sim, ${c.Não} não, ${c.Abstenção} abstenções, ${c.Obstrução} obstruções, ${c.Ausentes} ausentes`}
 		/>
 		{#if hover}
-			<div class="pf-tip" class:pf-tip--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal>
+			<div class="pf-tip" class:pf-tip--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal use:manterNaTela={tip}>
 				<span class="retrato foto"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
 				<div>
 					<strong>{hover.deputado_?.nome}</strong>
@@ -590,6 +599,7 @@
 
 	.pf-tip {
 		position: fixed;
+		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, calc(-100% - 14px));
 		display: flex;
 		gap: calc(var(--grid) * 1.6);
@@ -609,7 +619,7 @@
 	.pf-tip::after {
 		content: '';
 		position: absolute;
-		left: 50%;
+		left: calc(50% - var(--desvio, 0px));
 		top: 100%;
 		transform: translateX(-50%);
 		border: 8px solid transparent;

@@ -85,6 +85,38 @@ export function emVista(node) {
 	return { destroy: () => observer.disconnect() };
 }
 
+/**
+ * Keeps a tooltip fully inside the window: after it is placed, it measures itself and
+ * slides sideways by --desvio. Its arrow uses the same variable to keep pointing at the item.
+ */
+export function manterNaTela(node) {
+	if (typeof window === 'undefined') return {};
+	const margem = 8;
+	function ajustar() {
+		node.style.setProperty('--desvio', '0px');
+		const r = node.getBoundingClientRect();
+		let d = 0;
+		if (r.width && r.left < margem) d = margem - r.left;
+		else if (r.width && r.right > window.innerWidth - margem) d = window.innerWidth - margem - r.right;
+		node.style.setProperty('--desvio', `${Math.round(d)}px`);
+	}
+	const agendar = () => {
+		ajustar();
+		requestAnimationFrame(ajustar);
+	};
+	agendar();
+	const pai = node.parentElement;
+	pai?.addEventListener('mouseenter', agendar);
+	window.addEventListener('resize', agendar);
+	return {
+		update: agendar,
+		destroy() {
+			pai?.removeEventListener('mouseenter', agendar);
+			window.removeEventListener('resize', agendar);
+		}
+	};
+}
+
 /** Moves a node to <body>, so fixed tooltips escape stacking contexts and sticky bars. */
 export function portal(node) {
 	if (typeof document === 'undefined') return {};

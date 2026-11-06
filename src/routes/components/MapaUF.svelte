@@ -1,6 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	import { agruparPor } from '$lib/votos.js';
+	import { manterNaTela } from '$lib/motion.js';
 
 	export let votos = [];
 	export let chave = '';
@@ -44,8 +45,7 @@
 				class="uf"
 				class:uf--off={selecionado && selecionado !== t.uf}
 				class:uf--sel={selecionado === t.uf}
-				class:uf--borda-dir={t.col >= 4}
-				class:uf--borda-esq={t.col <= 0}
+
 				style={`grid-column:${t.col + 1};grid-row:${t.row + 1};--bg:${t.bg};--ink:${t.ink};--i:${t.row * 6 + t.col}`}
 				on:click={() => dispatch('estado', selecionado === t.uf ? '' : t.uf)}
 				aria-label={t.d
@@ -57,7 +57,7 @@
 					{#if t.share === null}–{:else}{Math.round(t.share * 100)}%<small>sim</small>{/if}
 				</span>
 				{#if t.d}
-					<span class="uf-tip">
+					<span class="uf-tip" use:manterNaTela>
 						<span class="tip-label">{t.uf} · {t.d.total} cadeiras</span>
 						<span class="tip-big">
 							{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}<small>de sim</small>
@@ -167,6 +167,7 @@
 		position: absolute;
 		left: 50%;
 		bottom: calc(100% + 14px);
+		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, 4px);
 		display: flex;
 		flex-direction: column;
@@ -244,40 +245,11 @@
 	.uf-tip::after {
 		content: '';
 		position: absolute;
-		left: 50%;
+		left: calc(50% - var(--desvio, 0px));
 		top: 100%;
 		transform: translateX(-50%);
 		border: 7px solid transparent;
 		border-top-color: var(--color-dark);
-	}
-
-	/* Tiles on the edges open their balloon inwards, so it never leaves the map */
-	.uf--borda-dir .uf-tip {
-		left: auto;
-		right: -4px;
-		transform: translate(0, 4px);
-	}
-
-	.uf--borda-dir .uf-tip::after {
-		left: auto;
-		right: 18px;
-		transform: none;
-	}
-
-	.uf--borda-esq .uf-tip {
-		left: -4px;
-		transform: translate(0, 4px);
-	}
-
-	.uf--borda-esq .uf-tip::after {
-		left: 18px;
-		transform: none;
-	}
-
-	.uf.uf--borda-dir:hover .uf-tip,
-	.uf.uf--borda-esq:hover .uf-tip {
-		opacity: 1;
-		transform: translate(0, 0);
 	}
 
 	.uf:hover .uf-tip {

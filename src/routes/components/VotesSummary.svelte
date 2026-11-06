@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import { manterNaTela } from '$lib/motion.js';
 
 	export let votacaoId = '';
 	export let resumoTexto = '';
@@ -164,6 +165,7 @@
 			<div
 				class="stacked-tooltip"
 				class:visible={tooltipTexto}
+				use:manterNaTela={tooltipPos}
 				style={`left: ${tooltipPos.x}px; top: ${tooltipPos.y}px;`}
 			>
 				<i style={`background:${tooltipCor}`} />
@@ -540,6 +542,7 @@
 
 	.stacked-tooltip {
 		position: absolute;
+		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, -100%);
 		display: flex;
 		align-items: center;
@@ -579,7 +582,7 @@
 	.stacked-tooltip::after {
 		content: '';
 		position: absolute;
-		left: 50%;
+		left: calc(50% - var(--desvio, 0px));
 		top: 100%;
 		transform: translateX(-50%);
 		border: 7px solid transparent;

@@ -101,6 +101,15 @@
 		transition: opacity 360ms var(--ease);
 	}
 
+	.div-row--sel {
+		background: color-mix(in srgb, var(--accent-amber) 16%, transparent);
+		box-shadow: inset 3px 0 0 var(--accent-amber);
+	}
+
+	.div-row--sel button {
+		padding-left: 8px;
+	}
+
 	.div-row--off {
 		opacity: 0.3;
 	}

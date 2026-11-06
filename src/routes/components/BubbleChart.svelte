@@ -1,6 +1,6 @@
 <script>
 	import { hierarchy, pack } from 'd3';
-	import { portal } from '$lib/motion.js';
+	import { manterNaTela, portal } from '$lib/motion.js';
 
 	export let title = '';
 	export let items = [];
@@ -167,6 +167,7 @@
 				class="uva-tooltip"
 				class:uva-tooltip--baixo={tooltip.baixo}
 				use:portal
+				use:manterNaTela={tooltip}
 				style={`opacity: ${tooltip.visible ? 1 : 0}; left: ${tooltip.x}px; top: ${tooltip.y}px;`}
 			>
 				<span class="tip-label">{tooltip.label}</span>
@@ -267,6 +268,7 @@
 
 	.uva-tooltip {
 		position: fixed;
+		margin-left: var(--desvio, 0px);
 		pointer-events: none;
 		background: var(--color-dark);
 		color: var(--color-light);
@@ -294,7 +296,7 @@
 	.uva-tooltip::after {
 		content: '';
 		position: absolute;
-		left: 50%;
+		left: calc(50% - var(--desvio, 0px));
 		top: 100%;
 		transform: translateX(-50%);
 		border: 7px solid transparent;
