@@ -415,16 +415,45 @@
 		canvas.style.cursor = hover ? 'pointer' : 'default';
 	}
 
-	function aoSair() {
+	function aoSair(event) {
+		// A finger lifting off the screen also fires pointerleave; that would close the
+		// tooltip the tap just opened
+		if (event?.pointerType === 'touch') return;
 		if (hover) {
 			hover = null;
 			redesenhar();
 		}
 	}
 
+	let ultimoToque = 'mouse';
+	function aoTocar(event) {
+		ultimoToque = event.pointerType;
+	}
+
 	function aoClicar(event) {
 		const achado = acertar(event);
+		// Touch: the first tap shows who it is, a second tap on the same person picks them
+		if (ultimoToque === 'touch' || ultimoToque === 'pen') {
+			if (!achado) {
+				aoSair();
+				return;
+			}
+			if (hover !== achado.voto) {
+				hover = achado.voto;
+				ancorar(achado);
+				redesenhar();
+				return;
+			}
+		}
 		if (achado) dispatch('deputado', achado.voto.deputado_?.nome);
+	}
+
+	// Tapping anywhere outside the plenary closes the tooltip
+	function aoTocarFora(event) {
+		if (hover && event.pointerType !== 'mouse' && event.target !== canvas) {
+			hover = null;
+			redesenhar();
+		}
 	}
 
 	onMount(() => {
@@ -459,6 +488,7 @@
 		observer.observe(host);
 		// The tooltip is pinned to a person; hide it when the page moves under it
 		window.addEventListener('scroll', aoRolar, { passive: true });
+		window.addEventListener('pointerdown', aoTocarFora);
 	});
 
 	function aoRolar() {
@@ -471,7 +501,10 @@
 	onDestroy(() => {
 		cancelAnimationFrame(frame);
 		fecharCamada();
-		if (typeof window !== 'undefined') window.removeEventListener('scroll', aoRolar);
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('scroll', aoRolar);
+			window.removeEventListener('pointerdown', aoTocarFora);
+		}
 		observer?.disconnect();
 		resizeObs?.disconnect();
 	});
@@ -507,6 +540,7 @@
 			bind:this={canvas}
 			on:pointermove={aoMover}
 			on:pointerleave={aoSair}
+			on:pointerdown={aoTocar}
 			on:click={aoClicar}
 			role="img"
 			aria-label={`Plenário: ${c.Sim} sim, ${c.Não} não, ${c.Abstenção} abstenções, ${c.Obstrução} obstruções, ${c.Ausentes} ausentes`}
