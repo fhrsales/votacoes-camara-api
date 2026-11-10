@@ -225,10 +225,10 @@
 	const limpa = (texto = '') => texto.replace(/\s*Sim:\s*\d+.*$/s, '').trim();
 	let mostrarTodas = false;
 
-	// Career timeline, newest first; long ones (senators chair many fronts) open with the first six
+	// Career timeline, oldest first; long ones (senators chair many fronts) open with the latest six
 	let tempoTodo = false;
 	$: linhaTempo = [...(bio?.mandatos ?? []).map((m) => ({ tipo: 'mandato', ...m })), ...(bio?.ocupacoes ?? []).map((o) => ({ tipo: 'ocupacao', ...o }))].sort(
-		(x, y) => (y.de ?? 0) - (x.de ?? 0)
+		(x, y) => (x.de ?? 0) - (y.de ?? 0) || (x.ate ?? 9999) - (y.ate ?? 9999)
 	);
 	$: divergencias = mostrarTodas ? p.divergencias : p.divergencias.slice(0, 8);
 	const corVoto = (v) => COR[v] ?? 'var(--color-dark)';
@@ -384,8 +384,13 @@
 					{/if}
 				</dl>
 				{#if bio?.mandatos?.length || bio?.ocupacoes?.length}
+					{#if linhaTempo.length > 6}
+						<button type="button" class="mais mais--antes" on:click={() => (tempoTodo = !tempoTodo)}>
+							{tempoTodo ? 'Mostrar só os recentes' : `Mostrar os ${linhaTempo.length - 6} anteriores`}
+						</button>
+					{/if}
 					<ol class="linha-tempo">
-						{#each tempoTodo ? linhaTempo : linhaTempo.slice(0, 6) as item}
+						{#each tempoTodo ? linhaTempo : linhaTempo.slice(-6) as item}
 							<li class:mandato={item.tipo === 'mandato'}>
 								<span class="anos-item">{anosTxt(item.de, item.ate)}</span>
 								{#if item.tipo === 'mandato'}
@@ -398,11 +403,6 @@
 							</li>
 						{/each}
 					</ol>
-					{#if linhaTempo.length > 6}
-						<button type="button" class="mais" on:click={() => (tempoTodo = !tempoTodo)}>
-							{tempoTodo ? 'Mostrar menos' : `Mostrar todos (${linhaTempo.length})`}
-						</button>
-					{/if}
 				{/if}
 			</div>
 		</section>
@@ -1230,6 +1230,10 @@
 		cursor: pointer;
 	}
 
+	.mais--antes {
+		margin: 0 0 calc(var(--grid) * 2);
+	}
+
 	.mais:hover {
 		background: var(--color-dark);
 		color: var(--color-light);
@@ -1344,7 +1348,7 @@
 		display: block;
 		width: 100%;
 		min-height: 1px;
-		border-radius: var(--raio-marca) var(--raio-marca) 0 0;
+		border-radius: var(--raio-coluna);
 		background: var(--vote-obstrucao);
 		transition: background 120ms var(--ease);
 	}

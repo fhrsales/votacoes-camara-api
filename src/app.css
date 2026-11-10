@@ -64,7 +64,9 @@
 
 	/* Shared shapes, so every chart and tooltip reads as one system */
 	--regua: 2px solid var(--color-dark); /* the DS section rule */
-	--raio-marca: 2px; /* bars, columns and map tiles */
+	--raio-marca: 2px; /* map tiles */
+	--raio-barra: 999px; /* every horizontal bar and its track: a pill */
+	--raio-coluna: 999px 999px 0 0; /* vertical columns: rounded top, flat on the baseline */
 	--raio-tip: 12px; /* the dark hover cards */
 }
 

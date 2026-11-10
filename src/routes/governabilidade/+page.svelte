@@ -602,7 +602,7 @@
 	.histo i {
 		display: block;
 		min-height: 1px;
-		border-radius: var(--raio-marca) var(--raio-marca) 0 0;
+		border-radius: var(--raio-coluna);
 		transition: height 360ms var(--ease);
 	}
 
@@ -632,7 +632,7 @@
 	.legenda i {
 		width: 10px;
 		height: 10px;
-		border-radius: var(--raio-marca);
+		border-radius: 50%;
 	}
 
 	.partidos {

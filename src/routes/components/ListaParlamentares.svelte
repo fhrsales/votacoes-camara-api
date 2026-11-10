@@ -37,9 +37,9 @@
 
 	// Where the plenary splits on the 0–10 axis: the left bloc, the centrão, the right bloc
 	const FAIXAS = [
-		{ chave: 'prog', rotulo: 'Progressistas', de: 0, ate: 2, cor: 'var(--vote-sim)' },
-		{ chave: 'centro', rotulo: 'Centro', de: 2, ate: 6, cor: 'var(--vote-abstencao)' },
-		{ chave: 'cons', rotulo: 'Conservadores', de: 6, ate: 10.01, cor: 'var(--accent-amber-ink)' }
+		{ chave: 'prog', rotulo: 'Progressistas', campo: 'campo progressista', de: 0, ate: 2, cor: 'var(--vote-sim)' },
+		{ chave: 'centro', rotulo: 'Centro', campo: 'centro', de: 2, ate: 6, cor: 'var(--vote-abstencao)' },
+		{ chave: 'cons', rotulo: 'Conservadores', campo: 'campo conservador', de: 6, ate: 10.01, cor: 'var(--accent-amber-ink)' }
 	];
 	const faixaDe = (e) => FAIXAS.find((f) => e >= f.de && e < f.ate) ?? FAIXAS[2];
 	// Which parties sit in each field, by where the party's average falls, biggest first
@@ -57,6 +57,7 @@
 		return Object.fromEntries(Object.entries(out).map(([k, v]) => [k, v.slice(0, 5).join(', ')]));
 	})();
 	const BINS = 40;
+	let focoBin = null;
 	$: contagemFaixa = Object.fromEntries(FAIXAS.map((f) => [f.chave, indice.deputados.filter((d) => faixaDe(d.eixo).chave === f.chave).length]));
 	$: histograma = Array.from({ length: BINS }, (_, i) => {
 		const de = (i * 10) / BINS;
@@ -74,6 +75,9 @@
 
 	const ORDENS = {
 		nome: { rotulo: 'Nome', fn: (a, b) => a.nome.localeCompare(b.nome, 'pt-BR') },
+		nomeZ: { rotulo: 'Nome, de Z a A', fn: (a, b) => b.nome.localeCompare(a.nome, 'pt-BR') },
+		presencaMaior: { rotulo: 'Maior presença', fn: (a, b) => (b.presenca ?? -1) - (a.presenca ?? -1) },
+		fieis: { rotulo: 'Mais fiéis ao partido', fn: (a, b) => (b.fidelidade ?? -1) - (a.fidelidade ?? -1) },
 		governismo: { rotulo: 'Mais governistas', fn: (a, b) => (b.governismo ?? -1) - (a.governismo ?? -1) },
 		oposicao: { rotulo: 'Mais de oposição', fn: (a, b) => (a.governismo ?? 101) - (b.governismo ?? 101) },
 		fidelidade: { rotulo: 'Menos fiéis ao partido', fn: (a, b) => (a.fidelidade ?? 101) - (b.fidelidade ?? 101) },
@@ -82,6 +86,23 @@
 		conservador: { rotulo: 'Mais conservadores', fn: (a, b) => b.eixo - a.eixo },
 		gasto: { rotulo: 'Maior gasto da cota', fn: (a, b) => (b.gasto ?? -1) - (a.gasto ?? -1) }
 	};
+
+	// Column heads sort the table: the first click puts the most of it on top, the next one flips it
+	const COLUNAS = {
+		nome: ['nome', 'nomeZ'],
+		presenca: ['presencaMaior', 'presenca'],
+		governo: ['governismo', 'oposicao'],
+		partido: ['fieis', 'fidelidade'],
+		prog: ['progressista', 'conservador'],
+		cons: ['conservador', 'progressista']
+	};
+	function ordenarPor(col) {
+		const [a, b] = COLUNAS[col];
+		ordem = ordem === a ? b : a;
+	}
+	const ativa = (col, ordem) => COLUNAS[col].includes(ordem) && !(col === 'prog' && ordem === 'conservador') && !(col === 'cons' && ordem === 'progressista');
+	const seta = (col, ordem) => (!ativa(col, ordem) ? '' : ordem === COLUNAS[col][0] ? (col === 'nome' ? '↑' : '↓') : col === 'nome' ? '↓' : '↑');
+	const ariaSort = (col, ordem) => (!ativa(col, ordem) ? 'none' : seta(col, ordem) === '↑' ? 'ascending' : 'descending');
 
 	const semAcento = (s = '') => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 	$: partidos = [...new Set(indice.deputados.map((d) => d.partido))].sort();
@@ -139,12 +160,30 @@
 		<div class="barra-faixas" aria-hidden="true">
 			{#each FAIXAS as f}<i style={`flex:${contagemFaixa[f.chave]};background:${f.cor}`} class:apagada={faixa && faixa !== f.chave} />{/each}
 		</div>
-		<div class="histo" aria-hidden="true">
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div class="histo" aria-hidden="true" on:pointerleave={() => (focoBin = null)}>
 			{#each histograma as b}
-				<span class="col" class:apagada={faixa && faixa !== b.faixa.chave} title={`${num(b.n)} entre ${num(b.de, 2)} e ${num(b.de + 10 / BINS, 2)}`}>
+				<span
+					class="col"
+					class:apagada={faixa && faixa !== b.faixa.chave}
+					class:foco={focoBin === b}
+					on:pointerenter={() => (focoBin = b)}
+					on:pointerdown={() => (focoBin = b)}
+				>
 					<i style={`height:${(b.n / maxBin) * 100}%;background:${b.faixa.cor}`} />
 				</span>
 			{/each}
+			{#if focoBin}
+				<span
+					class="tip"
+					class:esq={focoBin.i < 6}
+					class:dir={focoBin.i > BINS - 7}
+					style={`left:${((focoBin.i + 0.5) / BINS) * 100}%;bottom:${(focoBin.n / maxBin) * 100}%`}
+				>
+					<b>{num(focoBin.n)} {focoBin.n === 1 ? K.pessoasCurto.replace(/es$/, '').replace(/s$/, '') : K.pessoasCurto}</b>
+					<span>de {num(focoBin.de, 2)} a {num(focoBin.de + 10 / BINS, 2)} no eixo · {focoBin.faixa.campo}</span>
+				</span>
+			{/if}
 		</div>
 		<div class="eixo-rot"><span>← Progressista</span><span>0 · 2 · 6 · 10</span><span>Conservador →</span></div>
 		<p class="nota">
@@ -165,11 +204,26 @@
 	<table class="tabela">
 		<thead>
 			<tr>
-				<th>Nome</th>
-				<th class="n">Presença</th>
-				{#if !governismoAusente}<th class="n">Governo</th>{/if}
-				<th class="n">Partido</th>
-				<th class="eixo-col"><span class="eixo-cab"><span>Prog.</span><span>Cons.</span></span></th>
+				<th aria-sort={ariaSort('nome', ordem)}>
+					<button type="button" class="ordena" class:on={ativa('nome', ordem)} on:click={() => ordenarPor('nome')}>Nome<i>{seta('nome', ordem)}</i></button>
+				</th>
+				<th class="n" aria-sort={ariaSort('presenca', ordem)}>
+					<button type="button" class="ordena" class:on={ativa('presenca', ordem)} on:click={() => ordenarPor('presenca')}>Presença<i>{seta('presenca', ordem)}</i></button>
+				</th>
+				{#if !governismoAusente}
+					<th class="n" aria-sort={ariaSort('governo', ordem)}>
+						<button type="button" class="ordena" class:on={ativa('governo', ordem)} on:click={() => ordenarPor('governo')}>Governo<i>{seta('governo', ordem)}</i></button>
+					</th>
+				{/if}
+				<th class="n" aria-sort={ariaSort('partido', ordem)}>
+					<button type="button" class="ordena" class:on={ativa('partido', ordem)} on:click={() => ordenarPor('partido')}>Partido<i>{seta('partido', ordem)}</i></button>
+				</th>
+				<th class="eixo-col">
+					<span class="eixo-cab">
+						<button type="button" class="ordena" class:on={ordem === 'progressista'} on:click={() => (ordem = 'progressista')} title="Mais progressistas primeiro">Prog.</button>
+						<button type="button" class="ordena" class:on={ordem === 'conservador'} on:click={() => (ordem = 'conservador')} title="Mais conservadores primeiro">Cons.</button>
+					</span>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -297,6 +351,7 @@
 		display: flex;
 		gap: 2px;
 		height: calc(var(--grid) * 1);
+		border-radius: var(--raio-barra);
 		overflow: hidden;
 	}
 
@@ -313,19 +368,60 @@
 		border-bottom: 1px solid var(--color-dark);
 	}
 
+	.histo {
+		position: relative;
+	}
+
 	.histo .col {
 		flex: 1;
 		height: 100%;
 		display: flex;
 		align-items: flex-end;
+		cursor: pointer;
 		transition: opacity 160ms var(--ease);
+	}
+
+	.histo .col.foco i {
+		filter: brightness(1.15);
+		outline: 2px solid var(--accent-amber);
+		outline-offset: 1px;
+	}
+
+	/* The same dark card as every other tooltip */
+	.tip {
+		position: absolute;
+		transform: translate(-50%, -12px);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
+		border-radius: var(--raio-tip);
+		background: var(--color-dark);
+		color: var(--color-light);
+		box-shadow: var(--shadow-2);
+		font-size: var(--t-mini);
+		white-space: nowrap;
+		pointer-events: none;
+		z-index: 4;
+	}
+
+	.tip b {
+		font-size: var(--t-small);
+	}
+
+	.tip.esq {
+		transform: translate(-12px, -12px);
+	}
+
+	.tip.dir {
+		transform: translate(calc(-100% + 12px), -12px);
 	}
 
 	.histo i {
 		display: block;
 		width: 100%;
 		min-height: 1px;
-		border-radius: var(--raio-marca) var(--raio-marca) 0 0;
+		border-radius: var(--raio-coluna);
 	}
 
 	.eixo-rot {
@@ -471,6 +567,39 @@
 	.eixo-cab {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.ordena {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
+		transition: color 180ms var(--ease);
+	}
+
+	.ordena:hover,
+	.ordena.on {
+		color: var(--color-dark);
+	}
+
+	.ordena.on {
+		text-decoration: underline 2px var(--accent-amber);
+		text-underline-offset: 5px;
+	}
+
+	.ordena i {
+		display: inline-block;
+		font-style: normal;
+		color: var(--accent-amber-ink);
+	}
+
+	.ordena i:empty {
+		display: none;
 	}
 
 	.medida {
