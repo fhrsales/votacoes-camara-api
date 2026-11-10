@@ -33,7 +33,9 @@
 	const FOLGA_GRUPO = 0.018; // breathing room between vote groups, as a share of the arc
 	const VARIANTES_H = ['h1', 'h2'];
 	const VARIANTES_M = ['m1', 'm2'];
-	const DURACAO = 1500;
+	// First appearance: each person fades in at a random moment within ENTRADA ms
+	const ENTRADA = 1400;
+	const FADE = 450;
 
 	let host;
 	let canvas;
@@ -56,8 +58,6 @@
 	let pronto = false;
 	let inicioTroca = -1e9; // when the last change of vote started
 	const DURACAO_TROCA = 1100;
-	let camada; // full-window canvas used only while people walk in
-	let ctxCamada;
 
 	function ruido(i, sal) {
 		const x = Math.sin(i * 127.1 + sal * 311.7) * 43758.5453;
@@ -140,10 +140,8 @@
 					...q,
 					altura,
 					variante: lista[id % lista.length],
-					// they come in from outside the window: a random side and spot (0..1)
-					borda: Math.floor(ruido(id, 9) * 4),
-					ao: ruido(id, 6),
-					atraso: ruido(id, 8) * 900 + (1 - q.escala) * 600,
+					// the moment they fade in on first view, at random across the chamber
+					atraso: ruido(id, 8) * ENTRADA,
 					alfa: 1,
 					alfaAlvo: 1
 				};
@@ -186,10 +184,6 @@
 		canvas.height = Math.round(altura * dpr);
 		canvas.style.height = `${altura}px`;
 		desenhar(performance.now());
-	}
-
-	function suavizar(t) {
-		return 1 - Math.pow(1 - t, 3);
 	}
 
 	// Each silhouette x vote style is drawn once into a small bitmap; every frame then just
@@ -251,33 +245,11 @@
 		);
 	}
 
-	function abrirCamada() {
-		if (camada) return;
-		camada = document.createElement('canvas');
-		camada.className = 'pf-camada';
-		Object.assign(camada.style, {
-			position: 'fixed',
-			inset: '0',
-			width: '100vw',
-			height: '100vh',
-			pointerEvents: 'none',
-			zIndex: '15' // below the sticky bar (20)
-		});
-		document.body.appendChild(camada);
-		ctxCamada = camada.getContext('2d');
-	}
-
-	function fecharCamada() {
-		camada?.remove();
-		camada = null;
-		ctxCamada = null;
-	}
-
 	function desenhar(agora) {
 		if (!ctx) return;
 		const t0 = agora - inicio;
 		let mexendo = false;
-		const chegando = !reduzido && comecou && t0 < 900 + 600 + DURACAO + 50;
+		const chegando = !reduzido && comecou && t0 < ENTRADA + FADE + 50;
 
 		for (const f of figuras) {
 			if (Math.abs(f.alfa - f.alfaAlvo) > 0.01) {
@@ -293,43 +265,17 @@
 		ctx.imageSmoothingQuality = 'high';
 
 		if (chegando) {
-			// Walk in across the whole window, from outside it, onto the chamber
-			abrirCamada();
-			const vw = window.innerWidth;
-			const vh = window.innerHeight;
-			if (camada.width !== Math.round(vw * dpr) || camada.height !== Math.round(vh * dpr)) {
-				camada.width = Math.round(vw * dpr);
-				camada.height = Math.round(vh * dpr);
-			}
-			ctxCamada.setTransform(1, 0, 0, 1, 0, 0);
-			ctxCamada.clearRect(0, 0, camada.width, camada.height);
-			ctxCamada.imageSmoothingQuality = 'high';
-			const caixa = canvas.getBoundingClientRect();
-			// People walk in from the sides, along the plenary's own band. Clipping to that band
-			// keeps them off the text and the placar above and below it, however slowly the
-			// page is scrolled while they walk
-			ctxCamada.save();
-			ctxCamada.beginPath();
-			ctxCamada.rect(0, caixa.top * dpr, camada.width, caixa.height * dpr);
-			ctxCamada.clip();
+			// First view: everyone in place, each fading in at their own random moment
+			const k = escalaCss * dpr;
 			for (const f of figuras) {
-				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / DURACAO));
+				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / FADE));
 				if (p <= 0) continue;
-				const alvoX = caixa.left + f.x * escalaCss;
-				const alvoY = caixa.top + (f.y - topo) * escalaCss;
-				const altura = f.altura * escalaCss; // CSS px
-				const fora = altura + 30;
-				const daEsquerda = f.borda % 2 === 0;
-				const ox = daEsquerda ? -fora * (0.5 + f.ao) : vw + fora * (0.5 + f.ao);
-				const e = suavizar(p);
-				const x = ox + (alvoX - ox) * e;
-				pintarPessoa(ctxCamada, f, x * dpr, alvoY * dpr, f.altura / 100, escalaCss * dpr, f.alfa);
+				const e = 1 - Math.pow(1 - p, 3);
+				pintarPessoa(ctx, f, f.x * k, (f.y - topo) * k, f.altura / 100, k, f.alfa * e);
 			}
-			ctxCamada.restore();
-			ctxCamada.globalAlpha = 1;
+			ctx.globalAlpha = 1;
 			mexendo = true;
 		} else {
-			fecharCamada();
 			if (!reduzido && !comecou) {
 				animando = false;
 				return;
@@ -508,7 +454,6 @@
 
 	onDestroy(() => {
 		cancelAnimationFrame(frame);
-		fecharCamada();
 		if (typeof window !== 'undefined') {
 			window.removeEventListener('scroll', aoRolar);
 			window.removeEventListener('pointerdown', aoTocarFora);
