@@ -83,9 +83,9 @@
 {/key}
 
 <div class="mapa-legenda">
-	<span>100% não</span>
-	<i />
 	<span>100% sim</span>
+	<i />
+	<span>100% não</span>
 </div>
 
 <style>
@@ -272,7 +272,7 @@
 		width: 160px;
 		height: 8px;
 		border-radius: 999px;
-		background: linear-gradient(90deg, color-mix(in srgb, var(--vote-sim) 8%, var(--color-light)), var(--vote-sim));
+		background: linear-gradient(90deg, var(--vote-sim), color-mix(in srgb, var(--vote-sim) 8%, var(--color-light)));
 		box-shadow: inset 0 0 0 1px var(--color-rule);
 	}
 

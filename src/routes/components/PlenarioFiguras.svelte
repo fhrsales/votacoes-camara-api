@@ -474,6 +474,7 @@
 		};
 		montar();
 		chaveMontada = chave;
+		ordenadosMontados = ordenados;
 		pronto = true;
 		dimensionar();
 		resizeObs = new ResizeObserver(() => dimensionar());
@@ -511,10 +512,14 @@
 
 	// A new vote: everyone walks from where they stood to their place in the new vote,
 	// changing group if their vote changed. A filter change only fades.
+	// The vote id changes before the new votes arrive, so the layout follows the votes
+	// themselves: rebuilding only on the id kept the previous vote's people on screen
 	let chaveMontada = null;
-	$: if (pronto && (chave !== chaveMontada || figuras.length !== ordenados.length)) {
+	let ordenadosMontados = null;
+	$: if (pronto && (chave !== chaveMontada || ordenados !== ordenadosMontados)) {
 		const anteriores = new Map(figuras.map((f) => [f.voto.deputado_?.id, f]));
 		chaveMontada = chave;
+		ordenadosMontados = ordenados;
 		montar();
 		for (const f of figuras) {
 			const id = f.voto.deputado_?.id;

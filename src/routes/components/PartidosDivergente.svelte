@@ -20,8 +20,8 @@
 </script>
 
 <div class="div-head" aria-hidden="true">
-	<span class="div-head-nao">← não</span>
-	<span class="div-head-sim">sim →</span>
+	<span class="div-head-sim">← sim</span>
+	<span class="div-head-nao">não →</span>
 </div>
 
 {#key chave}
@@ -44,16 +44,16 @@
 				>
 					<span class="div-name">{p.chave}</span>
 					<span class="div-track">
-						<span class="div-side div-side--nao">
-							<span class="pill" style={`width:${w(p.Não + p.Obstrução)}`}>
-								<i class="seg" style={`flex:${p.Não};background:var(--vote-nao)`} />
-								<i class="seg" style={`flex:${p.Obstrução};background:var(--vote-obstrucao)`} />
-							</span>
-						</span>
 						<span class="div-side div-side--sim">
 							<span class="pill" style={`width:${w(p.Sim + p.Abstenção)}`}>
 								<i class="seg" style={`flex:${p.Sim};background:var(--vote-sim)`} />
 								<i class="seg" style={`flex:${p.Abstenção};background:var(--vote-abstencao)`} />
+							</span>
+						</span>
+						<span class="div-side div-side--nao">
+							<span class="pill" style={`width:${w(p.Não + p.Obstrução)}`}>
+								<i class="seg" style={`flex:${p.Não};background:var(--vote-nao)`} />
+								<i class="seg" style={`flex:${p.Obstrução};background:var(--vote-obstrucao)`} />
 							</span>
 						</span>
 					</span>
@@ -77,17 +77,17 @@
 		margin-bottom: calc(var(--grid) * 1);
 	}
 
-	.div-head-nao {
+	.div-head-sim {
 		grid-column: 2;
 		text-align: right;
 		padding-right: calc(var(--grid) * 1);
-		color: var(--vote-nao-texto);
+		color: var(--vote-sim);
 	}
 
-	.div-head-sim {
+	.div-head-nao {
 		grid-column: 3;
 		padding-left: calc(var(--grid) * 1);
-		color: var(--vote-sim);
+		color: var(--vote-nao-texto);
 	}
 
 	.div-list {
@@ -173,17 +173,18 @@
 		transition: width 360ms var(--ease);
 	}
 
-	.div-side--nao .pill {
+	/* Sim grows leftwards from the centre line, não rightwards */
+	.div-side--sim .pill {
 		flex-direction: row-reverse;
 		border-radius: 999px 0 0 999px;
 	}
 
-	.div-side--nao {
+	.div-side--sim {
 		flex-direction: row-reverse;
 		transform-origin: right center;
 	}
 
-	.div-side--sim {
+	.div-side--nao {
 		transform-origin: left center;
 	}
 

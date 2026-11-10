@@ -9,7 +9,8 @@
 	export let layoutMode = 'pack';
 	export let onToggle = null;
 
-	const tipos = ['Sim', 'Não', 'Abstenção', 'Obstrução', 'Ausentes'];
+	// Same order as everywhere else: sim on the left, não on the right
+	const tipos = ['Sim', 'Abstenção', 'Obstrução', 'Ausentes', 'Não'];
 	const cores = {
 		Sim: 'var(--vote-sim)',
 		'Não': 'var(--vote-nao)',
