@@ -261,7 +261,7 @@
 			width: '100vw',
 			height: '100vh',
 			pointerEvents: 'none',
-			zIndex: '15'
+			zIndex: '15' // below the sticky bar (20)
 		});
 		document.body.appendChild(camada);
 		ctxCamada = camada.getContext('2d');
@@ -305,6 +305,13 @@
 			ctxCamada.clearRect(0, 0, camada.width, camada.height);
 			ctxCamada.imageSmoothingQuality = 'high';
 			const caixa = canvas.getBoundingClientRect();
+			// People walk in from the sides, along the plenary's own band. Clipping to that band
+			// keeps them off the text and the placar above and below it, however slowly the
+			// page is scrolled while they walk
+			ctxCamada.save();
+			ctxCamada.beginPath();
+			ctxCamada.rect(0, caixa.top * dpr, camada.width, caixa.height * dpr);
+			ctxCamada.clip();
 			for (const f of figuras) {
 				const p = Math.min(1, Math.max(0, (t0 - f.atraso) / DURACAO));
 				if (p <= 0) continue;
@@ -312,13 +319,13 @@
 				const alvoY = caixa.top + (f.y - topo) * escalaCss;
 				const altura = f.altura * escalaCss; // CSS px
 				const fora = altura + 30;
-				const ox = f.borda === 0 ? -fora * 0.5 : f.borda === 1 ? vw + fora * 0.5 : f.ao * vw;
-				const oy = f.borda === 2 ? vh + 20 : f.borda === 3 ? -20 : f.ao * vh;
+				const daEsquerda = f.borda % 2 === 0;
+				const ox = daEsquerda ? -fora * (0.5 + f.ao) : vw + fora * (0.5 + f.ao);
 				const e = suavizar(p);
 				const x = ox + (alvoX - ox) * e;
-				const y = oy + (alvoY - oy) * e;
-				pintarPessoa(ctxCamada, f, x * dpr, y * dpr, f.altura / 100, escalaCss * dpr, f.alfa);
+				pintarPessoa(ctxCamada, f, x * dpr, alvoY * dpr, f.altura / 100, escalaCss * dpr, f.alfa);
 			}
+			ctxCamada.restore();
 			ctxCamada.globalAlpha = 1;
 			mexendo = true;
 		} else {
