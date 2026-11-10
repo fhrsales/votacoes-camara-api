@@ -1,0 +1,46 @@
+{
+  "mes": "2023-10",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6768",
+      "data": "2023-10-31",
+      "dataHoraRegistro": "2023-10-31T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2470/2022",
+      "descricao": "Aprovado. Votação nominal do Requerimento 965, de 2023, de adiamento da votação do PL nº 2.470/2022 para 21/11/2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "6761",
+      "data": "2023-10-24",
+      "dataHoraRegistro": "2023-10-24T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 5384/2020",
+      "descricao": "Rejeitado. Votação nominal do Requerimento nº 950, de 2023, que solicita preferência para que a Emenda nº 8 (Substitutiva) seja apreciada antes do Projeto.",
+      "hasResultado": true
+    },
+    {
+      "id": "6760",
+      "data": "2023-10-10",
+      "dataHoraRegistro": "2023-10-10T00:00:00",
+      "sequencial": 4081,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2721/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao Projeto de Lei nº 2.721, de 2023, nos termos do Parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6759",
+      "data": "2023-10-04",
+      "dataHoraRegistro": "2023-10-04T00:00:00",
+      "sequencial": 4080,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 136/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 136, de 2023, nos termos dos pareceres.",
+      "hasResultado": true
+    }
+  ]
+}

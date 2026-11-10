@@ -1,0 +1,46 @@
+{
+  "mes": "2025-06",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6952",
+      "data": "2025-06-25",
+      "dataHoraRegistro": "2025-06-25T00:00:00",
+      "sequencial": 4269,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 177/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 3 ao Projeto de Lei Complementar nº 177, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6951",
+      "data": "2025-06-25",
+      "dataHoraRegistro": "2025-06-25T00:00:00",
+      "sequencial": 4268,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 177/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 177, de 2023, nos termos do parecer, ressalvado o destaque",
+      "hasResultado": true
+    },
+    {
+      "id": "6950",
+      "data": "2025-06-25",
+      "dataHoraRegistro": "2025-06-25T00:00:00",
+      "sequencial": 4267,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 451/2025",
+      "descricao": "Aprovado. (Votação nominal do Requerimento nº 451, de 2025, que solicita urgência para o Projeto de Lei Complementar nº 177, de 2023).",
+      "hasResultado": true
+    },
+    {
+      "id": "6953",
+      "data": "2025-06-25",
+      "dataHoraRegistro": "2025-06-25T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 177/2023",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 451, de 2025, que solicita urgência para o Projeto de Lei Complementar nº 177, de 2023",
+      "hasResultado": true
+    }
+  ]
+}

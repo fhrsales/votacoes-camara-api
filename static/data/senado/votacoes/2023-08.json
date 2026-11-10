@@ -1,0 +1,26 @@
+{
+  "mes": "2023-08",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6745",
+      "data": "2023-08-30",
+      "dataHoraRegistro": "2023-08-30T00:00:00",
+      "sequencial": 4066,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2384/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 2.384/2023 e das Emendas nºs 23 e 26, de redação.",
+      "hasResultado": true
+    },
+    {
+      "id": "6744",
+      "data": "2023-08-29",
+      "dataHoraRegistro": "2023-08-29T00:00:00",
+      "sequencial": 4065,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 257/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 9 (Substitutivo) ao Projeto de Lei Complementar nº 257, de 2019, nos termos do Parecer.",
+      "hasResultado": true
+    }
+  ]
+}

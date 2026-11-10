@@ -1,0 +1,66 @@
+{
+  "mes": "2023-09",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6758",
+      "data": "2023-09-27",
+      "dataHoraRegistro": "2023-09-27T00:00:00",
+      "sequencial": 4079,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2903/2023",
+      "descricao": "Aprovado. Votação nominal do Art. 28 do Projeto de Lei nº 2.903, de 2023, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6757",
+      "data": "2023-09-27",
+      "dataHoraRegistro": "2023-09-27T00:00:00",
+      "sequencial": 4078,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2903/2023",
+      "descricao": "Aprovado. Votação nominal do § 4º do art. 16 do Projeto de Lei nº 2.903, de 2023, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6756",
+      "data": "2023-09-27",
+      "dataHoraRegistro": "2023-09-27T00:00:00",
+      "sequencial": 4077,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2903/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 2.903 de 2023, nos termos dos Pareceres, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6755",
+      "data": "2023-09-27",
+      "dataHoraRegistro": "2023-09-27T00:00:00",
+      "sequencial": 4076,
+      "siglaOrgao": "PLEN",
+      "identificacao": "REQ 31/2023 - CCJ",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 31, de 2023, da CCJ - Solicita urgência para o PL nº 2.903/2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "6747",
+      "data": "2023-09-12",
+      "dataHoraRegistro": "2023-09-12T00:00:00",
+      "sequencial": 4068,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 7/2018",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 7, de 2018, nos termos dos Pareceres (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6746",
+      "data": "2023-09-12",
+      "dataHoraRegistro": "2023-09-12T00:00:00",
+      "sequencial": 4067,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 7/2018",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 7, de 2018, nos termos dos Pareceres (1º Turno).",
+      "hasResultado": true
+    }
+  ]
+}

@@ -5,11 +5,16 @@
 //
 // Reads static/data/votos, static/data/votacoes and static/data/orientacoes; writes
 // static/data/perfis/index.json and one static/data/perfis/{id}.json per deputy.
+// CASA=senado does the same for senators, reading and writing under static/data/senado.
 import { mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
 
-const DATA_DIR = path.join(process.cwd(), 'static', 'data');
+const CASA = process.env.CASA === 'senado' ? 'senado' : 'camara';
+const SENADO = CASA === 'senado';
+const DATA_DIR = path.join(process.cwd(), 'static', 'data', ...(SENADO ? ['senado'] : []));
 const SAIDA = path.join(DATA_DIR, 'perfis');
+// The Senado has no roster of legislatures here; its current one began with the Câmara's
+const LEG_SENADO = { id: 57, dataInicio: '2023-02-01' };
 const MIN_VOTOS = 20; // fewer than this and the percentages say nothing
 const MAX_DIVERGENCIAS = 40;
 
@@ -119,8 +124,10 @@ const BASE_MIN_ANO = 8;
 const pctMin = (a, n, min) => (n >= min ? pct(a, n) : null);
 
 async function main() {
-	const legIndex = await lerJson(path.join(DATA_DIR, 'deputados', 'legislaturas', 'index.json'));
-	const leg = legIndex.legislaturas.reduce((m, l) => (Number(l.id) > Number(m.id) ? l : m));
+	const legIndex = SENADO
+		? { legislaturas: [] }
+		: await lerJson(path.join(DATA_DIR, 'deputados', 'legislaturas', 'index.json'));
+	const leg = SENADO ? LEG_SENADO : legIndex.legislaturas.reduce((m, l) => (Number(l.id) > Number(m.id) ? l : m));
 	const inicioLeg = leg.dataInicio;
 	const contatos = await lerJson(path.join(DATA_DIR, 'deputados', 'emails.json')).catch(() => ({}));
 
@@ -135,7 +142,7 @@ async function main() {
 			mandatosCamara.set(d.id, lista);
 		}
 	}
-	const lerBio = (id) => lerJson(path.join(DATA_DIR, 'deputados', 'bio', `${id}.json`)).catch(() => null);
+	const lerBio = (id) => lerJson(path.join(DATA_DIR, ...(SENADO ? ['bio'] : ['deputados', 'bio']), `${id}.json`)).catch(() => null);
 	const mulheres = new Set((contatos.mulheres ?? []).map(Number));
 
 	// Every roll call of the legislature, with its date and description
@@ -190,7 +197,9 @@ async function main() {
 
 		for (const voto of votos) {
 			const d = voto.deputado_;
-			if (!d?.id || Number(d.idLegislatura) !== Number(leg.id)) continue;
+			if (!d?.id || (!SENADO && Number(d.idLegislatura) !== Number(leg.id))) continue;
+			// The Senado lists absent senators too: they count for the period, not as a vote
+			const ausente = voto.tipoVoto === 'Ausentes';
 			let a = deps.get(d.id);
 			if (!a) {
 				a = {
@@ -220,6 +229,7 @@ async function main() {
 				a.partidos.push({ sigla: d.siglaPartido, desde: v.data });
 			}
 			a.ultima = v.dataHoraRegistro;
+			if (ausente) continue;
 			a.votos += 1;
 			if (a.contagem[voto.tipoVoto] != null) a.contagem[voto.tipoVoto] += 1;
 			const anoAcc = (a.anos[ano] ??= { gov: { a: 0, n: 0 }, partido: { a: 0, n: 0 }, votos: 0 });
@@ -280,12 +290,12 @@ async function main() {
 	const matriz = celulas.filter(([id]) => indice.has(id)).map(([id, j, l]) => [indice.get(id), j, l]);
 	const x = eixo(matriz, lista.length, colunas.length);
 
-	// Orient the axis: the PSOL end is the progressive (left) side, PL the conservative (right)
+	// Orient the axis: the PT end is the progressive (left) side, PL the conservative (right)
 	const media = (p) => {
 		const xs = lista.map((a, i) => (a.partido === p ? x[i] : null)).filter((v) => v != null);
 		return xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0;
 	};
-	if (media('PSOL') > media('PL')) for (let i = 0; i < x.length; i += 1) x[i] = -x[i];
+	if (media('PT') > media('PL')) for (let i = 0; i < x.length; i += 1) x[i] = -x[i];
 	const xs = [...x].sort((p, q) => p - q);
 	const lo = xs[Math.floor(xs.length * 0.01)];
 	const hi = xs[Math.ceil(xs.length * 0.99) - 1];
@@ -387,12 +397,13 @@ async function main() {
 			votacoes: votacoes.length,
 			votacoesNoEixo: colunas.length,
 			votacoesComOrientacao: comOrientacao,
+			casa: CASA,
 			deputados: resumo
 		}) + '\n',
 		'utf8'
 	);
 	console.log(
-		`Perfis: ${resumo.length} deputados, ${votacoes.length} votações (${colunas.length} disputadas no eixo, ${comOrientacao} com orientação)`
+		`Perfis (${CASA}): ${resumo.length} parlamentares, ${votacoes.length} votações (${colunas.length} disputadas no eixo, ${comOrientacao} com orientação)`
 	);
 }
 

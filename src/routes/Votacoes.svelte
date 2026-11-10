@@ -238,7 +238,19 @@
 		filtroVoto = filtroVoto === tipo ? '' : tipo;
 	}
 
+	// Who has a profile page (deputies and senators with at least 20 votes): only they get a link
+	let comPerfil = new Set();
+	let perfisDe = '';
+	async function carregarPerfis() {
+		if (perfisDe === casa) return;
+		const pedido = casa;
+		perfisDe = pedido;
+		const indice = await fetchJson(`${DATA_BASE}/perfis/index.json`).catch(() => null);
+		if (casa === pedido) comPerfil = new Set((indice?.deputados ?? []).map((d) => Number(d.id)));
+	}
+
 	async function carregarComponentesResultados() {
+		carregarPerfis();
 		if (VotesSummaryComponent && VotesTableComponent) return;
 		const [summaryModule, tableModule] = await Promise.all([
 			import('./components/VotesSummary.svelte'),
@@ -978,21 +990,21 @@
 				envelope ao lado de cada nome para escrever ao {C.pessoa} sobre este voto: o e‑mail já sai
 				endereçado, com a votação e o voto dele no texto.
 			</p>
-			{#if casa === 'camara'}
-				<p class="aviso-perfil">
-					<b>Toque em qualquer nome</b> para abrir o perfil do deputado ou deputada: como vota no conjunto
-					das votações desta legislatura, não só nesta. Presença, alinhamento com o governo e com o partido,
-					posição entre progressistas e conservadores e as vezes em que contrariou a bancada.
-					<a href={`${base}/deputados`}>Ver todos →</a>
-				</p>
-			{/if}
+			<p class="aviso-perfil">
+				<b>Toque em qualquer nome</b> para abrir o perfil do {C.pessoa} ou {C.pessoaF}: como vota no conjunto
+				das votações desta legislatura, não só nesta. Presença, alinhamento com o governo e com o partido,
+				posição entre progressistas e conservadores, gastos da cota parlamentar e as vezes em que contrariou a
+				bancada.
+				<a href={`${base}/${C.pessoas}`}>Ver todos →</a>
+			</p>
 			{#if VotesTableComponent}
 				<svelte:component
 					this={VotesTableComponent}
 					votos={votosExibidos}
 					{emails}
 					tratamento={C.tratamento}
-					perfilHref={casa === 'camara' ? (d) => `${base}/deputado/${slugDeputado(d.nome, d.id)}` : null}
+					perfilHref={(d) =>
+						comPerfil.has(Number(d.id)) ? `${base}/${casa === 'senado' ? 'senador' : 'deputado'}/${slugDeputado(d.nome, d.id)}` : null}
 					votacao={{ id: votacaoId, ementa: resumoTexto, descricao: descricaoAtual, data: fimTexto }}
 				/>
 			{/if}
@@ -1007,9 +1019,7 @@
 		Fonte: <a href={C.fonte.url} target="_blank" rel="noreferrer">{C.fonte.nome}</a>.
 		Só entram votações nominais, com placar registrado.
 	</p>
-	{#if casa === 'camara'}
-		<p><a href={`${base}/deputados`}>Veja como cada deputado vota →</a></p>
-	{/if}
+	<p><a href={`${base}/${C.pessoas}`}>Veja como cada {C.pessoa} vota →</a></p>
 </footer>
 
 <style>

@@ -1,0 +1,46 @@
+{
+  "mes": "2025-03",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6922",
+      "data": "2025-03-19",
+      "dataHoraRegistro": "2025-03-19T00:00:00",
+      "sequencial": 4239,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 22/2025 (Substitutivo-CD)",
+      "descricao": "Aprovado. Votação nominal do Substitutivo da Câmara dos Deputados ao PLP nº 22/2025, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6921",
+      "data": "2025-03-18",
+      "dataHoraRegistro": "2025-03-18T00:00:00",
+      "sequencial": 4238,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 192/2023",
+      "descricao": "Rejeitado. Votação nominal da decisão da Presidência na Questão de Ordem apresentada pelo Senador Alessandro Vieira.",
+      "hasResultado": true
+    },
+    {
+      "id": "6920",
+      "data": "2025-03-11",
+      "dataHoraRegistro": "2025-03-11T00:00:00",
+      "sequencial": 4236,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2024",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 18, de 2024 (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6919",
+      "data": "2025-03-11",
+      "dataHoraRegistro": "2025-03-11T00:00:00",
+      "sequencial": 4235,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 18/2024",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 18, de 2024, nos termos do parecer (1º Turno).",
+      "hasResultado": true
+    }
+  ]
+}

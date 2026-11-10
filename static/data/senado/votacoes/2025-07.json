@@ -1,0 +1,66 @@
+{
+  "mes": "2025-07",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6965",
+      "data": "2025-07-16",
+      "dataHoraRegistro": "2025-07-16T00:00:00",
+      "sequencial": 4281,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 66/2023 (fase 2)",
+      "descricao": "Aprovado. Votação nominal da PEC nº 66/2023, nos termos do parecer, ressalvados os destaques (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6964",
+      "data": "2025-07-16",
+      "dataHoraRegistro": "2025-07-16T00:00:00",
+      "sequencial": 4280,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 234/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 234, de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6963",
+      "data": "2025-07-09",
+      "dataHoraRegistro": "2025-07-09T00:00:00",
+      "sequencial": 4279,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 137/2019",
+      "descricao": "Aprovado. Votação Nominal em 2º Turno da Proposta de Emenda à Constituição nº 137, de 2019.",
+      "hasResultado": true
+    },
+    {
+      "id": "6962",
+      "data": "2025-07-09",
+      "dataHoraRegistro": "2025-07-09T00:00:00",
+      "sequencial": 4278,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 137/2019",
+      "descricao": "Aprovado. Votação Nominal em 1º Turno da Proposta de Emenda à Constituição nº 137, de 2019.",
+      "hasResultado": true
+    },
+    {
+      "id": "6955",
+      "data": "2025-07-02",
+      "dataHoraRegistro": "2025-07-02T00:00:00",
+      "sequencial": 4271,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 167/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 167, de 2024, nos termos do parecer de Plenário.",
+      "hasResultado": true
+    },
+    {
+      "id": "6954",
+      "data": "2025-07-01",
+      "dataHoraRegistro": "2025-07-01T00:00:00",
+      "sequencial": 4270,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1291/2025",
+      "descricao": "Aprovado. Votação nominal do Art. 2º do Projeto de Lei de Conversão nº 2, de 2025, destacado.",
+      "hasResultado": true
+    }
+  ]
+}

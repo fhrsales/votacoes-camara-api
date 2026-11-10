@@ -1,0 +1,96 @@
+{
+  "mes": "2024-05",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6834",
+      "data": "2024-05-22",
+      "dataHoraRegistro": "2024-05-22T00:00:00",
+      "sequencial": 4156,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 369/2024",
+      "descricao": "Rejeitado. Votação nominal do Requerimento nº 369, de 2024, do Senador Flávio Bolsonaro, que solicita a preferência para a votação da Emenda n° 23 (Substitutivo) em relação à Emenda nº 13 (Substitutivo).",
+      "hasResultado": true
+    },
+    {
+      "id": "6833",
+      "data": "2024-05-22",
+      "dataHoraRegistro": "2024-05-22T00:00:00",
+      "sequencial": 4155,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 150/2021",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 150, de 2021, nos termos dos pareceres.",
+      "hasResultado": true
+    },
+    {
+      "id": "6835",
+      "data": "2024-05-22",
+      "dataHoraRegistro": "2024-05-22T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 1958/2021",
+      "descricao": "Rejeitado. Votação nominal do Requerimento nº 369, de 2024, do Senador Flávio Bolsonaro, que solicita a preferência para a votação da Emenda n° 23 (Substitutivo) em relação à Emenda nº 13 (Substitutivo).",
+      "hasResultado": true
+    },
+    {
+      "id": "6832",
+      "data": "2024-05-15",
+      "dataHoraRegistro": "2024-05-15T00:00:00",
+      "sequencial": 4154,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 85/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 1 ao Projeto de Lei Complementar nº 85, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6831",
+      "data": "2024-05-15",
+      "dataHoraRegistro": "2024-05-15T00:00:00",
+      "sequencial": 4153,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 85/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 85, de 2024, nos termos do parecer, ressalvado o destaque.",
+      "hasResultado": true
+    },
+    {
+      "id": "6830",
+      "data": "2024-05-08",
+      "dataHoraRegistro": "2024-05-08T00:00:00",
+      "sequencial": 4152,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 233/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 4 ao Projeto de Lei Complementar nº 233, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6829",
+      "data": "2024-05-08",
+      "dataHoraRegistro": "2024-05-08T00:00:00",
+      "sequencial": 4151,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 233/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 25 ao Projeto de Lei Complementar nº 233, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6828",
+      "data": "2024-05-08",
+      "dataHoraRegistro": "2024-05-08T00:00:00",
+      "sequencial": 4150,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 233/2023",
+      "descricao": "Aprovado. Votação nominal do art. 27 do Projeto de Lei Complementar nº 233, de 2023, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6827",
+      "data": "2024-05-08",
+      "dataHoraRegistro": "2024-05-08T00:00:00",
+      "sequencial": 4149,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 233/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 233, de 2023, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    }
+  ]
+}

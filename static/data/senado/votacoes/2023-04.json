@@ -1,0 +1,16 @@
+{
+  "mes": "2023-04",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6676",
+      "data": "2023-04-19",
+      "dataHoraRegistro": "2023-04-19T00:00:00",
+      "sequencial": 3997,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PRS 46/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Resolução nº 46, de 2023, nos termos do Parecer.",
+      "hasResultado": true
+    }
+  ]
+}

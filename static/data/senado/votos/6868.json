@@ -1,0 +1,1060 @@
+{
+  "id": "6868",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "resumoTexto": "Abre novo prazo de parcelamento especial de débitos dos municípios com seus Regimes Próprios de Previdência Social dos Servidores Públicos e com o Regime Geral de Previdência Social.",
+  "votos": [
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5672,
+        "nome": "Alan Rick",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "AC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5672.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5982,
+        "nome": "Alessandro Vieira",
+        "siglaPartido": "MDB",
+        "siglaUf": "SE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5982.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6358,
+        "nome": "Ana Paula Lobato",
+        "siglaPartido": "PDT",
+        "siglaUf": "MA",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6358.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6366,
+        "nome": "André Amaral",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "PB",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6366.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5967,
+        "nome": "Angelo Coronel",
+        "siglaPartido": "PSD",
+        "siglaUf": "BA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5967.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6009,
+        "nome": "Astronauta Marcos Pontes",
+        "siglaPartido": "PL",
+        "siglaUf": "SP",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6009.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6350,
+        "nome": "Augusta Brito",
+        "siglaPartido": "PT",
+        "siglaUf": "CE",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6350.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4979,
+        "nome": "Bene Camacho",
+        "siglaPartido": "PSD",
+        "siglaUf": "MA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4979.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4639,
+        "nome": "Beto Faro",
+        "siglaPartido": "PT",
+        "siglaUf": "PA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4639.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6011,
+        "nome": "Beto Martins",
+        "siglaPartido": "PL",
+        "siglaUf": "SC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6011.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5936,
+        "nome": "Carlos Portinho",
+        "siglaPartido": "PL",
+        "siglaUf": "RJ",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5936.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5991,
+        "nome": "Castellar Neto",
+        "siglaPartido": "PP",
+        "siglaUf": "MG",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5991.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 470,
+        "nome": "Chico Rodrigues",
+        "siglaPartido": "PSB",
+        "siglaUf": "RR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador470.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5973,
+        "nome": "Cid Gomes",
+        "siglaPartido": "PSB",
+        "siglaUf": "CE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5973.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 739,
+        "nome": "Ciro Nogueira",
+        "siglaPartido": "PP",
+        "siglaUf": "PI",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador739.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6337,
+        "nome": "Cleitinho",
+        "siglaPartido": "REPUBLICANOS",
+        "siglaUf": "MG",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6337.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 475,
+        "nome": "Confúcio Moura",
+        "siglaPartido": "MDB",
+        "siglaUf": "RO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador475.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6335,
+        "nome": "Damares Alves",
+        "siglaPartido": "REPUBLICANOS",
+        "siglaUf": "DF",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6335.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5998,
+        "nome": "Daniella Ribeiro",
+        "siglaPartido": "PSD",
+        "siglaUf": "PB",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5998.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 3830,
+        "nome": "Davi Alcolumbre",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "AP",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador3830.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5793,
+        "nome": "Dr. Hiran",
+        "siglaPartido": "PP",
+        "siglaUf": "RR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5793.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4994,
+        "nome": "Eduardo Braga",
+        "siglaPartido": "MDB",
+        "siglaUf": "AM",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4994.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5976,
+        "nome": "Eduardo Girão",
+        "siglaPartido": "NOVO",
+        "siglaUf": "CE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5976.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 3777,
+        "nome": "Eduardo Gomes",
+        "siglaPartido": "PL",
+        "siglaUf": "TO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador3777.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 22,
+        "nome": "Esperidião Amin",
+        "siglaPartido": "PP",
+        "siglaUf": "SC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador22.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5953,
+        "nome": "Fabiano Contarato",
+        "siglaPartido": "PT",
+        "siglaUf": "ES",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5953.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5917,
+        "nome": "Fernando Dueire",
+        "siglaPartido": "MDB",
+        "siglaUf": "PE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5917.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6345,
+        "nome": "Fernando Farias",
+        "siglaPartido": "MDB",
+        "siglaUf": "AL",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6345.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6374,
+        "nome": "Flavio Azevedo",
+        "siglaPartido": "PL",
+        "siglaUf": "RN",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6374.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 345,
+        "nome": "Flávio Arns",
+        "siglaPartido": "PSB",
+        "siglaUf": "PR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador345.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5894,
+        "nome": "Flávio Bolsonaro",
+        "siglaPartido": "PL",
+        "siglaUf": "RJ",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5894.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6008,
+        "nome": "Giordano",
+        "siglaPartido": "MDB",
+        "siglaUf": "SP",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6008.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6341,
+        "nome": "Hamilton Mourão",
+        "siglaPartido": "REPUBLICANOS",
+        "siglaUf": "RS",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6341.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5008,
+        "nome": "Humberto Costa",
+        "siglaPartido": "PT",
+        "siglaUf": "PE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5008.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5385,
+        "nome": "Irajá",
+        "siglaPartido": "PSD",
+        "siglaUf": "TO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5385.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4770,
+        "nome": "Izalci Lucas",
+        "siglaPartido": "PL",
+        "siglaUf": "DF",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4770.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 35,
+        "nome": "Jader Barbalho",
+        "siglaPartido": "MDB",
+        "siglaUf": "PA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador35.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6340,
+        "nome": "Jaime Bagattoli",
+        "siglaPartido": "PL",
+        "siglaUf": "RO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6340.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 581,
+        "nome": "Jaques Wagner",
+        "siglaPartido": "PT",
+        "siglaUf": "BA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador581.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4531,
+        "nome": "Jayme Campos",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "MT",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4531.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5895,
+        "nome": "Jorge Kajuru",
+        "siglaPartido": "PSB",
+        "siglaUf": "GO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5895.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6342,
+        "nome": "Jorge Seif",
+        "siglaPartido": "PL",
+        "siglaUf": "SC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6342.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6369,
+        "nome": "Jussara Lima",
+        "siglaPartido": "PSD",
+        "siglaUf": "PI",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6369.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4811,
+        "nome": "Laércio Oliveira",
+        "siglaPartido": "PP",
+        "siglaUf": "SE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4811.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5979,
+        "nome": "Leila Barros",
+        "siglaPartido": "PDT",
+        "siglaUf": "DF",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5979.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5926,
+        "nome": "Lucas Barreto",
+        "siglaPartido": "PSD",
+        "siglaUf": "AP",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5926.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 1186,
+        "nome": "Luis Carlos Heinze",
+        "siglaPartido": "PP",
+        "siglaUf": "RS",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador1186.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 631,
+        "nome": "Magno Malta",
+        "siglaPartido": "PL",
+        "siglaUf": "ES",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador631.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5376,
+        "nome": "Mara Gabrilli",
+        "siglaPartido": "PSD",
+        "siglaUf": "SP",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5376.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 742,
+        "nome": "Marcelo Castro",
+        "siglaPartido": "MDB",
+        "siglaUf": "PI",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador742.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 285,
+        "nome": "Marcio Bittar",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "AC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador285.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5422,
+        "nome": "Marcos Rogério",
+        "siglaPartido": "PL",
+        "siglaUf": "RO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5422.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5942,
+        "nome": "Marcos do Val",
+        "siglaPartido": "PODE",
+        "siglaUf": "ES",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5942.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6304,
+        "nome": "Margareth Buzetti",
+        "siglaPartido": "PSD",
+        "siglaUf": "MT",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6304.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6027,
+        "nome": "Mecias de Jesus",
+        "siglaPartido": "REPUBLICANOS",
+        "siglaUf": "RR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6027.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5985,
+        "nome": "Nelsinho Trad",
+        "siglaPartido": "PSD",
+        "siglaUf": "MS",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5985.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5525,
+        "nome": "Omar Aziz",
+        "siglaPartido": "PSD",
+        "siglaUf": "AM",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5525.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5924,
+        "nome": "Oriovisto Guimarães",
+        "siglaPartido": "PODE",
+        "siglaUf": "PR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5924.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5523,
+        "nome": "Otto Alencar",
+        "siglaPartido": "PSD",
+        "siglaUf": "BA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5523.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 825,
+        "nome": "Paulo Paim",
+        "siglaPartido": "PT",
+        "siglaUf": "RS",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador825.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5502,
+        "nome": "Plínio Valério",
+        "siglaPartido": "PSDB",
+        "siglaUf": "AM",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5502.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5386,
+        "nome": "Professora Dorinha Seabra",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "TO",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5386.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5012,
+        "nome": "Randolfe Rodrigues",
+        "siglaPartido": "PT",
+        "siglaUf": "AP",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5012.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 70,
+        "nome": "Renan Calheiros",
+        "siglaPartido": "MDB",
+        "siglaUf": "AL",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador70.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5905,
+        "nome": "Rodrigo Cunha",
+        "siglaPartido": "PODE",
+        "siglaUf": "AL",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5905.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presidindo a sessão",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5732,
+        "nome": "Rodrigo Pacheco",
+        "siglaPartido": "PSD",
+        "siglaUf": "MG",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5732.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5352,
+        "nome": "Rogério Carvalho",
+        "siglaPartido": "PT",
+        "siglaUf": "SE",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5352.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5322,
+        "nome": "Romário",
+        "siglaPartido": "PL",
+        "siglaUf": "RJ",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5322.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6363,
+        "nome": "Rosana Martinelli",
+        "siglaPartido": "PL",
+        "siglaUf": "MT",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6363.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6331,
+        "nome": "Sergio Moro",
+        "siglaPartido": "UNIÃO",
+        "siglaUf": "PR",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6331.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5988,
+        "nome": "Soraya Thronicke",
+        "siglaPartido": "PODE",
+        "siglaUf": "MS",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5988.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Presente, não registrou voto",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5959,
+        "nome": "Styvenson Valentim",
+        "siglaPartido": "PODE",
+        "siglaUf": "RN",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5959.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 4560,
+        "nome": "Sérgio Petecão",
+        "siglaPartido": "PSD",
+        "siglaUf": "AC",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador4560.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Licença saúde",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 6338,
+        "nome": "Teresa Leitão",
+        "siglaPartido": "PT",
+        "siglaUf": "PE",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador6338.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5736,
+        "nome": "Tereza Cristina",
+        "siglaPartido": "PP",
+        "siglaUf": "MS",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5736.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5899,
+        "nome": "Vanderlan Cardoso",
+        "siglaPartido": "PSD",
+        "siglaUf": "GO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5899.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5748,
+        "nome": "Veneziano Vital do Rêgo",
+        "siglaPartido": "MDB",
+        "siglaUf": "PB",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5748.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5411,
+        "nome": "Weverton",
+        "siglaPartido": "PDT",
+        "siglaUf": "MA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5411.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5070,
+        "nome": "Wilder Morais",
+        "siglaPartido": "PL",
+        "siglaUf": "GO",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5070.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Sim",
+      "situacao": null,
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 5783,
+        "nome": "Zenaide Maia",
+        "siglaPartido": "PSD",
+        "siglaUf": "RN",
+        "sexo": "F",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador5783.jpg"
+      }
+    },
+    {
+      "tipoVoto": "Ausentes",
+      "situacao": "Atividade parlamentar",
+      "dataRegistroVoto": "2024-08-14T00:00:00",
+      "deputado_": {
+        "id": 3806,
+        "nome": "Zequinha Marinho",
+        "siglaPartido": "PODE",
+        "siglaUf": "PA",
+        "sexo": "M",
+        "urlFoto": "https://www.senado.leg.br/senadores/img/fotos-oficiais/senador3806.jpg"
+      }
+    }
+  ]
+}

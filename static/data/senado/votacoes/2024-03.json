@@ -1,0 +1,36 @@
+{
+  "mes": "2024-03",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6822",
+      "data": "2024-03-13",
+      "dataHoraRegistro": "2024-03-13T00:00:00",
+      "sequencial": 4144,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 72/2023",
+      "descricao": "Aprovado. Votação, em segundo turno, da PEC nº 72/2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "6821",
+      "data": "2024-03-13",
+      "dataHoraRegistro": "2024-03-13T00:00:00",
+      "sequencial": 4143,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 72/2023",
+      "descricao": "Aprovado. Votação, em primeiro turno, da PEC nº 72/2023, nos termos do Parecer com ajuste redacional.",
+      "hasResultado": true
+    },
+    {
+      "id": "6820",
+      "data": "2024-03-05",
+      "dataHoraRegistro": "2024-03-05T00:00:00",
+      "sequencial": 4142,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 137/2019",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 137, de 2019, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

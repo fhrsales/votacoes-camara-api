@@ -1,0 +1,36 @@
+{
+  "mes": "2024-07",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6850",
+      "data": "2024-07-03",
+      "dataHoraRegistro": "2024-07-03T00:00:00",
+      "sequencial": 4168,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 262/2019",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 262, de 2019, nos termos dos pareceres.",
+      "hasResultado": true
+    },
+    {
+      "id": "6849",
+      "data": "2024-07-03",
+      "dataHoraRegistro": "2024-07-03T00:00:00",
+      "sequencial": 4167,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2308/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 26 ao Projeto de Lei nº 2.308, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6848",
+      "data": "2024-07-02",
+      "dataHoraRegistro": "2024-07-02T00:00:00",
+      "sequencial": 4166,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 72/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 72, de 2024, e Emenda nº 2.",
+      "hasResultado": true
+    }
+  ]
+}

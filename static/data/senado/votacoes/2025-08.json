@@ -1,0 +1,16 @@
+{
+  "mes": "2025-08",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "7006",
+      "data": "2025-08-20",
+      "dataHoraRegistro": "2025-08-20T00:00:00",
+      "sequencial": 4322,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 58/2025",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 58, de 2025, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

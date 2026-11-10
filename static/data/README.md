@@ -6,3 +6,4 @@ Dados gerados automaticamente pela rotina `scripts/fetch-votacoes.mjs`.
 - `perfis/`: perfil de cada deputado da legislatura atual e `index.json` com o resumo de todos (`scripts/build-perfis.mjs`).
 - `deputados/bio/`: ficha de cada deputado (nome civil, nascimento, escolaridade, profissões, ocupações e mandatos fora da Câmara), sem CPF (`scripts/fetch-biografias.mjs`).
 - `custos/`: gastos de cada deputado com a cota parlamentar (CEAP) desde fev/2023, somados a partir dos arquivos anuais da Câmara; CPFs descartados e fornecedores pessoa física anonimizados (`scripts/build-custos.mjs`).
+- `senado/`: as mesmas pastas para o Senado Federal (`votacoes/`, `votos/`, `orientacoes/`, `bio/`, `custos/`, `perfis/`), geradas por `fetch-senado.mjs`, `fetch-senado-orientacoes.mjs`, `fetch-senado-bio.mjs`, `build-custos-senado.mjs` e `CASA=senado build-perfis.mjs`. Os custos vêm da CEAPS; fornecedores pessoa física aparecem só como "Pessoa física".

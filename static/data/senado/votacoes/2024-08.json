@@ -1,0 +1,86 @@
+{
+  "mes": "2024-08",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6874",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4190,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 9/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 9, de 2023 (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6873",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4189,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 9/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 9, de 2023, nos termos do parecer (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6870",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4188,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 26/2022",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 26, de 2022 (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6869",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4187,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 26/2022",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 26, de 2022, nos termos do parecer (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6868",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4186,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 66/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 66, de 2023 (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6867",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4185,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 66/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 7 (Substitutivo) à PEC nº 66/2023, nos termos dos pareceres (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6863",
+      "data": "2024-08-14",
+      "dataHoraRegistro": "2024-08-14T00:00:00",
+      "sequencial": 4181,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 121/2024",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 76 (Substitutivo) ao PLP nº 121/2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6862",
+      "data": "2024-08-13",
+      "dataHoraRegistro": "2024-08-13T00:00:00",
+      "sequencial": 4180,
+      "siglaOrgao": "PLEN",
+      "identificacao": "SCD 6/2016",
+      "descricao": "Rejeitado. Votação nominal do § 5º do art. 29 do Substitutivo da Câmara dos Deputados nº 6, de 2016, ao PLS nº 135/2010, destacado.",
+      "hasResultado": true
+    }
+  ]
+}

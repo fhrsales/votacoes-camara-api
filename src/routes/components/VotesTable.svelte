@@ -16,8 +16,9 @@
 
   // The whole row opens the profile; links inside it (name, e-mail) keep their own behaviour
   function abrirPerfil(evento, dep) {
-    if (!perfilHref || evento.target.closest('a, button')) return;
-    goto(perfilHref(dep));
+    const href = perfilHref?.(dep);
+    if (!href || evento.target.closest('a, button')) return;
+    goto(href);
   }
 
   function corte(texto, n) {
@@ -80,12 +81,12 @@
       </thead>
       <tbody>
         {#each votosExibidos as voto, i (i)}
-          <tr style={`--i:${Math.min(i, 20)}`} class:clicavel={perfilHref} on:click={(e) => abrirPerfil(e, voto.deputado_)}>
+          <tr style={`--i:${Math.min(i, 20)}`} class:clicavel={perfilHref?.(voto.deputado_)} on:click={(e) => abrirPerfil(e, voto.deputado_)}>
             <td data-label="Foto">
               <span class="retrato photo"><img src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" height="48" loading="lazy" /></span>
             </td>
             <td data-label="Deputado">
-              {#if perfilHref}
+              {#if perfilHref?.(voto.deputado_)}
                 <a class="perfil" href={perfilHref(voto.deputado_)}>{voto.deputado_.nome}</a>
               {:else}
                 {voto.deputado_.nome}

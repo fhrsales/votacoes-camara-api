@@ -1,0 +1,76 @@
+{
+  "mes": "2023-12",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6817",
+      "data": "2023-12-20",
+      "dataHoraRegistro": "2023-12-20T00:00:00",
+      "sequencial": 4139,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1185/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 48 à Medida Provisória nº 1.185, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6816",
+      "data": "2023-12-20",
+      "dataHoraRegistro": "2023-12-20T00:00:00",
+      "sequencial": 4138,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1185/2023",
+      "descricao": "Aprovado. Votação nominal do PLV 20/2023 e Pressupostos Constitucionais da MPV 1.185/23, nos termos do Parecer, ressalvado o destaque.",
+      "hasResultado": true
+    },
+    {
+      "id": "6800",
+      "data": "2023-12-12",
+      "dataHoraRegistro": "2023-12-12T00:00:00",
+      "sequencial": 4117,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 3626/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 157 ao Projeto de Lei nº 3.626, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6798",
+      "data": "2023-12-12",
+      "dataHoraRegistro": "2023-12-12T00:00:00",
+      "sequencial": 4116,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 3626/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 147 ao Projeto de Lei nº 3.626, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6797",
+      "data": "2023-12-12",
+      "dataHoraRegistro": "2023-12-12T00:00:00",
+      "sequencial": 4115,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 3626/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 139 ao Projeto de Lei nº 3.626, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6796",
+      "data": "2023-12-12",
+      "dataHoraRegistro": "2023-12-12T00:00:00",
+      "sequencial": 4114,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 1103/2023",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 1.103, de 2023 - Solicita o encerramento da discussão do PL nº 3.626/2023.",
+      "hasResultado": true
+    },
+    {
+      "id": "6799",
+      "data": "2023-12-12",
+      "dataHoraRegistro": "2023-12-12T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 3626/2023",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 1.103, de 2023 - Solicita o encerramento da discussão do PL nº 3.626/2023.",
+      "hasResultado": true
+    }
+  ]
+}

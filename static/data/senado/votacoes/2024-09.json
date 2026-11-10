@@ -1,0 +1,16 @@
+{
+  "mes": "2024-09",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6875",
+      "data": "2024-09-04",
+      "dataHoraRegistro": "2024-09-04T00:00:00",
+      "sequencial": 4191,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 528/2020",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 45 ao Projeto de Lei nº 528, de 2020, destacada.",
+      "hasResultado": true
+    }
+  ]
+}

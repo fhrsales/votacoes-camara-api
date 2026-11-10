@@ -1,0 +1,136 @@
+{
+  "mes": "2023-11",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6783",
+      "data": "2023-11-29",
+      "dataHoraRegistro": "2023-11-29T00:00:00",
+      "sequencial": 4101,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 243/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 243, de 2023, nos termos dos Pareceres.",
+      "hasResultado": true
+    },
+    {
+      "id": "6782",
+      "data": "2023-11-22",
+      "dataHoraRegistro": "2023-11-22T00:00:00",
+      "sequencial": 4100,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 8/2021",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 8/2021, nos termos do Parecer da Comissão Diretora (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6781",
+      "data": "2023-11-22",
+      "dataHoraRegistro": "2023-11-22T00:00:00",
+      "sequencial": 4099,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 8/2021",
+      "descricao": "Aprovado. Votação nominal da PEC nº 8/2021, Emendas e Subemenda, nos termos dos Pareceres (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6779",
+      "data": "2023-11-21",
+      "dataHoraRegistro": "2023-11-21T00:00:00",
+      "sequencial": 4098,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 1039/2023",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 1.039, de 2023, de Líderes, solicitando calendário especial para a PEC nº 8/2021.",
+      "hasResultado": true
+    },
+    {
+      "id": "6780",
+      "data": "2023-11-21",
+      "dataHoraRegistro": "2023-11-21T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 8/2021",
+      "descricao": "Aprovado. Votação nominal do Requerimento nº 1.039, de 2023, de Líderes, solicitando calendário especial para a PEC nº 8/2021.",
+      "hasResultado": true
+    },
+    {
+      "id": "6778",
+      "data": "2023-11-14",
+      "dataHoraRegistro": "2023-11-14T00:00:00",
+      "sequencial": 4097,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 205/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 205, de 2023, nos termos do Parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6777",
+      "data": "2023-11-08",
+      "dataHoraRegistro": "2023-11-08T00:00:00",
+      "sequencial": 4096,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2019",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 45, de 2019, nos termos do Parecer, em segundo turno.",
+      "hasResultado": true
+    },
+    {
+      "id": "6776",
+      "data": "2023-11-08",
+      "dataHoraRegistro": "2023-11-08T00:00:00",
+      "sequencial": 4095,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2019",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 806, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6775",
+      "data": "2023-11-08",
+      "dataHoraRegistro": "2023-11-08T00:00:00",
+      "sequencial": 4094,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 804, nos termos da subemenda do Relator, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6774",
+      "data": "2023-11-08",
+      "dataHoraRegistro": "2023-11-08T00:00:00",
+      "sequencial": 4093,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2019",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 805, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6773",
+      "data": "2023-11-08",
+      "dataHoraRegistro": "2023-11-08T00:00:00",
+      "sequencial": 4092,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 803 (Substitutivo) e das Emendas e Subemendas de Plenário, em primeiro turno, nos termos dos pareceres, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6772",
+      "data": "2023-11-07",
+      "dataHoraRegistro": "2023-11-07T00:00:00",
+      "sequencial": 4091,
+      "siglaOrgao": "PLEN",
+      "identificacao": "RQS 988/2023",
+      "descricao": "Aprovado. Votação nominal do RQS 988/2023, que solicita calendário especial para a Proposta de Emenda à Constituição nº 45, de 2019.",
+      "hasResultado": true
+    },
+    {
+      "id": "6769",
+      "data": "2023-11-01",
+      "dataHoraRegistro": "2023-11-01T00:00:00",
+      "sequencial": 4090,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 4426/2023",
+      "descricao": "Aprovado. Votação nominal do art. 34 do Projeto de Lei nº 4.426, de 2023, destacado.",
+      "hasResultado": true
+    }
+  ]
+}

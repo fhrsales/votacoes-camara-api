@@ -1,0 +1,46 @@
+{
+  "mes": "2024-04",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6826",
+      "data": "2024-04-17",
+      "dataHoraRegistro": "2024-04-17T00:00:00",
+      "sequencial": 4148,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 175/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 175, de 2023, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6825",
+      "data": "2024-04-16",
+      "dataHoraRegistro": "2024-04-16T00:00:00",
+      "sequencial": 4147,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 45, de 2023, nos termos do parecer (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6824",
+      "data": "2024-04-16",
+      "dataHoraRegistro": "2024-04-16T00:00:00",
+      "sequencial": 4146,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 45/2023",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 45, de 2023, nos termos do parecer (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6823",
+      "data": "2024-04-10",
+      "dataHoraRegistro": "2024-04-10T00:00:00",
+      "sequencial": 4145,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 252/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao PLP nº 252/2023, nos termos do parecer de Plenário.",
+      "hasResultado": true
+    }
+  ]
+}

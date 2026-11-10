@@ -1,0 +1,66 @@
+{
+  "mes": "2024-11",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6882",
+      "data": "2024-11-27",
+      "dataHoraRegistro": "2024-11-27T00:00:00",
+      "sequencial": 4198,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 153/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 153 de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6881",
+      "data": "2024-11-18",
+      "dataHoraRegistro": "2024-11-18T00:00:00",
+      "sequencial": 4197,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 175/2024",
+      "descricao": "Aprovado. Votação nominal da Subemenda ao Substitutivo do Relator ao PLP nº 175/2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6880",
+      "data": "2024-11-18",
+      "dataHoraRegistro": "2024-11-18T00:00:00",
+      "sequencial": 4196,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 175/2024",
+      "descricao": "Rejeitado. Votação nominal do §4º do art. 4º do Substitutivo do Relator ao PLP nº 175/2024, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6879",
+      "data": "2024-11-18",
+      "dataHoraRegistro": "2024-11-18T00:00:00",
+      "sequencial": 4195,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 175/2024",
+      "descricao": "Rejeitado. Votação nominal dos dispositivos do art. 12 do Substitutivo do Relator ao PLP nº 175/2024, destacados.",
+      "hasResultado": true
+    },
+    {
+      "id": "6878",
+      "data": "2024-11-12",
+      "dataHoraRegistro": "2024-11-12T00:00:00",
+      "sequencial": 4194,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 175/2024",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 45 (Substitutivo) ao PLP nº 175/2024, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6877",
+      "data": "2024-11-12",
+      "dataHoraRegistro": "2024-11-12T00:00:00",
+      "sequencial": 4193,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 182/2024",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 58 ao Substitutivo da Relatora ao Projeto de Lei nº 182, de 2024, destacada.",
+      "hasResultado": true
+    }
+  ]
+}

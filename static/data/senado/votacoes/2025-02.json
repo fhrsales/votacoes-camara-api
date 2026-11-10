@@ -1,0 +1,16 @@
+{
+  "mes": "2025-02",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6918",
+      "data": "2025-02-19",
+      "dataHoraRegistro": "2025-02-19T00:00:00",
+      "sequencial": 4234,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 22/2025",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao Projeto de Lei Complementar nº 22, de 2025, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

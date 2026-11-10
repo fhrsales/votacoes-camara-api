@@ -1,0 +1,86 @@
+{
+  "mes": "2023-06",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6716",
+      "data": "2023-06-21",
+      "dataHoraRegistro": "2023-06-21T00:00:00",
+      "sequencial": 4037,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 93/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 89 ao Projeto de Lei Complementar nº 93, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6715",
+      "data": "2023-06-21",
+      "dataHoraRegistro": "2023-06-21T00:00:00",
+      "sequencial": 4036,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 93/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 83 ao Projeto de Lei Complementar nº 93, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6714",
+      "data": "2023-06-21",
+      "dataHoraRegistro": "2023-06-21T00:00:00",
+      "sequencial": 4035,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 93/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 39, de 2023,e das emendas, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6717",
+      "data": "2023-06-21",
+      "dataHoraRegistro": "2023-06-21T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 93/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 101 ao Projeto de Lei Complementar nº 93, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6709",
+      "data": "2023-06-20",
+      "dataHoraRegistro": "2023-06-20T00:00:00",
+      "sequencial": 4030,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1165/2023",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 131 à Medida Provisória nº 1.165, de 2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6708",
+      "data": "2023-06-14",
+      "dataHoraRegistro": "2023-06-14T00:00:00",
+      "sequencial": 4029,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 139/2022",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 139, de 2022, nos termos do Parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6706",
+      "data": "2023-06-06",
+      "dataHoraRegistro": "2023-06-06T00:00:00",
+      "sequencial": 4027,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 43/2022",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 43, de 2022, nos termos do Parecer (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6705",
+      "data": "2023-06-06",
+      "dataHoraRegistro": "2023-06-06T00:00:00",
+      "sequencial": 4026,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 43/2022",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 43, de 2022, nos termos do Parecer (1º Turno).",
+      "hasResultado": true
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "mes": "2024-12",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6917",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4233,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 4614/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 4.614, de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6916",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4232,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 54/2024",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 54, de 2024 (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6915",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4231,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 54/2024",
+      "descricao": "Rejeitado. Votação nominal do §11 do art. 37 da CF, constante da Emenda nº1 à Proposta de Emenda à Constituição 54/2024, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6914",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4230,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 54/2024",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 54, de 2024, nos termos do parecer (1º Turno), ressalvado o destaque.",
+      "hasResultado": true
+    },
+    {
+      "id": "6913",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4229,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 210/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 20 ao Projeto de Lei nº 210, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6912",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4228,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 210/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 16 ao Projeto de Lei nº 210, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6911",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4227,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 210/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 14 ao Projeto de Lei nº 210, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6910",
+      "data": "2024-12-19",
+      "dataHoraRegistro": "2024-12-19T00:00:00",
+      "sequencial": 4226,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 210/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 210, de 2024, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6909",
+      "data": "2024-12-18",
+      "dataHoraRegistro": "2024-12-18T00:00:00",
+      "sequencial": 4225,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 4932/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 1 ao Projeto de Lei nº 4.932, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6908",
+      "data": "2024-12-18",
+      "dataHoraRegistro": "2024-12-18T00:00:00",
+      "sequencial": 4224,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 92/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 92, de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6907",
+      "data": "2024-12-18",
+      "dataHoraRegistro": "2024-12-18T00:00:00",
+      "sequencial": 4223,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 124/2022",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 40 (Substitutivo) ao Projeto de Lei Complementar nº 124, de 2022, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6906",
+      "data": "2024-12-17",
+      "dataHoraRegistro": "2024-12-17T00:00:00",
+      "sequencial": 4222,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 143/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 143, de 2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6905",
+      "data": "2024-12-17",
+      "dataHoraRegistro": "2024-12-17T00:00:00",
+      "sequencial": 4221,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 121/2024 (Substitutivo-CD)",
+      "descricao": "Aprovado. Votação nominal do Substitutivo da Câmara dos Deputados ao Projeto de Lei Complementar nº 121/2024, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6904",
+      "data": "2024-12-17",
+      "dataHoraRegistro": "2024-12-17T00:00:00",
+      "sequencial": 4220,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 3/2020",
+      "descricao": "Aprovado. Votação nominal do Proposta de Emenda à Constituição nº 3, de 2020 (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6903",
+      "data": "2024-12-17",
+      "dataHoraRegistro": "2024-12-17T00:00:00",
+      "sequencial": 4219,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 3/2020",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 3, de 2020, nos termos do parecer (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6902",
+      "data": "2024-12-12",
+      "dataHoraRegistro": "2024-12-12T00:00:00",
+      "sequencial": 4218,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 68/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 2.223 ao Substitutivo do Relator ao Projeto de Lei Complementar nº 68, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6901",
+      "data": "2024-12-12",
+      "dataHoraRegistro": "2024-12-12T00:00:00",
+      "sequencial": 4217,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 68/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 2.201 ao Substitutivo do Relator ao Projeto de Lei Complementar nº 68, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6900",
+      "data": "2024-12-12",
+      "dataHoraRegistro": "2024-12-12T00:00:00",
+      "sequencial": 4216,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 68/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 2.203 ao Substitutivo do Relator ao Projeto de Lei Complementar nº 68, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6899",
+      "data": "2024-12-12",
+      "dataHoraRegistro": "2024-12-12T00:00:00",
+      "sequencial": 4215,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 68/2024",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 2.171(Substitutivo) ao PLP 68/24 com Emendas e supressão, nos termos dos pareceres, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "6898",
+      "data": "2024-12-12",
+      "dataHoraRegistro": "2024-12-12T00:00:00",
+      "sequencial": 4214,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 576/2021 (Substitutivo-CD)",
+      "descricao": "Aprovado. Votação nominal do Art. 21 do texto consolidado pelo parecer ao Substitutivo da CD ao PL nº 576/2021, destacado.",
+      "hasResultado": true
+    }
+  ]
+}

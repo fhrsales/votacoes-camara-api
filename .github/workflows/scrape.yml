@@ -77,6 +77,24 @@ jobs:
           VOTACOES_RETRIES: 6
           VOTACOES_RETRY_DELAY: 1200
         run: node scripts/fetch-senado.mjs
+      - name: Orientações do Senado
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          SENADO_MONTHS: 3
+        run: node scripts/fetch-senado-orientacoes.mjs
+      - name: Fichas dos senadores
+        continue-on-error: true
+        timeout-minutes: 10
+        run: node scripts/fetch-senado-bio.mjs
+      - name: Custos dos senadores (CEAPS)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: node scripts/build-custos-senado.mjs
+      - name: Perfis dos senadores
+        env:
+          CASA: senado
+        run: node scripts/build-perfis.mjs
       - name: Commit e push
         run: |
           git config user.name "github-actions[bot]"

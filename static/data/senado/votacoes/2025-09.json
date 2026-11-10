@@ -1,0 +1,86 @@
+{
+  "mes": "2025-09",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "7014",
+      "data": "2025-09-30",
+      "dataHoraRegistro": "2025-09-30T00:00:00",
+      "sequencial": 4330,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 108/2024",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 587 ao Projeto de Lei Complementar nº 108, de 2024, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "7013",
+      "data": "2025-09-30",
+      "dataHoraRegistro": "2025-09-30T00:00:00",
+      "sequencial": 4329,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 108/2024",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 721 (Substitutivo) ao PLP nº 108/2024, nos termos do parecer, ressalvado o destaque.",
+      "hasResultado": true
+    },
+    {
+      "id": "7012",
+      "data": "2025-09-24",
+      "dataHoraRegistro": "2025-09-24T00:00:00",
+      "sequencial": 4328,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 168/2025",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 168, de 2025, nos termos dos pareceres, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "7011",
+      "data": "2025-09-17",
+      "dataHoraRegistro": "2025-09-17T00:00:00",
+      "sequencial": 4327,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1300/2025",
+      "descricao": "Aprovado. Votação nominal do PLV nº 4, de 2025 e dos pressupostos constitucionais da MPV nº 1.300, de 2025, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "7010",
+      "data": "2025-09-02",
+      "dataHoraRegistro": "2025-09-02T00:00:00",
+      "sequencial": 4326,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 125/2022",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 6 (Substitutivo) ao PLP nº 125/2022, nos termos da subemenda substitutiva de Plenário.",
+      "hasResultado": true
+    },
+    {
+      "id": "7009",
+      "data": "2025-09-02",
+      "dataHoraRegistro": "2025-09-02T00:00:00",
+      "sequencial": 4325,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 66/2023 (fase 2)",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 66, de 2023 (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "7008",
+      "data": "2025-09-02",
+      "dataHoraRegistro": "2025-09-02T00:00:00",
+      "sequencial": 4324,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 66/2023 (fase 2)",
+      "descricao": "Aprovado. Votação nominal da Expressão do §19 do art. 165 da Constituição, constante do art. 1º da PEC nº 66/2023, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "7007",
+      "data": "2025-09-02",
+      "dataHoraRegistro": "2025-09-02T00:00:00",
+      "sequencial": 4323,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 192/2023",
+      "descricao": "Aprovado. Votação nominal do PLP nº 192/2023, nos termos dos pareceres, com adequações redacionais do Relator.",
+      "hasResultado": true
+    }
+  ]
+}

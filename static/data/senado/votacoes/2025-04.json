@@ -1,0 +1,56 @@
+{
+  "mes": "2025-04",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6927",
+      "data": "2025-04-29",
+      "dataHoraRegistro": "2025-04-29T00:00:00",
+      "sequencial": 4244,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 48/2023",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 48, de 2023, nos termos do parecer de Plenário.",
+      "hasResultado": true
+    },
+    {
+      "id": "6926",
+      "data": "2025-04-08",
+      "dataHoraRegistro": "2025-04-08T00:00:00",
+      "sequencial": 4243,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 2/2016",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 2, de 2016 (2º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6925",
+      "data": "2025-04-08",
+      "dataHoraRegistro": "2025-04-08T00:00:00",
+      "sequencial": 4242,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 2/2016",
+      "descricao": "Aprovado. Votação nominal da Proposta de Emenda à Constituição nº 2, de 2016, nos termos do parecer (1º turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6924",
+      "data": "2025-04-01",
+      "dataHoraRegistro": "2025-04-01T00:00:00",
+      "sequencial": 4241,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2088/2023",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao PL nº 2.088/2023, com subemendas, nos termos do parecer da CAE.",
+      "hasResultado": true
+    },
+    {
+      "id": "6923",
+      "data": "2025-04-01",
+      "dataHoraRegistro": "2025-04-01T00:00:00",
+      "sequencial": 4240,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 201/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 1 (Substitutivo) ao Projeto de Lei Complementar nº 201, de 2019, nos termos do parecer.",
+      "hasResultado": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "mes": "2024-02",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6819",
+      "data": "2024-02-20",
+      "dataHoraRegistro": "2024-02-20T00:00:00",
+      "sequencial": 4141,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2253/2022",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 8 ao Projeto de Lei nº 2.253, de 2022, destacada.",
+      "hasResultado": true
+    },
+    {
+      "id": "6818",
+      "data": "2024-02-20",
+      "dataHoraRegistro": "2024-02-20T00:00:00",
+      "sequencial": 4140,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 2253/2022",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 2.253, de 2022, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    }
+  ]
+}

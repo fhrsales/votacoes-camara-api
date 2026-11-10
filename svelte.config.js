@@ -1,14 +1,18 @@
 import adapter from '@sveltejs/adapter-static';
 import { readFileSync } from 'fs';
 
-// One page per deputy is rendered at build time, from the profiles built by scripts/build-perfis.mjs
-let paginasDeputados = [];
-try {
-	const indice = JSON.parse(readFileSync('static/data/perfis/index.json', 'utf8'));
-	paginasDeputados = indice.deputados.map((d) => `/deputado/${d.slug}`);
-} catch {
-	paginasDeputados = [];
+// One page per deputy and per senator is rendered at build time, from the profiles built by
+// scripts/build-perfis.mjs (CASA=senado for the Senado)
+function paginas(arquivo, rota) {
+	try {
+		const indice = JSON.parse(readFileSync(arquivo, 'utf8'));
+		return indice.deputados.map((d) => `/${rota}/${d.slug}`);
+	} catch {
+		return [];
+	}
 }
+const paginasDeputados = paginas('static/data/perfis/index.json', 'deputado');
+const paginasSenadores = paginas('static/data/senado/perfis/index.json', 'senador');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,7 +24,7 @@ const config = {
 			base: process.env.BASE_PATH ?? ''
 		},
 		prerender: {
-			entries: ['*', '/deputados', ...paginasDeputados],
+			entries: ['*', '/deputados', '/senadores', ...paginasDeputados, ...paginasSenadores],
 			// #votacao and similar anchors exist only once the data has loaded in the browser
 			handleMissingId: 'ignore'
 		}

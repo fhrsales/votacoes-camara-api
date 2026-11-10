@@ -1,0 +1,26 @@
+{
+  "mes": "2023-07",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6731",
+      "data": "2023-07-05",
+      "dataHoraRegistro": "2023-07-05T00:00:00",
+      "sequencial": 4052,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 178/2021",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei Complementar nº 178, de 2021, nos termos dos Pareceres.",
+      "hasResultado": true
+    },
+    {
+      "id": "6730",
+      "data": "2023-07-05",
+      "dataHoraRegistro": "2023-07-05T00:00:00",
+      "sequencial": 4051,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 41/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda 15 (Substitutivo) ao PLP 41/2019, com as Emendas 16 e 22 a 29, nos termos do Parecer de Plenário.",
+      "hasResultado": true
+    }
+  ]
+}

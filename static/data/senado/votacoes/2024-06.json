@@ -1,0 +1,26 @@
+{
+  "mes": "2024-06",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6837",
+      "data": "2024-06-18",
+      "dataHoraRegistro": "2024-06-18T00:00:00",
+      "sequencial": 4158,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLC 29/2017",
+      "descricao": "Aprovado. Votação Nominal do Capítulo XI do Tìtulo I do Substitutivo ao Projeto de Lei da Câmara nº 29, de 2017, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "6836",
+      "data": "2024-06-05",
+      "dataHoraRegistro": "2024-06-05T00:00:00",
+      "sequencial": 4157,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 914/2024",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei nº 914, de 2024, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    }
+  ]
+}

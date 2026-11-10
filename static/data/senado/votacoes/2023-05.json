@@ -1,0 +1,66 @@
+{
+  "mes": "2023-05",
+  "generatedAt": "2026-11-10T11:52:34.562Z",
+  "votacoes": [
+    {
+      "id": "6704",
+      "data": "2023-05-31",
+      "dataHoraRegistro": "2023-05-31T00:00:00",
+      "sequencial": 0,
+      "siglaOrgao": "PLEN",
+      "identificacao": "MPV 1154/2023",
+      "descricao": "Aprovado. Votação nominal do PLV nº 12/2023 e Pressupostos Constitucionais da MPV nº 1.154/2023, nos termos do Parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6681",
+      "data": "2023-05-16",
+      "dataHoraRegistro": "2023-05-16T00:00:00",
+      "sequencial": 4003,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 162/2019",
+      "descricao": "Aprovado. Votação da PEC nº 162/2019, nos termos do Parecer, com adequação redacional de Plenário (2º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6680",
+      "data": "2023-05-16",
+      "dataHoraRegistro": "2023-05-16T00:00:00",
+      "sequencial": 4002,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PEC 162/2019",
+      "descricao": "Aprovado. Votação nominal da PEC nº 162/2019, nos termos do Parecer, com adequação redacional de Plenário (1º Turno).",
+      "hasResultado": true
+    },
+    {
+      "id": "6679",
+      "data": "2023-05-10",
+      "dataHoraRegistro": "2023-05-10T00:00:00",
+      "sequencial": 4001,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 245/2019",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 48 (Substitutivo) ao Projeto de Lei Complementar nº 245, de 2019, nos termos do Parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "6678",
+      "data": "2023-05-09",
+      "dataHoraRegistro": "2023-05-09T00:00:00",
+      "sequencial": 4000,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLS 332/2018",
+      "descricao": "Aprovado. Votação nominal do Projeto de Lei do Senado nº 332, de 2018 - Complementar, nos termos dos Pareceres.",
+      "hasResultado": true
+    },
+    {
+      "id": "6677",
+      "data": "2023-05-09",
+      "dataHoraRegistro": "2023-05-09T00:00:00",
+      "sequencial": 3999,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PL 1825/2022 (Substitutivo-CD)",
+      "descricao": "Aprovado. Votação nominal das expressões contidas no PL 1.825/2022 (Substitutivo da CD ao PLS 68/2017), destacadas.",
+      "hasResultado": true
+    }
+  ]
+}
