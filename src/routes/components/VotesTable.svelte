@@ -1,5 +1,6 @@
 <script>
   import Button from './ui/Button.svelte';
+  import { goto } from '$app/navigation';
 
   export let votos = [];
   export let onShowGraficos = () => {};
@@ -11,6 +12,12 @@
 
   function emailDe(dep) {
     return emails?.[dep?.id] || dep?.email || '';
+  }
+
+  // The whole row opens the profile; links inside it (name, e-mail) keep their own behaviour
+  function abrirPerfil(evento, dep) {
+    if (!perfilHref || evento.target.closest('a, button')) return;
+    goto(perfilHref(dep));
   }
 
   function corte(texto, n) {
@@ -73,7 +80,7 @@
       </thead>
       <tbody>
         {#each votosExibidos as voto, i (i)}
-          <tr style={`--i:${Math.min(i, 20)}`}>
+          <tr style={`--i:${Math.min(i, 20)}`} class:clicavel={perfilHref} on:click={(e) => abrirPerfil(e, voto.deputado_)}>
             <td data-label="Foto">
               <span class="retrato photo"><img src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" height="48" loading="lazy" /></span>
             </td>
@@ -289,6 +296,19 @@
       display: block;
     }
   }
+  tr.clicavel {
+    cursor: pointer;
+  }
+
+  tr.clicavel:hover td {
+    background: color-mix(in srgb, var(--accent-amber) 8%, transparent);
+  }
+
+  tr.clicavel:hover .perfil {
+    color: var(--accent-amber-ink);
+    text-decoration-color: currentColor;
+  }
+
   .perfil {
     color: inherit;
     font-weight: 600;

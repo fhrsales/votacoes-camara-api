@@ -978,6 +978,14 @@
 				envelope ao lado de cada nome para escrever ao {C.pessoa} sobre este voto: o e‑mail já sai
 				endereçado, com a votação e o voto dele no texto.
 			</p>
+			{#if casa === 'camara'}
+				<p class="aviso-perfil">
+					<b>Toque em qualquer nome</b> para abrir o perfil do deputado ou deputada: como vota no conjunto
+					das votações desta legislatura, não só nesta. Presença, alinhamento com o governo e com o partido,
+					posição entre progressistas e conservadores e as vezes em que contrariou a bancada.
+					<a href={`${base}/deputados`}>Ver todos →</a>
+				</p>
+			{/if}
 			{#if VotesTableComponent}
 				<svelte:component
 					this={VotesTableComponent}
@@ -1501,6 +1509,23 @@
 		color: var(--color-text-muted);
 		max-width: none;
 		margin: 0 0 calc(var(--grid) * 4);
+	}
+
+	.aviso-perfil {
+		margin: calc(var(--grid) * -2) 0 calc(var(--grid) * 3);
+		padding: calc(var(--grid) * 1.4) calc(var(--grid) * 2);
+		border-left: 3px solid var(--accent-amber);
+		background: color-mix(in srgb, var(--accent-amber) 9%, transparent);
+		border-radius: 0 12px 12px 0;
+		font-size: var(--t-small);
+		line-height: 1.5;
+		color: var(--color-dark);
+	}
+
+	.aviso-perfil a {
+		color: var(--accent-amber-ink);
+		font-weight: 600;
+		white-space: nowrap;
 	}
 
 	.figura {

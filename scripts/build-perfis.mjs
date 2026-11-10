@@ -123,6 +123,19 @@ async function main() {
 	const leg = legIndex.legislaturas.reduce((m, l) => (Number(l.id) > Number(m.id) ? l : m));
 	const inicioLeg = leg.dataInicio;
 	const contatos = await lerJson(path.join(DATA_DIR, 'deputados', 'emails.json')).catch(() => ({}));
+
+	// Earlier terms in the Câmara, from the rosters of previous legislatures we keep
+	const mandatosCamara = new Map();
+	for (const l of legIndex.legislaturas) {
+		const arq = path.join(DATA_DIR, 'deputados', 'legislaturas', `legislatura-${l.id}.json`);
+		const rol = await lerJson(arq).catch(() => null);
+		for (const d of rol?.deputados ?? []) {
+			const lista = mandatosCamara.get(d.id) ?? [];
+			if (!lista.some((m) => m.id === l.id)) lista.push({ id: l.id, de: l.dataInicio.slice(0, 4), ate: l.dataFim.slice(0, 4) });
+			mandatosCamara.set(d.id, lista);
+		}
+	}
+	const lerBio = (id) => lerJson(path.join(DATA_DIR, 'deputados', 'bio', `${id}.json`)).catch(() => null);
 	const mulheres = new Set((contatos.mulheres ?? []).map(Number));
 
 	// Every roll call of the legislature, with its date and description
@@ -283,6 +296,7 @@ async function main() {
 	await mkdir(SAIDA, { recursive: true });
 
 	const resumo = [];
+	const perfis = [];
 	for (const [i, a] of lista.entries()) {
 		const slug = slugDeputado(a.nome, a.id);
 		const realizadas = contarEntre(a.primeira, a.ultima);
@@ -320,7 +334,19 @@ async function main() {
 			divergencias: a.divergencias.slice(-MAX_DIVERGENCIAS).reverse(),
 			totalDivergencias: a.divergencias.length
 		};
-		await writeFile(path.join(SAIDA, `${a.id}.json`), JSON.stringify(perfil) + '\n', 'utf8');
+		const bio = await lerBio(a.id);
+		if (bio) {
+			const { id: _id, atualizado: _at, sexo: _sx, ...resto } = bio;
+			perfil.bio = resto;
+			if (bio.sexo) perfil.mulher = bio.sexo === 'F';
+		}
+		perfil.camara = (mandatosCamara.get(a.id) ?? []).sort((x, y) => x.id - y.id);
+		const custos = await lerJson(path.join(DATA_DIR, 'custos', `${a.id}.json`)).catch(() => null);
+		if (custos) {
+			const { id: _cid, ...restoCustos } = custos;
+			perfil.custos = restoCustos;
+		}
+		perfis.push(perfil);
 		resumo.push({
 			id: a.id,
 			slug,
@@ -333,10 +359,24 @@ async function main() {
 			presenca: perfil.presenca,
 			governismo: perfil.governismo,
 			fidelidade: perfil.fidelidade,
-			eixo: perfil.eixo
+			eixo: perfil.eixo,
+			profissao: bio?.profissoes?.[0] ?? '',
+			gasto: custos?.mediaMensal ?? null
 		});
 	}
 	resumo.sort((p, q) => p.nome.localeCompare(q.nome, 'pt-BR'));
+
+	// Previous and next deputy in alphabetical order, for the arrows on each page
+	const posicao = new Map(resumo.map((d, i) => [d.id, i]));
+	const vizinho = (i) => {
+		const d = resumo[(i + resumo.length) % resumo.length];
+		return { slug: d.slug, nome: d.nome };
+	};
+	for (const perfil of perfis) {
+		const i = posicao.get(perfil.id);
+		perfil.ordem = { posicao: i + 1, total: resumo.length, anterior: vizinho(i - 1), proximo: vizinho(i + 1) };
+		await writeFile(path.join(SAIDA, `${perfil.id}.json`), JSON.stringify(perfil) + '\n', 'utf8');
+	}
 
 	await writeFile(
 		path.join(SAIDA, 'index.json'),

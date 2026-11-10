@@ -54,6 +54,19 @@ jobs:
           VOTACOES_RETRIES: 3
           VOTACOES_RETRY_DELAY: 1500
         run: node scripts/fetch-orientacoes.mjs
+      - name: Fichas dos deputados
+        continue-on-error: true
+        timeout-minutes: 15
+        env:
+          BIO_LIMITE: 200
+          BIO_PARALELO: 3
+          VOTACOES_FETCH_TIMEOUT: 30000
+          VOTACOES_RETRIES: 3
+        run: node scripts/fetch-biografias.mjs
+      - name: Custos dos deputados (CEAP)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: node scripts/build-custos.mjs
       - name: Perfis dos deputados
         run: node scripts/build-perfis.mjs
       - name: Atualizar dados do Senado

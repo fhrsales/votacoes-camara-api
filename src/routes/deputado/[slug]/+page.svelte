@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
+	import { goto } from '$app/navigation';
 	import { format, parseISO } from 'date-fns';
 	import ptBR from 'date-fns/locale/pt-BR/index.js';
 	import { COR } from '$lib/votos.js';
@@ -64,6 +65,38 @@
 	}
 
 	$: anos = Object.entries(p.anos ?? {});
+
+	// Who they are, from the Câmara's own record
+	$: bio = p.bio ?? null;
+	$: idade = (() => {
+		if (!bio?.nascimento) return null;
+		const n = parseISO(bio.nascimento);
+		const hoje = new Date();
+		let a = hoje.getFullYear() - n.getFullYear();
+		if (hoje < new Date(hoje.getFullYear(), n.getMonth(), n.getDate())) a -= 1;
+		return a;
+	})();
+	const titulo = (s = '') =>
+		s
+			.toLowerCase()
+			.replace(/(^|[\s-])([a-zà-ú])/g, (m, a, b) => a + b.toUpperCase())
+			.replace(/\b(De|Da|Do|Das|Dos|E)\b/g, (m) => m.toLowerCase());
+	$: anteriores = (p.camara ?? []).filter((m) => m.ate < '2027');
+	$: temTrajetoria = Boolean(bio && (bio.escolaridade || bio.profissoes?.length || bio.ocupacoes?.length || bio.mandatos?.length)) || anteriores.length > 0;
+	const anosTxt = (de, ate) => (de ? (ate ? (ate === de ? `${de}` : `${de}–${ate}`) : `desde ${de}`) : '');
+	const redeNome = (u) => {
+		const h = u.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+		if (h.includes('instagram')) return 'Instagram';
+		if (h.includes('facebook')) return 'Facebook';
+		if (h.includes('twitter') || h.includes('x.com')) return 'X';
+		if (h.includes('youtube')) return 'YouTube';
+		if (h.includes('tiktok')) return 'TikTok';
+		return h;
+	};
+
+	// Section numbers follow the sections actually shown
+	$: secoes = [temTrajetoria && 'trajetoria', 'posicao', anos.length > 1 && 'anos', 'votos', p.divergencias?.length && 'contra', p.custos && 'custos'].filter(Boolean);
+	$: numero = (nome) => String(secoes.indexOf(nome) + 1).padStart(2, '0');
 	$: totalContagem = Object.values(p.contagem ?? {}).reduce((s, n) => s + n, 0) || 1;
 	$: trocouPartido = (p.partidos ?? []).length > 1;
 
@@ -80,16 +113,71 @@
 	};
 	$: raio = W < 600 ? 3.5 : 5;
 	$: pontos = todos.map((d) => ({
+		d,
 		x: xPos(d.eixo ?? 5),
 		y: 34 + jitter(d.id) * 70,
 		meu: d.partido === p.partido,
 		eu: d.id === p.id
 	}));
 
+	// Tooltip on the dots: hover on a mouse; on a phone the first tap shows who it is and a
+	// second tap on the same dot opens their page
+	let foco = null;
+	let ultimoPonteiro = 'mouse';
+	function mostrar(pt) {
+		foco = pt;
+	}
+	function esconder(event) {
+		if (event?.pointerType === 'touch') return;
+		foco = null;
+	}
+	function abrir(pt) {
+		if (ultimoPonteiro !== 'mouse' && foco !== pt) {
+			foco = pt;
+			return;
+		}
+		goto(`${base}/deputado/${pt.d.slug}`);
+	}
+	$: tipX = foco ? Math.min(Math.max(foco.x, 110), W - 110) : 0;
+
+	// Arrow keys walk through the deputies, like the arrows at the top
+	function teclas(event) {
+		if (event.target.closest?.('input, select, textarea')) return;
+		if (event.key === 'ArrowLeft') goto(`${base}/deputado/${p.ordem.anterior.slug}`);
+		if (event.key === 'ArrowRight') goto(`${base}/deputado/${p.ordem.proximo.slug}`);
+	}
+
+	// Parliamentary quota (CEAP): reimbursed office, travel and publicity expenses
+	$: custos = p.custos ?? null;
+	const reais = (v, curto = false) => {
+		if (v == null) return '—';
+		if (curto && v >= 1e6) return `R$ ${num(v / 1e6, 1)} mi`;
+		if (curto && v >= 1e5) return `R$ ${num(v / 1e3)} mil`;
+		if (curto && v >= 1e3) return `R$ ${num(v / 1e3, 1)} mil`;
+		return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+	};
+	$: gastoCamara = media(todos.filter((d) => d.gasto), 'gasto');
+	$: gastoUF = media(todos.filter((d) => d.gasto && d.uf === p.uf), 'gasto');
+	$: posGasto = custos && todos.length ? todos.filter((d) => (d.gasto ?? 0) > custos.mediaMensal).length + 1 : null;
+	$: totalGastadores = todos.filter((d) => d.gasto).length;
+	$: maxMes = custos ? Math.max(...custos.meses.map(([, v]) => v)) : 1;
+	$: categoriasTop = custos
+		? (() => {
+				const top = custos.categorias.slice(0, 6);
+				const resto = custos.categorias.slice(6).reduce((s, c) => s + c.valor, 0);
+				return resto > 0 ? [...top, { nome: 'Outros', valor: resto }] : top;
+			})()
+		: [];
+	$: maxCat = categoriasTop[0]?.valor ?? 1;
+	const mesCurto = (m) => format(parseISO(`${m}-01`), 'MMM/yy', { locale: ptBR });
+	let focoMes = null;
+
 	const limpa = (texto = '') => texto.replace(/\s*Sim:\s*\d+.*$/s, '').trim();
 	let mostrarTodas = false;
 	$: divergencias = mostrarTodas ? p.divergencias : p.divergencias.slice(0, 8);
 	const corVoto = (v) => COR[v] ?? 'var(--color-dark)';
+	// Light vote colours need dark text on the chip
+	const claro = (v) => v === 'Abstenção' || v === 'Ausentes' || v === 'Não';
 </script>
 
 <svelte:head>
@@ -100,14 +188,33 @@
 	/>
 </svelte:head>
 
-<main class="pagina">
-	<nav class="trilha">
-		<a href={`${base}/`}>← Votações</a>
-		<a href={`${base}/deputados`}>Todos os deputados</a>
+<svelte:window on:keydown={teclas} />
+
+<div class="barra">
+	<nav class="barra-inner" aria-label="Navegação entre deputados">
+		<div class="voltar">
+			<a href={`${base}/`}>Votações</a>
+			<span aria-hidden="true">/</span>
+			<a href={`${base}/deputados`}>Deputados</a>
+		</div>
+		{#if p.ordem}
+			<div class="passos">
+				<a class="circulo" href={`${base}/deputado/${p.ordem.anterior.slug}`} aria-label={`Anterior: ${p.ordem.anterior.nome}`} title={p.ordem.anterior.nome}>
+					<svg class="seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+				</a>
+				<span class="status"><b>{p.ordem.posicao}</b>/{p.ordem.total}</span>
+				<a class="circulo" href={`${base}/deputado/${p.ordem.proximo.slug}`} aria-label={`Próximo: ${p.ordem.proximo.nome}`} title={p.ordem.proximo.nome}>
+					<svg class="seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+				</a>
+			</div>
+		{/if}
 	</nav>
+</div>
+
+<main class="pagina">
 
 	<header class="cabeca">
-		<span class="foto"><img src={p.foto} alt="" width="120" height="120" /></span>
+		<span class="foto retrato"><img src={p.foto} alt="" width="120" height="120" /></span>
 		<div>
 			<p class="ds-label">{Cargo} federal · {p.uf}</p>
 			<h1>{p.nome}</h1>
@@ -119,6 +226,13 @@
 					</span>
 				{/if}
 			</p>
+			{#if bio?.profissoes?.length || idade}
+				<p class="quem">
+					{#if bio?.profissoes?.length}<b>{bio.profissoes.join(', ')}</b>{/if}
+					{#if idade}<span>{idade} anos</span>{/if}
+					{#if bio?.municipioNascimento}<span>{p.mulher ? 'nascida' : 'nascido'} em {titulo(bio.municipioNascimento)}-{bio.ufNascimento}</span>{/if}
+				</p>
+			{/if}
 			<p class="periodo">
 				{num(p.votos)} votos registrados entre {data_(p.periodo.de)} e {data_(p.periodo.ate)}
 			</p>
@@ -160,9 +274,82 @@
 		</div>
 	</dl>
 
+	{#if temTrajetoria}
+		<section class="sec">
+			<hr class="regua" />
+			<p class="ds-label">{numero('trajetoria')} · Trajetória</p>
+			<h2>Quem é {p.nome}</h2>
+			<div class="ficha">
+				<dl class="dados">
+					{#if bio?.nomeCivil}
+						<div><dt>Nome civil</dt><dd>{titulo(bio.nomeCivil)}</dd></div>
+					{/if}
+					{#if bio?.nascimento}
+						<div>
+							<dt>Nascimento</dt>
+							<dd>
+								{data_(bio.nascimento, "d 'de' MMMM 'de' yyyy")}{#if bio.municipioNascimento}, {titulo(bio.municipioNascimento)}-{bio.ufNascimento}{/if}
+							</dd>
+						</div>
+					{/if}
+					{#if bio?.escolaridade}
+						<div><dt>Escolaridade</dt><dd>{bio.escolaridade}</dd></div>
+					{/if}
+					{#if bio?.profissoes?.length}
+						<div><dt>Profissão</dt><dd>{bio.profissoes.join(', ')}</dd></div>
+					{/if}
+					<div>
+						<dt>Na Câmara</dt>
+						<dd>
+							{#if anteriores.length}
+								{anteriores.length + 1}º mandato · antes, {anteriores.map((m) => anosTxt(m.de, m.ate)).join(', ')}
+							{:else}
+								Primeiro mandato
+							{/if}
+							{#if bio?.condicao && bio.condicao !== 'Titular'} · {bio.condicao}{/if}
+						</dd>
+					</div>
+					{#if bio?.gabinete?.email}
+						<div>
+							<dt>Gabinete</dt>
+							<dd>
+								<a href={`mailto:${bio.gabinete.email}`}>{bio.gabinete.email}</a>
+								{#if bio.gabinete.telefone}<br />(61) {bio.gabinete.telefone}{/if}
+							</dd>
+						</div>
+					{/if}
+					{#if bio?.redes?.length}
+						<div>
+							<dt>Redes</dt>
+							<dd class="redes">
+								{#each bio.redes as u}<a href={u} target="_blank" rel="noreferrer">{redeNome(u)}</a>{/each}
+							</dd>
+						</div>
+					{/if}
+				</dl>
+				{#if bio?.mandatos?.length || bio?.ocupacoes?.length}
+					<ol class="linha-tempo">
+						{#each [...(bio.mandatos ?? []).map((m) => ({ tipo: 'mandato', ...m })), ...(bio.ocupacoes ?? []).map((o) => ({ tipo: 'ocupacao', ...o }))].sort((x, y) => (y.de ?? 0) - (x.de ?? 0)) as item}
+							<li class:mandato={item.tipo === 'mandato'}>
+								<span class="anos-item">{anosTxt(item.de, item.ate)}</span>
+								{#if item.tipo === 'mandato'}
+									<b>{titulo(item.cargo)}</b>
+									<span>{item.municipio ? `${titulo(item.municipio)}-` : ''}{item.uf}{item.partido ? ` · ${item.partido}` : ''}</span>
+								{:else}
+									<b>{item.titulo}</b>
+									<span>{item.entidade}{item.uf ? ` · ${item.uf}` : ''}</span>
+								{/if}
+							</li>
+						{/each}
+					</ol>
+				{/if}
+			</div>
+		</section>
+	{/if}
+
 	<section class="sec">
 		<hr class="regua" />
-		<p class="ds-label">01 · Posição</p>
+		<p class="ds-label">{numero('posicao')} · Posição</p>
 		<h2>Onde {art} {cargo} fica no plenário</h2>
 		<p class="lead">
 			Cada ponto é um deputado ou deputada, posicionado só pelo que votou. Quem vota junto fica perto. Em escuro, o
@@ -171,9 +358,28 @@
 		<div class="eixo" bind:clientWidth={largura}>
 			<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${p.nome} na posição ${num(p.eixo, 1)} de 10`}>
 				<line x1={M} x2={W - M} y1={118} y2={118} class="eixo-linha" />
-				{#each pontos as d}
-					{#if !d.eu}
-						<circle cx={d.x} cy={d.y} r={raio} class:meu={d.meu} class="ponto" />
+				{#each [0, 2.5, 5, 7.5, 10] as t}
+					<line x1={xPos(t)} x2={xPos(t)} y1="114" y2="122" class="marca" />
+					<text x={xPos(t)} y="138" class="marca-txt">{t.toLocaleString('pt-BR')}</text>
+				{/each}
+				{#each pontos as pt}
+					{#if !pt.eu}
+						<circle
+							cx={pt.x}
+							cy={pt.y}
+							r={foco === pt ? raio + 2.5 : raio}
+							class:meu={pt.meu}
+							class:foco={foco === pt}
+							class="ponto"
+							role="link"
+							tabindex="-1"
+							aria-label={`${pt.d.nome}, ${pt.d.partido}`}
+							on:pointerenter={() => mostrar(pt)}
+							on:pointerleave={esconder}
+							on:pointerdown={(e) => (ultimoPonteiro = e.pointerType)}
+							on:click={() => abrir(pt)}
+							on:keydown={(e) => e.key === 'Enter' && abrir(pt)}
+						/>
 					{/if}
 				{/each}
 				{#if comp.eixo.partido != null}
@@ -182,6 +388,13 @@
 				<line x1={xPos(p.eixo)} x2={xPos(p.eixo)} y1="14" y2="118" class="eu-linha" />
 				<circle cx={xPos(p.eixo)} cy="14" r="9" class="eu" />
 			</svg>
+			{#if foco}
+				<div class="tip" style={`left:${tipX}px;top:${foco.y}px`}>
+					<span class="tip-nome">{foco.d.nome}</span>
+					<span class="tip-sub">{foco.d.partido} · {foco.d.uf}</span>
+					<span class="tip-num">{num(foco.d.eixo, 1)}<small>/10</small></span>
+				</div>
+			{/if}
 			<div class="eixo-rotulos">
 				<span>← progressista</span>
 				<span>conservador →</span>
@@ -192,7 +405,7 @@
 	{#if anos.length > 1}
 		<section class="sec">
 			<hr class="regua" />
-			<p class="ds-label">02 · Ano a ano</p>
+			<p class="ds-label">{numero('anos')} · Ano a ano</p>
 			<h2>Como mudou o alinhamento</h2>
 			<table class="anos">
 				<thead>
@@ -220,7 +433,7 @@
 
 	<section class="sec">
 		<hr class="regua" />
-		<p class="ds-label">{anos.length > 1 ? '03' : '02'} · Votos</p>
+		<p class="ds-label">{numero('votos')} · Votos</p>
 		<h2>Como votou</h2>
 		<div class="barra" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
 			{#each Object.entries(p.contagem) as [tipo, n]}
@@ -239,7 +452,7 @@
 	{#if p.divergencias?.length}
 		<section class="sec">
 			<hr class="regua" />
-			<p class="ds-label">{anos.length > 1 ? '04' : '03'} · Contra o partido</p>
+			<p class="ds-label">{numero('contra')} · Contra o partido</p>
 			<h2>Quando votou diferente do {p.partido}</h2>
 			<p class="lead">
 				{num(p.totalDivergencias)} votações no total{p.totalDivergencias > p.divergencias.length
@@ -255,9 +468,21 @@
 							<p class="acao">{limpa(d.descricao)}</p>
 						</div>
 						<div class="votos">
-							<span><i style={`background:${corVoto(d.voto)}`} />{art === 'a' ? 'Ela' : 'Ele'}: <b>{d.voto}</b></span>
-							<span>{d.porOrientacao ? 'Partido orientou' : 'Maioria do partido'}: <b>{d.partido}</b></span>
-							{#if d.governo}<span>Governo: <b>{d.governo}</b></span>{/if}
+							<span class="chip eu">
+								<small>{art === 'a' ? 'Ela' : 'Ele'}</small>
+								<b class:claro={claro(d.voto)} style={`background:${corVoto(d.voto)}`}>{d.voto}</b>
+							</span>
+							<span class="vs" aria-hidden="true">≠</span>
+							<span class="chip">
+								<small>{d.porOrientacao ? 'Partido orientou' : 'Maioria do partido'}</small>
+								<b class:claro={claro(d.partido)} style={`background:${corVoto(d.partido)}`}>{d.partido}</b>
+							</span>
+							{#if d.governo}
+								<span class="chip gov">
+									<small>Governo</small>
+									<b class:claro={claro(d.governo)} style={`background:${corVoto(d.governo)}`}>{d.governo}</b>
+								</span>
+							{/if}
 						</div>
 					</li>
 				{/each}
@@ -267,6 +492,81 @@
 					{mostrarTodas ? 'Mostrar menos' : `Mostrar as ${p.divergencias.length}`}
 				</button>
 			{/if}
+		</section>
+	{/if}
+
+	{#if custos}
+		<section class="sec">
+			<hr class="regua" />
+			<p class="ds-label">{numero('custos')} · Custos</p>
+			<h2>Quanto gasta da cota parlamentar</h2>
+			<p class="lead">
+				Além do salário, cada {cargo} tem uma cota mensal para despesas do mandato: passagens, combustível,
+				escritório, divulgação. A Câmara reembolsa e publica cada nota.
+			</p>
+
+			<div class="custo-kpis">
+				<div>
+					<p class="valor">{reais(custos.mediaMensal, true)}<small>/mês</small></p>
+					<p class="leitura">Média dos meses com despesa desde fevereiro de 2023.</p>
+					<p class="comp">Câmara {reais(gastoCamara, true)} · {p.uf} {reais(gastoUF, true)}</p>
+				</div>
+				<div>
+					<p class="valor">{reais(custos.total, true)}</p>
+					<p class="leitura">No total, em {num(custos.documentos)} notas reembolsadas.</p>
+					{#if posGasto}<p class="comp">{num(posGasto)}º maior gasto mensal entre {num(totalGastadores)}</p>{/if}
+				</div>
+			</div>
+
+			<div class="meses" role="img" aria-label="Gasto por mês">
+				{#each custos.meses as [m, v]}
+					<span
+						class="mes"
+						class:janeiro={m.endsWith('-01')}
+						on:pointerenter={() => (focoMes = [m, v])}
+						on:pointerleave={() => (focoMes = null)}
+					>
+						<i style={`height:${(v / maxMes) * 100}%`} />
+						{#if m.endsWith('-01')}<em>{m.slice(0, 4)}</em>{/if}
+					</span>
+				{/each}
+			</div>
+			<p class="mes-foco">
+				{#if focoMes}<b>{mesCurto(focoMes[0])}</b>: {reais(focoMes[1])}{:else}Gasto mês a mês. Passe o dedo ou o mouse nas barras.{/if}
+			</p>
+
+			<div class="duas-col">
+				<div>
+					<h3>Em quê</h3>
+					<ul class="cats">
+						{#each categoriasTop as c}
+							<li>
+								<span class="cat-nome">{c.nome}</span>
+								<span class="cat-barra"><i style={`width:${(c.valor / maxCat) * 100}%`} /></span>
+								<span class="cat-valor">{reais(c.valor, true)}</span>
+							</li>
+						{/each}
+					</ul>
+				</div>
+				<div>
+					<h3>Com quem</h3>
+					<ol class="forn">
+						{#each custos.fornecedores as f}
+							<li>
+								<span>{f.nome}</span>
+								<b>{reais(f.valor, true)}</b>
+								<small>{num(f.notas)} {f.notas === 1 ? 'nota' : 'notas'}</small>
+							</li>
+						{/each}
+					</ol>
+				</div>
+			</div>
+			<p class="fonte">
+				Fonte: Cota para o Exercício da Atividade Parlamentar (CEAP), dados abertos da Câmara. Valores líquidos
+				reembolsados. O teto da cota varia por estado (é maior para quem mora longe de Brasília), por isso a
+				comparação com {p.uf}. Não inclui salário nem verba de gabinete.
+				<a href={`https://www.camara.leg.br/deputados/${p.id}`} target="_blank" rel="noopener">Ver as notas na Câmara ↗</a>
+			</p>
 		</section>
 	{/if}
 
@@ -305,25 +605,104 @@
 		width: calc(100% - var(--grid) * 4);
 		max-width: 980px;
 		margin: 0 auto;
-		padding: calc(var(--grid) * 3) 0 calc(var(--grid) * 8);
+		padding: calc(var(--grid) * 4) 0 calc(var(--grid) * 8);
 	}
 
-	.trilha {
+	/* Same sticky bar as the votes page: where you are, and the arrows to the next deputy */
+	.barra {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		background: color-mix(in srgb, var(--color-light) 88%, transparent);
+		backdrop-filter: blur(14px) saturate(1.4);
+		-webkit-backdrop-filter: blur(14px) saturate(1.4);
+		border-bottom: 1px solid var(--color-rule);
+	}
+
+	.barra-inner {
+		width: calc(100% - var(--grid) * 4);
+		max-width: 980px;
+		margin: 0 auto;
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 		gap: calc(var(--grid) * 2);
-		font-size: var(--t-small);
-		font-weight: 600;
-		margin-bottom: calc(var(--grid) * 4);
+		padding: calc(var(--grid) * 1) 0;
 	}
 
-	.trilha a {
+	.voltar {
+		display: flex;
+		gap: calc(var(--grid) * 0.8);
+		font-size: var(--t-small);
+		font-weight: 600;
+		color: var(--color-text-muted);
+	}
+
+	.voltar a {
 		color: var(--color-dark);
 		text-decoration: none;
 	}
 
-	.trilha a:hover {
+	.voltar a:hover {
 		color: var(--accent-amber-ink);
+	}
+
+	.passos {
+		display: inline-flex;
+		align-items: center;
+		gap: calc(var(--grid) * 1);
+	}
+
+	.status {
+		font-size: var(--t-label);
+		font-variant-numeric: tabular-nums;
+		color: var(--color-text-muted);
+		min-width: 7ch;
+		text-align: center;
+	}
+
+	.status b {
+		color: var(--color-dark);
+		font-weight: 600;
+	}
+
+	.circulo {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(var(--grid) * 3.6);
+		height: calc(var(--grid) * 3.6);
+		border: 1px solid var(--color-dark);
+		border-radius: 999px;
+		color: var(--color-dark);
+		-webkit-tap-highlight-color: transparent;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
+	}
+
+	.circulo:hover {
+		background: var(--color-dark);
+		color: var(--color-light);
+	}
+
+	@media (pointer: coarse) {
+		.circulo {
+			width: 44px;
+			height: 44px;
+		}
+
+		.circulo:active {
+			transform: scale(0.94);
+		}
+	}
+
+	.seta {
+		width: 14px;
+		height: 14px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
 	}
 
 	.cabeca {
@@ -333,19 +712,10 @@
 	}
 
 	.foto {
-		flex: 0 0 auto;
 		width: 120px;
 		height: 120px;
-		border-radius: 50%;
-		overflow: hidden;
-		background: var(--vote-ausentes);
 	}
 
-	.foto img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
 
 	h1 {
 		font-size: clamp(calc(var(--grid) * 4), 6vw, calc(var(--grid) * 7));
@@ -369,6 +739,102 @@
 		font-size: var(--t-small);
 		color: var(--color-text-muted);
 		margin: calc(var(--grid) * 0.6) 0 0;
+	}
+
+	.quem {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2px calc(var(--grid) * 1.4);
+		margin: calc(var(--grid) * 0.8) 0 0;
+		font-size: var(--t-small);
+	}
+
+	.quem span {
+		color: var(--color-text-muted);
+	}
+
+	.ficha {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: calc(var(--grid) * 3) calc(var(--grid) * 6);
+		align-items: start;
+	}
+
+	.dados {
+		margin: 0;
+	}
+
+	.dados div {
+		display: grid;
+		grid-template-columns: 13ch 1fr;
+		gap: calc(var(--grid) * 1.5);
+		padding: calc(var(--grid) * 1.1) 0;
+		border-top: 1px solid var(--color-rule);
+		font-size: var(--t-small);
+	}
+
+	.dados dt {
+		color: var(--color-text-muted);
+		font-weight: 600;
+	}
+
+	.dados dd {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.dados a {
+		color: var(--color-dark);
+	}
+
+	.redes {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px calc(var(--grid) * 1.4);
+	}
+
+	.linha-tempo {
+		list-style: none;
+		margin: 0;
+		padding: 0 0 0 calc(var(--grid) * 2);
+		border-left: 2px solid var(--color-rule);
+	}
+
+	.linha-tempo li {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: 0 0 calc(var(--grid) * 2);
+		font-size: var(--t-small);
+		line-height: 1.4;
+	}
+
+	.linha-tempo li::before {
+		content: '';
+		position: absolute;
+		left: calc(var(--grid) * -2 - 7px);
+		top: 4px;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: var(--color-light);
+		border: 2px solid var(--vote-nao);
+	}
+
+	.linha-tempo li.mandato::before {
+		background: var(--accent-amber);
+		border-color: var(--accent-amber);
+	}
+
+	.anos-item {
+		font-size: var(--t-label);
+		font-weight: 600;
+		color: var(--accent-amber-ink);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.linha-tempo span:last-child {
+		color: var(--color-text-muted);
 	}
 
 	.kpis {
@@ -436,6 +902,90 @@
 	.lead {
 		color: var(--color-text-muted);
 		margin: 0 0 calc(var(--grid) * 3);
+	}
+
+	.eixo {
+		position: relative;
+	}
+
+	.marca {
+		stroke: var(--color-dark);
+		stroke-width: 1;
+	}
+
+	.marca-txt {
+		font-family: var(--font-primary);
+		font-size: 11px;
+		fill: var(--color-text-muted);
+		text-anchor: middle;
+	}
+
+	.ponto {
+		cursor: pointer;
+		transition: r 140ms var(--ease), fill 140ms var(--ease);
+	}
+
+	.ponto.foco {
+		fill: var(--color-dark);
+		stroke: var(--color-light);
+		stroke-width: 2;
+	}
+
+	.ponto:focus {
+		outline: none;
+	}
+
+	.tip {
+		position: absolute;
+		transform: translate(-50%, calc(-100% - 14px));
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
+		border-radius: 14px;
+		background: var(--color-dark);
+		color: var(--color-light);
+		box-shadow: var(--shadow-2);
+		white-space: nowrap;
+		pointer-events: none;
+		z-index: 5;
+	}
+
+	.tip::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: -6px;
+		width: 12px;
+		height: 12px;
+		margin-left: -6px;
+		background: var(--color-dark);
+		transform: rotate(45deg);
+		border-radius: 2px;
+	}
+
+	.tip-nome {
+		font-weight: 600;
+		font-size: var(--t-small);
+	}
+
+	.tip-sub {
+		font-size: var(--t-label);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: 0.7;
+	}
+
+	.tip-num {
+		font-family: var(--font-display);
+		font-size: calc(var(--grid) * 3);
+		line-height: 1.1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tip-num small {
+		font-size: 0.5em;
+		opacity: 0.7;
 	}
 
 	.eixo svg {
@@ -622,13 +1172,254 @@
 		grid-column: 2;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 4px calc(var(--grid) * 2);
+		align-items: flex-end;
+		gap: 6px calc(var(--grid) * 1.2);
+		margin-top: calc(var(--grid) * 0.8);
+	}
+
+	.chip {
+		display: inline-flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	.chip small {
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		color: var(--color-text-muted);
+	}
+
+	.chip b {
+		align-self: flex-start;
+		min-width: 9ch;
+		text-align: center;
+		font-size: var(--t-small);
+		font-weight: 600;
+		padding: 4px 12px;
+		border-radius: 999px;
+		color: var(--color-light);
+	}
+
+	.chip b.claro {
+		color: var(--color-dark);
+	}
+
+	.chip.eu b {
+		box-shadow: 0 0 0 2px var(--color-light), 0 0 0 3.5px var(--accent-amber);
+	}
+
+	.chip.gov {
+		margin-left: calc(var(--grid) * 1);
+		padding-left: calc(var(--grid) * 2);
+		border-left: 1px solid var(--color-rule);
+	}
+
+	.vs {
+		align-self: flex-end;
+		padding-bottom: 3px;
+		font-size: var(--t-control);
+		font-weight: 600;
+		color: var(--accent-amber-ink);
+	}
+
+	.custo-kpis {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: calc(var(--grid) * 3);
+		margin: calc(var(--grid) * 2) 0 calc(var(--grid) * 3);
+	}
+
+	.custo-kpis .valor {
+		font-family: var(--font-display);
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 500;
+		line-height: 1;
+		margin: 0 0 calc(var(--grid) * 1);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.custo-kpis .valor small {
+		font-size: 0.4em;
+		color: var(--color-text-muted);
+		margin-left: 4px;
+	}
+
+	.custo-kpis .leitura {
+		margin: 0;
+		font-size: var(--t-small);
+	}
+
+	.custo-kpis .comp {
+		margin: 4px 0 0;
 		font-size: var(--t-small);
 		color: var(--color-text-muted);
 	}
 
-	.votos b {
+	.meses {
+		display: flex;
+		align-items: flex-end;
+		gap: 2px;
+		height: 120px;
+		border-bottom: 1px solid var(--color-dark);
+		margin-bottom: 22px;
+	}
+
+	.mes {
+		position: relative;
+		flex: 1;
+		height: 100%;
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.mes i {
+		display: block;
+		width: 100%;
+		min-height: 1px;
+		border-radius: 2px 2px 0 0;
+		background: var(--vote-obstrucao);
+		transition: background 120ms var(--ease);
+	}
+
+	.mes:hover i {
+		background: var(--accent-amber);
+	}
+
+	.mes em {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 0;
+		font-style: normal;
+		font-size: 11px;
+		font-weight: 600;
+		color: var(--color-text-muted);
+	}
+
+	.mes.janeiro::before {
+		content: '';
+		position: absolute;
+		left: -1.5px;
+		bottom: -4px;
+		height: 4px;
+		width: 1px;
+		background: var(--color-dark);
+	}
+
+	.mes-foco {
+		min-height: 1.5em;
+		font-size: var(--t-small);
+		color: var(--color-text-muted);
+		margin: 0 0 calc(var(--grid) * 3);
+	}
+
+	.mes-foco b {
 		color: var(--color-dark);
+		text-transform: capitalize;
+	}
+
+	.duas-col {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: calc(var(--grid) * 4);
+	}
+
+	.duas-col h3 {
+		font-size: var(--t-small);
+		font-weight: 600;
+		margin: 0 0 calc(var(--grid) * 1);
+	}
+
+	.cats,
+	.forn {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: var(--t-small);
+	}
+
+	.cats li {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 28% max-content;
+		align-items: center;
+		gap: calc(var(--grid) * 1);
+		padding: 7px 0;
+		border-top: 1px solid var(--color-rule);
+	}
+
+	.cat-barra {
+		height: 8px;
+		border-radius: 999px;
+		background: var(--vote-ausentes);
+		overflow: hidden;
+	}
+
+	.cat-barra i {
+		display: block;
+		height: 100%;
+		border-radius: 999px;
+		background: var(--vote-sim);
+	}
+
+	.cat-valor {
+		text-align: right;
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.forn li {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 0 calc(var(--grid) * 1);
+		padding: 7px 0;
+		border-top: 1px solid var(--color-rule);
+	}
+
+	.forn span {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.forn b {
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.forn small {
+		grid-column: 1;
+		color: var(--color-text-muted);
+	}
+
+	.fonte {
+		margin: calc(var(--grid) * 3) 0 0;
+		font-size: var(--t-small);
+		color: var(--color-text-muted);
+	}
+
+	.fonte a {
+		color: var(--accent-amber-ink);
+		font-weight: 600;
+	}
+
+	@media (max-width: 760px) {
+		.duas-col {
+			grid-template-columns: 1fr;
+		}
+
+		.custo-kpis {
+			grid-template-columns: 1fr;
+			gap: calc(var(--grid) * 2.5);
+		}
+
+		.custo-kpis .valor {
+			white-space: nowrap;
+		}
+
+		.meses {
+			gap: 1px;
+			height: 90px;
+		}
 	}
 
 	.metodo ul {
@@ -648,6 +1439,10 @@
 	}
 
 	@media (max-width: 760px) {
+		.ficha {
+			grid-template-columns: 1fr;
+		}
+
 		.kpis {
 			grid-template-columns: repeat(2, 1fr);
 			gap: calc(var(--grid) * 3) calc(var(--grid) * 2);
