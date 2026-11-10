@@ -87,6 +87,10 @@ jobs:
         env:
           SENADO_MONTHS: 3
         run: node scripts/fetch-senado-orientacoes.mjs
+      - name: Governabilidade do Senado
+        continue-on-error: true
+        timeout-minutes: 10
+        run: node scripts/build-governabilidade-senado.mjs
       - name: Fichas dos senadores
         continue-on-error: true
         timeout-minutes: 10

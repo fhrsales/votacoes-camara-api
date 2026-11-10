@@ -12,33 +12,29 @@
 
 	const dispatch = createEventDispatcher();
 
-	// Governability uses the Câmara's history of government orientations; the Senado has none
-	$: soCamara = secao === 'governabilidade';
+	// Where each section lives in each house
+	const ROTAS = {
+		votacoes: { camara: '/', senado: '/?casa=senado' },
+		parlamentares: { camara: '/deputados', senado: '/senadores' },
+		governabilidade: { camara: '/governabilidade', senado: '/governabilidade/senado' }
+	};
+	const rota = (s, c) => `${base}${ROTAS[s][c]}`;
 
-	// The same section in the other house
-	const destino = (c) =>
-		secao === 'parlamentares' ? `${base}/${c === 'senado' ? 'senadores' : 'deputados'}` : `${base}/${c === 'senado' ? '?casa=senado' : ''}`;
-
+	// Switching house keeps the section
 	$: casas = [
-		{ chave: 'camara', rotulo: 'Câmara', href: casaNoLugar ? null : destino('camara') },
-		{
-			chave: 'senado',
-			rotulo: 'Senado',
-			href: casaNoLugar ? null : destino('senado'),
-			desabilitado: soCamara,
-			titulo: soCamara ? 'Só a Câmara publica o histórico de orientações do governo' : undefined
-		}
+		{ chave: 'camara', rotulo: 'Câmara', href: casaNoLugar ? null : rota(secao, 'camara') },
+		{ chave: 'senado', rotulo: 'Senado', href: casaNoLugar ? null : rota(secao, 'senado') }
 	];
 
 	$: secoes = [
-		{ chave: 'votacoes', rotulo: 'Votações', href: `${base}/${casa === 'senado' ? '?casa=senado' : ''}` },
+		{ chave: 'votacoes', rotulo: 'Votações', href: rota('votacoes', casa) },
 		{
 			chave: 'parlamentares',
 			rotulo: 'Como cada um vota',
 			curto: casa === 'senado' ? 'Senadores' : 'Deputados',
-			href: `${base}/${casa === 'senado' ? 'senadores' : 'deputados'}`
+			href: rota('parlamentares', casa)
 		},
-		{ chave: 'governabilidade', rotulo: 'Governabilidade', curto: 'Governo', href: `${base}/governabilidade` }
+		{ chave: 'governabilidade', rotulo: 'Governabilidade', curto: 'Governo', href: rota('governabilidade', casa) }
 	];
 </script>
 

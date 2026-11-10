@@ -215,11 +215,11 @@
 				</th>
 				{#if !governismoAusente}
 					<th class="n" aria-sort={ariaSort('governo', ordem)}>
-						<button type="button" class="ordena" class:on={ativa('governo', ordem)} on:click={() => ordenarPor('governo')}>Governo<i>{seta('governo', ordem)}</i></button>
+						<button type="button" class="ordena" class:on={ativa('governo', ordem)} on:click={() => ordenarPor('governo')} title="Parte das votações em que seguiu a orientação do governo">Com o governo<i>{seta('governo', ordem)}</i></button>
 					</th>
 				{/if}
 				<th class="n" aria-sort={ariaSort('partido', ordem)}>
-					<button type="button" class="ordena" class:on={ativa('partido', ordem)} on:click={() => ordenarPor('partido')}>Partido<i>{seta('partido', ordem)}</i></button>
+					<button type="button" class="ordena" class:on={ativa('partido', ordem)} on:click={() => ordenarPor('partido')} title="Parte das votações em que votou como o partido orientou ou, sem orientação, como a maioria dele">Com o partido<i>{seta('partido', ordem)}</i></button>
 				</th>
 				<th class="eixo-col">
 					<span class="eixo-cab">
@@ -245,11 +245,11 @@
 						<span class="medida"><span class="mini"><i style={`width:${d.presenca ?? 0}%`} /></span>{num(d.presenca)}%</span>
 					</td>
 					{#if !governismoAusente}
-						<td class="n" data-rotulo="Governo">
+						<td class="n" data-rotulo="Com o governo">
 							<span class="medida"><span class="mini"><i style={`width:${d.governismo ?? 0}%`} /></span>{d.governismo == null ? '—' : `${num(d.governismo)}%`}</span>
 						</td>
 					{/if}
-					<td class="n" data-rotulo="Partido">
+					<td class="n" data-rotulo="Com o partido">
 						<span class="medida"><span class="mini"><i style={`width:${d.fidelidade ?? 0}%`} /></span>{num(d.fidelidade)}%</span>
 					</td>
 					<td class="eixo-col" data-rotulo="Prog. ↔ Cons.">
@@ -660,6 +660,7 @@
 		tbody tr {
 			display: grid;
 			grid-template-columns: repeat(3, auto) minmax(0, 1fr);
+			justify-content: start;
 			gap: calc(var(--grid) * 0.8) calc(var(--grid) * 2.2);
 			padding: calc(var(--grid) * 1.4) 0 calc(var(--grid) * 1.4) calc(var(--grid) * 5.8);
 			border-top: 1px solid var(--color-rule);
@@ -699,8 +700,10 @@
 			font-weight: 600;
 		}
 
+		/* The axis takes a line of its own, so the three figures above keep their full labels */
 		.eixo-col {
 			width: auto;
+			grid-column: 1 / -1;
 		}
 
 		.eixo-col .trilho {
