@@ -35,3 +35,14 @@ export const CADEIRAS_UF = {
 	SC: 16, PB: 12, ES: 10, PI: 10, AL: 9, RN: 8, AM: 8, MT: 8, DF: 8, MS: 8, AC: 8, AP: 8,
 	RO: 8, RR: 8, SE: 8, TO: 8
 };
+
+// Same rule as scripts/build-perfis.mjs: the deputy page lives at /deputado/{slug}
+export function slugDeputado(nome = '', id = '') {
+	const base = nome
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+	return `${base}-${id}`;
+}

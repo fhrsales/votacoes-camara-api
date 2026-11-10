@@ -6,6 +6,8 @@
   export let emails = {};
   export let votacao = {};
   export let tratamento = 'deputado(a)';
+  /** Link to a deputy's profile page, or null where there are none (the Senado) */
+  export let perfilHref = null;
 
   function emailDe(dep) {
     return emails?.[dep?.id] || dep?.email || '';
@@ -76,7 +78,11 @@
               <span class="retrato photo"><img src={voto.deputado_.urlFoto} alt={voto.deputado_.nome} width="48" height="48" loading="lazy" /></span>
             </td>
             <td data-label="Deputado">
-              {voto.deputado_.nome}
+              {#if perfilHref}
+                <a class="perfil" href={perfilHref(voto.deputado_)}>{voto.deputado_.nome}</a>
+              {:else}
+                {voto.deputado_.nome}
+              {/if}
               <small class="sub">{voto.deputado_.siglaPartido} · {voto.deputado_.siglaUf}</small>
             </td>
             <td data-label="Partido">{voto.deputado_.siglaPartido}</td>
@@ -282,5 +288,17 @@
     .sub {
       display: block;
     }
+  }
+  .perfil {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-rule);
+    text-underline-offset: 3px;
+  }
+
+  .perfil:hover {
+    color: var(--accent-amber-ink);
+    text-decoration-color: currentColor;
   }
 </style>

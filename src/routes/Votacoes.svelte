@@ -3,6 +3,7 @@
 	import { format, parseISO } from 'date-fns';
 	import ptBR from 'date-fns/locale/pt-BR/index.js';
 	import { base } from '$app/paths';
+	import { slugDeputado } from '$lib/votos.js';
 	import VotesSearch from './components/VotesSearch.svelte';
 	import Button from './components/ui/Button.svelte';
 	import Select from './components/ui/Select.svelte';
@@ -905,7 +906,7 @@
 				<hr class="regua" />
 				<p class="ds-label">02 · Partidos</p>
 				<h2 class="sec-title">Do mais a favor ao mais contra</h2>
-				<p class="sec-lead">Não à esquerda, sim à direita. Clique num partido para filtrar o resto da página.</p>
+				<p class="sec-lead">Sim à esquerda, não à direita. Clique num partido para filtrar o resto da página.</p>
 				<PartidosDivergente
 					votos={votosBaseEstado}
 					chave={votacaoId}
@@ -983,6 +984,7 @@
 					votos={votosExibidos}
 					{emails}
 					tratamento={C.tratamento}
+					perfilHref={casa === 'camara' ? (d) => `${base}/deputado/${slugDeputado(d.nome, d.id)}` : null}
 					votacao={{ id: votacaoId, ementa: resumoTexto, descricao: descricaoAtual, data: fimTexto }}
 				/>
 			{/if}
@@ -997,6 +999,9 @@
 		Fonte: <a href={C.fonte.url} target="_blank" rel="noreferrer">{C.fonte.nome}</a>.
 		Só entram votações nominais, com placar registrado.
 	</p>
+	{#if casa === 'camara'}
+		<p><a href={`${base}/deputados`}>Veja como cada deputado vota →</a></p>
+	{/if}
 </footer>
 
 <style>
