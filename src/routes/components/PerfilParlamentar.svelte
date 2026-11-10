@@ -6,6 +6,7 @@
 	import ptBR from 'date-fns/locale/pt-BR/index.js';
 	import { COR } from '$lib/votos.js';
 	import { countUp, emVista, reveal } from '$lib/motion.js';
+	import Navegacao from './Navegacao.svelte';
 
 	export let data;
 	/** 'camara' or 'senado': the same page serves deputies and senators */
@@ -154,7 +155,7 @@
 	};
 
 	// Section numbers follow the sections actually shown
-	$: secoes = [temTrajetoria && 'trajetoria', 'posicao', anos.length > 1 && 'anos', 'votos', p.divergencias?.length && 'contra', p.custos && 'custos'].filter(Boolean);
+	$: secoes = [temTrajetoria && 'trajetoria', 'posicao', 'votos', p.divergencias?.length && 'contra', p.custos && 'custos'].filter(Boolean);
 	$: numero = (nome) => String(secoes.indexOf(nome) + 1).padStart(2, '0');
 	$: totalContagem = Object.values(p.contagem ?? {}).reduce((s, n) => s + n, 0) || 1;
 	$: trocouPartido = (p.partidos ?? []).length > 1;
@@ -256,12 +257,8 @@
 <svelte:window on:keydown={teclas} />
 
 <div class="barra">
-	<nav class="barra-inner" aria-label={`Navegação entre ${K.lista}`}>
-		<div class="voltar">
-			<a href={`${base}/`}>Votações</a>
-			<span aria-hidden="true">/</span>
-			<a href={`${base}/${K.lista}`}>{K.Lista}</a>
-		</div>
+	<div class="barra-inner">
+		<Navegacao {casa} secao="parlamentares">
 		{#if p.ordem}
 			<div class="passos">
 				<a class="circulo" href={`${base}/${K.rota}/${p.ordem.anterior.slug}`} aria-label={`Anterior: ${p.ordem.anterior.nome}`} title={p.ordem.anterior.nome}>
@@ -273,7 +270,8 @@
 				</a>
 			</div>
 		{/if}
-	</nav>
+		</Navegacao>
+	</div>
 </div>
 
 <main class="pagina">
@@ -397,9 +395,14 @@
 					{/if}
 				</dl>
 				{#if bio?.mandatos?.length || bio?.ocupacoes?.length}
+					<div class="tempo">
 					{#if linhaTempo.length > 6}
 						<button type="button" class="mais mais--antes" on:click={() => (tempoTodo = !tempoTodo)}>
-							{tempoTodo ? 'Mostrar só os recentes' : `Mostrar os ${linhaTempo.length - 6} anteriores`}
+							{tempoTodo
+								? 'Mostrar só os recentes'
+								: linhaTempo.length === 7
+									? 'Mostrar o anterior'
+									: `Mostrar os ${linhaTempo.length - 6} anteriores`}
 						</button>
 					{/if}
 					<ol class="linha-tempo">
@@ -416,6 +419,7 @@
 							</li>
 						{/each}
 					</ol>
+					</div>
 				{/if}
 			</div>
 		</section>
@@ -476,51 +480,54 @@
 		</div>
 	</section>
 
-	{#if anos.length > 1}
-		<section class="sec aguarda-vista" use:emVista use:reveal>
-			<hr class="regua desenha" />
-			<p class="ds-label">{numero('anos')} · Ano a ano</p>
-			<h2>Como mudou o alinhamento</h2>
-			<table class="anos">
-				<thead>
-					<tr><th>Ano</th><th>Votos</th><th>Com o governo</th><th>Com o partido</th></tr>
-				</thead>
-				<tbody>
-					{#each anos as [ano, v], i}
-						<tr style={`--i:${i}`}>
-							<td>{ano}</td>
-							<td>{num(v.votos)}</td>
-							<td>
-								<span class="mini"><i class="cresce-x" style={`width:${v.governismo ?? 0}%`} /></span>
-								{num(v.governismo)}{v.governismo == null ? '' : '%'}
-							</td>
-							<td>
-								<span class="mini"><i class="cresce-x" style={`width:${v.fidelidade ?? 0}%`} /></span>
-								{num(v.fidelidade)}{v.fidelidade == null ? '' : '%'}
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</section>
-	{/if}
-
 	<section class="sec aguarda-vista" use:emVista use:reveal>
 		<hr class="regua desenha" />
 		<p class="ds-label">{numero('votos')} · Votos</p>
 		<h2>Como votou</h2>
-		<div class="barra-votos" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
-			{#each Object.entries(p.contagem) as [tipo, n], i}
-				{#if n}
-					<i class="cresce-x" style={`flex:${n};background:${corVoto(tipo)};--i:${i}`} />
-				{/if}
-			{/each}
+		<!-- One block: the whole period on the left, year by year on the right -->
+		<div class="votos-bloco" class:um-ano={anos.length < 2}>
+			<div>
+				<h3>No período</h3>
+				<div class="barra-votos" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
+					{#each Object.entries(p.contagem) as [tipo, n], i}
+						{#if n}
+							<i class="cresce-x" style={`flex:${n};background:${corVoto(tipo)};--i:${i}`} />
+						{/if}
+					{/each}
+				</div>
+				<ul class="legenda">
+					{#each Object.entries(p.contagem).filter(([, n]) => n) as [tipo, n]}
+						<li><i style={`background:${corVoto(tipo)}`} /><span class="tipo">{tipo}</span> <b>{num(n)}</b> <span>{num((n / totalContagem) * 100)}%</span></li>
+					{/each}
+				</ul>
+			</div>
+			{#if anos.length > 1}
+				<div>
+					<h3>Ano a ano</h3>
+					<table class="anos">
+						<thead>
+							<tr><th>Ano</th><th>Votos</th><th>Com o governo</th><th>Com o partido</th></tr>
+						</thead>
+						<tbody>
+							{#each anos as [ano, v], i}
+								<tr style={`--i:${i}`}>
+									<td>{ano}</td>
+									<td>{num(v.votos)}</td>
+									<td>
+										<span class="mini"><i class="cresce-x" style={`width:${v.governismo ?? 0}%`} /></span>
+										{num(v.governismo)}{v.governismo == null ? '' : '%'}
+									</td>
+									<td>
+										<span class="mini"><i class="cresce-x" style={`width:${v.fidelidade ?? 0}%`} /></span>
+										{num(v.fidelidade)}{v.fidelidade == null ? '' : '%'}
+									</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</div>
+			{/if}
 		</div>
-		<ul class="legenda">
-			{#each Object.entries(p.contagem) as [tipo, n]}
-				<li><i style={`background:${corVoto(tipo)}`} />{tipo} <b>{num(n)}</b> <span>{num((n / totalContagem) * 100)}%</span></li>
-			{/each}
-		</ul>
 	</section>
 
 	{#if p.divergencias?.length}
@@ -579,6 +586,7 @@
 				escritório, divulgação. {K.publica}
 			</p>
 
+			<div class="custo-topo">
 			<div class="custo-kpis">
 				<div>
 					<p class="valor">{reais(custos.mediaMensal, true)}<small>/mês</small></p>
@@ -592,6 +600,7 @@
 				</div>
 			</div>
 
+			<div class="custo-meses">
 			<!-- As wide as the months need, so the columns sit --coluna-vao apart at the shared thickness -->
 			<div class="meses" role="img" aria-label="Gasto por mês" style={`max-width:calc(${custos.meses.length} * (var(--barra-espessura) + var(--coluna-vao)))`}>
 				{#each custos.meses as [m, v], i}
@@ -609,6 +618,8 @@
 			<p class="mes-foco">
 				{#if focoMes}<b>{mesCurto(focoMes[0])}</b>: {reais(focoMes[1])}{:else}Gasto mês a mês. Passe o dedo ou o mouse nas barras.{/if}
 			</p>
+			</div>
+			</div>
 
 			<div class="duas-col">
 				<div>
@@ -700,30 +711,11 @@
 		width: calc(100% - var(--grid) * 4);
 		max-width: 980px;
 		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: calc(var(--grid) * 2);
 		padding: calc(var(--grid) * 1) 0;
 	}
 
-	.voltar {
-		display: flex;
-		gap: calc(var(--grid) * 0.8);
-		font-size: var(--t-small);
-		font-weight: 600;
-		color: var(--color-text-muted);
-	}
 
-	.voltar a {
-		color: var(--color-dark);
-		text-decoration: none;
-		cursor: pointer;
-	}
 
-	.voltar a:hover {
-		color: var(--accent-amber-ink);
-	}
 
 	.passos {
 		display: inline-flex;
@@ -914,7 +906,21 @@
 		list-style: none;
 		margin: 0;
 		padding: 0 0 0 calc(var(--grid) * 2);
-		border-left: 2px solid var(--color-rule);
+	}
+
+	/* The thread runs from each dot to the next one only: nothing above the first or below the last */
+	.linha-tempo li::after {
+		content: '';
+		position: absolute;
+		left: calc(var(--grid) * -2 - 2px);
+		top: 16px;
+		bottom: -4px;
+		width: 2px;
+		background: var(--color-rule);
+	}
+
+	.linha-tempo li:last-child::after {
+		display: none;
 	}
 
 	.linha-tempo li {
@@ -1229,6 +1235,51 @@
 		background: var(--vote-sim);
 	}
 
+	.votos-bloco {
+		display: grid;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+		gap: calc(var(--grid) * 3) calc(var(--grid) * 6);
+		align-items: start;
+	}
+
+	.votos-bloco.um-ano {
+		grid-template-columns: 1fr;
+	}
+
+	.votos-bloco h3 {
+		font-size: var(--t-small);
+		font-weight: 600;
+		margin: 0 0 calc(var(--grid) * 1.6);
+	}
+
+	/* The legend as a short list under the bar, one type per line */
+	.votos-bloco .legenda {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.votos-bloco .legenda li {
+		display: grid;
+		grid-template-columns: 10px minmax(0, 1fr) auto 5ch;
+		align-items: center;
+		gap: calc(var(--grid) * 1);
+		padding: calc(var(--grid) * 0.8) 0;
+		border-top: 1px solid var(--color-rule);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.votos-bloco .legenda .tipo {
+		color: var(--color-dark);
+	}
+
+	.votos-bloco .legenda li:first-child {
+		border-top: 0;
+	}
+
+	.votos-bloco .legenda li span:last-child {
+		text-align: right;
+	}
+
 	.barra-votos {
 		display: flex;
 		gap: 2px;
@@ -1274,6 +1325,9 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: calc(var(--grid) * 6);
 	}
 
 	.divs li {
@@ -1382,6 +1436,35 @@
 		font-size: var(--t-control);
 		font-weight: 600;
 		color: var(--accent-amber-ink);
+	}
+
+	/* Desktop: the two figures and the month chart on one line */
+	.custo-topo {
+		display: grid;
+		grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+		gap: calc(var(--grid) * 3) calc(var(--grid) * 6);
+		align-items: end;
+		margin-bottom: calc(var(--grid) * 2);
+	}
+
+	/* The two figures one above the other, the chart beside them */
+	.custo-topo .custo-kpis {
+		grid-template-columns: 1fr;
+		gap: calc(var(--grid) * 2.5);
+		margin: 0;
+	}
+
+	.custo-topo .valor {
+		white-space: nowrap;
+	}
+
+	.custo-topo .mes-foco {
+		margin-bottom: 0;
+	}
+
+	.custo-meses .meses {
+		margin-left: auto;
+		height: calc(var(--grid) * 22);
 	}
 
 	.custo-kpis {
@@ -1602,8 +1685,16 @@
 	}
 
 	@media (max-width: 760px) {
-		.ficha {
+		.ficha,
+		.votos-bloco,
+		.custo-topo,
+		.divs {
 			grid-template-columns: 1fr;
+		}
+
+		.custo-meses .meses {
+			margin-left: 0;
+			height: 110px;
 		}
 
 		.kpis {

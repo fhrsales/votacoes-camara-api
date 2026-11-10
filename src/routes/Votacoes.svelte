@@ -5,6 +5,7 @@
 	import { base } from '$app/paths';
 	import { slugDeputado } from '$lib/votos.js';
 	import VotesSearch from './components/VotesSearch.svelte';
+	import Navegacao from './components/Navegacao.svelte';
 	import Button from './components/ui/Button.svelte';
 	import Select from './components/ui/Select.svelte';
 	import BubbleChart from './components/BubbleChart.svelte';
@@ -686,20 +687,10 @@
 <svelte:window on:keydown={aoTeclar} />
 
 <header class="hero">
+	<div class="topo-nav hero-in" style="--d:0ms">
+		<Navegacao {casa} secao="votacoes" casaNoLugar on:casa={(e) => trocarCasa(e.detail)} />
+	</div>
 	<div class="hero-texto">
-		<div class="casas hero-in" style="--d:0ms" role="radiogroup" aria-label="Casa legislativa">
-			{#each Object.entries(CASAS) as [chave, info]}
-				<button
-					type="button"
-					role="radio"
-					aria-checked={casa === chave}
-					class:ativo={casa === chave}
-					on:click={() => trocarCasa(chave)}
-				>
-					{info.curta}
-				</button>
-			{/each}
-		</div>
 		<p class="ds-label hero-in" style="--d:40ms">{C.nome} · dados abertos</p>
 		<h1 class="hero-title hero-in" style="--d:80ms">Voto a voto</h1>
 		<p class="hero-lead hero-in" style="--d:180ms">
@@ -1036,11 +1027,11 @@
 	.hero {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-		grid-template-areas: 'texto plenario' 'stats stats';
+		grid-template-areas: 'nav nav' 'texto plenario' 'stats stats';
 		align-items: center;
 		gap: calc(var(--grid) * 4) calc(var(--grid) * 6);
 		min-height: min(100svh, 980px);
-		padding: calc(var(--grid) * 8) 0 calc(var(--grid) * 4);
+		padding: calc(var(--grid) * 3) 0 calc(var(--grid) * 4);
 		position: relative;
 	}
 
@@ -1561,36 +1552,13 @@
 		margin-top: calc(var(--grid) * 2);
 	}
 
-	.casas {
-		display: inline-flex;
-		padding: 3px;
-		margin-bottom: calc(var(--grid) * 2.4);
-		border: 1px solid var(--color-rule);
-		border-radius: 999px;
+	.topo-nav {
+		grid-area: nav;
+		align-self: start;
 	}
 
-	.casas button {
-		border: 0;
-		background: transparent;
-		color: var(--color-text-muted);
-		font: inherit;
-		font-size: var(--t-control);
-		font-weight: 500;
-		padding: calc(var(--grid) * 0.8) calc(var(--grid) * 2.2);
-		border-radius: 999px;
-		cursor: pointer;
-		transition: background-color 180ms var(--ease), color 180ms var(--ease);
-	}
 
-	.casas button:hover {
-		color: var(--color-dark);
-	}
 
-	.casas .ativo,
-	.casas .ativo:hover {
-		background: var(--color-dark);
-		color: var(--color-light);
-	}
 
 	.alternar {
 		display: inline-flex;
@@ -1729,7 +1697,7 @@
 
 		.hero {
 			grid-template-columns: 1fr;
-			grid-template-areas: 'texto' 'plenario' 'stats';
+			grid-template-areas: 'nav' 'texto' 'plenario' 'stats';
 			min-height: 0;
 			padding-bottom: calc(var(--grid) * 3);
 		}

@@ -1,6 +1,7 @@
 <script>
 	import { base } from '$app/paths';
 	import { countUp, emVista, reveal } from '$lib/motion.js';
+	import Navegacao from '../components/Navegacao.svelte';
 
 	export let data;
 	$: indice = data.indice;
@@ -98,7 +99,7 @@
 </svelte:head>
 
 <main class="pagina">
-	<nav class="trilha"><a href={`${base}/`}>← Votações</a></nav>
+	<div class="topo-nav"><Navegacao casa="camara" secao="governabilidade" /></div>
 
 	<p class="ds-label entra">Câmara dos Deputados · {ano(governos[0]?.de)} a {new Date().getFullYear()}</p>
 	<h1 class="entra-leve" style="--d:60ms">Quanto a Câmara segue cada governo</h1>
@@ -276,13 +277,10 @@
 		padding: calc(var(--grid) * 3) 0 calc(var(--grid) * 8);
 	}
 
-	.trilha {
-		font-size: var(--t-small);
-		font-weight: 600;
+	.topo-nav {
 		margin-bottom: calc(var(--grid) * 4);
 	}
 
-	.trilha a,
 	.rodape a {
 		color: var(--color-dark);
 		text-decoration: none;

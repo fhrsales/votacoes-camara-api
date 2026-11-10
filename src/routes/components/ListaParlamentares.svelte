@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Select from './ui/Select.svelte';
+	import Navegacao from './Navegacao.svelte';
 	import { countUp, emVista } from '$lib/motion.js';
 
 	export let data;
@@ -130,7 +131,7 @@
 </svelte:head>
 
 <main class="pagina">
-	<nav class="trilha"><a href={`${base}/`}>← Votações</a></nav>
+	<div class="topo-nav"><Navegacao {casa} secao="parlamentares" /></div>
 
 	<p class="ds-label entra">{K.nome} · legislatura {indice.legislatura}</p>
 	<h1 class="entra-leve" style="--d:60ms">{K.h1}</h1>
@@ -272,16 +273,10 @@
 		padding: calc(var(--grid) * 3) 0 calc(var(--grid) * 8);
 	}
 
-	.trilha {
-		font-size: var(--t-small);
-		font-weight: 600;
+	.topo-nav {
 		margin-bottom: calc(var(--grid) * 4);
 	}
 
-	.trilha a {
-		color: var(--color-dark);
-		text-decoration: none;
-	}
 
 	h1 {
 		font-size: clamp(calc(var(--grid) * 4), 6vw, calc(var(--grid) * 7));
