@@ -869,8 +869,8 @@
 								<b use:countUp={placar.Sim}>0</b><i>×</i><b use:countUp={placar.Não}>0</b>
 							</span>
 							<span class="kpi-split" aria-hidden="true">
-								<i style={`flex:${placar.Sim || 0.0001};background:var(--vote-sim)`} />
-								<i style={`flex:${placar.Não || 0.0001};background:var(--vote-nao)`} />
+								{#if placar.Sim}<i style={`flex:${placar.Sim};background:var(--vote-sim)`} />{/if}
+								{#if placar.Não}<i style={`flex:${placar.Não};background:var(--vote-nao)`} />{/if}
 							</span>
 						</dd>
 					</div>

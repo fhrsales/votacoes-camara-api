@@ -46,14 +46,15 @@
 					<span class="div-track">
 						<span class="div-side div-side--sim">
 							<span class="pill" style={`width:${w(p.Sim + p.Abstenção)}`}>
-								<i class="seg" style={`flex:${p.Sim};background:var(--vote-sim)`} />
-								<i class="seg" style={`flex:${p.Abstenção};background:var(--vote-abstencao)`} />
+								<!-- Only segments with votes: an empty one would leave a gap where the pill rounds off -->
+								{#if p.Sim}<i class="seg" style={`flex:${p.Sim};background:var(--vote-sim)`} />{/if}
+								{#if p.Abstenção}<i class="seg" style={`flex:${p.Abstenção};background:var(--vote-abstencao)`} />{/if}
 							</span>
 						</span>
 						<span class="div-side div-side--nao">
 							<span class="pill" style={`width:${w(p.Não + p.Obstrução)}`}>
-								<i class="seg" style={`flex:${p.Não};background:var(--vote-nao)`} />
-								<i class="seg" style={`flex:${p.Obstrução};background:var(--vote-obstrucao)`} />
+								{#if p.Não}<i class="seg" style={`flex:${p.Não};background:var(--vote-nao)`} />{/if}
+								{#if p.Obstrução}<i class="seg" style={`flex:${p.Obstrução};background:var(--vote-obstrucao)`} />{/if}
 							</span>
 						</span>
 					</span>

@@ -62,10 +62,10 @@
 							{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}<small>de sim</small>
 						</span>
 						<span class="tip-barra">
-							<i style={`flex:${t.d.Sim};background:var(--vote-sim)`} />
-							<i style={`flex:${t.d.Não};background:var(--vote-nao)`} />
-							<i style={`flex:${t.d.Abstenção + t.d.Obstrução};background:var(--vote-abstencao)`} />
-							<i style={`flex:${t.d.Ausentes};background:var(--vote-ausentes)`} />
+							{#if t.d.Sim}<i style={`flex:${t.d.Sim};background:var(--vote-sim)`} />{/if}
+							{#if t.d.Não}<i style={`flex:${t.d.Não};background:var(--vote-nao)`} />{/if}
+							{#if t.d.Abstenção + t.d.Obstrução}<i style={`flex:${t.d.Abstenção + t.d.Obstrução};background:var(--vote-abstencao)`} />{/if}
+							{#if t.d.Ausentes}<i style={`flex:${t.d.Ausentes};background:var(--vote-ausentes)`} />{/if}
 						</span>
 						<span class="tip-linhas">
 							<span class="dica-linha"><i class="ponto" style="background:var(--vote-sim)" /><b>{t.d.Sim}</b> sim</span>
