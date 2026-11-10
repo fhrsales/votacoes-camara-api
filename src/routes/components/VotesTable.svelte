@@ -307,19 +307,15 @@
 
   tr.clicavel:hover .perfil {
     color: var(--accent-amber-ink);
-    text-decoration-color: currentColor;
   }
 
   .perfil {
     color: inherit;
     font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--color-rule);
-    text-underline-offset: 3px;
+    text-decoration: none;
   }
 
   .perfil:hover {
     color: var(--accent-amber-ink);
-    text-decoration-color: currentColor;
   }
 </style>
