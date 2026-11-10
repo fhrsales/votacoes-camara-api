@@ -20,6 +20,9 @@ const config = {
 		adapter: adapter({
 			fallback: '404.html'
 		}),
+		// The page CSS (about 50 KB raw, a few KB gzipped) goes inline: six stylesheets were
+		// blocking the first paint on slow connections (Lighthouse, 10/11/2026)
+		inlineStyleThreshold: 40000,
 		paths: {
 			base: process.env.BASE_PATH ?? ''
 		},

@@ -45,9 +45,18 @@
 <!-- The slot holds extras for the same bar, like the previous/next arrows of a profile -->
 <nav class="navegacao" class:com-extra={$$slots.default} aria-label="Seções">
 	<div class="g-casa">
-		<Abas itens={casas} ativo={casa} grupo="casa" rotulo="Casa legislativa" on:escolher={(e) => casaNoLugar && dispatch('casa', e.detail)} />
+		<Abas
+			itens={casas}
+			ativo={casa}
+			grupo="casa"
+			rotulo="Casa legislativa"
+			estilo="segmento"
+			on:escolher={(e) => casaNoLugar && dispatch('casa', e.detail)}
+		/>
 	</div>
-	<div class="g-secao"><Abas itens={secoes} ativo={secao} grupo="secao" rotulo="Seção" /></div>
+	<div class="g-secao">
+		<Abas itens={secoes} ativo={secao} grupo="secao" rotulo="Seção" estilo="sublinhado" />
+	</div>
 	{#if $$slots.default}<div class="extra"><slot /></div>{/if}
 </nav>
 
@@ -56,22 +65,33 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: calc(var(--grid) * 1.2);
+		gap: calc(var(--grid) * 1.2) calc(var(--grid) * 2.4);
 	}
 
 	.extra {
 		margin-left: auto;
 	}
 
-	/* Phone: the house tabs and the extras share the first line, the sections take the second */
 	@media (max-width: 600px) {
-		.com-extra .extra {
-			order: 1;
+		/* Tighter, so the house switch and a profile's arrows fit on one line */
+		.navegacao {
+			column-gap: var(--grid);
 		}
 
-		.com-extra .g-secao {
+		/* The sections take a line of their own; as underlined tabs they span it */
+		.g-secao {
 			order: 2;
 			flex-basis: 100%;
+		}
+
+		.g-secao :global(.abas) {
+			display: flex;
+		}
+
+		/* The house tabs and the extras share the first line */
+		.com-extra .extra {
+			order: 1;
+			margin-left: auto;
 		}
 	}
 </style>
