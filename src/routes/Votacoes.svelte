@@ -1448,7 +1448,7 @@
 		flex: 1;
 		display: flex;
 		gap: 2px;
-		height: 10px;
+		height: var(--barra-espessura);
 		min-width: 60px;
 		border-radius: 999px;
 		overflow: hidden;

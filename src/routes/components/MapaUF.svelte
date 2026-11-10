@@ -56,9 +56,9 @@
 					{#if t.share === null}–{:else}{Math.round(t.share * 100)}%<small>sim</small>{/if}
 				</span>
 				{#if t.d}
-					<span class="uf-tip" use:manterNaTela>
-						<span class="tip-label">{t.uf} · {t.d.total} cadeiras</span>
-						<span class="tip-big">
+					<span class="uf-tip dica" use:manterNaTela>
+						<span class="dica-rotulo">{t.uf} · {t.d.total} cadeiras</span>
+						<span class="dica-valor">
 							{t.share === null ? '–' : `${Math.round(t.share * 100)}%`}<small>de sim</small>
 						</span>
 						<span class="tip-barra">
@@ -68,12 +68,12 @@
 							<i style={`flex:${t.d.Ausentes};background:var(--vote-ausentes)`} />
 						</span>
 						<span class="tip-linhas">
-							<span><i style="background:var(--vote-sim)" />{t.d.Sim} sim</span>
-							<span><i style="background:var(--vote-nao)" />{t.d.Não} não</span>
+							<span class="dica-linha"><i class="ponto" style="background:var(--vote-sim)" /><b>{t.d.Sim}</b> sim</span>
+							<span class="dica-linha"><i class="ponto" style="background:var(--vote-nao)" /><b>{t.d.Não}</b> não</span>
 							{#if t.d.Abstenção + t.d.Obstrução}
-								<span><i style="background:var(--vote-abstencao)" />{t.d.Abstenção + t.d.Obstrução} outros</span>
+								<span class="dica-linha"><i class="ponto" style="background:var(--vote-abstencao)" /><b>{t.d.Abstenção + t.d.Obstrução}</b> outros</span>
 							{/if}
-							<span><i style="background:var(--vote-ausentes)" />{t.d.Ausentes} ausentes</span>
+							<span class="dica-linha"><i class="ponto" style="background:var(--vote-ausentes)" /><b>{t.d.Ausentes}</b> ausentes</span>
 						</span>
 					</span>
 				{/if}
@@ -170,51 +170,20 @@
 		bottom: calc(100% + 14px);
 		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, 4px);
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		min-width: 220px;
-		padding: calc(var(--grid) * 1.6) calc(var(--grid) * 1.8);
-		border-radius: var(--raio-tip);
-		background: var(--color-dark);
-		color: var(--color-light);
-		box-shadow: var(--shadow-2);
-		text-align: left;
-		white-space: nowrap;
+		gap: calc(var(--grid) * 0.8);
+		min-width: calc(var(--grid) * 24);
 		opacity: 0;
-		pointer-events: none;
 		z-index: 10;
 		transition: opacity 180ms var(--ease), transform 180ms var(--ease);
 	}
 
-	.tip-label {
-		font-size: var(--t-label);
-		font-weight: 600;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		opacity: 0.7;
-	}
 
-	.tip-big {
-		display: flex;
-		align-items: baseline;
-		gap: 8px;
-		font-family: var(--font-display);
-		font-size: calc(var(--grid) * 4);
-		line-height: 1;
-		font-variant-numeric: tabular-nums;
-	}
 
-	.tip-big small {
-		font-family: var(--font-primary);
-		font-size: var(--t-small);
-		opacity: 0.7;
-	}
 
 	.tip-barra {
 		display: flex;
 		gap: 2px;
-		height: 8px;
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		overflow: hidden;
 	}
@@ -228,30 +197,10 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: calc(var(--grid) * 0.4) calc(var(--grid) * 1.8);
-		font-size: calc(var(--grid) * 1.6);
 	}
 
-	.tip-linhas span {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-	}
 
-	.tip-linhas i {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-	}
 
-	.uf-tip::after {
-		content: '';
-		position: absolute;
-		left: calc(50% - var(--desvio, 0px));
-		top: 100%;
-		transform: translateX(-50%);
-		border: 7px solid transparent;
-		border-top-color: var(--color-dark);
-	}
 
 	.uf:hover .uf-tip {
 		opacity: 1;
@@ -270,7 +219,7 @@
 
 	.mapa-legenda i {
 		width: 160px;
-		height: 8px;
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: linear-gradient(90deg, var(--vote-sim), color-mix(in srgb, var(--vote-sim) 8%, var(--color-light)));
 		box-shadow: inset 0 0 0 1px var(--color-rule);

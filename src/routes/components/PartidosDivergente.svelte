@@ -144,7 +144,7 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		height: calc(var(--grid) * 1.8);
+		height: var(--barra-espessura);
 	}
 
 	.div-track::after {
@@ -256,7 +256,7 @@
 		}
 
 		.div-track {
-			height: min(12px, 70%);
+			height: var(--barra-espessura);
 		}
 
 		.div-track::after {

@@ -135,13 +135,13 @@
 		{/if}
 
 		{#if hover && !mini}
-			<div class="hemi-tip" style={`left:${tip.x}px;top:${tip.y}px`}>
-				<span class="retrato foto"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
-				<div>
-					<strong>{hover.deputado_?.nome}</strong>
-					<span>{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
-					<em style={`--c:${COR[hover.tipoVoto]}`}>{hover.tipoVoto}</em>
-				</div>
+			<div class="hemi-tip dica dica--pessoa" style={`left:${tip.x}px;top:${tip.y}px`}>
+				<span class="retrato"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
+				<span class="dica-texto">
+					<span class="dica-titulo">{hover.deputado_?.nome}</span>
+					<span class="dica-linha">{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
+					<span class="dica-linha"><i class="ponto" style={`background:${COR[hover.tipoVoto]}`} /><b>{hover.tipoVoto}</b></span>
+				</span>
 			</div>
 		{/if}
 	</div>
@@ -309,69 +309,17 @@
 
 	.hemi-tip {
 		position: absolute;
-		transform: translate(-50%, calc(-100% - 18px));
-		display: flex;
-		gap: calc(var(--grid) * 1.6);
-		align-items: center;
-		padding: calc(var(--grid) * 1.4) calc(var(--grid) * 2.4) calc(var(--grid) * 1.4)
-			calc(var(--grid) * 1.4);
-		background: var(--color-dark);
-		color: var(--color-light);
-		border-radius: var(--raio-tip);
-		box-shadow: var(--shadow-2);
-		pointer-events: none;
-		white-space: nowrap;
+		transform: translate(-50%, calc(-100% - 14px));
 		z-index: 5;
 		animation: tip-in 180ms var(--ease);
 	}
 
-	.hemi-tip::after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		top: 100%;
-		transform: translateX(-50%);
-		border: 8px solid transparent;
-		border-top-color: var(--color-dark);
-	}
 
-	.hemi-tip .foto {
-		width: 52px;
-		height: 52px;
-		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 30%, transparent);
-	}
 
-	.hemi-tip div {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		font-size: var(--t-small);
-		line-height: 1.3;
-	}
 
-	.hemi-tip strong {
-		font-size: var(--t-caption);
-	}
 
-	.hemi-tip span {
-		opacity: 0.7;
-	}
 
-	.hemi-tip em {
-		font-style: normal;
-		font-weight: 600;
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-	}
 
-	.hemi-tip em::before {
-		content: '';
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: var(--c);
-	}
 
 	@keyframes tip-in {
 		from {

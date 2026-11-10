@@ -558,13 +558,13 @@
 			aria-label={`Plenário: ${c.Sim} sim, ${c.Não} não, ${c.Abstenção} abstenções, ${c.Obstrução} obstruções, ${c.Ausentes} ausentes`}
 		/>
 		{#if hover}
-			<div class="pf-tip" class:pf-tip--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal use:manterNaTela={tip}>
-				<span class="retrato foto"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
-				<div>
-					<strong>{hover.deputado_?.nome}</strong>
-					<span>{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
-					<em style={`--c:${COR[hover.tipoVoto]}`}>{hover.situacao || hover.tipoVoto}</em>
-				</div>
+			<div class="pf-tip dica dica--pessoa" class:pf-tip--baixo={tip.baixo} class:dica--baixo={tip.baixo} style={`left:${tip.x}px;top:${tip.y}px`} use:portal use:manterNaTela={tip}>
+				<span class="retrato"><img src={hover.deputado_?.urlFoto} alt="" width="52" height="52" loading="lazy" /></span>
+				<span class="dica-texto">
+					<span class="dica-titulo">{hover.deputado_?.nome}</span>
+					<span class="dica-linha">{hover.deputado_?.siglaPartido} · {hover.deputado_?.siglaUf}</span>
+					<span class="dica-linha"><i class="ponto" style={`background:${COR[hover.tipoVoto]}`} /><b>{hover.situacao || hover.tipoVoto}</b></span>
+				</span>
 			</div>
 		{/if}
 	</div>
@@ -647,81 +647,22 @@
 		position: fixed;
 		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, calc(-100% - 14px));
-		display: flex;
-		gap: calc(var(--grid) * 1.6);
-		align-items: center;
-		padding: calc(var(--grid) * 1.4) calc(var(--grid) * 2.4) calc(var(--grid) * 1.4)
-			calc(var(--grid) * 1.4);
-		background: var(--color-dark);
-		color: var(--color-light);
-		border-radius: var(--raio-tip);
-		box-shadow: var(--shadow-2);
-		pointer-events: none;
-		white-space: nowrap;
 		z-index: 1000;
 		animation: tip-in 180ms var(--ease);
 	}
 
-	.pf-tip::after {
-		content: '';
-		position: absolute;
-		left: calc(50% - var(--desvio, 0px));
-		top: 100%;
-		transform: translateX(-50%);
-		border: 8px solid transparent;
-		border-top-color: var(--color-dark);
-	}
 
 	.pf-tip--baixo {
 		transform: translate(-50%, 14px);
 		animation: none;
 	}
 
-	.pf-tip--baixo::after {
-		top: auto;
-		bottom: 100%;
-		border-top-color: transparent;
-		border-bottom-color: var(--color-dark);
-	}
 
-	.pf-tip .foto {
-		width: 52px;
-		height: 52px;
-		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 30%, transparent);
-	}
 
-	.pf-tip div {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		font-size: var(--t-small);
-		line-height: 1.3;
-	}
 
-	.pf-tip strong {
-		font-size: var(--t-caption);
-	}
 
-	.pf-tip span {
-		opacity: 0.7;
-	}
 
-	.pf-tip em {
-		font-style: normal;
-		font-weight: 600;
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-	}
 
-	.pf-tip em::before {
-		content: '';
-		width: 9px;
-		height: 9px;
-		border-radius: 50%;
-		background: var(--c);
-		box-shadow: 0 0 0 1.5px var(--color-light);
-	}
 
 	@keyframes tip-in {
 		from {

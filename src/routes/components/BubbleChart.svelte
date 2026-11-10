@@ -188,20 +188,19 @@
 		{/if}
 		<div class="uva-container-bubble-chart">
 			<div
-				class="uva-tooltip"
+				class="uva-tooltip dica"
 				class:uva-tooltip--baixo={tooltip.baixo}
+				class:dica--baixo={tooltip.baixo}
 				use:portal
 				use:manterNaTela={tooltip}
 				style={`opacity: ${tooltip.visible ? 1 : 0}; left: ${tooltip.x}px; top: ${tooltip.y}px;`}
 			>
-				<span class="tip-label">{tooltip.label}</span>
-				<span class="tip-linha">
-					<b>{tooltip.value}</b>
-					<span class="tip-tipo"><i style={`background:${cores[tooltip.tipo]}`} />{tooltip.tipo}</span>
+				<span class="dica-rotulo">{tooltip.label}</span>
+				<span class="dica-valor">{tooltip.value}<small>{tooltip.tipo === 'Ausentes' ? 'ausentes' : `votaram ${String(tooltip.tipo).toLowerCase()}`}</small></span>
+				<span class="dica-linha">
+					<i class="ponto" style={`background:${cores[tooltip.tipo]}`} />
+					{#if tooltip.total}{Math.round((tooltip.value / tooltip.total) * 100)}% da bancada de {tooltip.total}{:else}{tooltip.tipo}{/if}
 				</span>
-				{#if tooltip.total}
-					<span class="tip-pct">{Math.round((tooltip.value / tooltip.total) * 100)}% da bancada de {tooltip.total}</span>
-				{/if}
 			</div>
 			<svg viewBox={`0 0 ${size} ${size}`} style="width: 100%; height: 100%;">
 				{#each layoutRender as node, i (node.label + '-' + node.tipo)}
@@ -297,14 +296,6 @@
 	.uva-tooltip {
 		position: fixed;
 		margin-left: var(--desvio, 0px);
-		pointer-events: none;
-		background: var(--color-dark);
-		color: var(--color-light);
-		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: var(--raio-tip);
-		box-shadow: var(--shadow-2);
-		font-size: var(--t-small);
-		white-space: nowrap;
 		transform: translate(-50%, calc(-100% - 16px));
 		z-index: 1000;
 		transition: opacity 180ms var(--ease);
@@ -314,75 +305,15 @@
 		transform: translate(-50%, 22px);
 	}
 
-	.uva-tooltip--baixo::after {
-		top: auto !important;
-		bottom: 100%;
-		border-top-color: transparent !important;
-		border-bottom-color: var(--color-dark);
-	}
 
-	.uva-tooltip::after {
-		content: '';
-		position: absolute;
-		left: calc(50% - var(--desvio, 0px));
-		top: 100%;
-		transform: translateX(-50%);
-		border: 7px solid transparent;
-		border-top-color: var(--color-dark);
-	}
 
-	.uva-tooltip {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-	}
 
-	.tip-label {
-		font-size: var(--t-label);
-		font-weight: 600;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		opacity: 0.7;
-	}
 
-	.tip-linha {
-		display: flex;
-		align-items: baseline;
-		gap: 10px;
-	}
 
-	.tip-linha b {
-		font-family: var(--font-display);
-		font-weight: 500;
-		font-size: calc(var(--grid) * 3.6);
-		line-height: 1;
-		font-variant-numeric: tabular-nums;
-	}
 
-	.tip-tipo {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		font-weight: 600;
-	}
 
-	.tip-tipo i {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 25%, transparent);
-	}
 
-	.tip-pct {
-		font-size: calc(var(--grid) * 1.6);
-		opacity: 0.7;
-	}
 
-	.uva-tooltip hr {
-		border: none;
-		border-top: 1px solid color-mix(in srgb, var(--color-light) 30%, transparent);
-		margin: calc(var(--grid) * 0.4) 0;
-	}
 
 	text {
 		text-anchor: middle;

@@ -175,13 +175,14 @@
 			{/each}
 			{#if focoBin}
 				<span
-					class="tip"
+					class="tip dica"
 					class:esq={focoBin.i < 6}
 					class:dir={focoBin.i > BINS - 7}
 					style={`left:${((focoBin.i + 0.5) / BINS) * 100}%;bottom:${(focoBin.n / maxBin) * 100}%`}
 				>
-					<b>{num(focoBin.n)} {focoBin.n === 1 ? K.pessoasCurto.replace(/es$/, '').replace(/s$/, '') : K.pessoasCurto}</b>
-					<span>de {num(focoBin.de, 2)} a {num(focoBin.de + 10 / BINS, 2)} no eixo · {focoBin.faixa.campo}</span>
+					<span class="dica-rotulo"><i class="ponto" style={`background:${focoBin.faixa.cor}`} />{focoBin.faixa.campo}</span>
+					<span class="dica-valor">{num(focoBin.n)}<small>{focoBin.n === 1 ? K.pessoasCurto.replace(/es$/, '').replace(/s$/, '') : K.pessoasCurto}</small></span>
+					<span class="dica-linha">de {num(focoBin.de, 2)} a {num(focoBin.de + 10 / BINS, 2)} no eixo</span>
 				</span>
 			{/if}
 		</div>
@@ -350,7 +351,7 @@
 	.barra-faixas {
 		display: flex;
 		gap: 2px;
-		height: calc(var(--grid) * 1);
+		height: var(--barra-espessura);
 		border-radius: var(--raio-barra);
 		overflow: hidden;
 	}
@@ -377,6 +378,7 @@
 		height: 100%;
 		display: flex;
 		align-items: flex-end;
+		justify-content: center;
 		cursor: pointer;
 		transition: opacity 160ms var(--ease);
 	}
@@ -387,40 +389,28 @@
 		outline-offset: 1px;
 	}
 
-	/* The same dark card as every other tooltip */
+	/* Placement only: the card itself is .dica, in app.css */
 	.tip {
 		position: absolute;
-		transform: translate(-50%, -12px);
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: var(--raio-tip);
-		background: var(--color-dark);
-		color: var(--color-light);
-		box-shadow: var(--shadow-2);
-		font-size: var(--t-mini);
-		white-space: nowrap;
-		pointer-events: none;
+		transform: translate(-50%, -14px);
 		z-index: 4;
 	}
 
-	.tip b {
-		font-size: var(--t-small);
-	}
 
 	.tip.esq {
-		transform: translate(-12px, -12px);
+		--seta-x: 16px;
+		transform: translate(-16px, -14px);
 	}
 
 	.tip.dir {
-		transform: translate(calc(-100% + 12px), -12px);
+		--seta-x: calc(100% - 16px);
+		transform: translate(calc(-100% + 16px), -14px);
 	}
 
 	.histo i {
 		display: block;
-		width: 100%;
-		min-height: 1px;
+		width: min(var(--barra-espessura), 100%);
+		min-height: 2px;
 		border-radius: var(--raio-coluna);
 	}
 
@@ -612,7 +602,7 @@
 	.mini {
 		display: inline-block;
 		width: calc(var(--grid) * 7);
-		height: calc(var(--grid) * 0.9);
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: var(--vote-ausentes);
 		overflow: hidden;
@@ -628,7 +618,7 @@
 	.trilho {
 		position: relative;
 		display: block;
-		height: 8px;
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: var(--vote-ausentes);
 	}

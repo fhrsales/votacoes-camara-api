@@ -143,6 +143,14 @@
 		if (h.includes('tiktok')) return 'TikTok';
 		return h;
 	};
+	// One-colour glyphs in the ink, like every other icon on the site
+	const ICONES = {
+		X: 'M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3zm-1.08 16.2h1.7L7.4 4.7H5.57l11.1 14.5z',
+		Facebook: 'M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.2C16.6 2.1 15.4 2 14.1 2 11.3 2 9.6 3.7 9.6 6.6v1.9H6.7V12h2.9v10H14V12h2.9l.4-3.5H14z',
+		YouTube:
+			'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z',
+		TikTok: 'M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.3 7.3 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z'
+	};
 
 	// Section numbers follow the sections actually shown
 	$: secoes = [temTrajetoria && 'trajetoria', 'posicao', anos.length > 1 && 'anos', 'votos', p.divergencias?.length && 'contra', p.custos && 'custos'].filter(Boolean);
@@ -378,7 +386,18 @@
 						<div>
 							<dt>Redes</dt>
 							<dd class="redes">
-								{#each bio.redes as u}<a href={u} target="_blank" rel="noreferrer">{redeNome(u)}</a>{/each}
+								{#each bio.redes as u}
+									{@const nome = redeNome(u)}
+									<a class="rede" href={u} target="_blank" rel="noreferrer" aria-label={nome} title={nome}>
+										{#if ICONES[nome]}
+											<svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONES[nome]} /></svg>
+										{:else if nome === 'Instagram'}
+											<svg viewBox="0 0 24 24" aria-hidden="true" class="traco"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.4" cy="6.6" r="1.1" class="cheio" /></svg>
+										{:else}
+											<svg viewBox="0 0 24 24" aria-hidden="true" class="traco"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18" /></svg>
+										{/if}
+									</a>
+								{/each}
 							</dd>
 						</div>
 					{/if}
@@ -450,10 +469,10 @@
 				<circle cx={xPos(p.eixo)} cy="14" r="9" class="eu" />
 			</svg>
 			{#if foco}
-				<div class="tip" style={`left:${tipX}px;top:${foco.y}px`}>
-					<span class="tip-nome">{foco.d.nome}</span>
-					<span class="tip-sub">{foco.d.partido} · {foco.d.uf}</span>
-					<span class="tip-num">{num(foco.d.eixo, 1)}<small>/10</small></span>
+				<div class="tip dica" style={`left:${tipX}px;top:${foco.y}px;--desvio:${tipX - foco.x}px`}>
+					<span class="dica-rotulo">{foco.d.partido} · {foco.d.uf}</span>
+					<span class="dica-titulo">{foco.d.nome}</span>
+					<span class="dica-valor">{num(foco.d.eixo, 1)}<small>de 10 no eixo</small></span>
 				</div>
 			{/if}
 			<div class="eixo-rotulos">
@@ -855,7 +874,43 @@
 	.redes {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 4px calc(var(--grid) * 1.4);
+		gap: calc(var(--grid) * 0.8);
+	}
+
+	.rede {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: calc(var(--grid) * 4);
+		height: calc(var(--grid) * 4);
+		border: 1px solid var(--color-dark);
+		border-radius: 50%;
+		color: var(--color-dark);
+		cursor: pointer;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease);
+	}
+
+	.rede:hover {
+		background: var(--color-dark);
+		color: var(--color-light);
+	}
+
+	.rede svg {
+		width: 17px;
+		height: 17px;
+		fill: currentColor;
+	}
+
+	.rede svg.traco {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+	}
+
+	.rede svg .cheio {
+		fill: currentColor;
+		stroke: none;
 	}
 
 	.linha-tempo {
@@ -1003,55 +1058,13 @@
 	.tip {
 		position: absolute;
 		transform: translate(-50%, calc(-100% - 14px));
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: var(--raio-tip);
-		background: var(--color-dark);
-		color: var(--color-light);
-		box-shadow: var(--shadow-2);
-		white-space: nowrap;
-		pointer-events: none;
 		z-index: 5;
 	}
 
-	.tip::after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		bottom: -6px;
-		width: 12px;
-		height: 12px;
-		margin-left: -6px;
-		background: var(--color-dark);
-		transform: rotate(45deg);
-		border-radius: 2px;
-	}
 
-	.tip-nome {
-		font-weight: 600;
-		font-size: var(--t-small);
-	}
 
-	.tip-sub {
-		font-size: var(--t-label);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		opacity: 0.7;
-	}
 
-	.tip-num {
-		font-family: var(--font-display);
-		font-size: calc(var(--grid) * 3);
-		line-height: 1.1;
-		font-variant-numeric: tabular-nums;
-	}
 
-	.tip-num small {
-		font-size: 0.5em;
-		opacity: 0.7;
-	}
 
 	.eixo svg {
 		width: 100%;
@@ -1125,7 +1138,7 @@
 	.mini {
 		display: inline-block;
 		width: 90px;
-		height: 8px;
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: var(--vote-ausentes);
 		overflow: hidden;
@@ -1142,7 +1155,7 @@
 	.barra-votos {
 		display: flex;
 		gap: 2px;
-		height: calc(var(--grid) * 2.4);
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		overflow: hidden;
 	}
@@ -1342,12 +1355,13 @@
 		height: 100%;
 		display: flex;
 		align-items: flex-end;
+		justify-content: center;
 	}
 
 	.mes i {
 		display: block;
-		width: 100%;
-		min-height: 1px;
+		width: min(var(--barra-espessura), 100%);
+		min-height: 2px;
 		border-radius: var(--raio-coluna);
 		background: var(--vote-obstrucao);
 		transition: background 120ms var(--ease);
@@ -1419,7 +1433,7 @@
 	}
 
 	.cat-barra {
-		height: 8px;
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: var(--vote-ausentes);
 		overflow: hidden;

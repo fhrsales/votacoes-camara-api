@@ -66,7 +66,8 @@
 	--regua: 2px solid var(--color-dark); /* the DS section rule */
 	--raio-marca: 2px; /* map tiles */
 	--raio-barra: 999px; /* every horizontal bar and its track: a pill */
-	--raio-coluna: 999px 999px 0 0; /* vertical columns: rounded top, flat on the baseline */
+	--raio-coluna: 999px; /* vertical columns: a pill too, rounded at both ends */
+	--barra-espessura: 8px; /* one thickness for every bar, and the width of every column */
 	--raio-tip: 12px; /* the dark hover cards */
 }
 
@@ -177,4 +178,123 @@ a:focus-visible,
 html,
 body {
 	overflow-x: clip;
+}
+
+/* ---- The tooltip. One dark card with a pointer, used by every chart.
+   Components only place it (position, left/top, transform); everything else lives here.
+   Layout, top to bottom: .dica-rotulo (what it is) · .dica-valor (the number) ·
+   .dica-linha (supporting lines, with an optional colour dot). A person adds a photo. */
+.dica {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--grid) * 0.4);
+	min-width: calc(var(--grid) * 14);
+	padding: calc(var(--grid) * 1.2) calc(var(--grid) * 1.6);
+	border-radius: var(--raio-tip);
+	background: var(--color-dark);
+	color: var(--color-light);
+	box-shadow: var(--shadow-2);
+	font-family: var(--font-primary);
+	font-size: var(--t-mini);
+	line-height: 1.35;
+	text-align: left;
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+/* The pointer: under the card, aimed at the point (--seta-x moves it; --desvio undoes a nudge
+   that kept the card on screen) */
+.dica::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: calc(var(--seta-x, 50%) - var(--desvio, 0px));
+	transform: translateX(-50%);
+	border: 7px solid transparent;
+	border-top-color: var(--color-dark);
+}
+
+/* Card below the point: the pointer goes on top */
+.dica--baixo::after {
+	top: auto;
+	bottom: 100%;
+	border-top-color: transparent;
+	border-bottom-color: var(--color-dark);
+}
+
+.dica-rotulo {
+	display: inline-flex;
+	align-items: center;
+	gap: calc(var(--grid) * 0.6);
+	font-size: var(--t-mini);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--color-light) 70%, transparent);
+}
+
+.dica-titulo {
+	font-size: var(--t-small);
+	font-weight: 600;
+	color: var(--color-light);
+}
+
+.dica-valor {
+	display: flex;
+	align-items: baseline;
+	gap: calc(var(--grid) * 0.8);
+	font-family: var(--font-display);
+	font-size: calc(var(--grid) * 3.2);
+	font-weight: 500;
+	line-height: 1.05;
+	font-variant-numeric: tabular-nums;
+}
+
+.dica-valor small {
+	font-family: var(--font-primary);
+	font-size: var(--t-mini);
+	font-weight: 400;
+	color: color-mix(in srgb, var(--color-light) 70%, transparent);
+}
+
+.dica-linha {
+	display: inline-flex;
+	align-items: center;
+	gap: calc(var(--grid) * 0.6);
+	color: color-mix(in srgb, var(--color-light) 80%, transparent);
+	font-variant-numeric: tabular-nums;
+}
+
+.dica-linha b {
+	color: var(--color-light);
+	font-weight: 600;
+}
+
+/* Colour dot before a label or a line */
+.dica i.ponto {
+	flex: 0 0 auto;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--color-light) 35%, transparent);
+}
+
+/* A person: photo on the left, the text block on the right */
+.dica--pessoa {
+	flex-direction: row;
+	align-items: center;
+	gap: calc(var(--grid) * 1.4);
+	padding-left: calc(var(--grid) * 1.2);
+}
+
+.dica--pessoa .retrato {
+	width: calc(var(--grid) * 5.4);
+	height: calc(var(--grid) * 5.4);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-light) 30%, transparent);
+}
+
+.dica-texto {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }

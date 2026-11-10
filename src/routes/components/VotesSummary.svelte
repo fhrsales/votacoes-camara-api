@@ -163,16 +163,16 @@
 		</div>
 		<div class="stacked" bind:this={stackedEl}>
 			<div
-				class="stacked-tooltip"
+				class="stacked-tooltip dica"
 				class:visible={tooltipTexto}
 				use:manterNaTela={tooltipPos}
 				style={`left: ${tooltipPos.x}px; top: ${tooltipPos.y}px;`}
 			>
-				<i style={`background:${tooltipCor}`} />
-				<span>{tooltipTexto}</span>
-				<hr />
-				<b>{tooltipValor}</b>
-				{#if totalBase}<span class="tip-pct">{Math.round((Number(tooltipValor) / totalBase) * 100)}%</span>{/if}
+				<span class="dica-rotulo"><i class="ponto" style={`background:${tooltipCor}`} />{tooltipTexto}</span>
+				<span class="dica-valor">
+					{tooltipValor}
+					{#if totalBase}<small>{Math.round((Number(tooltipValor) / totalBase) * 100)}% dos votos</small>{/if}
+				</span>
 			</div>
 			<div class="stacked-row">
 			<button type="button" class="stacked-end stacked-end--sim" on:click={() => solicitarFiltro('Sim')}>
@@ -477,7 +477,7 @@
 		gap: 2px;
 		border-radius: 999px;
 		overflow: hidden;
-		height: calc(var(--grid) * 1.6);
+		height: var(--barra-espessura);
 	}
 
 	.segment {
@@ -549,18 +549,7 @@
 		position: absolute;
 		margin-left: var(--desvio, 0px);
 		transform: translate(-50%, -100%);
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: calc(var(--grid) * 1) calc(var(--grid) * 1.6);
-		border-radius: var(--raio-tip);
-		background: var(--color-dark);
-		color: var(--color-light);
-		box-shadow: var(--shadow-2);
-		font-size: var(--t-small);
-		white-space: nowrap;
 		opacity: 0;
-		pointer-events: none;
 		z-index: 30;
 		transition: opacity 180ms var(--ease);
 	}
@@ -569,36 +558,10 @@
 		opacity: 1;
 	}
 
-	.stacked-tooltip i {
-		width: 9px;
-		height: 9px;
-		border-radius: 50%;
-	}
 
-	.stacked-tooltip b {
-		font-weight: 600;
-		font-variant-numeric: tabular-nums;
-	}
 
-	.tip-pct {
-		opacity: 0.65;
-	}
 
-	.stacked-tooltip::after {
-		content: '';
-		position: absolute;
-		left: calc(50% - var(--desvio, 0px));
-		top: 100%;
-		transform: translateX(-50%);
-		border: 7px solid transparent;
-		border-top-color: var(--color-dark);
-	}
 
-	.stacked-tooltip hr {
-		border: 0;
-		border-left: 1px solid color-mix(in srgb, var(--color-light) 35%, transparent);
-		margin: 0;
-	}
 
 	.summary-filters {
 		display: flex;

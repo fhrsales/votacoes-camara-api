@@ -182,14 +182,15 @@
 			{#if foco != null}
 				{@const fx = x(idx(meses[foco][0]))}
 				<div
-					class="tip"
+					class="tip dica"
 					class:esq={fx < W / 3}
 					class:dir={fx > (W * 2) / 3}
 					style={`left:${fx}px;top:${Math.min(y(meses[foco][1] ?? suave[foco]), y(suave[foco]))}px`}
 				>
-					<b>{mesTxt(meses[foco][0])} · {governos.find((g) => meses[foco][0] >= g.de.slice(0, 7) && (!g.ate || meses[foco][0] <= g.ate.slice(0, 7)))?.nome ?? ''}</b>
-					<span>{pct(meses[foco][1])} dos votos com o governo no mês</span>
-					<span>Média de cinco meses: {pct(suave[foco])} · {num(meses[foco][2])} {meses[foco][2] === 1 ? 'votação' : 'votações'} no mês</span>
+					<span class="dica-rotulo">{mesTxt(meses[foco][0])} · {governos.find((g) => meses[foco][0] >= g.de.slice(0, 7) && (!g.ate || meses[foco][0] <= g.ate.slice(0, 7)))?.nome ?? ''}</span>
+					<span class="dica-valor">{pct(meses[foco][1])}<small>dos votos com o governo</small></span>
+					<span class="dica-linha"><i class="ponto" style="background:var(--vote-sim)" />Média de cinco meses: <b>{pct(suave[foco])}</b></span>
+					<span class="dica-linha">{num(meses[foco][2])} {meses[foco][2] === 1 ? 'votação' : 'votações'} no mês</span>
 				</div>
 			{/if}
 		</figure>
@@ -407,7 +408,7 @@
 		position: relative;
 		flex: 1;
 		display: block;
-		height: calc(var(--grid) * 0.9);
+		height: var(--barra-espessura);
 		border-radius: 999px;
 		background: var(--color-track);
 		overflow: hidden;
@@ -498,29 +499,17 @@
 	.tip {
 		position: absolute;
 		transform: translate(-50%, calc(-100% - 14px));
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: var(--raio-tip);
-		background: var(--color-dark);
-		color: var(--color-light);
-		box-shadow: var(--shadow-2);
-		font-size: var(--t-mini);
-		white-space: nowrap;
-		pointer-events: none;
 		z-index: 5;
 	}
 
-	.tip b {
-		font-size: var(--t-small);
-	}
 
 	.tip.esq {
+		--seta-x: 16px;
 		transform: translate(-16px, calc(-100% - 14px));
 	}
 
 	.tip.dir {
+		--seta-x: calc(100% - 16px);
 		transform: translate(calc(-100% + 16px), calc(-100% - 14px));
 	}
 
@@ -588,7 +577,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		align-items: stretch;
+		align-items: center;
 	}
 
 	.histo em {
@@ -601,7 +590,8 @@
 
 	.histo i {
 		display: block;
-		min-height: 1px;
+		width: var(--barra-espessura);
+		min-height: 2px;
 		border-radius: var(--raio-coluna);
 		transition: height 360ms var(--ease);
 	}
