@@ -496,7 +496,7 @@
 		<hr class="regua" />
 		<p class="ds-label">{numero('votos')} · Votos</p>
 		<h2>Como votou</h2>
-		<div class="barra" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
+		<div class="barra-votos" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
 			{#each Object.entries(p.contagem) as [tipo, n]}
 				{#if n}
 					<i style={`flex:${n};background:${corVoto(tipo)}`} />
@@ -704,6 +704,7 @@
 	.voltar a {
 		color: var(--color-dark);
 		text-decoration: none;
+		cursor: pointer;
 	}
 
 	.voltar a:hover {
@@ -738,6 +739,7 @@
 		border: 1px solid var(--color-dark);
 		border-radius: 999px;
 		color: var(--color-dark);
+		cursor: pointer;
 		-webkit-tap-highlight-color: transparent;
 		transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
 	}
@@ -1137,7 +1139,7 @@
 		background: var(--vote-sim);
 	}
 
-	.barra {
+	.barra-votos {
 		display: flex;
 		gap: 2px;
 		height: calc(var(--grid) * 2.4);
@@ -1145,7 +1147,7 @@
 		overflow: hidden;
 	}
 
-	.barra i {
+	.barra-votos i {
 		display: block;
 		min-width: 2px;
 	}

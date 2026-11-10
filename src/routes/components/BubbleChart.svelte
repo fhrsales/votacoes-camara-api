@@ -405,6 +405,7 @@
 
 	/* Moving bubbles by CSS transform: no layout reads per bubble, unlike animate:flip */
 	.bolha {
+		cursor: pointer;
 		transition: transform 600ms var(--ease), opacity 180ms var(--ease);
 	}
 
