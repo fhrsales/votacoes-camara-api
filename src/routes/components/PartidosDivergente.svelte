@@ -169,22 +169,24 @@
 		gap: 2px;
 		height: 100%;
 		overflow: hidden;
-		border-radius: 0 999px 999px 0;
+		border-radius: var(--raio-barra);
 		transition: width 360ms var(--ease);
 	}
 
 	/* Sim grows leftwards from the centre line, não rightwards */
 	.div-side--sim .pill {
 		flex-direction: row-reverse;
-		border-radius: 999px 0 0 999px;
 	}
 
+	/* A full pill on each side, starting just off the centre line */
 	.div-side--sim {
 		flex-direction: row-reverse;
+		padding-right: 3px;
 		transform-origin: right center;
 	}
 
 	.div-side--nao {
+		padding-left: 3px;
 		transform-origin: left center;
 	}
 
