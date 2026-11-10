@@ -5,6 +5,7 @@
 	import { format, parseISO } from 'date-fns';
 	import ptBR from 'date-fns/locale/pt-BR/index.js';
 	import { COR } from '$lib/votos.js';
+	import { countUp, emVista, reveal } from '$lib/motion.js';
 
 	export let data;
 	/** 'camara' or 'senado': the same page serves deputies and senators */
@@ -277,70 +278,63 @@
 
 <main class="pagina">
 
+	<!-- Who, in one compact block: the career details live in the Trajetória section -->
 	<header class="cabeca">
-		<span class="foto retrato"><img src={p.foto} alt="" width="120" height="120" /></span>
-		<div>
-			<p class="ds-label">{K.rotuloCargo(Cargo)} · {p.uf}</p>
-			<h1>{p.nome}</h1>
-			<p class="sub">
-				{p.partido}
-				{#if trocouPartido}
-					<span class="trocas">
-						· antes {p.partidos.slice(0, -1).map((x) => x.sigla).join(', ')}
-					</span>
-				{/if}
-			</p>
-			{#if bio?.profissoes?.length || idade}
-				<p class="quem">
-					{#if bio?.profissoes?.length}<b>{bio.profissoes.join(', ')}</b>{/if}
-					{#if idade}<span>{idade} anos</span>{/if}
-					{#if bio?.municipioNascimento}<span>{p.mulher ? 'nascida' : 'nascido'} em {titulo(bio.municipioNascimento)}-{bio.ufNascimento}</span>{/if}
-				</p>
-			{/if}
-			<p class="periodo">
-				{num(p.votos)} votos registrados entre {data_(p.periodo.de)} e {data_(p.periodo.ate)}
+		<span class="foto retrato entra"><img src={p.foto} alt="" width="120" height="120" /></span>
+		<div class="quem">
+			<p class="ds-label entra" style="--d:60ms">{K.rotuloCargo(Cargo)} · {p.uf}</p>
+			<h1 class="entra-leve" style="--d:100ms">{p.nome}</h1>
+			<p class="linha-id entra" style="--d:160ms">
+				<span class="sigla-partido">{p.partido}</span>
+				{#if trocouPartido}<span class="trocas">antes {p.partidos.slice(0, -1).map((x) => x.sigla).join(', ')}</span>{/if}
+				<span>{num(p.votos)} votos · {data_(p.periodo.de, 'MMM yyyy')} a {data_(p.periodo.ate, 'MMM yyyy')}</span>
 			</p>
 		</div>
 	</header>
 
-	<dl class="kpis">
+	<!-- Four measures, each with a gauge: the bar is this person, the ticks are the house and the party -->
+	<dl class="kpis entra aguarda-vista" style="--d:220ms" use:emVista>
+		{#each [
+			{ chave: 'presenca', rotulo: 'Presença', v: p.presenca, leitura: `Votou em ${num(p.votos)} de ${num(p.periodo.votacoes)} votações.` },
+			{ chave: 'governismo', rotulo: 'Com o governo', v: p.governismo, leitura: leituraGoverno(p.governismo) },
+			{ chave: 'fidelidade', rotulo: 'Com o partido', v: p.fidelidade, leitura: leituraPartido(p.fidelidade) }
+		] as k, i}
+			<div class="kpi">
+				<dt>{k.rotulo}</dt>
+				<dd class="numero">
+					{#if k.v == null}—{:else}<span use:countUp={k.v}>{num(k.v)}</span><small>%</small>{/if}
+				</dd>
+				<dd class="medidor" aria-hidden="true">
+					{#if k.v != null}<i class="cheio cresce-x" style={`width:${k.v}%;--i:${i};--d:300ms`} />{/if}
+					{#if comp[k.chave].camara != null}<i class="marca-casa" style={`left:${comp[k.chave].camara}%`} />{/if}
+					{#if comp[k.chave].partido != null}<i class="marca-partido" style={`left:${comp[k.chave].partido}%`} />{/if}
+				</dd>
+				<dd class="comp">
+					{#if comp[k.chave].camara != null}<span><i class="tique tique--casa" />{K.curta} {num(comp[k.chave].camara)}%</span>{/if}
+					{#if comp[k.chave].partido != null}<span><i class="tique tique--partido" />{p.partido} {num(comp[k.chave].partido)}%</span>{/if}
+				</dd>
+				<dd class="leitura">{k.leitura}</dd>
+			</div>
+		{/each}
 		<div class="kpi">
-			<dt>Presença</dt>
-			<dd>{num(p.presenca)}<small>%</small></dd>
-			<p>Votou em {num(p.votos)} de {num(p.periodo.votacoes)} votações nominais no período.</p>
-			{#if comp.presenca.camara != null}
-				<p class="comp">{K.curta} {num(comp.presenca.camara)}% · {p.partido} {num(comp.presenca.partido)}%</p>
-			{/if}
-		</div>
-		<div class="kpi">
-			<dt>Com o governo</dt>
-			<dd>{num(p.governismo)}<small>{p.governismo == null ? '' : '%'}</small></dd>
-			<p>{leituraGoverno(p.governismo)}</p>
-			{#if p.governismo != null && comp.governismo.camara != null}
-				<p class="comp">{K.curta} {num(comp.governismo.camara)}% · {p.partido} {num(comp.governismo.partido)}%</p>
-			{/if}
-		</div>
-		<div class="kpi">
-			<dt>Com o partido</dt>
-			<dd>{num(p.fidelidade)}<small>%</small></dd>
-			<p>{leituraPartido(p.fidelidade)}</p>
-			{#if comp.fidelidade.camara != null}
-				<p class="comp">{K.curta} {num(comp.fidelidade.camara)}% · {p.partido} {num(comp.fidelidade.partido)}%</p>
-			{/if}
-		</div>
-		<div class="kpi">
-			<dt>Progressista → conservador</dt>
-			<dd>{num(p.eixo, 1)}<small>/10</small></dd>
-			<p>{leituraEixo(p.eixo)}</p>
-			{#if comp.eixo.partido != null}
-				<p class="comp">Média do {p.partido}: {num(comp.eixo.partido, 1)}</p>
-			{/if}
+			<dt>Posição no eixo</dt>
+			<dd class="numero"><span use:countUp={[p.eixo ?? 0, 1]}>{num(p.eixo, 1)}</span><small>/10</small></dd>
+			<dd class="medidor medidor--eixo" aria-hidden="true">
+				{#if comp.eixo.camara != null}<i class="marca-casa" style={`left:${comp.eixo.camara * 10}%`} />{/if}
+				{#if comp.eixo.partido != null}<i class="marca-partido" style={`left:${comp.eixo.partido * 10}%`} />{/if}
+				<i class="ponto-eu aparece" style={`left:${(p.eixo ?? 5) * 10}%;--d:500ms`} />
+			</dd>
+			<dd class="comp">
+				{#if comp.eixo.camara != null}<span><i class="tique tique--casa" />{K.curta} {num(comp.eixo.camara, 1)}</span>{/if}
+				{#if comp.eixo.partido != null}<span><i class="tique tique--partido" />{p.partido} {num(comp.eixo.partido, 1)}</span>{/if}
+			</dd>
+			<dd class="leitura">{leituraEixo(p.eixo)}</dd>
 		</div>
 	</dl>
 
 	{#if temTrajetoria}
-		<section class="sec">
-			<hr class="regua" />
+		<section class="sec aguarda-vista" use:emVista use:reveal>
+			<hr class="regua desenha" />
 			<p class="ds-label">{numero('trajetoria')} · Trajetória</p>
 			<h2>Quem é {p.nome}</h2>
 			<div class="ficha">
@@ -409,8 +403,8 @@
 						</button>
 					{/if}
 					<ol class="linha-tempo">
-						{#each tempoTodo ? linhaTempo : linhaTempo.slice(-6) as item}
-							<li class:mandato={item.tipo === 'mandato'}>
+						{#each tempoTodo ? linhaTempo : linhaTempo.slice(-6) as item, i}
+							<li class="entra" style={`--d:${i * 70}ms`} class:mandato={item.tipo === 'mandato'}>
 								<span class="anos-item">{anosTxt(item.de, item.ate)}</span>
 								{#if item.tipo === 'mandato'}
 									<b>{titulo(item.cargo)}</b>
@@ -427,15 +421,15 @@
 		</section>
 	{/if}
 
-	<section class="sec">
-		<hr class="regua" />
+	<section class="sec aguarda-vista" use:emVista use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">{numero('posicao')} · Posição</p>
 		<h2>Onde {art} {cargo} fica no plenário</h2>
 		<p class="lead">
 			Cada ponto é um {K.umOuUma}, posicionado só pelo que votou. Quem vota junto fica perto. Em escuro, o
 			{p.partido}.
 		</p>
-		<div class="eixo" bind:clientWidth={largura}>
+		<div class="eixo aparece" style="--d:150ms" bind:clientWidth={largura}>
 			<svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${p.nome} na posição ${num(p.eixo, 1)} de 10`}>
 				<line x1={M} x2={W - M} y1={118} y2={118} class="eixo-linha" />
 				{#each [0, 2.5, 5, 7.5, 10] as t}
@@ -483,8 +477,8 @@
 	</section>
 
 	{#if anos.length > 1}
-		<section class="sec">
-			<hr class="regua" />
+		<section class="sec aguarda-vista" use:emVista use:reveal>
+			<hr class="regua desenha" />
 			<p class="ds-label">{numero('anos')} · Ano a ano</p>
 			<h2>Como mudou o alinhamento</h2>
 			<table class="anos">
@@ -492,16 +486,16 @@
 					<tr><th>Ano</th><th>Votos</th><th>Com o governo</th><th>Com o partido</th></tr>
 				</thead>
 				<tbody>
-					{#each anos as [ano, v]}
-						<tr>
+					{#each anos as [ano, v], i}
+						<tr style={`--i:${i}`}>
 							<td>{ano}</td>
 							<td>{num(v.votos)}</td>
 							<td>
-								<span class="mini"><i style={`width:${v.governismo ?? 0}%`} /></span>
+								<span class="mini"><i class="cresce-x" style={`width:${v.governismo ?? 0}%`} /></span>
 								{num(v.governismo)}{v.governismo == null ? '' : '%'}
 							</td>
 							<td>
-								<span class="mini"><i style={`width:${v.fidelidade ?? 0}%`} /></span>
+								<span class="mini"><i class="cresce-x" style={`width:${v.fidelidade ?? 0}%`} /></span>
 								{num(v.fidelidade)}{v.fidelidade == null ? '' : '%'}
 							</td>
 						</tr>
@@ -511,14 +505,14 @@
 		</section>
 	{/if}
 
-	<section class="sec">
-		<hr class="regua" />
+	<section class="sec aguarda-vista" use:emVista use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">{numero('votos')} · Votos</p>
 		<h2>Como votou</h2>
 		<div class="barra-votos" role="img" aria-label={Object.entries(p.contagem).map(([t, n]) => `${t}: ${n}`).join(', ')}>
-			{#each Object.entries(p.contagem) as [tipo, n]}
+			{#each Object.entries(p.contagem) as [tipo, n], i}
 				{#if n}
-					<i style={`flex:${n};background:${corVoto(tipo)}`} />
+					<i class="cresce-x" style={`flex:${n};background:${corVoto(tipo)};--i:${i}`} />
 				{/if}
 			{/each}
 		</div>
@@ -530,8 +524,8 @@
 	</section>
 
 	{#if p.divergencias?.length}
-		<section class="sec">
-			<hr class="regua" />
+		<section class="sec aguarda-vista" use:emVista use:reveal>
+			<hr class="regua desenha" />
 			<p class="ds-label">{numero('contra')} · Contra o partido</p>
 			<h2>Quando votou diferente do {p.partido}</h2>
 			<p class="lead">
@@ -576,8 +570,8 @@
 	{/if}
 
 	{#if custos}
-		<section class="sec">
-			<hr class="regua" />
+		<section class="sec aguarda-vista" use:emVista use:reveal>
+			<hr class="regua desenha" />
 			<p class="ds-label">{numero('custos')} · Custos</p>
 			<h2>Quanto gasta da cota parlamentar</h2>
 			<p class="lead">
@@ -598,15 +592,16 @@
 				</div>
 			</div>
 
-			<div class="meses" role="img" aria-label="Gasto por mês">
-				{#each custos.meses as [m, v]}
+			<!-- As wide as the months need, so the columns sit --coluna-vao apart at the shared thickness -->
+			<div class="meses" role="img" aria-label="Gasto por mês" style={`max-width:calc(${custos.meses.length} * (var(--barra-espessura) + var(--coluna-vao)))`}>
+				{#each custos.meses as [m, v], i}
 					<span
 						class="mes"
 						class:janeiro={m.endsWith('-01')}
 						on:pointerenter={() => (focoMes = [m, v])}
 						on:pointerleave={() => (focoMes = null)}
 					>
-						<i style={`height:${(v / maxMes) * 100}%`} />
+						<i class="cresce-y" style={`height:${(v / maxMes) * 100}%;--i:${i}`} />
 						{#if m.endsWith('-01')}<em>{m.slice(0, 4)}</em>{/if}
 					</span>
 				{/each}
@@ -619,10 +614,10 @@
 				<div>
 					<h3>Em quê</h3>
 					<ul class="cats">
-						{#each categoriasTop as c}
+						{#each categoriasTop as c, i}
 							<li>
 								<span class="cat-nome">{c.nome}</span>
-								<span class="cat-barra"><i style={`width:${(c.valor / maxCat) * 100}%`} /></span>
+								<span class="cat-barra"><i class="cresce-x" style={`width:${(c.valor / maxCat) * 100}%;--i:${i}`} /></span>
 								<span class="cat-valor">{reais(c.valor, true)}</span>
 							</li>
 						{/each}
@@ -650,8 +645,8 @@
 		</section>
 	{/if}
 
-	<section class="sec metodo">
-		<hr class="regua" />
+	<section class="sec metodo" use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">Como calculamos</p>
 		<ul>
 			<li>
@@ -791,50 +786,52 @@
 
 	.cabeca {
 		display: flex;
-		gap: calc(var(--grid) * 3);
+		gap: calc(var(--grid) * 2.4);
 		align-items: center;
 	}
 
 	.foto {
-		width: 120px;
-		height: 120px;
-	}
-
-
-	h1 {
-		font-size: clamp(calc(var(--grid) * 4), 6vw, calc(var(--grid) * 7));
-		line-height: 1.02;
-		letter-spacing: -0.02em;
-		margin: calc(var(--grid) * 0.6) 0;
-	}
-
-	.sub {
-		font-size: var(--t-lead);
-		font-weight: 600;
-		margin: 0;
-	}
-
-	.trocas {
-		font-weight: 400;
-		color: var(--color-text-muted);
-	}
-
-	.periodo {
-		font-size: var(--t-small);
-		color: var(--color-text-muted);
-		margin: calc(var(--grid) * 0.6) 0 0;
+		width: calc(var(--grid) * 10.4);
+		height: calc(var(--grid) * 10.4);
+		box-shadow: 0 0 0 1px var(--color-rule);
 	}
 
 	.quem {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2px calc(var(--grid) * 1.4);
-		margin: calc(var(--grid) * 0.8) 0 0;
-		font-size: var(--t-small);
+		min-width: 0;
 	}
 
-	.quem span {
+	.quem .ds-label {
+		margin-bottom: calc(var(--grid) * 0.4);
+	}
+
+	h1 {
+		font-size: clamp(calc(var(--grid) * 3.8), 5vw, calc(var(--grid) * 5.8));
+		line-height: 1.02;
+		letter-spacing: -0.02em;
+		margin: 0 0 calc(var(--grid) * 1);
+	}
+
+	.linha-id {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: calc(var(--grid) * 0.6) calc(var(--grid) * 1.2);
+		margin: 0;
+		font-size: var(--t-small);
 		color: var(--color-text-muted);
+	}
+
+	.sigla-partido {
+		padding: calc(var(--grid) * 0.2) calc(var(--grid) * 1.2);
+		border-radius: 999px;
+		background: var(--color-dark);
+		color: var(--color-light);
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.trocas {
+		font-style: italic;
 	}
 
 	.ficha {
@@ -959,48 +956,128 @@
 
 	.kpis {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: calc(var(--grid) * 3);
-		margin: calc(var(--grid) * 5) 0 0;
-		padding-top: calc(var(--grid) * 3);
-		border-top: 1px solid var(--color-rule);
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		margin: calc(var(--grid) * 4) 0 0;
+		border-top: var(--regua);
 	}
 
 	.kpi {
 		display: flex;
 		flex-direction: column;
+		padding: calc(var(--grid) * 2) calc(var(--grid) * 2.4) 0;
+		border-left: 1px solid var(--color-rule);
+	}
+
+	.kpi:first-child {
+		padding-left: 0;
+		border-left: 0;
 	}
 
 	.kpi dt {
-		order: 0;
 		font-size: var(--t-small);
 		font-weight: 600;
 		color: var(--color-text-muted);
 	}
 
 	.kpi dd {
-		margin: calc(var(--grid) * 0.6) 0;
+		margin: 0;
+	}
+
+	.numero {
+		margin: calc(var(--grid) * 0.4) 0 calc(var(--grid) * 1.2) !important;
 		font-family: var(--font-display);
-		font-size: calc(var(--grid) * 6);
+		font-size: calc(var(--grid) * 4.6);
 		line-height: 1;
 		letter-spacing: -0.02em;
 		font-variant-numeric: tabular-nums;
 	}
 
-	.kpi dd small {
+	.numero small {
 		font-size: 0.45em;
 		margin-left: 2px;
 		color: var(--color-text-muted);
 	}
 
-	.kpi p {
-		font-size: var(--t-small);
-		margin: 0 0 calc(var(--grid) * 0.6);
-		line-height: 1.4;
+	/* The gauge: this person's bar, a dark tick for the house, an amber one for the party */
+	.medidor {
+		position: relative;
+		height: var(--barra-espessura);
+		border-radius: var(--raio-barra);
+		background: var(--color-track);
 	}
 
-	.kpi .comp {
+	.medidor .cheio {
+		position: absolute;
+		inset: 0 auto 0 0;
+		border-radius: var(--raio-barra);
+		background: var(--vote-sim);
+	}
+
+	.marca-casa,
+	.marca-partido {
+		position: absolute;
+		top: -5px;
+		bottom: -5px;
+		width: 2px;
+		margin-left: -1px;
+		border-radius: 1px;
+	}
+
+	.marca-casa {
+		background: var(--color-dark);
+	}
+
+	.marca-partido {
+		background: var(--accent-amber);
+	}
+
+	.ponto-eu {
+		position: absolute;
+		top: 50%;
+		width: 16px;
+		height: 16px;
+		margin: -8px 0 0 -8px;
+		border-radius: 50%;
+		background: var(--vote-sim);
+		border: 3px solid var(--color-light);
+		box-shadow: 0 0 0 1px var(--vote-sim);
+	}
+
+	.comp {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2px calc(var(--grid) * 1.4);
+		margin-top: calc(var(--grid) * 1.2) !important;
+		font-size: var(--t-mini);
 		color: var(--color-text-muted);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.comp span {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		white-space: nowrap;
+	}
+
+	.tique {
+		width: 2px;
+		height: 10px;
+		border-radius: 1px;
+	}
+
+	.tique--casa {
+		background: var(--color-dark);
+	}
+
+	.tique--partido {
+		background: var(--accent-amber);
+	}
+
+	.leitura {
+		margin-top: calc(var(--grid) * 0.8) !important;
+		font-size: var(--t-small);
+		line-height: 1.4;
 	}
 
 	.sec {
@@ -1351,6 +1428,7 @@
 
 	.mes {
 		position: relative;
+		cursor: pointer;
 		flex: 1;
 		height: 100%;
 		display: flex;
@@ -1529,25 +1607,40 @@
 		}
 
 		.kpis {
-			grid-template-columns: repeat(2, 1fr);
-			gap: calc(var(--grid) * 3) calc(var(--grid) * 2);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
-		.kpi dd {
-			font-size: calc(var(--grid) * 4.6);
+		.kpi {
+			padding-bottom: calc(var(--grid) * 2.4);
+		}
+
+		.kpi:nth-child(3) {
+			padding-left: 0;
+			border-left: 0;
+		}
+
+		.kpi:nth-child(n + 3) {
+			border-top: 1px solid var(--color-rule);
 		}
 	}
 
 	@media (max-width: 600px) {
 		.cabeca {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: calc(var(--grid) * 2);
+			gap: calc(var(--grid) * 1.6);
 		}
 
 		.foto {
-			width: 88px;
-			height: 88px;
+			width: calc(var(--grid) * 8);
+			height: calc(var(--grid) * 8);
+		}
+
+		.kpi {
+			padding-left: calc(var(--grid) * 1.6);
+			padding-right: 0;
+		}
+
+		.numero {
+			font-size: calc(var(--grid) * 3.8);
 		}
 
 		.anos th:nth-child(2),

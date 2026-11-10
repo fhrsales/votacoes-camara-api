@@ -1,5 +1,6 @@
 <script>
 	import { base } from '$app/paths';
+	import { countUp, emVista, reveal } from '$lib/motion.js';
 
 	export let data;
 	$: indice = data.indice;
@@ -99,16 +100,16 @@
 <main class="pagina">
 	<nav class="trilha"><a href={`${base}/`}>← Votações</a></nav>
 
-	<p class="ds-label">Câmara dos Deputados · {ano(governos[0]?.de)} a {new Date().getFullYear()}</p>
-	<h1>Quanto a Câmara segue cada governo</h1>
-	<p class="lead">
+	<p class="ds-label entra">Câmara dos Deputados · {ano(governos[0]?.de)} a {new Date().getFullYear()}</p>
+	<h1 class="entra-leve" style="--d:60ms">Quanto a Câmara segue cada governo</h1>
+	<p class="lead entra-leve" style="--d:120ms">
 		Em cada votação nominal, o líder do governo orienta a bancada a votar sim ou não. Aqui está quantas vezes
 		os deputados seguiram essa orientação, presidente a presidente, em {num(governos.reduce((s, g) => s + g.votacoes, 0))}
 		votações do plenário.
 	</p>
 
-	<section class="sec">
-		<hr class="regua" />
+	<section class="sec aguarda-vista" use:emVista use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">01 · Comparação</p>
 		<h2>Governo a governo</h2>
 		<p class="sub">Toque num governo para ver como a Câmara se dividiu nele.</p>
@@ -120,23 +121,23 @@
 				<span role="columnheader">Vitórias do governo</span>
 				<span role="columnheader">Base fiel</span>
 			</div>
-			{#each governos as g (g.chave)}
-				<button type="button" class="linha" class:ativa={atual?.chave === g.chave} role="row" on:click={() => escolher(g.chave)}>
+			{#each governos as g, i (g.chave)}
+				<button type="button" style={`--i:${i}`} class="linha" class:ativa={atual?.chave === g.chave} role="row" on:click={() => escolher(g.chave)}>
 					<span class="gov" role="cell">
 						<b>{g.nome}</b>
 						<small>{periodo(g)} · {num(g.votacoes)} votações</small>
 					</span>
 					<span class="metrica" role="cell" data-rotulo="Com o governo">
-						<span class="trilho"><i style={`width:${g.adesao ?? 0}%`} /></span>
-						<b>{pct(g.adesao)}</b>
+						<span class="trilho"><i class="cresce-x" style={`width:${g.adesao ?? 0}%`} /></span>
+						<b><span use:countUp={g.adesao ?? 0}>{num(g.adesao)}</span>%</b>
 					</span>
 					<span class="metrica" role="cell" data-rotulo="Vitórias">
-						<span class="trilho"><i style={`width:${g.taxaVitoria ?? 0}%`} /></span>
-						<b>{pct(g.taxaVitoria)}</b>
+						<span class="trilho"><i class="cresce-x" style={`width:${g.taxaVitoria ?? 0}%`} /></span>
+						<b><span use:countUp={g.taxaVitoria ?? 0}>{num(g.taxaVitoria)}</span>%</b>
 					</span>
 					<span class="metrica" role="cell" data-rotulo="Base fiel">
-						<span class="trilho"><i style={`width:${g.base ?? 0}%`} /></span>
-						<b>{pct(g.base)}</b>
+						<span class="trilho"><i class="cresce-x" style={`width:${g.base ?? 0}%`} /></span>
+						<b><span use:countUp={g.base ?? 0}>{num(g.base)}</span>%</b>
 					</span>
 				</button>
 			{/each}
@@ -148,8 +149,8 @@
 		</p>
 	</section>
 
-	<section class="sec">
-		<hr class="regua" />
+	<section class="sec aguarda-vista" use:emVista use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">02 · Mês a mês</p>
 		<h2>Como a adesão subiu e caiu</h2>
 		<p class="sub">Parte dos votos que seguiu o governo, em média móvel de cinco meses. Passe o dedo ou o mouse na linha.</p>
@@ -173,7 +174,7 @@
 				{#each meses as [m, v], i}
 					{#if v != null}<circle cx={x(idx(m))} cy={y(v)} r="1.6" class="ponto" />{/if}
 				{/each}
-				<path d={caminho} class="linha-serie" />
+				<path d={caminho} class="linha-serie" pathLength="1" />
 				{#if foco != null && suave[foco] != null}
 					<line x1={x(idx(meses[foco][0]))} x2={x(idx(meses[foco][0]))} y1={M.t} y2={ALTURA - M.b} class="foco" />
 					<circle cx={x(idx(meses[foco][0]))} cy={y(meses[foco][1] ?? suave[foco])} r="5" class="foco-ponto" />
@@ -198,8 +199,8 @@
 	</section>
 
 	{#if atual}
-		<section class="sec" id="dentro">
-			<hr class="regua" />
+		<section class="sec aguarda-vista" id="dentro" use:emVista use:reveal>
+			<hr class="regua desenha" />
 			<p class="ds-label">03 · Dentro de cada governo</p>
 			<h2>Quem seguiu {atual.nome}</h2>
 
@@ -222,8 +223,8 @@
 					<div class="histo" aria-hidden="true">
 						{#each atual.faixas as n, i}
 							<span class="col">
-								<em>{n || ''}</em>
-								<i style={`height:${(n / maxFaixa) * 100}%;background:${corFaixa(i)}`} />
+								<em class="aparece" style={`--d:${300 + i * 14}ms`}>{n || ''}</em>
+								<i class="cresce-y" style={`height:${(n / maxFaixa) * 100}%;background:${corFaixa(i)};--i:${i}`} />
 							</span>
 						{/each}
 					</div>
@@ -238,10 +239,10 @@
 				<figure>
 					<figcaption class="titulo-fig">Votos com o governo, por partido</figcaption>
 					<ul class="partidos">
-						{#each atual.partidos as p (p.sigla)}
+						{#each atual.partidos as p, i (p.sigla)}
 							<li>
 								<span class="sigla">{p.sigla}</span>
-								<span class="trilho"><i style={`width:${p.adesao}%;background:${corFaixa(Math.min(9, Math.floor(p.adesao / 10)))}`} /></span>
+								<span class="trilho"><i class="cresce-x" style={`width:${p.adesao}%;background:${corFaixa(Math.min(9, Math.floor(p.adesao / 10)))};--i:${i}`} /></span>
 								<b>{pct(p.adesao)}</b>
 							</li>
 						{/each}
@@ -252,8 +253,8 @@
 		</section>
 	{/if}
 
-	<section class="sec metodo">
-		<hr class="regua" />
+	<section class="sec metodo" use:reveal>
+		<hr class="regua desenha" />
 		<p class="ds-label">Como calculamos</p>
 		<ul>
 			<li><b>Base:</b> votações nominais do plenário da Câmara com orientação do líder do governo, nos arquivos anuais de dados abertos da Câmara. Orientação liberada fica de fora.</li>
@@ -477,12 +478,29 @@
 		fill: var(--vote-nao);
 	}
 
+	/* The line draws itself from 2003 to now when the chart comes into view */
 	.linha-serie {
+		stroke-dasharray: 1;
+		animation: traca 1600ms var(--ease) backwards 200ms;
 		fill: none;
 		stroke: var(--vote-sim);
 		stroke-width: 2.5;
 		stroke-linejoin: round;
 		stroke-linecap: round;
+	}
+
+	@keyframes traca {
+		from {
+			stroke-dashoffset: 1;
+		}
+	}
+
+	.ponto {
+		animation: aparece 600ms var(--ease) backwards 900ms;
+	}
+
+	.serie svg {
+		cursor: crosshair;
 	}
 
 	.foco {
@@ -561,6 +579,12 @@
 		font-size: var(--t-small);
 		font-weight: 600;
 		margin-bottom: calc(var(--grid) * 2);
+	}
+
+	/* Ten columns close together: just wide enough for the counts above them */
+	.histo,
+	.eixo-histo {
+		max-width: calc(var(--grid) * 36);
 	}
 
 	.histo {

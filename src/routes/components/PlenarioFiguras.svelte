@@ -617,6 +617,7 @@
 		display: block;
 		width: 100%;
 		touch-action: pan-y;
+		cursor: pointer;
 	}
 
 	.fig--sim {

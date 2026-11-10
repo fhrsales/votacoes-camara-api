@@ -33,14 +33,20 @@ export function reveal(node, { delay = 0 } = {}) {
 	return { destroy: () => observer.disconnect() };
 }
 
-/** Counts a number up (or down) to its new value whenever it changes. */
+/**
+ * Counts a number up (or down) to its new value whenever it changes.
+ * Pass a number, or [number, decimals] for values like 9,6.
+ */
 export function countUp(node, value) {
 	let frame;
 	let current = 0;
-	const format = (n) => Math.round(n).toLocaleString('pt-BR');
+	let casas = 0;
+	const format = (n) => n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
 
-	function run(target) {
+	function run(entrada) {
 		cancelAnimationFrame(frame);
+		const [target, c = 0] = Array.isArray(entrada) ? entrada : [entrada, 0];
+		casas = c;
 		const to = Number(target) || 0;
 		if (reducedMotion()) {
 			current = to;

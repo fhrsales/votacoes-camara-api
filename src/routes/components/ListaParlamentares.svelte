@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Select from './ui/Select.svelte';
+	import { countUp, emVista } from '$lib/motion.js';
 
 	export let data;
 	/** 'camara' or 'senado' */
@@ -131,17 +132,17 @@
 <main class="pagina">
 	<nav class="trilha"><a href={`${base}/`}>← Votações</a></nav>
 
-	<p class="ds-label">{K.nome} · legislatura {indice.legislatura}</p>
-	<h1>{K.h1}</h1>
-	<p class="lead">
+	<p class="ds-label entra">{K.nome} · legislatura {indice.legislatura}</p>
+	<h1 class="entra-leve" style="--d:60ms">{K.h1}</h1>
+	<p class="lead entra-leve" style="--d:120ms">
 		{num(indice.deputados.length)} {K.pessoas}, a partir de {num(indice.votacoes)} votações nominais
 		desde fevereiro de 2023. Escolha um nome para ver o perfil completo.
 	</p>
 
-	<figure class="espectro">
+	<figure class="espectro aguarda-vista entra" style="--d:180ms" use:emVista>
 		<figcaption class="ds-label">Quantos estão em cada campo</figcaption>
 		<div class="faixas">
-			{#each FAIXAS as f}
+			{#each FAIXAS as f, i}
 				<button
 					type="button"
 					class="faixa"
@@ -151,14 +152,14 @@
 					on:click={() => escolherFaixa(f.chave)}
 					aria-pressed={faixa === f.chave}
 				>
-					<span class="n">{contagemFaixa[f.chave]}</span>
+					<span class="n" use:countUp={contagemFaixa[f.chave]}>{contagemFaixa[f.chave]}</span>
 					<span class="r">{f.rotulo}</span>
 					<span class="p">{num((contagemFaixa[f.chave] / indice.deputados.length) * 100)}% · {notas[f.chave]}</span>
 				</button>
 			{/each}
 		</div>
 		<div class="barra-faixas" aria-hidden="true">
-			{#each FAIXAS as f}<i style={`flex:${contagemFaixa[f.chave]};background:${f.cor}`} class:apagada={faixa && faixa !== f.chave} />{/each}
+			{#each FAIXAS as f, i}<i class="cresce-x" style={`flex:${contagemFaixa[f.chave]};background:${f.cor};--i:${i};--d:200ms`} class:apagada={faixa && faixa !== f.chave} />{/each}
 		</div>
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div class="histo" aria-hidden="true" on:pointerleave={() => (focoBin = null)}>
@@ -170,7 +171,7 @@
 					on:pointerenter={() => (focoBin = b)}
 					on:pointerdown={() => (focoBin = b)}
 				>
-					<i style={`height:${(b.n / maxBin) * 100}%;background:${b.faixa.cor}`} />
+					<i class="cresce-y" style={`height:${(b.n / maxBin) * 100}%;background:${b.faixa.cor};--i:${b.i};--d:300ms`} />
 				</span>
 			{/each}
 			{#if focoBin}
@@ -228,8 +229,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each lista as d (d.id)}
-				<tr on:click={(e) => abrir(e, d)}>
+			{#each lista as d, i (d.id)}
+				<tr on:click={(e) => abrir(e, d)} class:entra={i < 14} style={`--d:${i * 30}ms`}>
 					<td>
 						<a href={`${base}/${K.rota}/${d.slug}`}>
 							<span class="foto retrato"><img src={d.foto} alt="" width="44" height="44" loading="lazy" /></span>

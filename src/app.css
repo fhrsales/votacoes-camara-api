@@ -298,3 +298,76 @@ body {
 	flex-direction: column;
 	gap: 2px;
 }
+
+/* ---- Entrances shared by every page, the same vocabulary as the home.
+   Inside an .aguarda-vista block they wait until it is seen (see emVista). */
+@keyframes surge {
+	from {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+}
+
+/* Large text only slides: fading it would delay the first paint */
+@keyframes surge-leve {
+	from {
+		transform: translateY(16px);
+	}
+}
+
+@keyframes desenha-x {
+	from {
+		transform: scaleX(0);
+	}
+}
+
+@keyframes cresce-y {
+	from {
+		transform: scaleY(0);
+	}
+}
+
+@keyframes aparece {
+	from {
+		opacity: 0;
+	}
+}
+
+.entra {
+	animation: surge 600ms var(--ease) backwards;
+	animation-delay: var(--d, 0ms);
+}
+
+.entra-leve {
+	animation: surge-leve 600ms var(--ease) backwards;
+	animation-delay: var(--d, 0ms);
+}
+
+/* A section rule drawn from the left */
+.desenha {
+	transform-origin: left center;
+	animation: desenha-x 900ms var(--ease) backwards;
+}
+
+/* Bars grow from their start, one after the other (--i is the bar's position) */
+.cresce-x {
+	transform-origin: left center;
+	animation: desenha-x 600ms var(--ease) backwards;
+	animation-delay: calc(var(--i, 0) * 40ms + var(--d, 0ms));
+}
+
+.cresce-y {
+	transform-origin: center bottom;
+	animation: cresce-y 600ms var(--ease) backwards;
+	animation-delay: calc(var(--i, 0) * 14ms + var(--d, 0ms));
+}
+
+.aparece {
+	animation: aparece 600ms var(--ease) backwards;
+	animation-delay: var(--d, 0ms);
+}
+
+/* Columns sit this far apart in every column chart */
+:root {
+	--coluna-vao: 4px;
+}
