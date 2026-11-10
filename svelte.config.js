@@ -24,7 +24,7 @@ const config = {
 			base: process.env.BASE_PATH ?? ''
 		},
 		prerender: {
-			entries: ['*', '/deputados', '/senadores', ...paginasDeputados, ...paginasSenadores],
+			entries: ['*', '/deputados', '/senadores', '/governabilidade', ...paginasDeputados, ...paginasSenadores],
 			// #votacao and similar anchors exist only once the data has loaded in the browser
 			handleMissingId: 'ignore'
 		}

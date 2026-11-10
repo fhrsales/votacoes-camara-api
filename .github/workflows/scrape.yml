@@ -69,6 +69,10 @@ jobs:
         run: node scripts/build-custos.mjs
       - name: Perfis dos deputados
         run: node scripts/build-perfis.mjs
+      - name: Governabilidade por governo
+        continue-on-error: true
+        timeout-minutes: 10
+        run: node scripts/build-governabilidade.mjs
       - name: Atualizar dados do Senado
         env:
           TZ: America/Sao_Paulo

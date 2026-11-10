@@ -1020,6 +1020,7 @@
 		Só entram votações nominais, com placar registrado.
 	</p>
 	<p><a href={`${base}/${C.pessoas}`}>Veja como cada {C.pessoa} vota →</a></p>
+	<p><a href={`${base}/governabilidade`}>Quanto a Câmara segue cada governo, de Lula 1 a Lula 3 →</a></p>
 </footer>
 
 <style>
