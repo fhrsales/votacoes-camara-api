@@ -42,6 +42,8 @@ const CATEGORIAS = {
 	'AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS': 'Certificado digital'
 };
 const categoria = (t) => CATEGORIAS[t] ?? (t ? t.charAt(0) + t.slice(1).toLowerCase().replace(/\.$/, '') : 'Outros');
+// MEI names carry the owner's CPF ("MARIA SILVA 03841234567"): drop any long run of digits
+const semDocumento = (n = '') => n.replace(/\d[\d.\-\/]{6,}\d/g, ' ').replace(/\s+/g, ' ').trim() || 'Sem nome';
 
 function campos(linha) {
 	const out = [];
@@ -117,7 +119,7 @@ async function main() {
 			const cat = categoria(f[cab.txtDescricao]);
 			d.cats.set(cat, (d.cats.get(cat) ?? 0) + valor);
 			const doc = (f[cab.txtCNPJCPF] ?? '').replace(/\D/g, '');
-			const nome = doc.length === 11 ? 'Pessoa física' : (f[cab.txtFornecedor] || 'Sem nome').trim();
+			const nome = doc.length === 11 ? 'Pessoa física' : semDocumento(f[cab.txtFornecedor] || 'Sem nome');
 			const chave = doc.length === 11 ? 'pf' : nome.toUpperCase().replace(/\s+/g, ' ');
 			const atual = d.forn.get(chave) ?? { nome, valor: 0, n: 0 };
 			atual.valor += valor;

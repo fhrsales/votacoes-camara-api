@@ -105,7 +105,7 @@
 		position: relative;
 		aspect-ratio: 1;
 		border: 0;
-		border-radius: 6px;
+		border-radius: var(--raio-marca);
 		background: var(--bg);
 		color: var(--ink);
 		font: inherit;
@@ -113,7 +113,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-start;
-		padding: 7px 8px;
+		padding: calc(var(--grid) * 0.8) calc(var(--grid) * 0.9);
 		cursor: pointer;
 		animation: tile-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 		animation-delay: calc(var(--i) * 14ms);
@@ -175,7 +175,7 @@
 		gap: 8px;
 		min-width: 220px;
 		padding: calc(var(--grid) * 1.6) calc(var(--grid) * 1.8);
-		border-radius: 14px;
+		border-radius: var(--raio-tip);
 		background: var(--color-dark);
 		color: var(--color-light);
 		box-shadow: var(--shadow-2);
@@ -227,7 +227,7 @@
 	.tip-linhas {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 4px 16px;
+		gap: calc(var(--grid) * 0.4) calc(var(--grid) * 1.8);
 		font-size: calc(var(--grid) * 1.6);
 	}
 
@@ -285,7 +285,6 @@
 	@media (max-width: 600px) {
 		.uf {
 			padding: 4px 5px;
-			border-radius: 4px;
 		}
 
 		.uf-sigla {

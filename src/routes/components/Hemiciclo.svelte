@@ -317,7 +317,7 @@
 			calc(var(--grid) * 1.4);
 		background: var(--color-dark);
 		color: var(--color-light);
-		border-radius: 16px;
+		border-radius: var(--raio-tip);
 		box-shadow: var(--shadow-2);
 		pointer-events: none;
 		white-space: nowrap;

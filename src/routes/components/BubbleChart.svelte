@@ -228,7 +228,7 @@
 						{#if node.showLabel && node.r > 14}
 							<text
 								dy="0.35em"
-								style="font-size: 13px;"
+								style="font-size: var(--t-mini);"
 							>
 								{node.label}
 							</text>
@@ -265,14 +265,16 @@
 		justify-content: center;
 		margin-top: calc(var(--grid) * 1.5);
 		align-self: center;
-		padding: 6px 14px;
-		border-radius: 20px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		background: var(--color-dark);
-		color: var(--color-tertiary);
-		font-size: 13px;
-		font-weight: 600;
+		padding: calc(var(--grid) * 0.6) calc(var(--grid) * 1.4);
+		border-radius: 999px;
+		border: 1px solid var(--color-dark);
+		background: transparent;
+		color: var(--color-dark);
+		font-family: var(--font-primary);
+		font-size: var(--t-control);
+		font-weight: 500;
 		cursor: pointer;
+		transition: background-color 180ms var(--ease), color 180ms var(--ease);
 	}
 
 	.bubble-chart {
@@ -282,8 +284,8 @@
 	}
 
 	.bubble-toggle:hover {
-		background: var(--color-tertiary);
-		color: var(--color-dark);
+		background: var(--color-dark);
+		color: var(--color-light);
 	}
 	.uva-container-bubble-chart {
 		position: relative;
@@ -299,7 +301,7 @@
 		background: var(--color-dark);
 		color: var(--color-light);
 		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: 14px;
+		border-radius: var(--raio-tip);
 		box-shadow: var(--shadow-2);
 		font-size: var(--t-small);
 		white-space: nowrap;
@@ -409,7 +411,7 @@
 	.is-dimmed {
 		opacity: 0.15;
 	}
-	@media (max-width: 560px) {
+	@media (max-width: 600px) {
 		.uva-container-bubble-chart {
 			max-width: 100%;
 		}

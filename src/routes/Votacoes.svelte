@@ -1344,7 +1344,7 @@
 	}
 
 	.sec {
-		margin-top: calc(var(--grid) * 8);
+		margin-top: calc(var(--grid) * 11);
 	}
 
 	/* Off-screen sections skip rendering work until they are near the viewport */
@@ -1490,8 +1490,8 @@
 
 	.regua {
 		border: 0;
-		border-top: 1px solid var(--color-rule);
-		margin: 0 0 calc(var(--grid) * 4.5);
+		border-top: var(--regua);
+		margin: 0 0 calc(var(--grid) * 5);
 		transform-origin: left;
 		animation: draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 	}
@@ -1524,9 +1524,7 @@
 	.aviso-perfil {
 		margin: calc(var(--grid) * -2) 0 calc(var(--grid) * 3);
 		padding: calc(var(--grid) * 1.4) calc(var(--grid) * 2);
-		border-left: 3px solid var(--accent-amber);
-		background: color-mix(in srgb, var(--accent-amber) 9%, transparent);
-		border-radius: 0 12px 12px 0;
+		border-left: 2px solid var(--accent-amber);
 		font-size: var(--t-small);
 		line-height: 1.5;
 		color: var(--color-dark);
@@ -1732,7 +1730,7 @@
 			grid-template-columns: 1fr;
 			grid-template-areas: 'texto' 'plenario' 'stats';
 			min-height: 0;
-			padding-bottom: calc(var(--grid) * 6);
+			padding-bottom: calc(var(--grid) * 3);
 		}
 
 		.hero-stats {
@@ -1800,7 +1798,11 @@
 		}
 
 		.sec {
-			margin-top: calc(var(--grid) * 6);
+			margin-top: calc(var(--grid) * 7);
+		}
+
+		.hero-stats {
+			margin-bottom: 0;
 		}
 	}
 </style>

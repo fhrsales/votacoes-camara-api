@@ -246,12 +246,12 @@
 		.div-row button {
 			height: max(15px, calc((100svh - var(--barra-h, 160px) - 56px) / var(--n, 20)));
 			padding: 0;
-			font-size: 11.5px;
+			font-size: var(--t-mini);
 		}
 
 		.div-name,
 		.div-n {
-			font-size: 11.5px;
+			font-size: var(--t-mini);
 			line-height: 1;
 		}
 

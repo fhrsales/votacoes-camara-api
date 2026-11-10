@@ -59,6 +59,13 @@
 	--t-small: calc(var(--grid) * 1.8);
 	--t-body: calc(var(--grid) * 2.2);
 	--t-lead: calc(var(--grid) * 2.3);
+	/* The smallest text: axis ticks, chip captions, column heads on a phone (the DS label size) */
+	--t-mini: calc(var(--grid) * 1.5);
+
+	/* Shared shapes, so every chart and tooltip reads as one system */
+	--regua: 2px solid var(--color-dark); /* the DS section rule */
+	--raio-marca: 2px; /* bars, columns and map tiles */
+	--raio-tip: 12px; /* the dark hover cards */
 }
 
 *,

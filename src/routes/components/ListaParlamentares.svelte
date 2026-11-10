@@ -184,21 +184,21 @@
 							</span>
 						</a>
 					</td>
-					<td class="n">
+					<td class="n" data-rotulo="Presença">
 						<span class="medida"><span class="mini"><i style={`width:${d.presenca ?? 0}%`} /></span>{num(d.presenca)}%</span>
 					</td>
 					{#if !governismoAusente}
-						<td class="n">
+						<td class="n" data-rotulo="Governo">
 							<span class="medida"><span class="mini"><i style={`width:${d.governismo ?? 0}%`} /></span>{d.governismo == null ? '—' : `${num(d.governismo)}%`}</span>
 						</td>
 					{/if}
-					<td class="n">
+					<td class="n" data-rotulo="Partido">
 						<span class="medida"><span class="mini"><i style={`width:${d.fidelidade ?? 0}%`} /></span>{num(d.fidelidade)}%</span>
 					</td>
-					<td class="eixo-col">
+					<td class="eixo-col" data-rotulo="Prog. ↔ Cons.">
 						<span class="trilho" aria-label={`${num(d.eixo, 1)} de 10`}>
 							<span class="meio" />
-							<i style={`left:${d.eixo * 10}%`} />
+							<i style={`--x:${d.eixo / 10}`} />
 						</span>
 					</td>
 				</tr>
@@ -245,8 +245,8 @@
 
 	.faixas {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: calc(var(--grid) * 1);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: calc(var(--grid) * 1.2);
 		margin: calc(var(--grid) * 1.2) 0;
 	}
 
@@ -255,10 +255,9 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 2px;
-		padding: calc(var(--grid) * 1.2) calc(var(--grid) * 1.4);
-		border: 1px solid var(--color-rule);
+		padding: calc(var(--grid) * 1.2) calc(var(--grid) * 1) calc(var(--grid) * 1.2) 0;
+		border: 0;
 		border-top: 4px solid var(--cor);
-		border-radius: 12px;
 		background: none;
 		color: var(--color-dark);
 		font: inherit;
@@ -267,14 +266,15 @@
 		transition: opacity 160ms var(--ease), background 160ms var(--ease);
 	}
 
-	.faixa:hover,
-	.faixa.ativa {
-		background: color-mix(in srgb, var(--cor) 12%, transparent);
+	.faixa:hover .r,
+	.faixa.ativa .r {
+		text-decoration: underline 2px var(--cor);
+		text-underline-offset: 4px;
 	}
 
 	.faixa .n {
 		font-family: var(--font-display);
-		font-size: clamp(32px, 6vw, 48px);
+		font-size: clamp(calc(var(--grid) * 3.6), 6vw, calc(var(--grid) * 5.4));
 		font-weight: 500;
 		line-height: 1;
 		font-variant-numeric: tabular-nums;
@@ -296,8 +296,7 @@
 	.barra-faixas {
 		display: flex;
 		gap: 2px;
-		height: 10px;
-		border-radius: 999px;
+		height: calc(var(--grid) * 1);
 		overflow: hidden;
 	}
 
@@ -326,13 +325,13 @@
 		display: block;
 		width: 100%;
 		min-height: 1px;
-		border-radius: 3px 3px 0 0;
+		border-radius: var(--raio-marca) var(--raio-marca) 0 0;
 	}
 
 	.eixo-rot {
 		display: flex;
 		justify-content: space-between;
-		margin-top: 6px;
+		margin-top: calc(var(--grid) * 0.6);
 		font-size: var(--t-small);
 		font-weight: 600;
 		color: var(--color-text-muted);
@@ -371,6 +370,14 @@
 
 	.busca {
 		flex: 1 1 220px;
+	}
+
+	.filtros :global(.ui-select-wrapper) {
+		flex: 1 1 calc(var(--grid) * 22);
+	}
+
+	.filtros :global(.ui-select) {
+		width: 100%;
 	}
 
 	input {
@@ -470,13 +477,13 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: flex-end;
-		gap: 8px;
+		gap: calc(var(--grid) * 0.9);
 	}
 
 	.mini {
 		display: inline-block;
-		width: 64px;
-		height: 8px;
+		width: calc(var(--grid) * 7);
+		height: calc(var(--grid) * 0.9);
 		border-radius: 999px;
 		background: var(--vote-ausentes);
 		overflow: hidden;
@@ -510,6 +517,8 @@
 	.trilho i {
 		position: absolute;
 		top: 50%;
+		/* inset by the dot's radius, so 0 and 10 stay inside the track */
+		left: calc(7px + (100% - 14px) * var(--x, 0.5));
 		width: 14px;
 		height: 14px;
 		margin: -7px 0 0 -7px;
@@ -524,43 +533,79 @@
 	}
 
 	@media (max-width: 600px) {
+		thead {
+			display: none;
+		}
+
+		.tabela,
+		.tabela tbody {
+			display: block;
+		}
+
+		tbody tr {
+			display: grid;
+			grid-template-columns: repeat(3, auto) minmax(0, 1fr);
+			gap: calc(var(--grid) * 0.8) calc(var(--grid) * 2.2);
+			padding: calc(var(--grid) * 1.4) 0 calc(var(--grid) * 1.4) calc(var(--grid) * 5.8);
+			border-top: 1px solid var(--color-rule);
+		}
+
+		tbody tr:hover td {
+			background: none;
+		}
+
+		td {
+			border: 0;
+			padding: 0;
+		}
+
+		td:first-child {
+			grid-column: 1 / -1;
+			margin-left: calc(var(--grid) * -5.8);
+		}
+
+		td[data-rotulo] {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			text-align: left;
+			padding-right: 0;
+		}
+
+		td[data-rotulo]::before {
+			content: attr(data-rotulo);
+			font-size: var(--t-mini);
+			color: var(--color-text-muted);
+			white-space: nowrap;
+		}
+
+		.medida {
+			justify-content: flex-start;
+			font-weight: 600;
+		}
+
 		.eixo-col {
-			width: 64px;
+			width: auto;
+		}
+
+		.eixo-col .trilho {
+			margin-top: calc(var(--grid) * 0.8);
 		}
 
 		.mini {
 			display: none;
 		}
 
-		.nome small {
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
-		}
-
-		.n {
-			padding-right: calc(var(--grid) * 1);
-		}
-
-		th {
-			font-size: 11px;
-		}
-
 		.faixas {
-			gap: 6px;
-		}
-
-		.faixa {
-			padding: calc(var(--grid) * 1) calc(var(--grid) * 1);
+			gap: calc(var(--grid) * 1.2);
 		}
 
 		.faixa .r {
-			font-size: var(--t-small);
+			font-size: var(--t-label);
 		}
 
 		.faixa .p {
-			font-size: 11px;
+			font-size: var(--t-mini);
 		}
 
 		.histo {

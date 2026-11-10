@@ -285,7 +285,7 @@
     font-weight: 400;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     th:nth-child(2),
     td[data-label='Partido'],
     th:nth-child(3),

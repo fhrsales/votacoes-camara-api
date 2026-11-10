@@ -20,6 +20,8 @@ const CATEGORIAS = [
 	[/seguran/i, 'Segurança']
 ];
 const categoria = (t = '') => CATEGORIAS.find(([re]) => re.test(t.trim()))?.[1] ?? (t.trim() || 'Outros');
+// MEI names carry the owner's CPF ("MARIA SILVA 03841234567"): drop any long run of digits
+const semDocumento = (n = '') => n.replace(/\d[\d.\-\/]{6,}\d/g, ' ').replace(/\s+/g, ' ').trim() || 'Sem nome';
 const normal = (s = '') => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 
 function campos(linha) {
@@ -120,7 +122,7 @@ async function main() {
 			const cat = categoria(f[cab.TIPO_DESPESA]);
 			d.cats.set(cat, (d.cats.get(cat) ?? 0) + valor);
 			const doc = (f[cab.CNPJ_CPF] ?? '').replace(/\D/g, '');
-			const nome = doc.length === 11 ? 'Pessoa física' : (f[cab.FORNECEDOR] || 'Sem nome').trim();
+			const nome = doc.length === 11 ? 'Pessoa física' : semDocumento(f[cab.FORNECEDOR] || 'Sem nome');
 			const chave = doc.length === 11 ? 'pf' : nome.toUpperCase().replace(/\s+/g, ' ');
 			const atual = d.forn.get(chave) ?? { nome, valor: 0, n: 0 };
 			atual.valor += valor;

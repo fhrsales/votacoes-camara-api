@@ -553,7 +553,7 @@
 		align-items: center;
 		gap: 10px;
 		padding: calc(var(--grid) * 1) calc(var(--grid) * 1.6);
-		border-radius: 12px;
+		border-radius: var(--raio-tip);
 		background: var(--color-dark);
 		color: var(--color-light);
 		box-shadow: var(--shadow-2);

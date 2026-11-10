@@ -224,6 +224,12 @@
 
 	const limpa = (texto = '') => texto.replace(/\s*Sim:\s*\d+.*$/s, '').trim();
 	let mostrarTodas = false;
+
+	// Career timeline, newest first; long ones (senators chair many fronts) open with the first six
+	let tempoTodo = false;
+	$: linhaTempo = [...(bio?.mandatos ?? []).map((m) => ({ tipo: 'mandato', ...m })), ...(bio?.ocupacoes ?? []).map((o) => ({ tipo: 'ocupacao', ...o }))].sort(
+		(x, y) => (y.de ?? 0) - (x.de ?? 0)
+	);
 	$: divergencias = mostrarTodas ? p.divergencias : p.divergencias.slice(0, 8);
 	const corVoto = (v) => COR[v] ?? 'var(--color-dark)';
 	// Light vote colours need dark text on the chip
@@ -379,7 +385,7 @@
 				</dl>
 				{#if bio?.mandatos?.length || bio?.ocupacoes?.length}
 					<ol class="linha-tempo">
-						{#each [...(bio.mandatos ?? []).map((m) => ({ tipo: 'mandato', ...m })), ...(bio.ocupacoes ?? []).map((o) => ({ tipo: 'ocupacao', ...o }))].sort((x, y) => (y.de ?? 0) - (x.de ?? 0)) as item}
+						{#each tempoTodo ? linhaTempo : linhaTempo.slice(0, 6) as item}
 							<li class:mandato={item.tipo === 'mandato'}>
 								<span class="anos-item">{anosTxt(item.de, item.ate)}</span>
 								{#if item.tipo === 'mandato'}
@@ -392,6 +398,11 @@
 							</li>
 						{/each}
 					</ol>
+					{#if linhaTempo.length > 6}
+						<button type="button" class="mais" on:click={() => (tempoTodo = !tempoTodo)}>
+							{tempoTodo ? 'Mostrar menos' : `Mostrar todos (${linhaTempo.length})`}
+						</button>
+					{/if}
 				{/if}
 			</div>
 		</section>
@@ -936,13 +947,13 @@
 	}
 
 	.sec {
-		margin-top: calc(var(--grid) * 7);
+		margin-top: calc(var(--grid) * 9);
 	}
 
 	.regua {
 		border: 0;
-		border-top: 1px solid var(--color-rule);
-		margin: 0 0 calc(var(--grid) * 3);
+		border-top: var(--regua);
+		margin: 0 0 calc(var(--grid) * 4);
 	}
 
 	h2 {
@@ -967,7 +978,7 @@
 
 	.marca-txt {
 		font-family: var(--font-primary);
-		font-size: 11px;
+		font-size: var(--t-mini);
 		fill: var(--color-text-muted);
 		text-anchor: middle;
 	}
@@ -994,7 +1005,7 @@
 		flex-direction: column;
 		gap: 2px;
 		padding: calc(var(--grid) * 1.1) calc(var(--grid) * 1.6);
-		border-radius: 14px;
+		border-radius: var(--raio-tip);
 		background: var(--color-dark);
 		color: var(--color-light);
 		box-shadow: var(--shadow-2);
@@ -1203,11 +1214,13 @@
 	}
 
 	.mais {
+		justify-self: start;
+		align-self: flex-start;
 		margin-top: calc(var(--grid) * 2);
 		font: inherit;
 		font-size: var(--t-small);
 		font-weight: 600;
-		padding: 8px 18px;
+		padding: calc(var(--grid) * 0.9) calc(var(--grid) * 1.8);
 		border: 1px solid var(--color-dark);
 		border-radius: 999px;
 		background: none;
@@ -1225,7 +1238,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-end;
-		gap: 6px calc(var(--grid) * 1.2);
+		gap: calc(var(--grid) * 0.6) calc(var(--grid) * 1.2);
 		margin-top: calc(var(--grid) * 0.8);
 	}
 
@@ -1236,7 +1249,7 @@
 	}
 
 	.chip small {
-		font-size: 11px;
+		font-size: var(--t-mini);
 		font-weight: 600;
 		letter-spacing: 0.02em;
 		color: var(--color-text-muted);
@@ -1248,7 +1261,7 @@
 		text-align: center;
 		font-size: var(--t-small);
 		font-weight: 600;
-		padding: 4px 12px;
+		padding: calc(var(--grid) * 0.4) calc(var(--grid) * 1.4);
 		border-radius: 999px;
 		color: var(--color-light);
 	}
@@ -1329,7 +1342,7 @@
 		display: block;
 		width: 100%;
 		min-height: 1px;
-		border-radius: 2px 2px 0 0;
+		border-radius: var(--raio-marca) var(--raio-marca) 0 0;
 		background: var(--vote-obstrucao);
 		transition: background 120ms var(--ease);
 	}
@@ -1343,7 +1356,7 @@
 		top: calc(100% + 4px);
 		left: 0;
 		font-style: normal;
-		font-size: 11px;
+		font-size: var(--t-mini);
 		font-weight: 600;
 		color: var(--color-text-muted);
 	}
@@ -1505,7 +1518,7 @@
 		}
 	}
 
-	@media (max-width: 520px) {
+	@media (max-width: 600px) {
 		.cabeca {
 			flex-direction: column;
 			align-items: flex-start;
