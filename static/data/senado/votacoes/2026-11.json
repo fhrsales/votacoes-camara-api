@@ -1,7 +1,27 @@
 {
   "mes": "2026-11",
-  "generatedAt": "2026-11-12T17:45:19.687Z",
+  "generatedAt": "2026-11-13T07:29:50.507Z",
   "votacoes": [
+    {
+      "id": "7116",
+      "data": "2026-11-12",
+      "dataHoraRegistro": "2026-11-12T00:00:00",
+      "sequencial": 4430,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Aprovado. Votação nominal da Emenda nº 75 (Substitutivo) ao PLP nº 299/2026, nos termos do parecer, ressalvados os destaques.",
+      "hasResultado": true
+    },
+    {
+      "id": "7115",
+      "data": "2026-11-12",
+      "dataHoraRegistro": "2026-11-12T00:00:00",
+      "sequencial": 4429,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Aprovado. Votação nominal do Requerimento n° 770, de 2026, de Líderes.",
+      "hasResultado": true
+    },
     {
       "id": "7114",
       "data": "2026-11-11",
