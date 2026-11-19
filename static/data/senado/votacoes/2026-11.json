@@ -1,7 +1,47 @@
 {
   "mes": "2026-11",
-  "generatedAt": "2026-11-18T18:24:02.385Z",
+  "generatedAt": "2026-11-19T08:12:21.933Z",
   "votacoes": [
+    {
+      "id": "7120",
+      "data": "2026-11-18",
+      "dataHoraRegistro": "2026-11-18T00:00:00",
+      "sequencial": 4434,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Aprovado. Votação nominal das Emendas, subemenda e adequações redacionais do Relator, em turno suplementar, nos termos do parecer.",
+      "hasResultado": true
+    },
+    {
+      "id": "7119",
+      "data": "2026-11-18",
+      "dataHoraRegistro": "2026-11-18T00:00:00",
+      "sequencial": 4433,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Aprovado. Votação nominal do Art. 6º-F da Lei Complementar nº 200, de 2023, constante do art. 1º do Substitutivo ao PLP nº 299/2026, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "7118",
+      "data": "2026-11-18",
+      "dataHoraRegistro": "2026-11-18T00:00:00",
+      "sequencial": 4432,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Aprovado. Votação nominal do Art. 6º do Substitutivo ao Projeto de Lei Complementar nº 299, de 2026, destacado.",
+      "hasResultado": true
+    },
+    {
+      "id": "7117",
+      "data": "2026-11-18",
+      "dataHoraRegistro": "2026-11-18T00:00:00",
+      "sequencial": 4431,
+      "siglaOrgao": "PLEN",
+      "identificacao": "PLP 299/2026",
+      "descricao": "Rejeitado. Votação nominal da Emenda nº 40 ao Projeto de Lei Complementar nº 299, de 2026, destacada.",
+      "hasResultado": true
+    },
     {
       "id": "7116",
       "data": "2026-11-12",
