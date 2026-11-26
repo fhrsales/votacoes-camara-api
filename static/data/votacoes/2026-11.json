@@ -1,7 +1,21 @@
 {
   "mes": "2026-11",
-  "generatedAt": "2026-11-25T09:24:25.985Z",
+  "generatedAt": "2026-11-26T09:02:09.833Z",
   "votacoes": [
+    {
+      "id": "2394518-60",
+      "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2394518-60",
+      "data": "2026-11-25",
+      "dataHoraRegistro": "2026-11-25T17:35:56",
+      "siglaOrgao": "PLEN",
+      "uriOrgao": "https://dadosabertos.camara.leg.br/api/v2/orgaos/180",
+      "uriEvento": "https://dadosabertos.camara.leg.br/api/v2/eventos/85492",
+      "proposicaoObjeto": null,
+      "uriProposicaoObjeto": null,
+      "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 4.887, de 2023, adotado pela relatora da Comissão de Previdência, Assistência Social, Infância, Adolescência e Família. Sim: 320; Não: 102; Total: 422.",
+      "aprovacao": 1,
+      "hasResultado": true
+    },
     {
       "id": "2332174-59",
       "uri": "https://dadosabertos.camara.leg.br/api/v2/votacoes/2332174-59",

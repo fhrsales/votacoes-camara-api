@@ -27,7 +27,6 @@
     "4994": "sen.eduardobraga@senado.leg.br",
     "5008": "sen.humbertocosta@senado.leg.br",
     "5012": "sen.randolferodrigues@senado.leg.br",
-    "5016": "wellington.dias@senador.leg.br",
     "5070": "sen.wildermorais@senado.leg.br",
     "5207": "sen.renanfilho@senado.leg.br",
     "5322": "sen.romario@senado.leg.br",
@@ -78,7 +77,8 @@
     "6340": "sen.jaimebagattoli@senado.leg.br",
     "6341": "sen.hamiltonmourao@senado.leg.br",
     "6342": "sen.jorgeseif@senado.leg.br",
-    "6358": "sen.anapaulalobato@senado.leg.br"
+    "6358": "sen.anapaulalobato@senado.leg.br",
+    "6369": "sen.jussaralima@senado.leg.br"
   },
   "mulheres": [
     6358,
@@ -87,6 +87,7 @@
     5906,
     5718,
     6010,
+    6369,
     5977,
     5376,
     5386,
